@@ -164,3 +164,17 @@ NPM_PUBLISH_TOKEN. Secrets live in `.local/secrets/` (gitignored):
   `/user/tokens/verify`. That endpoint rejects account-scoped tokens with 401
   Invalid API Token even when they are perfectly valid, which reads as a dead
   credential and sends you chasing the wrong thing.
+
+## Tags
+
+A release tag is `<package-slug>/v<version>`. The name carries no registry, so
+when `@perish/react-components` moved from jsr to npm its version numbering
+restarted at beta.1 and collided with tags the jsr era had already taken. The
+jsr-era library tags were deleted — that registry is abandoned and those
+artefacts were falsified — and npm numbering continues unbroken. The plugin's
+tags are untouched.
+
+The tag step FAILS on a collision rather than skipping it. It skips only when
+the tag already points at this very commit, which is the repair-pass case;
+a tag owned by a different commit means two histories are claiming one version
+and the lane must not paper over that.

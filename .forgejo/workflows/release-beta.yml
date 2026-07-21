@@ -193,9 +193,15 @@ jobs:
             exit 0
           fi
           tag="$SLUG/$RELEASE_VERSION"
-          if git ls-remote --exit-code --tags origin "refs/tags/$tag" >/dev/null 2>&1; then
-            echo "tag $tag already on origin: skipping tag"
-            exit 0
+          held=$(git ls-remote --tags origin "refs/tags/$tag" | cut -f1)
+          if [ -n "$held" ]; then
+            if [ "$held" = "$(git rev-parse HEAD)" ]; then
+              echo "tag $tag already on origin at this commit: skipping tag"
+              exit 0
+            fi
+            echo "tag $tag already on origin at $held, but HEAD is $(git rev-parse HEAD)" >&2
+            echo "a different commit already owns this version; the version numbering collided" >&2
+            exit 1
           fi
           git config user.name "forgejo-actions"
           git config user.email "actions@git.perish.top"
