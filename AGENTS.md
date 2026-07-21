@@ -9,8 +9,8 @@ image was assumed to be deno-only; it is not, and a CI weaker than the local
 hook means anyone who bypasses the hook lands red.
 
 THERE IS NO PINNED NEGENTROPY VERSION. Both CI and the local environment
-install the latest stable, and the guard passes `{ pin: false }` so it does not
-demand an exact build. negentropy is the family's global gate: pinning it per
+install the latest stable, and the guard engine no longer verifies a version at
+all. negentropy is the family's global gate: pinning it per
 repo would put ten different constitutions in circulation, and `clean` would
 mean something different in each. The consequence is deliberate — a negentropy
 release can turn this repo red with no change of ours. That is the gate doing
