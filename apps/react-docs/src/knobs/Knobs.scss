@@ -1,0 +1,33 @@
+.knobs {
+	display: grid;
+	gap: var(--space-2);
+	padding: var(--space-3);
+	background: var(--well);
+	border-radius: var(--radius);
+}
+
+.knob {
+	display: grid;
+	grid-template-columns: 8rem 12rem 1fr;
+	gap: var(--space-2);
+	align-items: center;
+	font-size: var(--fine);
+
+	span {
+		font-family: var(--mono);
+		color: var(--bright);
+	}
+
+	em {
+		color: var(--muted);
+		font-style: normal;
+	}
+
+	input[type="text"] {
+		padding: var(--space-1) var(--space-2);
+		background: var(--panel);
+		color: var(--ink);
+		border: var(--line) solid var(--rule);
+		border-radius: var(--radius);
+	}
+}

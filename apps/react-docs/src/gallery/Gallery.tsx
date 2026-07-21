@@ -1,85 +1,63 @@
-import {
-	Badge,
-	Banner,
-	Button,
-	Card,
-	Code,
-	Copy,
-	Footer,
-	Forge,
-	Frame,
-	Grid,
-	Hero,
-	Ledger,
-	List,
-	Nav,
-	Rail,
-	Search,
-} from "@perish/react-components";
+import { Card, Frame, Grid, Hero, Nav } from "@perish/react-components";
 import { type ReactNode, useState } from "react";
+import { notes } from "../docs/notes";
+import { seeds } from "../docs/samples";
+import { Knobs } from "../knobs/Knobs";
+import { Stage } from "./Stage";
 
-const atoms = [
-	{ word: "kernel", count: 12 },
-	{ word: "grammar", count: 8 },
-];
+type Locale = "en" | "zh";
 
-const stops = [
-	{ mark: "01", name: "declare", text: "the library names the design" },
-	{ mark: "02", name: "materialise", text: "the plugin wires it up" },
-];
+const speech: Record<Locale, { title: string; line: string; toggle: string }> =
+	{
+		en: {
+			title: "perish design",
+			line: "one system, many flavours",
+			toggle: "简体中文",
+		},
+		zh: {
+			title: "perish 设计系统",
+			line: "一套系统,多种风味",
+			toggle: "English",
+		},
+	};
 
-const sample = 'const seal = "clean";\n';
-
-function Seat(props: { name: string; children: ReactNode }) {
-	return <Card title={props.name}>{props.children}</Card>;
+function Bench(props: { name: string; locale: Locale }): ReactNode {
+	const [values, set] = useState<Record<string, unknown>>(
+		seeds[props.name] ?? {},
+	);
+	const entry = notes[props.name] ?? {};
+	return (
+		<Card title={props.name}>
+			<Stage name={props.name} values={values} />
+			<Knobs
+				entry={entry}
+				values={values}
+				locale={props.locale}
+				change={(prop, next) => set({ ...values, [prop]: next })}
+			/>
+		</Card>
+	);
 }
 
-export function Gallery() {
-	const [term, seek] = useState("");
+export function Gallery(): ReactNode {
+	const [locale, speak] = useState<Locale>("en");
+	const said = speech[locale];
 	return (
 		<Frame>
 			<Nav>
-				<Badge>design</Badge>
+				<button
+					type="button"
+					onClick={() => speak(locale === "en" ? "zh" : "en")}
+				>
+					{said.toggle}
+				</button>
 			</Nav>
-			<Hero title="perish design" text="one system, many flavours" mark="◆" />
+			<Hero title={said.title} text={said.line} mark="◆" />
 			<Grid>
-				<Seat name="Badge">
-					<Badge>stable</Badge>
-				</Seat>
-				<Seat name="Button">
-					<Button>press</Button>
-				</Seat>
-				<Seat name="Code">
-					<Code name="seal.ts" copy>
-						{sample}
-					</Code>
-				</Seat>
-				<Seat name="Copy">
-					<Copy text="negentropy --strict ." />
-				</Seat>
-				<Seat name="Forge">
-					<Forge repo="PerishFire/design" />
-				</Seat>
-				<Seat name="Search">
-					<Search value={term} change={seek} hint="filter components" />
-				</Seat>
-				<Seat name="Ledger">
-					<Ledger atoms={atoms} />
-				</Seat>
-				<Seat name="List">
-					<List>
-						<li>declare</li>
-						<li>materialise</li>
-					</List>
-				</Seat>
-				<Seat name="Rail">
-					<Rail stops={stops} />
-				</Seat>
+				{Object.keys(notes).map((name) => (
+					<Bench key={name} name={name} locale={locale} />
+				))}
 			</Grid>
-			<Banner mark="◆" title="Banner" line="a banner carries one line" />
-			<Footer>
-				<Badge>beta</Badge>
-			</Footer>
 		</Frame>
 	);
 }
