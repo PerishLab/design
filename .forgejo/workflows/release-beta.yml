@@ -112,7 +112,7 @@ jobs:
           if [ "$REGISTRY" = "jsr" ]; then
             deno publish --dry-run --allow-dirty
           else
-            npm publish --dry-run
+            npm publish --dry-run --tag beta
           fi
 
       - name: Publish
