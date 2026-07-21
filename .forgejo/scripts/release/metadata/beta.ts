@@ -23,7 +23,9 @@ function seat(): string {
   return dir.replace(/\/+$/, "");
 }
 
-async function manifest(dir: string): Promise<{ name: string; version: string }> {
+async function manifest(
+  dir: string,
+): Promise<{ name: string; version: string }> {
   const doc = JSON.parse(await Deno.readTextFile(`${dir}/deno.json`));
   if (typeof doc.name !== "string" || !doc.name) {
     fail(`missing name in ${dir}/deno.json`);
@@ -62,7 +64,10 @@ async function fetchVersions(name: string): Promise<string[] | null> {
     fail(`jsr meta returned HTTP ${response.status}`);
   }
   const meta = await response.json();
-  if (typeof meta !== "object" || meta === null || typeof meta.versions !== "object") {
+  if (
+    typeof meta !== "object" || meta === null ||
+    typeof meta.versions !== "object"
+  ) {
     fail("jsr meta must be a JSON object with a versions map");
   }
   return Object.keys(meta.versions);
@@ -86,7 +91,9 @@ async function main(): Promise<void> {
   const override = (Deno.env.get("BETA_VERSION_OVERRIDE") ?? "").trim();
   const versions = (await fetchVersions(held.name)) ?? [];
   if (versions.includes(base)) {
-    fail(`base ${base} is already stable on jsr; bump ${dir}/deno.json before cutting betas`);
+    fail(
+      `base ${base} is already stable on jsr; bump ${dir}/deno.json before cutting betas`,
+    );
   }
   let number: number;
   let already = "false";
@@ -94,10 +101,16 @@ async function main(): Promise<void> {
   if (override) {
     const match = TAGGED_BETA.exec(override);
     if (!match) {
-      fail(`BETA_VERSION_OVERRIDE must look like vX.Y.Z-beta.N, got ${override}`);
+      fail(
+        `BETA_VERSION_OVERRIDE must look like vX.Y.Z-beta.N, got ${override}`,
+      );
     }
     if (match[1] !== base) {
-      fail(`override base ${match[1]} does not match ${dir}/deno.json version ${base}`);
+      fail(
+        `override base ${
+          match[1]
+        } does not match ${dir}/deno.json version ${base}`,
+      );
     }
     number = Number(match[2]);
     already = versions.includes(`${base}-beta.${number}`) ? "true" : "false";

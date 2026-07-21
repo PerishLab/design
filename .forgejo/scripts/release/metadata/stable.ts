@@ -34,7 +34,9 @@ function seat(): string {
   return dir.replace(/\/+$/, "");
 }
 
-async function manifest(dir: string): Promise<{ name: string; version: string }> {
+async function manifest(
+  dir: string,
+): Promise<{ name: string; version: string }> {
   const doc = JSON.parse(await Deno.readTextFile(`${dir}/deno.json`));
   if (typeof doc.name !== "string" || !doc.name) {
     fail(`missing name in ${dir}/deno.json`);
@@ -81,7 +83,10 @@ async function fetchVersions(name: string): Promise<string[] | null> {
     fail(`jsr meta returned HTTP ${response.status}`);
   }
   const meta = await response.json();
-  if (typeof meta !== "object" || meta === null || typeof meta.versions !== "object") {
+  if (
+    typeof meta !== "object" || meta === null ||
+    typeof meta.versions !== "object"
+  ) {
     fail("jsr meta must be a JSON object with a versions map");
   }
   return Object.keys(meta.versions);
@@ -92,7 +97,10 @@ function priorStable(versions: string[]): string | null {
   if (ranked.length === 0) {
     return null;
   }
-  return ranked.reduce((left, right) => (order(left, right) < 0 ? right : left));
+  return ranked.reduce((
+    left,
+    right,
+  ) => (order(left, right) < 0 ? right : left));
 }
 
 async function main(): Promise<void> {
@@ -100,8 +108,12 @@ async function main(): Promise<void> {
   const held = await manifest(dir);
   const version = held.version;
   const override = (Deno.env.get("STABLE_VERSION_OVERRIDE") ?? "").trim();
-  if (override && parseStable(override, "STABLE_VERSION_OVERRIDE") !== version) {
-    fail(`override ${override} does not match ${dir}/deno.json version ${version}`);
+  if (
+    override && parseStable(override, "STABLE_VERSION_OVERRIDE") !== version
+  ) {
+    fail(
+      `override ${override} does not match ${dir}/deno.json version ${version}`,
+    );
   }
   const versions = await fetchVersions(held.name);
   let already = "false";
@@ -118,7 +130,9 @@ async function main(): Promise<void> {
     } else {
       const ranked = order(version, prior);
       if (ranked < 0) {
-        fail(`${dir}/deno.json version ${version} regressed below prior stable ${prior}`);
+        fail(
+          `${dir}/deno.json version ${version} regressed below prior stable ${prior}`,
+        );
       }
       if (ranked === 0) {
         fail(

@@ -41,7 +41,9 @@ export function design(): Plugin {
 			if (id !== sealed) {
 				return null;
 			}
-			return `import ${JSON.stringify(unwrap(import.meta.resolve(face)))};\n`;
+			const found = import.meta.resolve(face);
+			const target = found.startsWith("file:") ? unwrap(found) : face;
+			return `import ${JSON.stringify(target)};\n`;
 		},
 	};
 }

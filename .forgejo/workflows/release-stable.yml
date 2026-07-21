@@ -49,10 +49,8 @@ jobs:
         include:
           - seat: packages/vite-plugin-design
             slug: vite-plugin-design
-            symbols: design
           - seat: packages/react-components
             slug: react-components
-            symbols: Frame,Button
     env:
       DENO_NO_PACKAGE_JSON: "1"
       STABLE_VERSION_OVERRIDE: ${{ inputs.version_override }}
@@ -60,7 +58,6 @@ jobs:
       PUBLISH: ${{ inputs.publish }}
       SEAT: ${{ matrix.seat }}
       SLUG: ${{ matrix.slug }}
-      SYMBOLS: ${{ matrix.symbols }}
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -138,7 +135,7 @@ jobs:
             echo "rehearsal: skipping smoke"
             exit 0
           fi
-          sh .forgejo/scripts/release/jsr/smoke.sh "$PACKAGE_NAME" "${RELEASE_VERSION#v}" "$SYMBOLS"
+          sh .forgejo/scripts/release/jsr/smoke.sh "$PACKAGE_NAME" "${RELEASE_VERSION#v}" "$SLUG"
 
       - name: Tag release
         env:
