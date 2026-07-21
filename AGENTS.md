@@ -8,6 +8,15 @@ the SAME guard the pre-commit hook runs — biome, tsc, vitest, deno, negentropy
 image was assumed to be deno-only; it is not, and a CI weaker than the local
 hook means anyone who bypasses the hook lands red.
 
+THERE IS NO PINNED NEGENTROPY VERSION. Both CI and the local environment
+install the latest stable, and the guard passes `{ pin: false }` so it does not
+demand an exact build. negentropy is the family's global gate: pinning it per
+repo would put ten different constitutions in circulation, and `clean` would
+mean something different in each. The consequence is deliberate — a negentropy
+release can turn this repo red with no change of ours. That is the gate doing
+its job, not an accident, and the fix is to meet the new law rather than to
+freeze the old one.
+
 ## Layout
 
 - `packages/react-components` — the React library, published as
@@ -144,7 +153,14 @@ NPM_PUBLISH_TOKEN. Secrets live in `.local/secrets/` (gitignored):
 
 - `ship.env` — `DESIGN_DOCS_DOMAIN`, the public host with no scheme
 - `cloudflare.env` — `CLOUDFLARE_ACCOUNT_ID`, `CLOUDFLARE_API_TOKEN`,
-  `CLOUDFLARE_ZONE_NAME`. The token is scoped to design.perish.uk by intent,
-  but Cloudflare's DNS permission is ZONE level: it can still edit any record
-  in perish.uk. What the separate token buys is independent revocation and
-  audit, not confinement.
+  `CLOUDFLARE_ZONE_NAME`. The SAME credentials open-web ships with. A separate
+  token was considered and rejected: Cloudflare's DNS permission is zone level,
+  so a second token could still edit every record in perish.uk, and both files
+  would sit in the same `.local/secrets/` on the same machine — the compromise
+  that leaks one leaks both. Separation would buy audit attribution and nothing
+  else. Revisit only if shipping ever moves into CI, where the token would land
+  on the forge and the trust domain genuinely differs.
+- `:ship --check` verifies the token through `/zones?name=<zone>`, NOT
+  `/user/tokens/verify`. That endpoint rejects account-scoped tokens with 401
+  Invalid API Token even when they are perfectly valid, which reads as a dead
+  credential and sends you chasing the wrong thing.

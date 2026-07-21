@@ -55,7 +55,13 @@ function unfilled(values: Record<string, string>, wanted: string[]): string[] {
   });
 }
 
-type Vault = { domain: string; account: string; token: string; empty: string[] };
+type Vault = {
+  domain: string;
+  account: string;
+  token: string;
+  zone: string;
+  empty: string[];
+};
 
 async function vault(): Promise<Vault> {
   const site = await secrets("ship.env");
@@ -70,6 +76,7 @@ async function vault(): Promise<Vault> {
     domain: site.DESIGN_DOCS_DOMAIN ?? "",
     account: cloud.CLOUDFLARE_ACCOUNT_ID ?? "",
     token: cloud.CLOUDFLARE_API_TOKEN ?? "",
+    zone: cloud.CLOUDFLARE_ZONE_NAME ?? "",
     empty,
   };
 }
@@ -149,9 +156,9 @@ async function check(): Promise<void> {
   }
   const base = "https://api.cloudflare.com/client/v4";
   const head = { authorization: `Bearer ${keys.token}` };
-  const token = await fetch(`${base}/user/tokens/verify`, { headers: head });
-  io.print(`  token: HTTP ${token.status}`);
-  await token.body?.cancel();
+  const zones = await fetch(`${base}/zones?name=${keys.zone}`, { headers: head });
+  const found = (await zones.json()).result ?? [];
+  io.print(`  zone ${keys.zone}: ${found.length > 0 ? "reachable" : "unreachable"}`);
   const domains = await fetch(`${base}/accounts/${keys.account}/workers/domains`, {
     headers: head,
   });
