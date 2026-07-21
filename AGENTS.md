@@ -2,7 +2,11 @@
 
 This repository is the workshop's design system: a monorepo holding one or more
 component libraries and a self-built docs site.
-`negentropy --strict .` must print `clean` before anything lands.
+`negentropy --strict .` must print `clean` before anything lands, and CI runs
+the SAME guard the pre-commit hook runs — biome, tsc, vitest, deno, negentropy
+— not a weaker subset. It used to run only the negentropy check because the CI
+image was assumed to be deno-only; it is not, and a CI weaker than the local
+hook means anyone who bypasses the hook lands red.
 
 ## Layout
 

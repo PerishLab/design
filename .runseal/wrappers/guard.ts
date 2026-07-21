@@ -2,6 +2,7 @@ import { guard } from "@perish/harness/guard";
 
 await guard([
   { label: "biome", runs: [["pnpm", ["biome", "ci", "."]]] },
+  { label: "build", runs: [["pnpm", ["-r", "build"]]] },
   { label: "tsc", runs: [["pnpm", ["-r", "exec", "tsc", "--noEmit"]]] },
   { label: "vitest", runs: [["pnpm", ["-r", "test"]]] },
   { label: "deno fmt", runs: [["deno", ["fmt", "--check", ".runseal"]]] },

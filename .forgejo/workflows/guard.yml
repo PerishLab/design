@@ -21,7 +21,42 @@ jobs:
           curl -fsSL https://releases.negentropy.perish.uk/manage.sh | sh -s -- install --channel stable --version $(cat .runseal/negentropy.version) --bin-dir $HOME/.local/bin
           echo "$HOME/.local/bin" >> "$GITHUB_PATH"
 
+      - name: Install dependencies
+        run: |
+          set -eu
+          corepack enable
+          pnpm install --frozen-lockfile
+
       - name: Guard
         run: |
           set -eu
-          negentropy --strict .
+          exec > >(tee -a "$RUNNER_TEMP/lane.log") 2>&1
+          deno run --allow-read "--allow-write=." --allow-env --allow-net "--allow-run=git,tea,deno,negentropy,runseal,sh,pnpm,node,npm" --config .runseal/deno.json --lock .runseal/deno.lock --frozen=true .runseal/wrappers/guard.ts --fresh
+
+      - name: Report failure
+        if: failure()
+        env:
+          PROBE_TOKEN: ${{ github.token }}
+        run: |
+          set -eu
+          deno eval '
+            const temp = Deno.env.get("RUNNER_TEMP");
+            const log = await Deno.readTextFile(`${temp}/lane.log`).catch(() => "(no lane.log captured)");
+            const tail = log.split("\n").slice(-120).join("\n");
+            const api = Deno.env.get("GITHUB_API_URL");
+            const repo = Deno.env.get("GITHUB_REPOSITORY");
+            const run = Deno.env.get("GITHUB_RUN_NUMBER");
+            const res = await fetch(`${api}/repos/${repo}/issues`, {
+              method: "POST",
+              headers: {
+                Authorization: `token ${Deno.env.get("PROBE_TOKEN")}`,
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                title: `guard run ${run} failed`,
+                body: "```\n" + tail + "\n```",
+              }),
+            });
+            console.log(`failure report: HTTP ${res.status}`);
+            await res.body?.cancel();
+          '
