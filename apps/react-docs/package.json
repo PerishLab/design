@@ -10,7 +10,7 @@
 	"dependencies": {
 		"react": "catalog:",
 		"react-dom": "catalog:",
-		"@perish/react-components": "workspace:*"
+		"@perish/react-components": "0.1.0-beta.2"
 	},
 	"devDependencies": {
 		"@jsr/perish__vite-plugin-design": "0.1.0-beta.7",

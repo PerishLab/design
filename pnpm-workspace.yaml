@@ -3,6 +3,7 @@ packages:
   - packages/*
 
 minimumReleaseAgeExclude:
+  - "@perish/react-components"
   - "@jsr/perish__react-components"
   - "@jsr/perish__vite-plugin-design"
 
