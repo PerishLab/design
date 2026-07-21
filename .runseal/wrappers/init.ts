@@ -30,6 +30,9 @@ await init({
     ".runseal/wrappers/guard.ts",
     ".runseal/wrappers/init.ts",
     ".runseal/wrappers/land.ts",
+    ".runseal/wrappers/release.ts",
     ".forgejo/workflows/guard.yml",
+    ".forgejo/workflows/release-beta.yml",
+    ".forgejo/workflows/release-stable.yml",
   ],
 });

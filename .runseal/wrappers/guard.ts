@@ -17,6 +17,22 @@ await guard([
       ".runseal/wrappers/guard.ts",
       ".runseal/wrappers/init.ts",
       ".runseal/wrappers/land.ts",
+      ".runseal/wrappers/release.ts",
     ]]],
+  },
+  {
+    label: "deno check release metadata",
+    runs: [["deno", [
+      "check",
+      ".forgejo/scripts/release/metadata/beta.ts",
+      ".forgejo/scripts/release/metadata/stable.ts",
+    ]]],
+  },
+  {
+    label: "shell syntax",
+    runs: [
+      ["sh", ["-n", ".forgejo/scripts/release/jsr/verify.sh"]],
+      ["sh", ["-n", ".forgejo/scripts/release/jsr/smoke.sh"]],
+    ],
   },
 ], Deno.args);
