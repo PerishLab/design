@@ -1,5 +1,4 @@
 import type { ReactNode } from "react";
-import "./Hero.scss" with { type: "text" };
 
 type Props = {
 	title: string;

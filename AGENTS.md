@@ -8,10 +8,10 @@ component libraries and a self-built docs site.
 
 - `packages/react-components` — the React library, published as
   `jsr:@perish/react-components`. Raw ts + scss; each component co-locates its
-  style and imports it with `import "./X.scss" with { type: "text" }`, which is
-  jsr-publishable. Vue/svelte flavors join as `packages/*-components` later.
+  style but DOES NOT import it — the source contains no scss import at all.
+  Vue/svelte flavors join as `packages/*-components` later.
 - `packages/vite-plugin-design` — the vite plugin (`jsr:@perish/vite-plugin-design`)
-  that strips the `type: "text"` attribute so vite compiles + injects the scss,
+  that injects each component's co-located `X.scss` when it transforms `X.tsx`,
   and serves the typeface as the virtual module `virtual:perish-design/font`.
   Named for the system it serves, not the syntax it strips: it is framework-
   agnostic, and every flavor and consumer of this system reuses it.
@@ -31,10 +31,20 @@ component libraries and a self-built docs site.
   import attribute so scss compiles, and owning `@fontsource/spectral` so the
   typeface has a source. A consumer that skips the font module still renders:
   the token falls back to Georgia.
-- The plugin strips the attribute off `.scss` specifiers ONLY, and only inside
-  `.js/.jsx/.ts/.tsx`. This is deliberate, not incidental: `with { type:
-  "text" }` is a real ESM feature, so stripping it anywhere else would hijack a
-  legitimate text import.
+- `import "./X.scss" with { type: "text" }` IS NOT PUBLISHABLE TO JSR. The
+  server rejects it building the module graph: "The import attribute type of
+  'text' is unsupported". The phase-1 spike called it verified on the strength
+  of a dry run, and a dry run never reaches server-side validation. The library
+  therefore imports no scss at all; the scss files still ship, because jsr
+  collects files by include/exclude and not by module graph, and the plugin
+  injects `import "./X.scss"` when it transforms a sibling `X.tsx`.
+- The design foundation (tokens, themes) reaches an app through scss, not JS:
+  `Frame.scss` `@use`s tokens and both themes, so wrapping an app in `Frame`
+  installs the foundation. Nothing imports a stylesheet from a `.tsx`.
+- A dry run proves almost nothing about publishing. `--dry-run` skips
+  server-side validation entirely: it accepted the text import attribute, and
+  it accepted `--set-version`, both of which the real publish rejects. Treat
+  green dry runs as a syntax check, never as evidence the lane works.
 - Every `deno publish` here runs with `DENO_NO_PACKAGE_JSON=1`. Without it deno
   finds `pnpm-workspace.yaml`, decides it should migrate the workspace and
   catalog into the root `package.json`, and REWRITES that file. Run local dry

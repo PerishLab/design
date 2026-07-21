@@ -1,5 +1,4 @@
 import type { ReactNode } from "react";
-import "./Search.scss" with { type: "text" };
 
 type Props = {
 	value: string;

@@ -1,5 +1,4 @@
 import type { ReactNode } from "react";
-import "./Badge.scss" with { type: "text" };
 
 type Props = {
 	children: ReactNode;

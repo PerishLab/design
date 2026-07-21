@@ -1,50 +1,44 @@
-import { existsSync } from "node:fs";
+import { existsSync, mkdtempSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 import { expect, test } from "vitest";
 import { design } from "../src/lib";
 
 const plugin = design();
+const seat = mkdtempSync(join(tmpdir(), "design-"));
 
-test("strips", () => {
-	const code = `import "./Card.scss" with { type: "text" };`;
-	const out = plugin.transform(code, "/x/Card.tsx");
-	expect(out?.code).toBe(`import "./Card.scss";`);
+function file(name: string, body = ""): string {
+	const path = join(seat, name);
+	writeFileSync(path, body);
+	return path;
+}
+
+const paired = file("Card.tsx", "export const Card = 1;\n");
+file("Card.scss", ".card {}\n");
+const lone = file("Grid.tsx", "export const Grid = 1;\n");
+
+test("injects", () => {
+	const out = plugin.transform("export const Card = 1;\n", paired);
+	expect(out?.code).toBe('import "./Card.scss";\nexport const Card = 1;\n');
 });
 
-test("spacing", () => {
-	const code = `import '../a.scss'   with{type:'text'};`;
-	const out = plugin.transform(code, "/x/a.ts");
-	expect(out?.code).toBe(`import '../a.scss';`);
+test("lonely", () => {
+	expect(plugin.transform("export const Grid = 1;\n", lone)).toBeNull();
 });
 
-test("untouched", () => {
-	const code = `import "./Card.scss";`;
-	expect(plugin.transform(code, "/x/Card.tsx")).toBeNull();
-});
-
-test("scoped", () => {
-	const code = `import "./notice.txt" with { type: "text" };`;
-	expect(plugin.transform(code, "/x/Card.tsx")).toBeNull();
-});
-
-test("sources", () => {
-	const code = `import "./Card.scss" with { type: "text" };`;
-	expect(plugin.transform(code, "/x/Card.scss")).toBeNull();
-	expect(plugin.transform(code, "/x/data.json")).toBeNull();
+test("query", () => {
+	const out = plugin.transform("export const Card = 1;\n", `${paired}?v=abc`);
+	expect(out?.code.startsWith('import "./Card.scss";')).toBe(true);
 });
 
 test("idempotent", () => {
-	const code = `import "./Card.scss" with { type: "text" };`;
-	const once = plugin.transform(code, "/x/Card.tsx");
-	expect(plugin.transform(once?.code ?? "", "/x/Card.tsx")).toBeNull();
+	const once = plugin.transform("export const Card = 1;\n", paired);
+	expect(plugin.transform(once?.code ?? "", paired)).toBeNull();
 });
 
-test("many", () => {
-	const code = [
-		`import "./a.scss" with { type: "text" };`,
-		`import "./b.scss" with { type: "text" };`,
-	].join("\n");
-	const out = plugin.transform(code, "/x/Frame.tsx");
-	expect(out?.code).toBe(`import "./a.scss";\nimport "./b.scss";`);
+test("sources", () => {
+	expect(plugin.transform("", join(seat, "Card.scss"))).toBeNull();
+	expect(plugin.transform("", join(seat, "data.json"))).toBeNull();
 });
 
 test("virtual", () => {

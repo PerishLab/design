@@ -1,5 +1,4 @@
 import type { ReactNode } from "react";
-import "./Rail.scss" with { type: "text" };
 
 type Stop = {
 	mark: string;

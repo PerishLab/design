@@ -1,5 +1,4 @@
 import type { ReactNode } from "react";
-import "./Card.scss" with { type: "text" };
 
 type Props = {
 	title: string;

@@ -1,5 +1,4 @@
 import type { ReactNode } from "react";
-import "./Ledger.scss" with { type: "text" };
 
 type Atom = {
 	word: string;

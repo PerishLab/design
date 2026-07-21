@@ -1,5 +1,4 @@
 import type { ReactNode } from "react";
-import "./Banner.scss" with { type: "text" };
 
 type Props = {
 	mark: string;

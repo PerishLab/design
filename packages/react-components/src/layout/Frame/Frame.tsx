@@ -1,8 +1,4 @@
 import type { ReactNode } from "react";
-import "../../tokens.scss" with { type: "text" };
-import "../../themes/dark.scss" with { type: "text" };
-import "../../themes/light.scss" with { type: "text" };
-import "./Frame.scss" with { type: "text" };
 
 type Props = {
 	children: ReactNode;

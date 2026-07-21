@@ -1,5 +1,4 @@
 import { type ReactNode, useState } from "react";
-import "./Copy.scss" with { type: "text" };
 
 type Props = {
 	text: string;

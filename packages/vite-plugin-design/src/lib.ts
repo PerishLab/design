@@ -1,3 +1,4 @@
+import { existsSync } from "node:fs";
 import { fileURLToPath as unwrap } from "node:url";
 
 type Loud = { code: string; map: null };
@@ -10,9 +11,6 @@ type Plugin = {
 	load(id: string): string | null;
 };
 
-const pattern =
-	/(import\s+["'][^"']+\.scss["'])\s+with\s*\{\s*type:\s*["']text["']\s*\}/g;
-
 const font = "virtual:perish-design/font";
 const sealed = `\0${font}`;
 const face = "@fontsource/spectral/600.css";
@@ -22,11 +20,19 @@ export function design(): Plugin {
 		name: "perish-design",
 		enforce: "pre",
 		transform(code: string, id: string): Loud | null {
-			if (!/\.[jt]sx?$/.test(id)) {
+			const seat = id.split("?")[0];
+			if (!/\.[jt]sx?$/.test(seat)) {
 				return null;
 			}
-			const next = code.replace(pattern, "$1");
-			return next === code ? null : { code: next, map: null };
+			const sheet = seat.replace(/\.[jt]sx?$/, ".scss");
+			if (!existsSync(sheet)) {
+				return null;
+			}
+			const line = `import "./${sheet.slice(sheet.lastIndexOf("/") + 1)}";`;
+			if (code.includes(line)) {
+				return null;
+			}
+			return { code: `${line}\n${code}`, map: null };
 		},
 		resolveId(id: string): string | null {
 			return id === font ? sealed : null;
