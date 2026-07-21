@@ -19,6 +19,7 @@ await guard([
       ".runseal/wrappers/init.ts",
       ".runseal/wrappers/land.ts",
       ".runseal/wrappers/release.ts",
+      ".runseal/wrappers/ship.ts",
     ]]],
   },
   {

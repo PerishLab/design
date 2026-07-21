@@ -110,3 +110,35 @@ hook means anyone who bypasses the hook lands red.
 - The plugin's `Plugin`/`Loud` shapes stay unexported. The contract a consumer
   should hold is vite's own `Plugin` type; ours is a structural subset of it and
   publishing it would claim a contract we do not own.
+
+## Shipping
+
+`runseal :ship` deploys the docs site as Cloudflare Workers Static Assets:
+
+1. `pnpm --filter react-docs build` — vite build, then an SSR pass that
+   prerenders one HTML file per locale
+2. `pnpm exec wrangler deploy --domain <DESIGN_DOCS_DOMAIN>` from
+   `apps/react-docs/`; `--domain` attaches the custom domain and its DNS record
+   at deploy time, so DNS is never a separate manual step
+3. verify: `/` and `/zh-CN/` must answer 200 on the public domain
+
+`not_found_handling` is `404-page`, NOT open-web's `single-page-application`.
+The locales are prerendered to real files (`dist/index.html`,
+`dist/zh-CN/index.html`); an SPA fallback would serve the English shell for
+`/zh-CN/` and silently undo the prerender.
+
+Flags: `--dry-run` prints the plan with redacted credentials then runs a
+credential-free `wrangler deploy --dry-run`; `--check` probes the token and
+whether the worker domain is bound. Both degrade cleanly while secrets are
+unfilled.
+
+Shipping is LOCAL, not CI — there is no deploy workflow, so the Cloudflare
+token never becomes a forge secret, unlike JSR_PUBLISH_TOKEN and
+NPM_PUBLISH_TOKEN. Secrets live in `.local/secrets/` (gitignored):
+
+- `ship.env` — `DESIGN_DOCS_DOMAIN`, the public host with no scheme
+- `cloudflare.env` — `CLOUDFLARE_ACCOUNT_ID`, `CLOUDFLARE_API_TOKEN`,
+  `CLOUDFLARE_ZONE_NAME`. The token is scoped to design.perish.uk by intent,
+  but Cloudflare's DNS permission is ZONE level: it can still edit any record
+  in perish.uk. What the separate token buys is independent revocation and
+  audit, not confinement.

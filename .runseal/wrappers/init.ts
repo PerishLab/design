@@ -31,6 +31,7 @@ await init({
     ".runseal/wrappers/init.ts",
     ".runseal/wrappers/land.ts",
     ".runseal/wrappers/release.ts",
+    ".runseal/wrappers/ship.ts",
     ".forgejo/workflows/guard.yml",
     ".forgejo/workflows/release-beta.yml",
     ".forgejo/workflows/release-stable.yml",
