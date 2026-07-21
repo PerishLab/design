@@ -42,5 +42,4 @@ await guard(
     },
   ],
   Deno.args,
-  { pin: false },
 );
