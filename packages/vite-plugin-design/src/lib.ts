@@ -9,9 +9,9 @@ type Plugin = {
 const pattern =
 	/(import\s+["'][^"']+\.scss["'])\s+with\s*\{\s*type:\s*["']text["']\s*\}/g;
 
-export function scss(): Plugin {
+export function design(): Plugin {
 	return {
-		name: "perish-scss",
+		name: "perish-design",
 		enforce: "pre",
 		transform(code: string, id: string): Loud | null {
 			if (!/\.[jt]sx?$/.test(id)) {

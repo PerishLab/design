@@ -1,5 +1,5 @@
 {
-	"name": "components",
+	"name": "design",
 	"private": true,
 	"engines": {
 		"node": ">=24"

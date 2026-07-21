@@ -21,7 +21,7 @@ await init({
     "vocabulary.toml",
     "runseal.toml",
     "packages/react-components/package.json",
-    "packages/vite-scss/package.json",
+    "packages/vite-plugin-design/package.json",
     ".runseal/deno.json",
     ".runseal/deno.lock",
     ".runseal/negentropy.version",

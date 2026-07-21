@@ -1,5 +1,5 @@
 {
-	"name": "@perish/vite-scss",
+	"name": "@perish/vite-plugin-design",
 	"private": true,
 	"type": "module",
 	"exports": {
