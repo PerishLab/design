@@ -6,7 +6,7 @@
 		".": "./src/lib.ts"
 	},
 	"scripts": {
-		"test": "vitest run --passWithNoTests"
+		"test": "vitest run"
 	},
 	"dependencies": {
 		"@fontsource/spectral": "catalog:",

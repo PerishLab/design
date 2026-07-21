@@ -1,0 +1,27 @@
+{
+	"name": "@perish/react-components",
+	"version": "0.1.0-beta.1",
+	"license": "MIT",
+	"exports": {
+		".": "./src/lib.ts"
+	},
+	"imports": {
+		"react": "npm:react@^19.2.7",
+		"react/jsx-runtime": "npm:react@^19.2.7/jsx-runtime"
+	},
+	"compilerOptions": {
+		"strict": true,
+		"jsx": "react-jsx",
+		"jsxImportSource": "react",
+		"lib": ["esnext", "dom"]
+	},
+	"publish": {
+		"exclude": [
+			"node_modules",
+			"package.json",
+			"tsconfig.json",
+			"vitest.config.ts",
+			"tests"
+		]
+	}
+}

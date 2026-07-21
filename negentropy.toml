@@ -40,6 +40,13 @@ paths = [
   "packages/*/tests/**/*.test.tsx",
 ]
 
+[[boundary]]
+paths = [
+  "packages/react-components/vitest.config.ts",
+]
+note = "vitest requires a root-level config file; path law anchors to src and tests"
+allow = ["path"]
+
 [[grant]]
 syntax = "style"
 paths = [
