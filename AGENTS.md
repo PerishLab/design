@@ -142,6 +142,19 @@ wrangler is NOT a workspace dependency. It is fetched on demand with
 CI never deploys. Carrying it in the lockfile pushed the CI guard from 43s to
 287s for a tool no CI step invokes. The version is pinned in `ship.ts`.
 
+The FIRST deploy of a hostname gets a long verify window — 20 tries at 15s
+rather than 3 at 5s — because Cloudflare needs minutes to spread the edge
+routing for a new custom domain. Measured at ~240s the first time
+react.design.perish.uk went up, against a 15s window, so the lane called a
+successful deploy failed. The wide window applies only when the worker domain
+is not yet bound, which `:ship` reads from the API before deploying, so a
+routine redeploy is unaffected.
+
+Note what that failure was NOT: not certificate issuance (the perish.uk
+wildcard predated the deploy by an hour) and not the house's internal DNS. A
+hostname the edge does not yet route drops the TLS connection, which surfaces
+as `SSL_ERROR_SYSCALL` and reads like a network fault.
+
 Flags: `--dry-run` prints the plan with redacted credentials then runs a
 credential-free `wrangler deploy --dry-run`; `--check` probes the token and
 whether the worker domain is bound. Both degrade cleanly while secrets are

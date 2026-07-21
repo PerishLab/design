@@ -104,17 +104,28 @@ async function knock(url: string): Promise<number | string> {
   }
 }
 
-async function probe(url: string): Promise<boolean> {
-  for (let turn = 0; turn < 3; turn += 1) {
+async function probe(url: string, tries: number, wait: number): Promise<boolean> {
+  for (let turn = 0; turn < tries; turn += 1) {
     const status = await knock(url);
     if (status === 200) {
       io.print(`  200 ${url}`);
       return true;
     }
     io.print(`  retry ${url} (${status})`);
-    await new Promise((resolve) => setTimeout(resolve, 5000));
+    await new Promise((resolve) => setTimeout(resolve, wait));
   }
   return false;
+}
+
+async function bound(keys: Vault): Promise<boolean> {
+  const base = "https://api.cloudflare.com/client/v4";
+  const domains = await fetch(`${base}/accounts/${keys.account}/workers/domains`, {
+    headers: { authorization: `Bearer ${keys.token}` },
+  });
+  const body = await domains.json();
+  return (body.result ?? []).some(
+    (entry: { hostname?: string }) => entry.hostname === keys.domain,
+  );
 }
 
 async function plan(): Promise<void> {
@@ -159,14 +170,8 @@ async function check(): Promise<void> {
   const zones = await fetch(`${base}/zones?name=${keys.zone}`, { headers: head });
   const found = (await zones.json()).result ?? [];
   io.print(`  zone ${keys.zone}: ${found.length > 0 ? "reachable" : "unreachable"}`);
-  const domains = await fetch(`${base}/accounts/${keys.account}/workers/domains`, {
-    headers: head,
-  });
-  const body = await domains.json();
-  const bound = (body.result ?? []).some(
-    (entry: { hostname?: string }) => entry.hostname === keys.domain,
-  );
-  io.print(`  worker domain ${keys.domain}: ${bound ? "bound" : "not bound yet"}`);
+  const held = await bound(keys);
+  io.print(`  worker domain ${keys.domain}: ${held ? "bound" : "not bound yet"}`);
   io.print(`  live: ${await knock(`https://${keys.domain}/`)}`);
 }
 
@@ -176,6 +181,7 @@ async function ship(): Promise<void> {
     throw fault.unfilled({ missing: keys.empty });
   }
   const paths = await routes();
+  const fresh = !(await bound(keys));
   io.print("==> build");
   await bin("pnpm").run(["--filter", "react-docs", "build"]);
   if (!(await fs.file.exists(`${dist}/index.html`))) {
@@ -187,10 +193,15 @@ async function ship(): Promise<void> {
     env: { CLOUDFLARE_ACCOUNT_ID: keys.account, CLOUDFLARE_API_TOKEN: keys.token },
   });
   io.print("==> verify");
-  let reached = await probe(`https://${keys.domain}/`);
+  if (fresh) {
+    io.print("  first deploy of this domain: edge routing takes minutes to spread");
+  }
+  const tries = fresh ? 20 : 3;
+  const wait = fresh ? 15000 : 5000;
+  let reached = await probe(`https://${keys.domain}/`, tries, wait);
   const route = deep(paths);
   if (reached && route !== undefined) {
-    reached = await probe(`https://${keys.domain}${route}`);
+    reached = await probe(`https://${keys.domain}${route}`, tries, wait);
   }
   if (!reached) {
     throw fault.unreached({ domain: keys.domain });
