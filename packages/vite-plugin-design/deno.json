@@ -1,0 +1,24 @@
+{
+	"name": "@perish/vite-plugin-design",
+	"version": "0.1.0-beta.1",
+	"license": "MIT",
+	"exports": {
+		".": "./src/lib.ts"
+	},
+	"imports": {
+		"@fontsource/spectral": "npm:@fontsource/spectral@^5.2.8"
+	},
+	"compilerOptions": {
+		"strict": true,
+		"lib": ["esnext", "dom"]
+	},
+	"publish": {
+		"exclude": [
+			"node_modules",
+			"package.json",
+			"tsconfig.json",
+			"vitest.config.ts",
+			"tests"
+		]
+	}
+}

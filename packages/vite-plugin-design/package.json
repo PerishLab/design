@@ -6,10 +6,14 @@
 		".": "./src/lib.ts"
 	},
 	"scripts": {
-		"test": "vitest run --passWithNoTests"
+		"test": "vitest run"
 	},
 	"devDependencies": {
+		"@types/node": "catalog:",
 		"typescript": "catalog:",
 		"vitest": "catalog:"
+	},
+	"dependencies": {
+		"@fontsource/spectral": "catalog:"
 	}
 }

@@ -1,5 +1,4 @@
 import type { ReactNode } from "react";
-import "@fontsource/spectral/600.css";
 import "../../tokens.scss" with { type: "text" };
 import "../../themes/dark.scss" with { type: "text" };
 import "../../themes/light.scss" with { type: "text" };
