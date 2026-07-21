@@ -43,8 +43,11 @@ component libraries and a self-built docs site.
   `@perish/react-components` declares `@types/react` there, which is also what
   makes it type-check for a deno consumer rather than only inside this
   workspace.
-- The release lane never edits a tracked file: the version reaches jsr through
-  `deno publish --set-version`, not by stamping `deno.json`.
+- The lane stamps the release version into the package's own `deno.json`
+  before publishing. `deno publish --set-version` does NOT work here: it sets
+  the version of the publish request but leaves the manifest inside the
+  uploaded tarball alone, and jsr rejects the mismatch. Only the dry run is
+  fooled, because it never reaches server-side validation.
 - The plugin's `Plugin`/`Loud` shapes stay unexported. The contract a consumer
   should hold is vite's own `Plugin` type; ours is a structural subset of it and
   publishing it would claim a contract we do not own.

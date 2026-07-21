@@ -72,6 +72,15 @@ jobs:
           exec > >(tee -a "$RUNNER_TEMP/lane.log") 2>&1
           deno run --allow-env --allow-read --allow-net --allow-write="$GITHUB_OUTPUT" .forgejo/scripts/release/metadata/beta.ts "$SEAT"
 
+      - name: Stamp beta version
+        env:
+          RELEASE_VERSION: ${{ steps.beta.outputs.release_version }}
+        run: |
+          set -eu
+          exec > >(tee -a "$RUNNER_TEMP/lane.log") 2>&1
+          deno eval "const path = Deno.args[0] + '/deno.json'; const doc = JSON.parse(Deno.readTextFileSync(path)); doc.version = Deno.args[1]; Deno.writeTextFileSync(path, JSON.stringify(doc, null, 2) + '\n');" -- "$SEAT" "${RELEASE_VERSION#v}"
+          grep '"version"' "$SEAT/deno.json"
+
       - name: Publish dry run
         env:
           RELEASE_VERSION: ${{ steps.beta.outputs.release_version }}
@@ -79,7 +88,7 @@ jobs:
           set -eu
           exec > >(tee -a "$RUNNER_TEMP/lane.log") 2>&1
           cd "$SEAT"
-          deno publish --dry-run --allow-dirty --set-version "${RELEASE_VERSION#v}"
+          deno publish --dry-run --allow-dirty
 
       - name: Publish
         env:
@@ -103,7 +112,7 @@ jobs:
               ;;
           esac
           cd "$SEAT"
-          JSR_URL="https://jsr.io" deno publish --token "$JSR_PUBLISH_TOKEN" --allow-dirty --set-version "${RELEASE_VERSION#v}"
+          JSR_URL="https://jsr.io" deno publish --token "$JSR_PUBLISH_TOKEN" --allow-dirty
 
       - name: Verify jsr publish
         env:
