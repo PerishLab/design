@@ -10,7 +10,7 @@ else
   probe="https://registry.npmjs.org/$(printf '%s' "$name" | sed 's|/|%2f|')"
   extra="$probe"
 fi
-tries=10
+if [ "$registry" = "npm" ]; then tries=40; else tries=10; fi
 while :; do
   if curl -fsSL -H "Cache-Control: no-cache" "$probe" | grep -qF "\"$version\"" &&
     curl -fsSL -o /dev/null -H "Cache-Control: no-cache" "$extra"; then
@@ -23,5 +23,5 @@ while :; do
     exit 1
   fi
   echo "$registry verify: waiting for $name@$version"
-  sleep 6
+  sleep 15
 done

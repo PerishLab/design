@@ -12,8 +12,8 @@ if [ "$registry" = "jsr" ]; then
     ".forgejo/scripts/release/jsr/probes/$slug.ts"
   exit 0
 fi
-probe="$PWD/.forgejo/scripts/release/jsr/probes/$slug.mjs"
+cp ".forgejo/scripts/release/jsr/probes/$slug.mjs" "$dir/probe.mjs"
 cd "$dir"
 npm init -y --registry https://registry.npmjs.org >/dev/null 2>&1
 npm install --no-audit --no-fund --silent --registry https://registry.npmjs.org "$name@$version" react@19 >/dev/null
-PACKAGE="$name" node "$probe"
+PACKAGE="$name" node ./probe.mjs

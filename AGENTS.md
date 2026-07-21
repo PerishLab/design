@@ -78,6 +78,16 @@ hook means anyone who bypasses the hook lands red.
   real publish rejects, so treat it as a syntax check only. npm's caught a
   missing `--tag` before the real publish. Weak evidence in one tool is not
   weak evidence everywhere.
+- SOURCE IMPORTS CARRY A `.js` EXTENSION even though the files are `.tsx`.
+  That is the TypeScript ESM idiom and it is load-bearing: tsc does not add
+  extensions on emit, so extensionless re-exports produce a `dist` that vite
+  can resolve but plain node cannot. `@perish/react-components@0.1.0-beta.1`
+  shipped that way and cannot be imported outside a bundler.
+- npm PUBLISH IS NOT npm INSTALLABLE. A new scoped package's version document
+  is served immediately while its packument lags by minutes, and `npm install`
+  resolves through the packument. The verify step therefore polls the
+  PACKUMENT, not the version document — verifying the cheaper endpoint would
+  go green while no consumer could install. The npm window is 40 x 15s.
 - EVERY npm COMMAND IN CI PASSES `--registry https://registry.npmjs.org`. The
   image points npm at `mirror.perish.lan/npm/`, and `NPM_CONFIG_USERCONFIG`
   does NOT override that — it replaces the user config, not the image's global

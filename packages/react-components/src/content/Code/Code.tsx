@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { Copy } from "../../control/Copy/Copy";
+import { Copy } from "../../control/Copy/Copy.js";
 
 type Props = {
 	children: string;
