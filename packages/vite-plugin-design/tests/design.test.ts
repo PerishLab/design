@@ -1,4 +1,4 @@
-import { existsSync, mkdtempSync, writeFileSync } from "node:fs";
+import { mkdtempSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { expect, test } from "vitest";
@@ -39,22 +39,4 @@ test("idempotent", () => {
 test("sources", () => {
 	expect(plugin.transform("", join(seat, "Card.scss"))).toBeNull();
 	expect(plugin.transform("", join(seat, "data.json"))).toBeNull();
-});
-
-test("virtual", () => {
-	expect(plugin.resolveId("virtual:perish-design/font")).toBe(
-		"\0virtual:perish-design/font",
-	);
-	expect(plugin.resolveId("./Card.scss")).toBeNull();
-	expect(plugin.load("./Card.scss")).toBeNull();
-});
-
-test("font", () => {
-	const id = plugin.resolveId("virtual:perish-design/font") ?? "";
-	const code = plugin.load(id) ?? "";
-	const found = /^import (".*");\n$/.exec(code);
-	const target = JSON.parse(found?.[1] ?? '""');
-	expect(target).toMatch(/600\.css$/);
-	expect(target.startsWith("/")).toBe(true);
-	expect(existsSync(target)).toBe(true);
 });

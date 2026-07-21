@@ -11,8 +11,8 @@ component libraries and a self-built docs site.
   style but DOES NOT import it — the source contains no scss import at all.
   Vue/svelte flavors join as `packages/*-components` later.
 - `packages/vite-plugin-design` — the vite plugin (`jsr:@perish/vite-plugin-design`)
-  that injects each component's co-located `X.scss` when it transforms `X.tsx`,
-  and serves the typeface as the virtual module `virtual:perish-design/font`.
+  that injects each component's co-located `X.scss` when it transforms `X.tsx`.
+  It has exactly one job and no dependencies.
   Named for the system it serves, not the syntax it strips: it is framework-
   agnostic, and every flavor and consumer of this system reuses it.
 - `apps/react-docs` — the self-built docs site (react.design.perish.uk):
@@ -38,13 +38,18 @@ component libraries and a self-built docs site.
   therefore imports no scss at all; the scss files still ship, because jsr
   collects files by include/exclude and not by module graph, and the plugin
   injects `import "./X.scss"` when it transforms a sibling `X.tsx`.
-- The font module resolves `@fontsource/spectral/600.css` to an absolute path
-  through `import.meta.resolve`, and falls back to the bare specifier when that
-  throws. It throws for a deno consumer: jsr builds a package's dependency list
-  from its MODULE GRAPH, and a specifier handed to `import.meta.resolve` is not
-  in the graph, so no import-map entry can rescue it. The absolute-path branch
-  is the one that matters and it is only exercised under node/vite — phase 7 is
-  where it gets proven, not CI.
+- THE TYPEFACE IS A CSS CONCERN, NOT A MODULE ONE. `src/type.scss` declares
+  `@font-face` with a pinned URL, `font-display: swap`, and fontsource's
+  unicode-range subsets; the browser fetches the file and no bundler is
+  involved. Earlier attempts routed the font through the JS module graph — an
+  npm dependency reached by `import.meta.resolve` from a virtual module — and
+  broke at every packaging boundary: jsr prunes a dependency that only ever
+  appears as a string, so the published package declared none, nothing was
+  installed, and the consumer's build failed outright. A `url()` cannot fail
+  that way, and if it does fail the text still renders in Georgia.
+- The font URL currently points at jsdelivr, pinned to @fontsource/spectral
+  5.2.8. Moving to a self-hosted origin is a URL swap plus a release: upload the
+  same bytes (verified identical, 22936B and 20824B) and edit `$host`.
 - The design foundation (tokens, themes) reaches an app through scss, not JS:
   `Frame.scss` `@use`s tokens and both themes, so wrapping an app in `Frame`
   installs the foundation. Nothing imports a stylesheet from a `.tsx`.

@@ -7,9 +7,10 @@ The workshop's design system. A monorepo:
 - `@perish/vite-plugin-design` — the vite plugin this system's publish shape
   needs. The library ships stylesheets but never imports them, so the plugin
   injects each component's co-located `X.scss` as it compiles `X.tsx`. It also
-  serves the typeface as `virtual:perish-design/font` — import that module once
-  in your app and Spectral is in the build. Without the plugin you get the
-  components with no styling.
+  Without it you get the components with no styling. The typeface needs nothing
+  from the plugin: the library's scss declares `@font-face` against a pinned
+  URL, so the browser fetches Spectral on its own and falls back to Georgia if
+  it cannot.
 - a self-built docs site at react.design.perish.uk — gallery, interactive
   knobs, and hand-written, drift-guarded prop docs in English and 简体中文.
 

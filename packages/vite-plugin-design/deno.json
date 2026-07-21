@@ -5,10 +5,6 @@
 	"exports": {
 		".": "./src/lib.ts"
 	},
-	"imports": {
-		"@fontsource/spectral": "npm:@fontsource/spectral@^5.2.8",
-		"@fontsource/spectral/": "npm:/@fontsource/spectral@^5.2.8/"
-	},
 	"compilerOptions": {
 		"strict": true,
 		"lib": ["esnext", "dom"]
