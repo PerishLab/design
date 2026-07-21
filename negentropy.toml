@@ -1,0 +1,48 @@
+[scan]
+include = [
+  "apps/**/*.ts",
+  "apps/**/*.tsx",
+  "apps/**/*.scss",
+  "packages/**/*.ts",
+  "packages/**/*.tsx",
+  "packages/**/*.scss",
+  "docs/**/*.md",
+]
+exclude = [
+  "**/node_modules/**",
+  "**/dist/**",
+]
+
+[module]
+roots = [
+  "apps/*/src",
+  "apps/*/tests",
+  "packages/*/src",
+  "packages/*/tests",
+]
+
+[limit]
+block = 4
+path = 4
+
+[comment]
+allow = false
+
+[word]
+single = true
+
+[[grant]]
+syntax = "test"
+paths = [
+  "apps/*/tests/**/*.test.ts",
+  "apps/*/tests/**/*.test.tsx",
+  "packages/*/tests/**/*.test.ts",
+  "packages/*/tests/**/*.test.tsx",
+]
+
+[[grant]]
+syntax = "style"
+paths = [
+  "packages/react-components/**",
+  "apps/react-docs/**",
+]

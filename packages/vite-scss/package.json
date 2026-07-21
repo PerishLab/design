@@ -1,0 +1,15 @@
+{
+	"name": "@perish/vite-scss",
+	"private": true,
+	"type": "module",
+	"exports": {
+		".": "./src/lib.ts"
+	},
+	"scripts": {
+		"test": "vitest run --passWithNoTests"
+	},
+	"devDependencies": {
+		"typescript": "catalog:",
+		"vitest": "catalog:"
+	}
+}
