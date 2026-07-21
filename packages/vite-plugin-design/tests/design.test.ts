@@ -40,3 +40,29 @@ test("sources", () => {
 	expect(plugin.transform("", join(seat, "Card.scss"))).toBeNull();
 	expect(plugin.transform("", join(seat, "data.json"))).toBeNull();
 });
+
+test("unpins", () => {
+	const code = 'import { useState } from "npm:react@^19.2.7";';
+	const out = plugin.transform(code, lone);
+	expect(out?.code).toBe('import { useState } from "react";');
+});
+
+test("subpath", () => {
+	const code =
+		'/** @jsxImportSource npm:react@^19.2.7 */\nimport "npm:react@^19.2.7/jsx-runtime";';
+	const out = plugin.transform(code, lone);
+	expect(out?.code).toBe(
+		'/** @jsxImportSource react */\nimport "react/jsx-runtime";',
+	);
+});
+
+test("scoped", () => {
+	const code = '/* @ts-types="npm:@types/react@^19.2.17" */';
+	const out = plugin.transform(code, lone);
+	expect(out?.code).toBe('/* @ts-types="@types/react" */');
+});
+
+test("intact", () => {
+	const code = 'import { x } from "react";';
+	expect(plugin.transform(code, lone)).toBeNull();
+});

@@ -11,8 +11,8 @@ component libraries and a self-built docs site.
   style but DOES NOT import it — the source contains no scss import at all.
   Vue/svelte flavors join as `packages/*-components` later.
 - `packages/vite-plugin-design` — the vite plugin (`jsr:@perish/vite-plugin-design`)
-  that injects each component's co-located `X.scss` when it transforms `X.tsx`.
-  It has exactly one job and no dependencies.
+  that makes the published library readable by a consumer's vite. It has no
+  dependencies and two jobs, both forced by how jsr publishes raw tsx.
   Named for the system it serves, not the syntax it strips: it is framework-
   agnostic, and every flavor and consumer of this system reuses it.
 - `apps/react-docs` — the self-built docs site (react.design.perish.uk):
@@ -38,6 +38,13 @@ component libraries and a self-built docs site.
   therefore imports no scss at all; the scss files still ship, because jsr
   collects files by include/exclude and not by module graph, and the plugin
   injects `import "./X.scss"` when it transforms a sibling `X.tsx`.
+- JSR DOES NOT TRANSPILE `.tsx`. It transpiled `lib.ts` to `lib.js` and left
+  all 16 components as raw `.tsx`, rewriting every bare specifier into deno
+  form: `import ... from "npm:react@^19.2.7"`, plus `@jsxImportSource` and
+  `@ts-types` pragmas in the same shape. A node/vite consumer cannot resolve an
+  `npm:` specifier, so the plugin rewrites them back to bare names before vite
+  sees the file. This is not a nicety; without it the library does not build at
+  all in a real app.
 - THE TYPEFACE IS A CSS CONCERN, NOT A MODULE ONE. `src/type.scss` declares
   `@font-face` with a pinned URL, `font-display: swap`, and fontsource's
   unicode-range subsets; the browser fetches the file and no bundler is

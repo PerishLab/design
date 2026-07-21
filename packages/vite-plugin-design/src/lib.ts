@@ -8,6 +8,21 @@ type Plugin = {
 	transform(code: string, id: string): Loud | null;
 };
 
+const pinned = /\bnpm:(@[\w.-]+\/[\w.-]+|[\w.-]+)@[\w.^~<>=+-]+/g;
+
+function bare(code: string): string {
+	return code.replace(pinned, "$1");
+}
+
+function styled(code: string, seat: string): string {
+	const sheet = seat.replace(/\.[jt]sx?$/, ".scss");
+	if (!existsSync(sheet)) {
+		return code;
+	}
+	const line = `import "./${sheet.slice(sheet.lastIndexOf("/") + 1)}";`;
+	return code.includes(line) ? code : `${line}\n${code}`;
+}
+
 export function design(): Plugin {
 	return {
 		name: "perish-design",
@@ -17,15 +32,8 @@ export function design(): Plugin {
 			if (!/\.[jt]sx?$/.test(seat)) {
 				return null;
 			}
-			const sheet = seat.replace(/\.[jt]sx?$/, ".scss");
-			if (!existsSync(sheet)) {
-				return null;
-			}
-			const line = `import "./${sheet.slice(sheet.lastIndexOf("/") + 1)}";`;
-			if (code.includes(line)) {
-				return null;
-			}
-			return { code: `${line}\n${code}`, map: null };
+			const next = styled(bare(code), seat);
+			return next === code ? null : { code: next, map: null };
 		},
 	};
 }
