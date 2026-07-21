@@ -27,7 +27,6 @@ await guard([
       ".forgejo/scripts/release/metadata/beta.ts",
       ".forgejo/scripts/release/metadata/stable.ts",
       ".forgejo/scripts/release/jsr/probes/vite-plugin-design.ts",
-      ".forgejo/scripts/release/jsr/probes/react-components.ts",
     ]]],
   },
   {
@@ -35,6 +34,7 @@ await guard([
     runs: [
       ["sh", ["-n", ".forgejo/scripts/release/jsr/verify.sh"]],
       ["sh", ["-n", ".forgejo/scripts/release/jsr/smoke.sh"]],
+      ["node", ["--check", ".forgejo/scripts/release/jsr/probes/react-components.mjs"]],
     ],
   },
 ], Deno.args);

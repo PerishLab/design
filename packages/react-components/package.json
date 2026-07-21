@@ -1,16 +1,26 @@
 {
 	"name": "@perish/react-components",
-	"private": true,
+	"version": "0.1.0",
+	"license": "MIT",
 	"type": "module",
+	"files": [
+		"dist"
+	],
 	"exports": {
-		".": "./src/lib.ts"
+		".": {
+			"types": "./dist/lib.d.ts",
+			"default": "./dist/lib.js"
+		}
+	},
+	"publishConfig": {
+		"access": "public"
 	},
 	"scripts": {
+		"build": "tsc -p tsconfig.build.json && node -e \"require('node:fs').cpSync('src','dist',{recursive:true,filter:(p)=>!/\\.tsx?$/.test(p)})\"",
 		"test": "vitest run"
 	},
-	"dependencies": {
-		"@fontsource/spectral": "catalog:",
-		"react": "catalog:"
+	"peerDependencies": {
+		"react": ">=19"
 	},
 	"devDependencies": {
 		"@types/react": "catalog:",

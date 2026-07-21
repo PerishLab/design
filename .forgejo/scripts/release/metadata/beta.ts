@@ -23,18 +23,23 @@ function seat(): string {
   return dir.replace(/\/+$/, "");
 }
 
-async function manifest(
-  dir: string,
-): Promise<{ name: string; version: string }> {
-  const doc = JSON.parse(await Deno.readTextFile(`${dir}/deno.json`));
+type Held = { name: string; version: string; registry: string };
+
+async function manifest(dir: string): Promise<Held> {
+  const jsr = await Deno.stat(`${dir}/deno.json`).then(() => true).catch(() =>
+    false
+  );
+  const seat = jsr ? `${dir}/deno.json` : `${dir}/package.json`;
+  const registry = jsr ? "jsr" : "npm";
+  const doc = JSON.parse(await Deno.readTextFile(seat));
   if (typeof doc.name !== "string" || !doc.name) {
-    fail(`missing name in ${dir}/deno.json`);
+    fail(`missing name in ${seat}`);
   }
   if (typeof doc.version !== "string" || !doc.version) {
-    fail(`missing version in ${dir}/deno.json`);
+    fail(`missing version in ${seat}`);
   }
   tuple(doc.version);
-  return { name: doc.name, version: doc.version };
+  return { name: doc.name, version: doc.version, registry };
 }
 
 async function output(name: string, value: string): Promise<void> {
@@ -44,9 +49,11 @@ async function output(name: string, value: string): Promise<void> {
   }
 }
 
-async function fetchVersions(name: string): Promise<string[] | null> {
-  const url = `https://jsr.io/${name}/meta.json`;
-  console.log(`[release-beta] jsr meta url: ${url}`);
+async function fetchVersions(held: Held): Promise<string[] | null> {
+  const url = held.registry === "jsr"
+    ? `https://jsr.io/${held.name}/meta.json`
+    : `https://registry.npmjs.org/${held.name.replace("/", "%2f")}`;
+  console.log(`[release-beta] ${held.registry} meta url: ${url}`);
   let response: Response;
   try {
     response = await fetch(url, {
@@ -61,7 +68,7 @@ async function fetchVersions(name: string): Promise<string[] | null> {
   }
   if (!response.ok) {
     await response.body?.cancel();
-    fail(`jsr meta returned HTTP ${response.status}`);
+    fail(`${held.registry} meta returned HTTP ${response.status}`);
   }
   const meta = await response.json();
   if (
@@ -89,7 +96,7 @@ async function main(): Promise<void> {
   const held = await manifest(dir);
   const base = held.version;
   const override = (Deno.env.get("BETA_VERSION_OVERRIDE") ?? "").trim();
-  const versions = (await fetchVersions(held.name)) ?? [];
+  const versions = (await fetchVersions(held)) ?? [];
   if (versions.includes(base)) {
     fail(
       `base ${base} is already stable on jsr; bump ${dir}/deno.json before cutting betas`,
@@ -123,13 +130,14 @@ async function main(): Promise<void> {
   }
   const release = `v${base}-beta.${number}`;
   console.log("[release-beta] channel: beta");
-  console.log(`[release-beta] package: ${held.name}`);
+  console.log(`[release-beta] package: ${held.name} on ${held.registry}`);
   console.log(`[release-beta] base version: ${base}`);
   console.log(`[release-beta] beta number: ${number}`);
   console.log(`[release-beta] release version: ${release}`);
   console.log(`[release-beta] already published: ${already}`);
   console.log(`[release-beta] state source: ${source}`);
   await output("package_name", held.name);
+  await output("registry", held.registry);
   await output("base_version", base);
   await output("beta_number", String(number));
   await output("release_version", release);

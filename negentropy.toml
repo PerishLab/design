@@ -44,8 +44,9 @@ paths = [
 paths = [
   "packages/react-components/vitest.config.ts",
   "packages/vite-plugin-design/vitest.config.ts",
+  "apps/react-docs/vite.config.ts",
 ]
-note = "vitest requires a root-level config file; path law anchors to src and tests"
+note = "vite and vitest require root-level config files; path law anchors to src and tests"
 allow = ["path"]
 
 [[grant]]

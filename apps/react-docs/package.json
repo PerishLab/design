@@ -1,0 +1,25 @@
+{
+	"name": "react-docs",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"dev": "vite",
+		"build": "vite build",
+		"test": "vitest run --passWithNoTests"
+	},
+	"dependencies": {
+		"react": "catalog:",
+		"react-dom": "catalog:",
+		"@perish/react-components": "workspace:*"
+	},
+	"devDependencies": {
+		"@jsr/perish__vite-plugin-design": "0.1.0-beta.7",
+		"@types/react": "catalog:",
+		"@types/react-dom": "catalog:",
+		"@vitejs/plugin-react": "catalog:",
+		"sass": "catalog:",
+		"typescript": "catalog:",
+		"vite": "catalog:",
+		"vitest": "catalog:"
+	}
+}

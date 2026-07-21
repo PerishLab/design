@@ -7,9 +7,10 @@ component libraries and a self-built docs site.
 ## Layout
 
 - `packages/react-components` — the React library, published as
-  `jsr:@perish/react-components`. Raw ts + scss; each component co-locates its
-  style but DOES NOT import it — the source contains no scss import at all.
-  Vue/svelte flavors join as `packages/*-components` later.
+  `npm:@perish/react-components`. Pre-built: `tsc` emits `.js` + `.d.ts` into
+  `dist` and the co-located `.scss` is copied beside them, so a stylesheet is
+  always a sibling of the module that needs it. The source contains no scss
+  import at all. Vue/svelte flavors join as `packages/*-components` later.
 - `packages/vite-plugin-design` — the vite plugin (`jsr:@perish/vite-plugin-design`)
   that makes the published library readable by a consumer's vite. It has no
   dependencies and two jobs, both forced by how jsr publishes raw tsx.
@@ -38,13 +39,20 @@ component libraries and a self-built docs site.
   therefore imports no scss at all; the scss files still ship, because jsr
   collects files by include/exclude and not by module graph, and the plugin
   injects `import "./X.scss"` when it transforms a sibling `X.tsx`.
-- JSR DOES NOT TRANSPILE `.tsx`. It transpiled `lib.ts` to `lib.js` and left
-  all 16 components as raw `.tsx`, rewriting every bare specifier into deno
-  form: `import ... from "npm:react@^19.2.7"`, plus `@jsxImportSource` and
-  `@ts-types` pragmas in the same shape. A node/vite consumer cannot resolve an
-  `npm:` specifier, so the plugin rewrites them back to bare names before vite
-  sees the file. This is not a nicety; without it the library does not build at
-  all in a real app.
+- THE LIBRARY GOES TO NPM, THE PLUGIN STAYS ON JSR. Not a compromise — each
+  package sits on the registry that fits its shape. jsr does not transpile
+  `.tsx`: it left all 16 components raw and rewrote their imports into
+  `npm:react@^19.2.7` form, and the generated type entry re-exports straight
+  back at those `.tsx` files. A bundler can be rescued by a plugin; a
+  type-checker cannot, because tsc reads files from disk and never passes
+  through a vite plugin. `paths` mappings do not help — tsc will not resolve an
+  `npm:` specifier at all. So a raw-tsx jsr package is unusable from
+  TypeScript, full stop. The plugin has no JSX and no dependencies, which is
+  exactly what jsr handles well, and it type-checks cleanly from jsr today.
+- PRE-BUILDING IS NOT A DEFEAT OF "no pre-build", IT IS WHERE THAT RULE MET
+  EVIDENCE. The rule bought co-location and no build step; it cost every
+  TypeScript consumer the ability to type-check. Co-location survives anyway,
+  because the build copies each `.scss` next to its emitted `.js`.
 - THE TYPEFACE IS A CSS CONCERN, NOT A MODULE ONE. `src/type.scss` declares
   `@font-face` with a pinned URL, `font-display: swap`, and fontsource's
   unicode-range subsets; the browser fetches the file and no bundler is

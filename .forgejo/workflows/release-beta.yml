@@ -55,6 +55,7 @@ jobs:
       DENO_NO_PACKAGE_JSON: "1"
       BETA_VERSION_OVERRIDE: ${{ inputs.version_override }}
       JSR_PUBLISH_TOKEN: ${{ secrets.JSR_PUBLISH_TOKEN }}
+      NPM_PUBLISH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
       PUBLISH: ${{ inputs.publish }}
       SEAT: ${{ matrix.seat }}
       SLUG: ${{ matrix.slug }}
@@ -71,25 +72,46 @@ jobs:
 
       - name: Stamp beta version
         env:
+          REGISTRY: ${{ steps.beta.outputs.registry }}
           RELEASE_VERSION: ${{ steps.beta.outputs.release_version }}
         run: |
           set -eu
           exec > >(tee -a "$RUNNER_TEMP/lane.log") 2>&1
-          deno eval "const path = Deno.args[0] + '/deno.json'; const doc = JSON.parse(Deno.readTextFileSync(path)); doc.version = Deno.args[1]; Deno.writeTextFileSync(path, JSON.stringify(doc, null, 2) + '\n');" -- "$SEAT" "${RELEASE_VERSION#v}"
-          grep '"version"' "$SEAT/deno.json"
+          if [ "$REGISTRY" = "jsr" ]; then manifest="$SEAT/deno.json"; else manifest="$SEAT/package.json"; fi
+          deno eval "const path = Deno.args[0]; const doc = JSON.parse(Deno.readTextFileSync(path)); doc.version = Deno.args[1]; Deno.writeTextFileSync(path, JSON.stringify(doc, null, 2) + '\n');" -- "$manifest" "${RELEASE_VERSION#v}"
+          grep '"version"' "$manifest"
+
+      - name: Build the package
+        env:
+          REGISTRY: ${{ steps.beta.outputs.registry }}
+        run: |
+          set -eu
+          exec > >(tee -a "$RUNNER_TEMP/lane.log") 2>&1
+          if [ "$REGISTRY" != "npm" ]; then
+            echo "jsr publishes source: no build"
+            exit 0
+          fi
+          corepack enable
+          pnpm install --frozen-lockfile
+          pnpm --filter "$(node -p "require('./$SEAT/package.json').name")" build
 
       - name: Publish dry run
         env:
-          RELEASE_VERSION: ${{ steps.beta.outputs.release_version }}
+          REGISTRY: ${{ steps.beta.outputs.registry }}
         run: |
           set -eu
           exec > >(tee -a "$RUNNER_TEMP/lane.log") 2>&1
           cd "$SEAT"
-          deno publish --dry-run --allow-dirty
+          if [ "$REGISTRY" = "jsr" ]; then
+            deno publish --dry-run --allow-dirty
+          else
+            npm publish --dry-run
+          fi
 
       - name: Publish
         env:
           ALREADY_PUBLISHED: ${{ steps.beta.outputs.already_published }}
+          REGISTRY: ${{ steps.beta.outputs.registry }}
           RELEASE_VERSION: ${{ steps.beta.outputs.release_version }}
         run: |
           set -eu
@@ -102,18 +124,30 @@ jobs:
             echo "jsr already holds $RELEASE_VERSION for $SLUG: skipping publish"
             exit 0
           fi
-          case "$JSR_PUBLISH_TOKEN" in
-            "" | REPLACE_ME*)
-              echo "JSR_PUBLISH_TOKEN is not filled; fill the repository secret before publishing" >&2
-              exit 1
-              ;;
-          esac
           cd "$SEAT"
-          JSR_URL="https://jsr.io" deno publish --token "$JSR_PUBLISH_TOKEN" --allow-dirty
+          if [ "$REGISTRY" = "jsr" ]; then
+            case "$JSR_PUBLISH_TOKEN" in
+              "" | REPLACE_ME*)
+                echo "JSR_PUBLISH_TOKEN is not filled; fill the repository secret before publishing" >&2
+                exit 1
+                ;;
+            esac
+            JSR_URL="https://jsr.io" deno publish --token "$JSR_PUBLISH_TOKEN" --allow-dirty
+          else
+            case "$NPM_PUBLISH_TOKEN" in
+              "" | REPLACE_ME*)
+                echo "NPM_PUBLISH_TOKEN is not filled; fill the repository secret before publishing" >&2
+                exit 1
+                ;;
+            esac
+            printf '//registry.npmjs.org/:_authToken=%s\n' "$NPM_PUBLISH_TOKEN" > "$RUNNER_TEMP/npmrc"
+            NPM_CONFIG_USERCONFIG="$RUNNER_TEMP/npmrc" npm publish --tag beta
+          fi
 
       - name: Verify jsr publish
         env:
           PACKAGE_NAME: ${{ steps.beta.outputs.package_name }}
+          REGISTRY: ${{ steps.beta.outputs.registry }}
           RELEASE_VERSION: ${{ steps.beta.outputs.release_version }}
         run: |
           set -eu
@@ -122,11 +156,12 @@ jobs:
             echo "rehearsal: skipping verify"
             exit 0
           fi
-          sh .forgejo/scripts/release/jsr/verify.sh "$PACKAGE_NAME" "${RELEASE_VERSION#v}"
+          sh .forgejo/scripts/release/jsr/verify.sh "$REGISTRY" "$PACKAGE_NAME" "${RELEASE_VERSION#v}"
 
       - name: Smoke import
         env:
           PACKAGE_NAME: ${{ steps.beta.outputs.package_name }}
+          REGISTRY: ${{ steps.beta.outputs.registry }}
           RELEASE_VERSION: ${{ steps.beta.outputs.release_version }}
         run: |
           set -eu
@@ -135,7 +170,7 @@ jobs:
             echo "rehearsal: skipping smoke"
             exit 0
           fi
-          sh .forgejo/scripts/release/jsr/smoke.sh "$PACKAGE_NAME" "${RELEASE_VERSION#v}" "$SLUG"
+          sh .forgejo/scripts/release/jsr/smoke.sh "$REGISTRY" "$PACKAGE_NAME" "${RELEASE_VERSION#v}" "$SLUG"
 
       - name: Tag release
         env:
@@ -162,6 +197,7 @@ jobs:
         env:
           ALREADY_PUBLISHED: ${{ steps.beta.outputs.already_published }}
           PACKAGE_NAME: ${{ steps.beta.outputs.package_name }}
+          REGISTRY: ${{ steps.beta.outputs.registry }}
           RELEASE_VERSION: ${{ steps.beta.outputs.release_version }}
           STATE_SOURCE: ${{ steps.beta.outputs.state_source }}
         run: |
@@ -178,7 +214,7 @@ jobs:
             else
               echo "- mode: published"
             fi
-            echo "- jsr: https://jsr.io/$PACKAGE_NAME/versions"
+            echo "- registry: $REGISTRY"
           } >> "$GITHUB_STEP_SUMMARY"
 
       - name: Upload lane log
