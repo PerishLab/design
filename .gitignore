@@ -1,4 +1,4 @@
-/.task/
-/.local/
+.task/
+.local/
 node_modules/
 dist/

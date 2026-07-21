@@ -1,11 +1,11 @@
 import { Card, Frame, Grid, Hero, Nav } from "@perish/react-components";
 import { type ReactNode, useState } from "react";
+import { Link } from "react-router";
 import { notes } from "../docs/notes";
 import { seeds } from "../docs/samples";
 import { Knobs } from "../knobs/Knobs";
+import type { Locale } from "../lib/routes";
 import { Stage } from "./Stage";
-
-type Locale = "en" | "zh";
 
 const speech: Record<Locale, { title: string; line: string; toggle: string }> =
 	{
@@ -39,18 +39,13 @@ function Bench(props: { name: string; locale: Locale }): ReactNode {
 	);
 }
 
-export function Gallery(): ReactNode {
-	const [locale, speak] = useState<Locale>("en");
+export function Gallery(props: { locale: Locale }): ReactNode {
+	const locale = props.locale;
 	const said = speech[locale];
 	return (
 		<Frame>
 			<Nav>
-				<button
-					type="button"
-					onClick={() => speak(locale === "en" ? "zh" : "en")}
-				>
-					{said.toggle}
-				</button>
+				<Link to={locale === "en" ? "/zh-CN/" : "/"}>{said.toggle}</Link>
 			</Nav>
 			<Hero title={said.title} text={said.line} mark="◆" />
 			<Grid>
