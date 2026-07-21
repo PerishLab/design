@@ -127,6 +127,12 @@ The locales are prerendered to real files (`dist/index.html`,
 `dist/zh-CN/index.html`); an SPA fallback would serve the English shell for
 `/zh-CN/` and silently undo the prerender.
 
+wrangler is NOT a workspace dependency. It is fetched on demand with
+`pnpm dlx wrangler@<pinned>` inside `:ship`, because it drags
+`@cloudflare/workerd-linux-64` — 122MB, 45% of the whole dependency tree — and
+CI never deploys. Carrying it in the lockfile pushed the CI guard from 43s to
+287s for a tool no CI step invokes. The version is pinned in `ship.ts`.
+
 Flags: `--dry-run` prints the plan with redacted credentials then runs a
 credential-free `wrangler deploy --dry-run`; `--check` probes the token and
 whether the worker domain is bound. Both degrade cleanly while secrets are

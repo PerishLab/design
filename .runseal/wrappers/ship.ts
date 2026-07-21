@@ -6,6 +6,7 @@ import { io } from "@perish/harness/io";
 import { family, kind, run } from "@perish/shield";
 
 const app = "apps/react-docs";
+const tool = "wrangler@4.110.0";
 const dist = `${app}/dist`;
 const table = `${app}/src/lib/routes.tsx`;
 
@@ -120,7 +121,7 @@ async function plan(): Promise<void> {
   io.print("");
   io.print("deploy:");
   io.print("  env: CLOUDFLARE_ACCOUNT_ID=<redacted> CLOUDFLARE_API_TOKEN=<redacted>");
-  io.print(`  pnpm exec wrangler deploy --domain ${domain}  (cwd ${app})`);
+  io.print(`  pnpm dlx ${tool} deploy --domain ${domain}  (cwd ${app})`);
   io.print("");
   io.print("verify:");
   for (const route of [...new Set(["/", deep(paths) ?? "/"])]) {
@@ -136,7 +137,7 @@ async function plan(): Promise<void> {
     return;
   }
   io.print("wrangler dry run:");
-  await bin("pnpm").run(["exec", "wrangler", "deploy", "--dry-run"], { cwd: app });
+  await bin("pnpm").run(["dlx", tool, "deploy", "--dry-run"], { cwd: app });
 }
 
 async function check(): Promise<void> {
@@ -174,7 +175,7 @@ async function ship(): Promise<void> {
     throw fault.build({ path: `${dist}/index.html` });
   }
   io.print("==> deploy");
-  await bin("pnpm").run(["exec", "wrangler", "deploy", "--domain", keys.domain], {
+  await bin("pnpm").run(["dlx", tool, "deploy", "--domain", keys.domain], {
     cwd: app,
     env: { CLOUDFLARE_ACCOUNT_ID: keys.account, CLOUDFLARE_API_TOKEN: keys.token },
   });
