@@ -35,6 +35,16 @@ component libraries and a self-built docs site.
   `.js/.jsx/.ts/.tsx`. This is deliberate, not incidental: `with { type:
   "text" }` is a real ESM feature, so stripping it anywhere else would hijack a
   legitimate text import.
+- Every `deno publish` here runs with `DENO_NO_PACKAGE_JSON=1`. Without it deno
+  finds `pnpm-workspace.yaml`, decides it should migrate the workspace and
+  catalog into the root `package.json`, and REWRITES that file. Run local dry
+  runs the same way. The packages carry their own type dependencies in
+  `deno.json` precisely so nothing needs `node_modules` to type-check —
+  `@perish/react-components` declares `@types/react` there, which is also what
+  makes it type-check for a deno consumer rather than only inside this
+  workspace.
+- The release lane never edits a tracked file: the version reaches jsr through
+  `deno publish --set-version`, not by stamping `deno.json`.
 - The plugin's `Plugin`/`Loud` shapes stay unexported. The contract a consumer
   should hold is vite's own `Plugin` type; ours is a structural subset of it and
   publishing it would claim a contract we do not own.

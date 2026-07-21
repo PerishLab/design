@@ -54,6 +54,7 @@ jobs:
             slug: react-components
             symbols: Frame,Button
     env:
+      DENO_NO_PACKAGE_JSON: "1"
       STABLE_VERSION_OVERRIDE: ${{ inputs.version_override }}
       JSR_PUBLISH_TOKEN: ${{ secrets.JSR_PUBLISH_TOKEN }}
       PUBLISH: ${{ inputs.publish }}
@@ -71,21 +72,14 @@ jobs:
           exec > >(tee -a "$RUNNER_TEMP/lane.log") 2>&1
           deno run --allow-env --allow-read --allow-net --allow-write="$GITHUB_OUTPUT" .forgejo/scripts/release/metadata/stable.ts "$SEAT"
 
-      - name: Stamp stable version
+      - name: Publish dry run
         env:
           RELEASE_VERSION: ${{ steps.stable.outputs.release_version }}
         run: |
           set -eu
           exec > >(tee -a "$RUNNER_TEMP/lane.log") 2>&1
-          deno eval "const path = Deno.args[0] + '/deno.json'; const doc = JSON.parse(Deno.readTextFileSync(path)); doc.version = Deno.args[1]; Deno.writeTextFileSync(path, JSON.stringify(doc, null, 2) + '\n');" -- "$SEAT" "${RELEASE_VERSION#v}"
-          grep '"version"' "$SEAT/deno.json"
-
-      - name: Publish dry run
-        run: |
-          set -eu
-          exec > >(tee -a "$RUNNER_TEMP/lane.log") 2>&1
           cd "$SEAT"
-          deno publish --dry-run --allow-dirty
+          deno publish --dry-run --allow-dirty --set-version "${RELEASE_VERSION#v}"
 
       - name: Publish
         env:
@@ -109,7 +103,7 @@ jobs:
               ;;
           esac
           cd "$SEAT"
-          JSR_URL="https://jsr.io" deno publish --token "$JSR_PUBLISH_TOKEN" --allow-dirty
+          JSR_URL="https://jsr.io" deno publish --token "$JSR_PUBLISH_TOKEN" --allow-dirty --set-version "${RELEASE_VERSION#v}"
 
       - name: Verify jsr publish
         env:

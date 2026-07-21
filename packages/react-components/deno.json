@@ -7,13 +7,15 @@
 	},
 	"imports": {
 		"react": "npm:react@^19.2.7",
-		"react/jsx-runtime": "npm:react@^19.2.7/jsx-runtime"
+		"react/jsx-runtime": "npm:react@^19.2.7/jsx-runtime",
+		"@types/react": "npm:@types/react@^19.2.17"
 	},
 	"compilerOptions": {
 		"strict": true,
 		"jsx": "react-jsx",
 		"jsxImportSource": "react",
-		"lib": ["esnext", "dom"]
+		"lib": ["esnext", "dom"],
+		"types": ["npm:@types/react@^19.2.17"]
 	},
 	"publish": {
 		"exclude": [
