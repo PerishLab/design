@@ -142,6 +142,12 @@ wrangler is NOT a workspace dependency. It is fetched on demand with
 CI never deploys. Carrying it in the lockfile pushed the CI guard from 43s to
 287s for a tool no CI step invokes. The version is pinned in `ship.ts`.
 
+Verify asserts the BUILD, not just a heartbeat. It reads the fingerprinted
+asset out of the freshly built `dist/index.html` and requires the live page to
+reference that exact file, because Cloudflare keeps serving the previous build
+for a while after a deploy — a plain 200 check passes on the old site and calls
+the deploy done. open-web printed `ship: ok` in exactly that state.
+
 The FIRST deploy of a hostname gets a long verify window — 20 tries at 15s
 rather than 3 at 5s — because Cloudflare needs minutes to spread the edge
 routing for a new custom domain. Measured at ~240s the first time

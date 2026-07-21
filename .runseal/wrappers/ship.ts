@@ -94,24 +94,35 @@ function deep(paths: string[]): string | undefined {
   return paths.find((route) => route !== "/");
 }
 
-async function knock(url: string): Promise<number | string> {
+async function knock(url: string): Promise<{ status: number | string; body: string }> {
   try {
     const response = await fetch(url, { headers: { "cache-control": "no-cache" } });
-    await response.body?.cancel();
-    return response.status;
+    const body = await response.text();
+    return { status: response.status, body };
   } catch (thrown) {
-    return thrown instanceof Error ? thrown.message.split(":")[0] : "unreachable";
+    const status = thrown instanceof Error ? thrown.message.split(":")[0] : "unreachable";
+    return { status, body: "" };
   }
 }
 
-async function probe(url: string, tries: number, wait: number): Promise<boolean> {
+async function stamp(): Promise<string> {
+  const html = await Deno.readTextFile(`${dist}/index.html`);
+  const found = /\/assets\/index-[A-Za-z0-9_-]+\.js/.exec(html);
+  if (found === null) {
+    return io.fail(`ship: no fingerprinted asset in ${dist}/index.html`);
+  }
+  return found[0];
+}
+
+async function probe(url: string, mark: string, tries: number, wait: number): Promise<boolean> {
   for (let turn = 0; turn < tries; turn += 1) {
-    const status = await knock(url);
-    if (status === 200) {
-      io.print(`  200 ${url}`);
+    const seen = await knock(url);
+    if (seen.status === 200 && seen.body.includes(mark)) {
+      io.print(`  200 ${url} serving ${mark}`);
       return true;
     }
-    io.print(`  retry ${url} (${status})`);
+    const why = seen.status === 200 ? "stale build" : seen.status;
+    io.print(`  retry ${url} (${why})`);
     await new Promise((resolve) => setTimeout(resolve, wait));
   }
   return false;
@@ -172,7 +183,7 @@ async function check(): Promise<void> {
   io.print(`  zone ${keys.zone}: ${found.length > 0 ? "reachable" : "unreachable"}`);
   const held = await bound(keys);
   io.print(`  worker domain ${keys.domain}: ${held ? "bound" : "not bound yet"}`);
-  io.print(`  live: ${await knock(`https://${keys.domain}/`)}`);
+  io.print(`  live: ${(await knock(`https://${keys.domain}/`)).status}`);
 }
 
 async function ship(): Promise<void> {
@@ -196,12 +207,13 @@ async function ship(): Promise<void> {
   if (fresh) {
     io.print("  first deploy of this domain: edge routing takes minutes to spread");
   }
-  const tries = fresh ? 20 : 3;
+  const tries = fresh ? 20 : 10;
   const wait = fresh ? 15000 : 5000;
-  let reached = await probe(`https://${keys.domain}/`, tries, wait);
+  const mark = await stamp();
+  let reached = await probe(`https://${keys.domain}/`, mark, tries, wait);
   const route = deep(paths);
   if (reached && route !== undefined) {
-    reached = await probe(`https://${keys.domain}${route}`, tries, wait);
+    reached = await probe(`https://${keys.domain}${route}`, mark, tries, wait);
   }
   if (!reached) {
     throw fault.unreached({ domain: keys.domain });
