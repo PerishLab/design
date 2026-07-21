@@ -72,10 +72,18 @@ hook means anyone who bypasses the hook lands red.
 - The design foundation (tokens, themes) reaches an app through scss, not JS:
   `Frame.scss` `@use`s tokens and both themes, so wrapping an app in `Frame`
   installs the foundation. Nothing imports a stylesheet from a `.tsx`.
-- A dry run proves almost nothing about publishing. `--dry-run` skips
-  server-side validation entirely: it accepted the text import attribute, and
-  it accepted `--set-version`, both of which the real publish rejects. Treat
-  green dry runs as a syntax check, never as evidence the lane works.
+- A DRY RUN'S WORTH DEPENDS ON THE REGISTRY, so do not carry a verdict from
+  one to the other. jsr's `--dry-run` skips server-side validation entirely: it
+  accepted the text import attribute and `--set-version`, both of which the
+  real publish rejects, so treat it as a syntax check only. npm's caught a
+  missing `--tag` before the real publish. Weak evidence in one tool is not
+  weak evidence everywhere.
+- EVERY npm COMMAND IN CI PASSES `--registry https://registry.npmjs.org`. The
+  image points npm at `mirror.perish.lan/npm/`, and `NPM_CONFIG_USERCONFIG`
+  does NOT override that — it replaces the user config, not the image's global
+  one. Publishing without the flag tries to push to the internal mirror and
+  fails on auth; installing without it can read a mirror that lags a release we
+  just cut. The jsr lane pins `JSR_URL` for the same reason.
 - Every `deno publish` here runs with `DENO_NO_PACKAGE_JSON=1`. Without it deno
   finds `pnpm-workspace.yaml`, decides it should migrate the workspace and
   catalog into the root `package.json`, and REWRITES that file. Run local dry

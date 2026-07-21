@@ -112,7 +112,7 @@ jobs:
           if [ "$REGISTRY" = "jsr" ]; then
             deno publish --dry-run --allow-dirty
           else
-            npm publish --dry-run
+            npm publish --dry-run --registry https://registry.npmjs.org
           fi
 
       - name: Publish
@@ -147,8 +147,11 @@ jobs:
                 exit 1
                 ;;
             esac
-            printf '//registry.npmjs.org/:_authToken=%s\n' "$NPM_PUBLISH_TOKEN" > "$RUNNER_TEMP/npmrc"
-            NPM_CONFIG_USERCONFIG="$RUNNER_TEMP/npmrc" npm publish
+            {
+              echo "registry=https://registry.npmjs.org/"
+              printf '//registry.npmjs.org/:_authToken=%s\n' "$NPM_PUBLISH_TOKEN"
+            } > "$RUNNER_TEMP/npmrc"
+            NPM_CONFIG_USERCONFIG="$RUNNER_TEMP/npmrc" npm publish --registry https://registry.npmjs.org
           fi
 
       - name: Verify jsr publish
