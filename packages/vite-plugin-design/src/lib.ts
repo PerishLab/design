@@ -15,6 +15,15 @@ const font = "virtual:perish-design/font";
 const sealed = `\0${font}`;
 const face = "@fontsource/spectral/600.css";
 
+function sited(): string {
+	try {
+		const found = import.meta.resolve(face);
+		return found.startsWith("file:") ? unwrap(found) : face;
+	} catch {
+		return face;
+	}
+}
+
 export function design(): Plugin {
 	return {
 		name: "perish-design",
@@ -41,9 +50,7 @@ export function design(): Plugin {
 			if (id !== sealed) {
 				return null;
 			}
-			const found = import.meta.resolve(face);
-			const target = found.startsWith("file:") ? unwrap(found) : face;
-			return `import ${JSON.stringify(target)};\n`;
+			return `import ${JSON.stringify(sited())};\n`;
 		},
 	};
 }

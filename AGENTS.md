@@ -38,6 +38,13 @@ component libraries and a self-built docs site.
   therefore imports no scss at all; the scss files still ship, because jsr
   collects files by include/exclude and not by module graph, and the plugin
   injects `import "./X.scss"` when it transforms a sibling `X.tsx`.
+- The font module resolves `@fontsource/spectral/600.css` to an absolute path
+  through `import.meta.resolve`, and falls back to the bare specifier when that
+  throws. It throws for a deno consumer: jsr builds a package's dependency list
+  from its MODULE GRAPH, and a specifier handed to `import.meta.resolve` is not
+  in the graph, so no import-map entry can rescue it. The absolute-path branch
+  is the one that matters and it is only exercised under node/vite — phase 7 is
+  where it gets proven, not CI.
 - The design foundation (tokens, themes) reaches an app through scss, not JS:
   `Frame.scss` `@use`s tokens and both themes, so wrapping an app in `Frame`
   installs the foundation. Nothing imports a stylesheet from a `.tsx`.
