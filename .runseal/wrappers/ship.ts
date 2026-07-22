@@ -1,8 +1,8 @@
-import { cli, flags } from "@perish/harness/cli";
-import { bin } from "@perish/harness/cmd";
-import { env } from "@perish/harness/env";
-import { fs } from "@perish/harness/fs";
-import { io } from "@perish/harness/io";
+import { cli, flags } from "@perish/sealkit/cli";
+import { bin } from "@perish/sealkit/cmd";
+import { env } from "@perish/sealkit/env";
+import { fs } from "@perish/sealkit/fs";
+import { io } from "@perish/sealkit/io";
 import { family, kind, run } from "@perish/shield";
 
 const app = "apps/react-docs";
