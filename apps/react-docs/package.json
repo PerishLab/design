@@ -10,7 +10,7 @@
 	"dependencies": {
 		"react": "catalog:",
 		"react-dom": "catalog:",
-		"@perish/react-components": "0.1.0-beta.2",
+		"@perish/react-components": "workspace:*",
 		"react-router": "catalog:"
 	},
 	"devDependencies": {

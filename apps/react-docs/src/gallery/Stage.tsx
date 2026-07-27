@@ -1,19 +1,29 @@
 import {
 	Badge,
 	Banner,
+	Board,
 	Button,
 	Card,
 	Code,
 	Copy,
+	Field,
 	Footer,
 	Forge,
 	Grid,
 	Hero,
 	Ledger,
+	Line,
+	Link,
 	List,
 	Nav,
+	Note,
+	Page,
 	Rail,
 	Search,
+	Sheet,
+	Shell,
+	Split,
+	Tag,
 } from "@perish/react-components";
 import type { ReactNode } from "react";
 import { atoms, stops } from "../docs/samples";
@@ -42,8 +52,24 @@ export function Stage(props: Props): ReactNode {
 					{said(held, "children")}
 				</Banner>
 			);
+		case "Board":
+			return (
+				<Board title={said(held, "title")} brief={said(held, "brief")}>
+					{said(held, "children")}
+				</Board>
+			);
 		case "Button":
-			return <Button>{said(held, "children")}</Button>;
+			return (
+				<Button
+					label={said(held, "label")}
+					press={() => {}}
+					tone={said(held, "tone") === "quiet" ? "quiet" : "solid"}
+					wide={Boolean(held.wide)}
+					busy={Boolean(held.busy)}
+				>
+					{said(held, "children")}
+				</Button>
+			);
 		case "Card":
 			return <Card title={said(held, "title")}>{said(held, "children")}</Card>;
 		case "Code":
@@ -54,6 +80,16 @@ export function Stage(props: Props): ReactNode {
 			);
 		case "Copy":
 			return <Copy text={said(held, "text")} />;
+		case "Field":
+			return (
+				<Field
+					label={said(held, "label")}
+					value={said(held, "value")}
+					change={() => {}}
+					kind={said(held, "kind") === "password" ? "password" : "text"}
+					hint={said(held, "hint")}
+				/>
+			);
 		case "Footer":
 			return <Footer>{said(held, "children")}</Footer>;
 		case "Forge":
@@ -70,6 +106,14 @@ export function Stage(props: Props): ReactNode {
 			);
 		case "Ledger":
 			return <Ledger atoms={atoms} />;
+		case "Line":
+			return (
+				<Line name={said(held, "name")} meta={said(held, "meta")}>
+					{said(held, "children")}
+				</Line>
+			);
+		case "Link":
+			return <Link label={said(held, "label")} href={said(held, "href")} />;
 		case "List":
 			return (
 				<List>
@@ -78,6 +122,15 @@ export function Stage(props: Props): ReactNode {
 			);
 		case "Nav":
 			return <Nav>{said(held, "children")}</Nav>;
+		case "Note":
+			return (
+				<Note
+					text={said(held, "text")}
+					tone={said(held, "tone") === "warn" ? "warn" : "calm"}
+				/>
+			);
+		case "Page":
+			return <Page title={said(held, "title")}>{said(held, "children")}</Page>;
 		case "Rail":
 			return <Rail stops={stops} />;
 		case "Search":
@@ -86,6 +139,19 @@ export function Stage(props: Props): ReactNode {
 					value={said(held, "value")}
 					change={() => {}}
 					hint={said(held, "hint")}
+				/>
+			);
+		case "Sheet":
+			return <Sheet>{said(held, "children")}</Sheet>;
+		case "Shell":
+			return <Shell>{said(held, "children")}</Shell>;
+		case "Split":
+			return <Split>{said(held, "children")}</Split>;
+		case "Tag":
+			return (
+				<Tag
+					text={said(held, "text")}
+					tone={said(held, "tone") === "warn" ? "warn" : "calm"}
 				/>
 			);
 		default:

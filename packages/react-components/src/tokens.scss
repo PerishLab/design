@@ -48,6 +48,18 @@
 	initial-value: magenta;
 }
 
+@property --warn {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: magenta;
+}
+
+@property --flush {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: magenta;
+}
+
 @property --fine {
 	syntax: "<length>";
 	inherits: true;
@@ -133,6 +145,12 @@
 }
 
 @property --cell {
+	syntax: "<length>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --sheet {
 	syntax: "<length>";
 	inherits: true;
 	initial-value: 0px;
@@ -246,6 +264,7 @@
 	--page: 60rem;
 	--prose: 42rem;
 	--cell: 15rem;
+	--sheet: 24rem;
 	--track: -0.01em;
 }
 
