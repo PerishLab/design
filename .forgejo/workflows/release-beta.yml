@@ -13,6 +13,11 @@ on:
         required: false
         default: "true"
         type: string
+      package:
+        description: "Optional package slug to release or repair"
+        required: false
+        default: ""
+        type: string
 
 env:
   RELEASE_CHANNEL: beta
@@ -68,9 +73,11 @@ jobs:
       SLUG: ${{ matrix.slug }}
     steps:
       - name: Checkout
+        if: ${{ inputs.package == '' || inputs.package == matrix.slug }}
         uses: actions/checkout@v6
 
       - name: Resolve beta metadata
+        if: ${{ inputs.package == '' || inputs.package == matrix.slug }}
         id: beta
         run: |
           set -eu
@@ -78,6 +85,7 @@ jobs:
           deno run --allow-env --allow-read --allow-net --allow-write="$GITHUB_OUTPUT" .forgejo/scripts/release/metadata/beta.ts "$SEAT"
 
       - name: Stamp beta version
+        if: ${{ inputs.package == '' || inputs.package == matrix.slug }}
         env:
           REGISTRY: ${{ steps.beta.outputs.registry }}
           RELEASE_VERSION: ${{ steps.beta.outputs.release_version }}
@@ -89,6 +97,7 @@ jobs:
           grep '"version"' "$manifest"
 
       - name: Build the package
+        if: ${{ inputs.package == '' || inputs.package == matrix.slug }}
         env:
           REGISTRY: ${{ steps.beta.outputs.registry }}
         run: |
@@ -103,6 +112,7 @@ jobs:
           pnpm --filter "$(node -p "require('./$SEAT/package.json').name")" build
 
       - name: Publish dry run
+        if: ${{ inputs.package == '' || inputs.package == matrix.slug }}
         env:
           REGISTRY: ${{ steps.beta.outputs.registry }}
         run: |
@@ -116,6 +126,7 @@ jobs:
           fi
 
       - name: Publish
+        if: ${{ inputs.package == '' || inputs.package == matrix.slug }}
         env:
           ALREADY_PUBLISHED: ${{ steps.beta.outputs.already_published }}
           REGISTRY: ${{ steps.beta.outputs.registry }}
@@ -155,6 +166,7 @@ jobs:
           fi
 
       - name: Verify jsr publish
+        if: ${{ inputs.package == '' || inputs.package == matrix.slug }}
         env:
           PACKAGE_NAME: ${{ steps.beta.outputs.package_name }}
           REGISTRY: ${{ steps.beta.outputs.registry }}
@@ -169,6 +181,7 @@ jobs:
           sh .forgejo/scripts/release/jsr/verify.sh "$REGISTRY" "$PACKAGE_NAME" "${RELEASE_VERSION#v}"
 
       - name: Smoke import
+        if: ${{ inputs.package == '' || inputs.package == matrix.slug }}
         env:
           PACKAGE_NAME: ${{ steps.beta.outputs.package_name }}
           REGISTRY: ${{ steps.beta.outputs.registry }}
@@ -183,6 +196,7 @@ jobs:
           sh .forgejo/scripts/release/jsr/smoke.sh "$REGISTRY" "$PACKAGE_NAME" "${RELEASE_VERSION#v}" "$SLUG"
 
       - name: Tag release
+        if: ${{ inputs.package == '' || inputs.package == matrix.slug }}
         env:
           RELEASE_VERSION: ${{ steps.beta.outputs.release_version }}
         run: |
@@ -209,7 +223,7 @@ jobs:
           git push origin "refs/tags/$tag"
 
       - name: Publish summary
-        if: always()
+        if: ${{ always() && (inputs.package == '' || inputs.package == matrix.slug) }}
         env:
           ALREADY_PUBLISHED: ${{ steps.beta.outputs.already_published }}
           PACKAGE_NAME: ${{ steps.beta.outputs.package_name }}
@@ -234,14 +248,14 @@ jobs:
           } >> "$GITHUB_STEP_SUMMARY"
 
       - name: Upload lane log
-        if: always()
+        if: ${{ always() && (inputs.package == '' || inputs.package == matrix.slug) }}
         uses: actions/upload-artifact@v3
         with:
           name: lane-log-${{ matrix.slug }}
           path: ${{ runner.temp }}/lane.log
 
       - name: Report failure
-        if: failure()
+        if: ${{ failure() && (inputs.package == '' || inputs.package == matrix.slug) }}
         env:
           PROBE_TOKEN: ${{ github.token }}
         run: |
