@@ -1,4 +1,4 @@
-import { readdirSync, readFileSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { createRequire } from "node:module";
 import { dirname, join } from "node:path";
 import { expect, test } from "vitest";
@@ -38,6 +38,9 @@ function kind(type: string): Kind {
 function shipped(): Record<string, Record<string, Kind>> {
 	const map: Record<string, Record<string, Kind>> = {};
 	for (const path of walk(root)) {
+		if (!existsSync(path.replace(/\.d\.ts$/, ".scss"))) {
+			continue;
+		}
 		const text = readFileSync(path, "utf8");
 		const body = /type Props = \{([\s\S]*?)\n\};/.exec(text);
 		const name = path.slice(path.lastIndexOf("/") + 1).replace(".d.ts", "");
