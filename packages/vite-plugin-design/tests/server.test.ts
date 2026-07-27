@@ -32,8 +32,11 @@ async function launch(root: string): Promise<{
 	return {
 		endpoint,
 		async close(): Promise<void> {
-			child.kill();
-			await once(child, "exit");
+			child.kill("SIGTERM");
+			const [code] = await once(child, "exit");
+			if (code !== 0) {
+				throw new Error(`server stopped ${code}`);
+			}
 		},
 	};
 }

@@ -140,6 +140,24 @@ const server = createServer((req, res) => {
 	});
 });
 
+let closing = false;
+function halt() {
+	if (closing) {
+		return;
+	}
+	closing = true;
+	const timer = setTimeout(() => process.exit(1), 5000);
+	timer.unref();
+	server.close(() => {
+		clearTimeout(timer);
+		process.exit(0);
+	});
+	server.closeIdleConnections();
+}
+
+process.on("SIGINT", halt);
+process.on("SIGTERM", halt);
+
 server.listen(port, host, () => {
 	const address = server.address();
 	const live = typeof address === "object" && address !== null ? address.port : port;

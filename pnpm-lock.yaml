@@ -67,8 +67,8 @@ importers:
         version: 8.2.0(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
     devDependencies:
       '@jsr/perish__vite-plugin-design':
-        specifier: 0.1.0-beta.15
-        version: 0.1.0-beta.15
+        specifier: 0.1.0-beta.16
+        version: 0.1.0-beta.16
       '@types/react':
         specifier: 'catalog:'
         version: 19.2.17
@@ -364,8 +364,8 @@ packages:
   '@jridgewell/sourcemap-codec@1.5.5':
     resolution: {integrity: sha512-cYQ9310grqxueWbl+WuIUIaiUaDcj7WOq5fVhEljNVgRfOUhY9fy2zTvfoqWsnebh8Sl70VScFbICvJnLKB0Og==}
 
-  '@jsr/perish__vite-plugin-design@0.1.0-beta.15':
-    resolution: {integrity: sha512-BmG16M3aXb+m1uWLa2tm9Z+T977jgPD7M51wVoET83aqR697/Yw9HC7ef/PBQ68JGtwJAhmcgm1DGEHrPyX4Fw==, tarball: https://npm.jsr.io/~/11/@jsr/perish__vite-plugin-design/0.1.0-beta.15.tgz}
+  '@jsr/perish__vite-plugin-design@0.1.0-beta.16':
+    resolution: {integrity: sha512-lo/F4lyOYetiIOciKm8Lm0wAlhzQdfq8wEclBqUbHaUs7P6bwDdUYknUL55NWJwROM2Ky5iVgzKXfRevf2DYwg==, tarball: https://npm.jsr.io/~/11/@jsr/perish__vite-plugin-design/0.1.0-beta.16.tgz}
 
   '@napi-rs/wasm-runtime@1.1.6':
     resolution: {integrity: sha512-ZLv/JdUfkvOy9eCnnBaGfiO+XimbjebAeO+MRQqD/B+FR1tnRN0tpKSJHRbE8sFfS6aqsXZ67TQjfwfsxULVbg==}
@@ -1220,7 +1220,7 @@ snapshots:
 
   '@jridgewell/sourcemap-codec@1.5.5': {}
 
-  '@jsr/perish__vite-plugin-design@0.1.0-beta.15': {}
+  '@jsr/perish__vite-plugin-design@0.1.0-beta.16': {}
 
   '@napi-rs/wasm-runtime@1.1.6(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)':
     dependencies:
