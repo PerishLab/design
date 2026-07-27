@@ -2,6 +2,7 @@ import { existsSync } from "node:fs";
 import { isAbsolute, join, relative } from "node:path";
 import { config } from "./config.ts";
 import { health } from "./health.ts";
+import { runtime } from "./server.ts";
 import { type Route, scan } from "./views.ts";
 
 type Loud = { code: string; map: null };
@@ -34,6 +35,7 @@ type Config = {
 };
 type Options = {
 	login?: boolean;
+	serve?: boolean;
 };
 type Plugin = {
 	name: string;
@@ -81,6 +83,7 @@ function source(routes: Route[], login: boolean): string {
 
 export function design(options: Options = {}): Plugin {
 	const login = options.login ?? true;
+	const server = options.serve ?? true;
 	const env = config();
 	let root = "";
 	let folder = "";
@@ -182,6 +185,12 @@ export function design(options: Options = {}): Plugin {
 				fileName: "health",
 				source: health(root, env),
 			});
+			server &&
+				this.emitFile({
+					type: "asset",
+					fileName: ".perish/server.mjs",
+					source: runtime(),
+				});
 		},
 		transform(code: string, id: string): Loud | null {
 			const seat = id.split("?")[0];

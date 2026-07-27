@@ -1,0 +1,82 @@
+import { spawn } from "node:child_process";
+import { once } from "node:events";
+import { mkdirSync, mkdtempSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
+import { execPath } from "node:process";
+import { expect, test } from "vitest";
+import { runtime } from "../src/server";
+
+async function launch(root: string): Promise<{
+	close(): Promise<void>;
+	endpoint: string;
+}> {
+	const script = join(root, "server.mjs");
+	writeFileSync(script, runtime());
+	const child = spawn(execPath, [script, root], {
+		env: { HOST: "127.0.0.1", PORT: "0" },
+		stdio: ["ignore", "pipe", "pipe"],
+	});
+	const endpoint = await new Promise<string>((resolve, reject) => {
+		let held = "";
+		child.stdout.on("data", (chunk: Buffer) => {
+			held += chunk.toString();
+			const line = held.split("\n")[0];
+			if (line !== "") {
+				resolve(JSON.parse(line).endpoint);
+			}
+		});
+		child.once("error", reject);
+		child.once("exit", (code) => reject(new Error(`server exited ${code}`)));
+	});
+	return {
+		endpoint,
+		async close(): Promise<void> {
+			child.kill();
+			await once(child, "exit");
+		},
+	};
+}
+
+test("serves", async () => {
+	const root = mkdtempSync(join(tmpdir(), "server-"));
+	mkdirSync(join(root, "assets"));
+	writeFileSync(join(root, "index.html"), "<main>shell</main>\n");
+	writeFileSync(join(root, "health"), '{"name":"specimen"}\n');
+	writeFileSync(join(root, "assets", "app.js"), "export {};\n");
+	const server = await launch(root);
+	try {
+		const health = await fetch(`${server.endpoint}/health`);
+		expect(health.status).toBe(200);
+		expect(health.headers.get("content-type")).toContain("application/json");
+		expect(await health.json()).toEqual({ name: "specimen" });
+
+		const route = await fetch(`${server.endpoint}/actor/ada`, {
+			headers: { accept: "text/html" },
+		});
+		expect(route.status).toBe(200);
+		expect(await route.text()).toContain("shell");
+
+		const asset = await fetch(`${server.endpoint}/assets/app.js`);
+		expect(asset.status).toBe(200);
+		expect(asset.headers.get("cache-control")).toContain("immutable");
+
+		for (const path of [
+			"/assets/missing.js",
+			"/api/health",
+			"/.perish/server.mjs",
+		]) {
+			expect((await fetch(server.endpoint + path)).status).toBe(404);
+		}
+
+		expect(
+			(
+				await fetch(server.endpoint, {
+					method: "POST",
+				})
+			).status,
+		).toBe(405);
+	} finally {
+		await server.close();
+	}
+});

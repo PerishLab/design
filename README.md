@@ -8,10 +8,16 @@ The workshop's design system. A monorepo:
 - `@perish/vite-plugin-design` — the vite plugin this system's publish shape
   needs, published to JSR. The library ships stylesheets but never imports
   them, so the plugin injects each component's co-located `X.scss` as Vite
-  compiles the emitted module. Without it the components have no styling. The
-  typeface needs nothing from the plugin: the library's scss declares
-  `@font-face` against a pinned URL, so the browser fetches Spectral on its own
-  and falls back to Georgia if it cannot.
+  compiles the emitted module. It also compiles `views/**/*.tsx` into the
+  in-memory `virtual:perish/views` manifest, owns Vite's development port and
+  `/api` proxy, emits build metadata at `dist/health`, and emits a
+  zero-dependency production Web server at `dist/.perish/server.mjs`. The server
+  serves real files, rejects `/api`, and returns `index.html` only for browser
+  document requests, leaving route matching and Web 404 behavior to the client
+  runtime. Static sites deployed to an existing platform can use
+  `design({ serve: false })`. The typeface needs nothing from the plugin: the
+  library's scss declares `@font-face` against a pinned URL, so the browser
+  fetches Spectral on its own and falls back to Georgia if it cannot.
 - a self-built docs site at react.design.perish.uk — gallery, interactive
   knobs, and hand-written, drift-guarded prop docs in English and 简体中文.
 

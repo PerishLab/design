@@ -83,6 +83,20 @@ test("virtual", () => {
 	);
 });
 
+test("optional", () => {
+	const seat = root("optional");
+	const plugin = design({ serve: false });
+	plugin.configResolved({ root: seat });
+	const files: string[] = [];
+	plugin.generateBundle.call({
+		addWatchFile() {},
+		emitFile(file) {
+			files.push(file.fileName);
+		},
+	});
+	expect(files).toEqual(["health"]);
+});
+
 test("builds in memory", async () => {
 	const seat = root("build");
 	file(seat, "index.tsx");
@@ -100,5 +114,6 @@ test("builds in memory", async () => {
 		plugins: [design({ login: false })],
 	});
 	expect(existsSync(join(seat, "dist", "health"))).toBe(true);
+	expect(existsSync(join(seat, "dist", ".perish", "server.mjs"))).toBe(true);
 	expect(readdirSync(join(seat, "src"))).toEqual(["main.ts", "views"]);
 });

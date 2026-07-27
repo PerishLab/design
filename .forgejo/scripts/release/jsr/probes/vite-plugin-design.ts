@@ -18,4 +18,16 @@ const code = plugin.load(id);
 if (code === null || !code.includes("login:true")) {
   throw new Error("virtual views source wrong");
 }
-console.log("probe: plugin identity, transform, and virtual views sane");
+let server = "";
+plugin.generateBundle.call({
+  addWatchFile() {},
+  emitFile(file: { fileName?: string; source?: unknown }) {
+    if (file.fileName === ".perish/server.mjs") {
+      server = String(file.source);
+    }
+  },
+});
+if (!server.includes('createServer') || !server.includes('pathname.startsWith("/api/")')) {
+  throw new Error("production web runtime missing");
+}
+console.log("probe: plugin identity, transform, virtual views, and runtime sane");

@@ -14,7 +14,7 @@
 		"react-router": "catalog:"
 	},
 	"devDependencies": {
-		"@jsr/perish__vite-plugin-design": "0.1.0-beta.12",
+		"@jsr/perish__vite-plugin-design": "0.1.0-beta.15",
 		"@types/react": "catalog:",
 		"@types/react-dom": "catalog:",
 		"@vitejs/plugin-react": "catalog:",
