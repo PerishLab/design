@@ -10,14 +10,20 @@
 		".": {
 			"types": "./dist/lib.d.ts",
 			"default": "./dist/lib.js"
+		},
+		"./client": {
+			"types": "./dist/client.d.ts"
 		}
 	},
 	"publishConfig": {
 		"access": "public"
 	},
 	"scripts": {
-		"build": "tsc -p tsconfig.build.json && node -e \"require('node:fs').cpSync('src','dist',{recursive:true,filter:(p)=>!/\\.tsx?$/.test(p)})\"",
+		"build": "node -e \"require('node:fs').rmSync('dist',{recursive:true,force:true})\" && tsc -p tsconfig.build.json && node -e \"const fs=require('node:fs');fs.cpSync('src','dist',{recursive:true,filter:(p)=>!/\\.tsx?$/.test(p)});fs.copyFileSync('src/client.d.ts','dist/client.d.ts')\"",
 		"test": "vitest run"
+	},
+	"dependencies": {
+		"react-router": "catalog:"
 	},
 	"peerDependencies": {
 		"react": ">=19"

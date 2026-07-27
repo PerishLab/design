@@ -56,3 +56,9 @@ paths = [
   "packages/react-components/**",
   "apps/react-docs/**",
 ]
+
+[[grant]]
+syntax = "environment"
+paths = [
+  "packages/vite-plugin-design/src/config.ts",
+]

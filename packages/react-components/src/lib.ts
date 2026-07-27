@@ -24,3 +24,6 @@ export { Board } from "./surface/Board/Board.js";
 export { Page } from "./surface/Page/Page.js";
 export { Sheet } from "./surface/Sheet/Sheet.js";
 export { Shell } from "./surface/Shell/Shell.js";
+export { hook } from "./surface/Views/hook.js";
+export { usePath } from "./surface/Views/path.js";
+export { Views } from "./surface/Views/Views.js";

@@ -26,6 +26,9 @@ const required = [
   "Shell",
   "Split",
   "Tag",
+  "Views",
+  "hook",
+  "usePath",
 ];
 const missing = required.filter((name) => !(name in held));
 if (missing.length > 0) {
@@ -35,4 +38,4 @@ const wrong = required.filter((name) => typeof held[name] !== "function");
 if (wrong.length > 0) {
   throw new Error(`not callable: ${wrong.join(", ")}`);
 }
-console.log(`probe: ${required.length} required components exported and callable from npm`);
+console.log(`probe: ${required.length} required exports callable from npm`);
