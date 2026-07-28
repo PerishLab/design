@@ -66,6 +66,7 @@ export function Stage(props: Props): ReactNode {
 					tone={said(held, "tone") === "quiet" ? "quiet" : "solid"}
 					wide={Boolean(held.wide)}
 					busy={Boolean(held.busy)}
+					submit={Boolean(held.submit)}
 				>
 					{said(held, "children")}
 				</Button>

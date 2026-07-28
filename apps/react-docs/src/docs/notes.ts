@@ -74,6 +74,11 @@ export const notes: Record<string, Entry> = {
 			en: "disable the button while work is running",
 			zh: "工作进行时禁用按钮",
 		},
+		submit: {
+			kind: "flag",
+			en: "submit the nearest form",
+			zh: "是否提交最近的表单",
+		},
 	},
 	Card: {
 		title: { kind: "text", en: "the heading of the card", zh: "卡片的标题" },

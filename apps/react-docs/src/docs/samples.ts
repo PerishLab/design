@@ -26,6 +26,7 @@ export const seeds: Record<string, Record<string, unknown>> = {
 		tone: "solid",
 		wide: false,
 		busy: false,
+		submit: false,
 	},
 	Card: { title: "laws", children: "eight of them" },
 	Code: { children: 'const seal = "clean";\n', name: "seal.ts", copy: true },
