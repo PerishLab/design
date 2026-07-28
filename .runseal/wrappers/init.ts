@@ -12,7 +12,7 @@ if (flags(args).help()) {
 }
 
 await init({
-  tools: ["git", "tea", "deno", "node", "pnpm", "ectropy", "runseal", "sh"],
+  tools: ["git", "tea", "deno", "node", "pnpm", "ectropy", "plumb", "runseal", "sh"],
   paths: [
     "package.json",
     "pnpm-workspace.yaml",

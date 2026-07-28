@@ -1,66 +1,76 @@
-[scan]
-include = [
-  "apps/**/*.ts",
-  "apps/**/*.tsx",
-  "apps/**/*.scss",
-  "packages/**/*.ts",
-  "packages/**/*.tsx",
-  "packages/**/*.scss",
-  "docs/**/*.md",
+[[boundary]]
+allow = ["path"]
+note = "vite and vitest require root-level config files; path law anchors to src and tests"
+paths = [
+    "packages/react-components/vitest.config.ts",
+    "packages/vite-plugin-design/vitest.config.ts",
+    "apps/react-docs/vite.config.ts",
+    "apps/react-docs/vitest.config.ts",
 ]
-exclude = [
-  "**/node_modules/**",
-  "**/dist/**",
-]
-
-[module]
-roots = [
-  "apps/*/src",
-  "apps/*/tests",
-  "packages/*/src",
-  "packages/*/tests",
-]
-
-[limit]
-block = 4
-path = 4
 
 [comment]
 allow = false
 
-[word]
-single = true
-
 [[grant]]
-syntax = "test"
 paths = [
-  "apps/*/tests/**/*.test.ts",
-  "apps/*/tests/**/*.test.tsx",
-  "packages/*/tests/**/*.test.ts",
-  "packages/*/tests/**/*.test.tsx",
+    "packages/react-components/**",
+    "apps/react-docs/**",
 ]
-
-[[boundary]]
-paths = [
-  "packages/react-components/vitest.config.ts",
-  "packages/vite-plugin-design/vitest.config.ts",
-  "apps/react-docs/vite.config.ts",
-  "apps/react-docs/vitest.config.ts",
-]
-note = "vite and vitest require root-level config files; path law anchors to src and tests"
-allow = ["path"]
-
-[[grant]]
 syntax = "style"
-paths = [
-  "packages/react-components/**",
-  "apps/react-docs/**",
-]
 
 [[grant]]
-syntax = "environment"
 paths = [
-  "packages/vite-plugin-design/src/config.ts",
+    "apps/*/tests/**/*.test.ts",
+    "apps/*/tests/**/*.test.tsx",
+    "packages/*/tests/**/*.test.ts",
+    "packages/*/tests/**/*.test.tsx",
+]
+syntax = "test"
+
+[[grant]]
+paths = [
+    "apps/*/tests/**/*.test.ts",
+    "apps/*/tests/**/*.test.tsx",
+    "packages/*/tests/**/*.test.ts",
+    "packages/*/tests/**/*.test.tsx",
+    "packages/vite-plugin-design/src/config.ts",
+]
+syntax = "environment"
+
+[limit]
+block = 4
+fanout = 10
+file = 300
+markup = 8
+param = 4
+path = 4
+
+[module]
+roots = [
+    "apps/*/src",
+    "apps/*/tests",
+    "packages/*/lib",
+    "packages/*/src",
+    "packages/*/tests",
+]
+
+[scan]
+exclude = [
+    "**/dist/**",
+    "**/node_modules/**",
+]
+include = [
+    "apps/**/*.css",
+    "apps/**/*.scss",
+    "apps/**/*.ts",
+    "apps/**/*.tsx",
+    "packages/**/*.css",
+    "packages/**/*.scss",
+    "packages/**/*.ts",
+    "packages/**/*.tsx",
 ]
 
 [vocabulary]
+
+[word]
+single = true

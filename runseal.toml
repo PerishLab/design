@@ -9,7 +9,7 @@ permissions = [
   "--allow-write=.",
   "--allow-env",
   "--allow-net",
-  "--allow-run=git,tea,deno,ectropy,runseal,sh,pnpm,node,rustc",
+  "--allow-run=git,tea,deno,ectropy,plumb,runseal,sh,pnpm,node,rustc",
 ]
 
 [[injections]]

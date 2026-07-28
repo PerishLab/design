@@ -40,6 +40,7 @@ await guard(
         ["node", ["--check", ".forgejo/scripts/release/jsr/probes/react-components.mjs"]],
       ],
     },
+    { label: "plumb doctor", runs: [["plumb", ["doctor", "."]]] },
   ],
   Deno.args,
   { checker: ["ectropy", ["--strict", "."]] },
