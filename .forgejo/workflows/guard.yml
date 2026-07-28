@@ -19,10 +19,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
 
-      - name: Install negentropy
+      - name: Install ectropy
         run: |
           set -eu
-          curl -fsSL https://releases.negentropy.perish.uk/manage.sh | sh -s -- install --channel stable --bin-dir $HOME/.local/bin
+          curl -fsSL https://releases.ectropy.perish.uk/manage.sh | sh -s -- install --channel stable --bin-dir $HOME/.local/bin
           echo "$HOME/.local/bin" >> "$GITHUB_PATH"
 
       - name: Install dependencies
@@ -35,7 +35,7 @@ jobs:
         run: |
           set -eu
           exec > >(tee -a "$RUNNER_TEMP/lane.log") 2>&1
-          deno run --allow-read "--allow-write=." --allow-env --allow-net "--allow-run=git,tea,deno,negentropy,runseal,sh,pnpm,node,npm" --config .runseal/deno.json --lock .runseal/deno.lock --frozen=true .runseal/wrappers/guard.ts --fresh
+          deno run --allow-read "--allow-write=." --allow-env --allow-net "--allow-run=git,tea,deno,ectropy,runseal,sh,pnpm,node,npm,rustc" --config .runseal/deno.json --lock .runseal/deno.lock --frozen=true .runseal/wrappers/guard.ts --fresh
 
       - name: Report failure
         if: failure()

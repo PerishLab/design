@@ -12,13 +12,12 @@ if (flags(args).help()) {
 }
 
 await init({
-  tools: ["git", "tea", "deno", "node", "pnpm", "negentropy", "runseal", "sh"],
+  tools: ["git", "tea", "deno", "node", "pnpm", "ectropy", "runseal", "sh"],
   paths: [
     "package.json",
     "pnpm-workspace.yaml",
     "biome.json",
-    "negentropy.toml",
-    "vocabulary.toml",
+    "ectropy.toml",
     "runseal.toml",
     "packages/react-components/package.json",
     "packages/vite-plugin-design/package.json",

@@ -62,3 +62,5 @@ syntax = "environment"
 paths = [
   "packages/vite-plugin-design/src/config.ts",
 ]
+
+[vocabulary]
