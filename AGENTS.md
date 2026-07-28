@@ -122,14 +122,32 @@ freeze the old one.
 
 ## Shipping
 
-`runseal :ship` deploys the docs site as Cloudflare Workers Static Assets:
+The site follows the workshop's delivery law, written down in
+`plumb/docs/site.md`. What is below is this repository's vocabulary for it.
+
+`runseal :ship` deploys the docs site as Cloudflare Workers Static Assets, and
+`deploy.yml` calls that same wrapper on dispatch — one implementation, two
+callers, which is why credentials enter through an env door rather than a file
+the lane cannot have:
 
 1. `pnpm --filter react-docs build` — vite build, then an SSR pass that
-   prerenders one HTML file per locale
-2. `pnpm exec wrangler deploy --domain <DESIGN_DOCS_DOMAIN>` from
+   prerenders one HTML file per locale. `BUILD_COMMIT` and `BUILD_VERSION` are
+   fed in so `/health` names the commit and the documented library version
+   instead of `0.0.0`.
+2. `pnpm dlx wrangler@<pinned> deploy --domain <DESIGN_SITE_DOMAIN>` from
    `apps/react-docs/`; `--domain` attaches the custom domain and its DNS record
-   at deploy time, so DNS is never a separate manual step
-3. verify: `/` and `/zh-CN/` must answer 200 on the public domain
+   at deploy time, so DNS is never a separate manual step. `wrangler.jsonc` also
+   declares the binding, so the attachment is readable from the repository and
+   not only from a flag someone remembered to pass.
+3. verify, as three separate findings — see below.
+
+THE SHIPPER READS THE ARTIFACT, NEVER THE SOURCE. Routes come from the
+prerendered documents in `dist` — every directory holding an `index.html` is a
+route the build actually produced. It used to scrape `path:` out of
+`src/lib/routes.tsx`, which couples the lane to a file the app is free to move
+or absorb; plumb's copy of this wrapper broke exactly that way when its routes
+became a virtual module. If a build stops prerendering, the deep probe
+disappears with it, which is the honest outcome.
 
 `not_found_handling` is `404-page`, NOT open-web's `single-page-application`.
 The locales are prerendered to real files (`dist/index.html`,
@@ -147,6 +165,17 @@ asset out of the freshly built `dist/index.html` and requires the live page to
 reference that exact file, because Cloudflare keeps serving the previous build
 for a while after a deploy — a plain 200 check passes on the old site and calls
 the deploy done. open-web printed `ship: ok` in exactly that state.
+
+DEPLOYED, BOUND, AND REACHABLE ARE THREE FINDINGS, NOT ONE. The upload
+succeeding, the platform reporting the domain attached to this worker, and the
+edge actually serving this build to a client are independent facts, and the
+wrapper prints and enforces each. An unbound domain fails. An unreachable one
+fails too, and the only way out is `DESIGN_SITE_BLIND=1`, which declares a
+vantage that cannot see the public edge and makes the lane say plainly that it
+did not prove the site answers. Collapsing these is how a lane comes to report
+success over a domain returning 522 — plumb's did, over a binding whose every
+control-plane field matched a healthy sibling. A second, otherwise identical
+ship cleared it.
 
 The FIRST deploy of a hostname gets a long verify window — 20 tries at 15s
 rather than 3 at 5s — because Cloudflare needs minutes to spread the edge
@@ -166,19 +195,40 @@ credential-free `wrangler deploy --dry-run`; `--check` probes the token and
 whether the worker domain is bound. Both degrade cleanly while secrets are
 unfilled.
 
-Shipping is LOCAL, not CI — there is no deploy workflow, so the Cloudflare
-token never becomes a forge secret, unlike JSR_PUBLISH_TOKEN and
-NPM_PUBLISH_TOKEN. Secrets live in `.local/secrets/` (gitignored):
+Shipping happens from CI and from a workstation, so credentials reach `:ship`
+through one env door with a file behind it. The lane exports `DESIGN_SITE_*`
+directly; locally those are unset and the wrapper falls back to
+`.local/secrets/` (gitignored):
 
-- `ship.env` — `DESIGN_DOCS_DOMAIN`, the public host with no scheme
+- `ship.env` — `DESIGN_SITE_DOMAIN`, the public host with no scheme
 - `cloudflare.env` — `CLOUDFLARE_ACCOUNT_ID`, `CLOUDFLARE_API_TOKEN`,
-  `CLOUDFLARE_ZONE_NAME`. The SAME credentials open-web ships with. A separate
-  token was considered and rejected: Cloudflare's DNS permission is zone level,
-  so a second token could still edit every record in perish.uk, and both files
-  would sit in the same `.local/secrets/` on the same machine — the compromise
-  that leaks one leaks both. Separation would buy audit attribution and nothing
-  else. Revisit only if shipping ever moves into CI, where the token would land
-  on the forge and the trust domain genuinely differs.
+  `CLOUDFLARE_ZONE_NAME`
+
+SECRETS CARRY WHAT MUST NOT BE READ BACK; VARIABLES CARRY WHAT MERELY MUST BE
+CORRECT. On the forge the domain and the account identifier are repository
+variables and only the key is a secret.
+
+The site now has its OWN token, which reverses an earlier decision under the
+condition that decision named. Sharing open-web's credentials was defensible
+while shipping was local: Cloudflare's DNS permission is zone level, so a second
+token could still edit every record in perish.uk, and both files sat in the same
+`.local/secrets/` on the same machine — the compromise that leaks one leaks
+both. Separation bought audit attribution and nothing else. A forge secret is a
+different trust domain, which is exactly the revisit condition, so
+`design-site-deploy` is minted for this purpose alone: Workers Scripts Write on
+the account, and Zone Read, DNS Write, and Workers Routes Write on the one zone
+that carries the domain. It does not expire, which is only defensible because it
+is narrow and revocable on its own.
+
+That token's value exists ONLY in the forge secret — no copy was kept on any
+workstation, which is what makes "revocable on its own" mean something. A local
+`:ship` still runs under whatever Cloudflare credentials `cloudflare.env` holds;
+the separation being bought here is the forge's, not the workstation's.
+
+Widening that token later does NOT require rotating the forge secret: updating
+an existing token's policies with `PUT` leaves its value unchanged. plumb's
+first deploy failed for want of `Workers Routes Write` and was repaired that
+way.
 - `:ship --check` verifies the token through `/zones?name=<zone>`, NOT
   `/user/tokens/verify`. That endpoint rejects account-scoped tokens with 401
   Invalid API Token even when they are perfectly valid, which reads as a dead

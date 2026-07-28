@@ -8,12 +8,15 @@ import { family, kind, run } from "@perish/shield";
 const app = "apps/react-docs";
 const tool = "wrangler@4.110.0";
 const dist = `${app}/dist`;
-const table = `${app}/src/lib/routes.tsx`;
+const config = `${app}/wrangler.jsonc`;
+const manifest = `${app}/package.json`;
 
 const fault = family("ship", {
   unfilled: kind<{ missing: string[] }>(),
   build: kind<{ path: string }>(),
   unreached: kind<{ domain: string }>(),
+  unbound: kind<{ domain: string }>(),
+  unproven: kind<{ domain: string }>(),
 });
 
 function usage(): void {
@@ -25,7 +28,7 @@ function usage(): void {
   io.print("  --check     probe the token, the zone, and the worker");
   io.print("");
   io.print("Secrets:");
-  io.print("  .local/secrets/ship.env        DESIGN_DOCS_DOMAIN");
+  io.print("  .local/secrets/ship.env        DESIGN_SITE_DOMAIN (see AGENTS.md)");
   io.print("  .local/secrets/cloudflare.env  CLOUDFLARE_ACCOUNT_ID + CLOUDFLARE_API_TOKEN");
 }
 
@@ -48,11 +51,9 @@ async function secrets(name: string): Promise<Record<string, string>> {
   return values;
 }
 
-function unfilled(values: Record<string, string>, wanted: string[]): string[] {
-  return wanted.filter((key) => {
-    const held = values[key];
-    return held === undefined || held === "" || held.startsWith("REPLACE_WITH");
-  });
+function door(key: string, filed: string | undefined): string {
+  const held = env.get(key, "") || filed || "";
+  return held.startsWith("REPLACE_WITH") ? "" : held;
 }
 
 type Vault = {
@@ -66,32 +67,57 @@ type Vault = {
 async function vault(): Promise<Vault> {
   const site = await secrets("ship.env");
   const cloud = await secrets("cloudflare.env");
-  const empty = [
-    ...unfilled(site, ["DESIGN_DOCS_DOMAIN"]).map((key) => `ship.env: ${key}`),
-    ...unfilled(cloud, ["CLOUDFLARE_ACCOUNT_ID", "CLOUDFLARE_API_TOKEN"]).map(
-      (key) => `cloudflare.env: ${key}`,
-    ),
-  ];
-  return {
-    domain: site.DESIGN_DOCS_DOMAIN ?? "",
-    account: cloud.CLOUDFLARE_ACCOUNT_ID ?? "",
-    token: cloud.CLOUDFLARE_API_TOKEN ?? "",
-    zone: cloud.CLOUDFLARE_ZONE_NAME ?? "",
-    empty,
+  const held = {
+    domain: door("DESIGN_SITE_DOMAIN", site.DESIGN_SITE_DOMAIN),
+    account: door("DESIGN_SITE_ACCOUNT", cloud.CLOUDFLARE_ACCOUNT_ID),
+    token: door("DESIGN_SITE_TOKEN", cloud.CLOUDFLARE_API_TOKEN),
   };
+  const empty = (["domain", "account", "token"] as const)
+    .filter((name) => held[name] === "")
+    .map((name) => `DESIGN_SITE_${name.toUpperCase()}`);
+  return { ...held, zone: cloud.CLOUDFLARE_ZONE_NAME ?? "perish.uk", empty };
+}
+
+async function worker(): Promise<string> {
+  const text = await Deno.readTextFile(config);
+  const found = text.match(/"name":\s*"([^"]+)"/);
+  if (found === null) {
+    return io.fail(`ship: no worker name found in ${config}`);
+  }
+  return found[1];
 }
 
 async function routes(): Promise<string[]> {
-  const text = await Deno.readTextFile(table);
-  const paths = [...text.matchAll(/path:\s*"([^"]+)"/g)].map((found) => found[1]);
-  if (paths.length === 0) {
-    io.fail(`ship: no routes found in ${table}`);
+  if (!(await fs.file.exists(`${dist}/index.html`))) {
+    return [];
+  }
+  const paths = ["/"];
+  for await (const entry of Deno.readDir(dist)) {
+    if (entry.isDirectory && await fs.file.exists(`${dist}/${entry.name}/index.html`)) {
+      paths.push(`/${entry.name}/`);
+    }
   }
   return paths;
 }
 
 function deep(paths: string[]): string | undefined {
   return paths.find((route) => route !== "/");
+}
+
+async function marks(): Promise<Record<string, string>> {
+  const commit = await bin("git").text(["rev-parse", "--short", "HEAD"]);
+  const text = await Deno.readTextFile(manifest);
+  const found = /"@perish\/react-components":\s*"([^"]+)"/.exec(text);
+  return { BUILD_COMMIT: commit, BUILD_VERSION: found?.[1] ?? "" };
+}
+
+async function stamp(): Promise<string> {
+  const html = await Deno.readTextFile(`${dist}/index.html`);
+  const found = /\/assets\/index-[A-Za-z0-9_-]+\.js/.exec(html);
+  if (found === null) {
+    return io.fail(`ship: no fingerprinted asset in ${dist}/index.html`);
+  }
+  return found[0];
 }
 
 async function knock(url: string): Promise<{ status: number | string; body: string }> {
@@ -103,15 +129,6 @@ async function knock(url: string): Promise<{ status: number | string; body: stri
     const status = thrown instanceof Error ? thrown.message.split(":")[0] : "unreachable";
     return { status, body: "" };
   }
-}
-
-async function stamp(): Promise<string> {
-  const html = await Deno.readTextFile(`${dist}/index.html`);
-  const found = /\/assets\/index-[A-Za-z0-9_-]+\.js/.exec(html);
-  if (found === null) {
-    return io.fail(`ship: no fingerprinted asset in ${dist}/index.html`);
-  }
-  return found[0];
 }
 
 async function probe(url: string, mark: string, tries: number, wait: number): Promise<boolean> {
@@ -128,20 +145,30 @@ async function probe(url: string, mark: string, tries: number, wait: number): Pr
   return false;
 }
 
-async function bound(keys: Vault): Promise<boolean> {
+type Bond = "yes" | "no" | "unknown";
+
+async function anchored(keys: Vault): Promise<Bond> {
   const base = "https://api.cloudflare.com/client/v4";
   const domains = await fetch(`${base}/accounts/${keys.account}/workers/domains`, {
     headers: { authorization: `Bearer ${keys.token}` },
   });
-  const body = await domains.json();
-  return (body.result ?? []).some(
+  const body = await domains.json().catch(() => null);
+  if (!domains.ok || body === null || body.success !== true) {
+    return "unknown";
+  }
+  const held = (body.result ?? []).some(
     (entry: { hostname?: string }) => entry.hostname === keys.domain,
   );
+  return held ? "yes" : "no";
+}
+
+function blind(): boolean {
+  return env.get("DESIGN_SITE_BLIND", "") !== "";
 }
 
 async function plan(): Promise<void> {
   const keys = await vault();
-  const domain = keys.domain === "" ? "<DESIGN_DOCS_DOMAIN>" : keys.domain;
+  const domain = keys.domain === "" ? "<DESIGN_SITE_DOMAIN>" : keys.domain;
   const paths = await routes();
   io.print("==> ship plan (dry run)");
   io.print("");
@@ -181,9 +208,35 @@ async function check(): Promise<void> {
   const zones = await fetch(`${base}/zones?name=${keys.zone}`, { headers: head });
   const found = (await zones.json()).result ?? [];
   io.print(`  zone ${keys.zone}: ${found.length > 0 ? "reachable" : "unreachable"}`);
-  const held = await bound(keys);
-  io.print(`  worker domain ${keys.domain}: ${held ? "bound" : "not bound yet"}`);
+  io.print(`  worker ${await worker()}`);
+  io.print(`  domain ${keys.domain}: bound ${await anchored(keys)}`);
   io.print(`  live: ${(await knock(`https://${keys.domain}/`)).status}`);
+}
+
+async function reached(keys: Vault, bond: Bond): Promise<boolean> {
+  const wide = bond !== "yes";
+  if (wide) {
+    io.print("  binding not confirmed: allowing the edge minutes to spread");
+  }
+  const tries = wide ? 20 : 10;
+  const wait = wide ? 15000 : 5000;
+  const mark = await stamp();
+  let live = await probe(`https://${keys.domain}/`, mark, tries, wait);
+  const route = deep(await routes());
+  if (live && route !== undefined) {
+    live = await probe(`https://${keys.domain}${route}`, mark, tries, wait);
+  }
+  if (live) {
+    return true;
+  }
+  if (bond === "unknown") {
+    throw fault.unproven({ domain: keys.domain });
+  }
+  if (!blind()) {
+    throw fault.unreached({ domain: keys.domain });
+  }
+  io.print("  vantage declared blind: this lane did not prove the site answers");
+  return false;
 }
 
 async function ship(): Promise<void> {
@@ -191,10 +244,8 @@ async function ship(): Promise<void> {
   if (keys.empty.length > 0) {
     throw fault.unfilled({ missing: keys.empty });
   }
-  const paths = await routes();
-  const fresh = !(await bound(keys));
   io.print("==> build");
-  await bin("pnpm").run(["--filter", "react-docs", "build"]);
+  await bin("pnpm").run(["--filter", "react-docs", "build"], { env: await marks() });
   if (!(await fs.file.exists(`${dist}/index.html`))) {
     throw fault.build({ path: `${dist}/index.html` });
   }
@@ -204,40 +255,44 @@ async function ship(): Promise<void> {
     env: { CLOUDFLARE_ACCOUNT_ID: keys.account, CLOUDFLARE_API_TOKEN: keys.token },
   });
   io.print("==> verify");
-  if (fresh) {
-    io.print("  first deploy of this domain: edge routing takes minutes to spread");
+  io.print("  deployed  yes");
+  const bond = await anchored(keys);
+  io.print(`  bound     ${bond}`);
+  if (bond === "no") {
+    throw fault.unbound({ domain: keys.domain });
   }
-  const tries = fresh ? 20 : 10;
-  const wait = fresh ? 15000 : 5000;
-  const mark = await stamp();
-  let reached = await probe(`https://${keys.domain}/`, mark, tries, wait);
-  const route = deep(paths);
-  if (reached && route !== undefined) {
-    reached = await probe(`https://${keys.domain}${route}`, mark, tries, wait);
+  if (bond === "unknown") {
+    io.print("  this credential cannot read workers domains; reachability must carry the proof");
   }
-  if (!reached) {
-    throw fault.unreached({ domain: keys.domain });
-  }
+  io.print(`  reachable ${await reached(keys, bond) ? "yes" : "no"}`);
   io.print("ship: ok");
 }
 
 const args = cli.parse(Deno.args, { boolean: ["help", "h", "dry-run", "check"] });
+flags(args).positionals("ship", { allowHelp: true });
 if (flags(args).help()) {
-  flags(args).positionals("ship", { allowHelp: true });
   usage();
   Deno.exit(0);
 }
-flags(args).positionals("ship");
-
-if (args["dry-run"] === true) {
-  await plan();
-} else if (args.check === true) {
+if (flags(args).boolean("check")) {
   await check();
+} else if (flags(args).boolean("dry-run")) {
+  await plan();
 } else {
   await run(ship).catch(fault.consume({
     unfilled: (thrown) => io.fail(`ship: unfilled in ${seat()}: ${thrown.meta.missing.join(", ")}`),
     build: (thrown) => io.fail(`ship: build produced no ${thrown.meta.path}`),
     unreached: (thrown) =>
-      io.fail(`ship: ${thrown.meta.domain} did not answer 200; the deploy likely failed`),
+      io.fail(
+        `ship: ${thrown.meta.domain} is attached but did not serve this build; a stuck binding often clears on a second ship, and DESIGN_SITE_BLIND=1 declares a vantage that cannot see the edge`,
+      ),
+    unbound: (thrown) =>
+      io.fail(
+        `ship: ${thrown.meta.domain} is not attached to the worker; the deploy did not bind it`,
+      ),
+    unproven: (thrown) =>
+      io.fail(
+        `ship: nothing proved ${thrown.meta.domain} is serving this build — this credential cannot read workers domains and the readback did not answer, so DESIGN_SITE_BLIND does not apply`,
+      ),
   }));
 }
