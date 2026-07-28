@@ -1,4 +1,4 @@
-export function runtime(): string {
+export function runtime(paths: string[]): string {
 	return String.raw`import { createReadStream } from "node:fs";
 import { stat } from "node:fs/promises";
 import { createServer } from "node:http";
@@ -7,6 +7,7 @@ import { basename, extname, join, relative, resolve, sep } from "node:path";
 const root = resolve(process.argv[2] ?? "dist");
 const host = process.env.HOST ?? "0.0.0.0";
 const port = Number(process.env.PORT ?? "8080");
+const routes = Object.freeze(${JSON.stringify(paths)});
 const kinds = new Map([
 	[".css", "text/css; charset=utf-8"],
 	[".gif", "image/gif"],
@@ -64,7 +65,7 @@ function headers(path, size) {
 	return { type, cache, size };
 }
 
-async function send(path, res, head) {
+async function send(path, res, head, status = 200) {
 	let info;
 	try {
 		info = await stat(path);
@@ -75,13 +76,13 @@ async function send(path, res, head) {
 		throw error;
 	}
 	if (info.isDirectory()) {
-		return send(join(path, "index.html"), res, head);
+		return send(join(path, "index.html"), res, head, status);
 	}
 	if (!info.isFile()) {
 		return false;
 	}
 	const held = headers(path, info.size);
-	res.statusCode = 200;
+	res.statusCode = status;
 	res.setHeader("cache-control", held.cache);
 	res.setHeader("content-length", String(held.size));
 	res.setHeader("content-type", held.type);
@@ -92,6 +93,25 @@ async function send(path, res, head) {
 		createReadStream(path).pipe(res);
 	}
 	return true;
+}
+
+function known(pathname) {
+	const path =
+		pathname.length > 1 && pathname.endsWith("/")
+			? pathname.slice(0, -1)
+			: pathname;
+	const actual = path.split("/");
+	return routes.some((route) => {
+		const expected = route.split("/");
+		return (
+			actual.length === expected.length &&
+			expected.every(
+				(part, index) =>
+					(part.startsWith("{") && part.endsWith("}") && actual[index] !== "") ||
+					part === actual[index],
+			)
+		);
+	});
 }
 
 async function route(req, res) {
@@ -122,7 +142,14 @@ async function route(req, res) {
 	}
 	const accept = req.headers.accept ?? "";
 	if (accept.split(",").some((type) => type.trim().startsWith("text/html"))) {
-		if (await send(join(root, "index.html"), res, head)) {
+		if (
+			await send(
+				join(root, "index.html"),
+				res,
+				head,
+				known(pathname) ? 200 : 404,
+			)
+		) {
 			return;
 		}
 	}

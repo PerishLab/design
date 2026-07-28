@@ -31,3 +31,14 @@
 		border-radius: var(--radius);
 	}
 }
+
+@media (max-width: 40rem) {
+	.knob {
+		grid-template-columns: minmax(0, 1fr);
+
+		input[type="text"] {
+			width: 100%;
+			min-width: 0;
+		}
+	}
+}

@@ -36,11 +36,20 @@ function pattern(path: string): string {
 function view(source: Source): RouteObject {
 	return {
 		path: pattern(source.path),
+		HydrateFallback: Pending,
 		lazy: async () => {
 			const held = await source.load();
 			return { Component: held.default as ComponentType };
 		},
 	};
+}
+
+function Pending(): ReactNode {
+	return (
+		<Page title="Loading">
+			<Note text="Loading view." />
+		</Page>
+	);
 }
 
 function back(): string {
@@ -79,12 +88,19 @@ function Login(): ReactNode {
 	}
 
 	return (
-		<Card title="Sign in">
-			<Field label="Login" value={name} change={setName} />
-			<Field label="Password" value={pass} change={setPass} kind="password" />
-			{warn === "" ? null : <Note text={warn} tone="warn" />}
-			<Button label="Sign in" press={submit} busy={busy} wide />
-		</Card>
+		<form
+			onSubmit={(event) => {
+				event.preventDefault();
+				void submit();
+			}}
+		>
+			<Card title="Sign in">
+				<Field label="Login" value={name} change={setName} />
+				<Field label="Password" value={pass} change={setPass} kind="password" />
+				{warn === "" ? null : <Note text={warn} tone="warn" />}
+				<Button label="Sign in" submit busy={busy} wide />
+			</Card>
+		</form>
 	);
 }
 

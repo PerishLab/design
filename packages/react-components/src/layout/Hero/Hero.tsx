@@ -10,13 +10,9 @@ export function Hero(props: Props): ReactNode {
 	return (
 		<header className="hero">
 			{props.mark !== undefined ? (
-				<img
-					className="ghost"
-					src={props.mark}
-					alt=""
-					width="224"
-					height="224"
-				/>
+				<span className="ghost" aria-hidden="true">
+					{props.mark}
+				</span>
 			) : null}
 			<h1>{props.title}</h1>
 			<p>{props.text}</p>

@@ -60,6 +60,23 @@ function proxy(target: string): object {
 	return { "^/api(?:/|$)": { target } };
 }
 
+function wiring(env: ReturnType<typeof config>): object {
+	const server: Record<string, unknown> = {};
+	if (env.port !== undefined) {
+		server.host = "127.0.0.1";
+		server.port = env.port;
+		server.strictPort = true;
+	}
+	if (env.target !== undefined) {
+		server.proxy = proxy(env.target);
+	}
+	const shared = {
+		optimizeDeps: { exclude: ["@perish/react-components"] },
+		resolve: { dedupe: ["react", "react-dom", "react-router"] },
+	};
+	return Object.keys(server).length === 0 ? shared : { ...shared, server };
+}
+
 function serve(body: () => string): Middle {
 	return (req, res, next) => {
 		const path = new URL(req.url ?? "/", "http://local").pathname;
@@ -129,20 +146,8 @@ export function design(options: Options = {}): Plugin {
 	return {
 		name: "perish-design",
 		enforce: "pre",
-		config(): object | undefined {
-			if (env.port === undefined && env.target === undefined) {
-				return undefined;
-			}
-			const server: Record<string, unknown> = {};
-			if (env.port !== undefined) {
-				server.host = "127.0.0.1";
-				server.port = env.port;
-				server.strictPort = true;
-			}
-			if (env.target !== undefined) {
-				server.proxy = proxy(env.target);
-			}
-			return { server };
+		config(): object {
+			return wiring(env);
 		},
 		configResolved(config): void {
 			root = config.root;
@@ -189,7 +194,10 @@ export function design(options: Options = {}): Plugin {
 				this.emitFile({
 					type: "asset",
 					fileName: ".perish/server.mjs",
-					source: runtime(),
+					source: runtime([
+						...routes.map((route) => route.path),
+						...(login ? ["/login"] : []),
+					]),
 				});
 		},
 		transform(code: string, id: string): Loud | null {

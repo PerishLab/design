@@ -28,3 +28,10 @@ for (const seat of locales) {
 	writeFileSync(`${dir}/index.html`, page);
 	console.log(`prerendered ${seat.path} as ${tag}`);
 }
+
+const missing = shell.replace(
+	'<div id="root"></div>',
+	`<div id="root">${render("/404")}</div>`,
+);
+writeFileSync("dist/404.html", missing);
+console.log("prerendered /404");

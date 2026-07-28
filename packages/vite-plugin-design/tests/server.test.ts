@@ -12,7 +12,7 @@ async function launch(root: string): Promise<{
 	endpoint: string;
 }> {
 	const script = join(root, "server.mjs");
-	writeFileSync(script, runtime());
+	writeFileSync(script, runtime(["/", "/actor/{actor}", "/login"]));
 	const child = spawn(execPath, [script, root], {
 		env: { HOST: "127.0.0.1", PORT: "0" },
 		stdio: ["ignore", "pipe", "pipe"],
@@ -59,6 +59,17 @@ test("serves", async () => {
 		});
 		expect(route.status).toBe(200);
 		expect(await route.text()).toContain("shell");
+
+		const login = await fetch(`${server.endpoint}/login/`, {
+			headers: { accept: "text/html" },
+		});
+		expect(login.status).toBe(200);
+
+		const missing = await fetch(`${server.endpoint}/actor`, {
+			headers: { accept: "text/html" },
+		});
+		expect(missing.status).toBe(404);
+		expect(await missing.text()).toContain("shell");
 
 		const asset = await fetch(`${server.endpoint}/assets/app.js`);
 		expect(asset.status).toBe(200);

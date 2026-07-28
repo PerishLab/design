@@ -10,7 +10,9 @@ type Props = {
 export function Banner(props: Props): ReactNode {
 	return (
 		<header className="banner">
-			<img src={props.mark} alt="" width="56" height="56" />
+			<span className="mark" aria-hidden="true">
+				{props.mark}
+			</span>
 			<div>
 				<h1>{props.title}</h1>
 				<p>{props.line}</p>

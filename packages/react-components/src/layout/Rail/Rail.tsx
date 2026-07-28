@@ -15,7 +15,9 @@ export function Rail(props: Props): ReactNode {
 		<ol className="rail">
 			{props.stops.map((stop) => (
 				<li key={stop.name}>
-					<img src={stop.mark} alt="" width="40" height="40" />
+					<span className="mark" aria-hidden="true">
+						{stop.mark}
+					</span>
 					<b>{stop.name}</b>
 					<span>{stop.text}</span>
 				</li>

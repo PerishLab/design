@@ -22,7 +22,11 @@
 		top: var(--space-3);
 		right: 0;
 		width: var(--cell);
-		height: auto;
+		color: var(--accent);
+		font-family: var(--serif);
+		font-size: var(--cell);
+		line-height: 1;
+		text-align: center;
 		opacity: var(--mist);
 		pointer-events: none;
 	}

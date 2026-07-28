@@ -40,3 +40,10 @@ test("sources", () => {
 	expect(plugin.transform("", join(seat, "Card.scss"))).toBeNull();
 	expect(plugin.transform("", join(seat, "data.json"))).toBeNull();
 });
+
+test("optimization", () => {
+	expect(plugin.config()).toMatchObject({
+		optimizeDeps: { exclude: ["@perish/react-components"] },
+		resolve: { dedupe: ["react", "react-dom", "react-router"] },
+	});
+});

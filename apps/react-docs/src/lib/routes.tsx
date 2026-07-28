@@ -1,3 +1,4 @@
+import { Note, Page } from "@perish/react-components";
 import type { ReactNode } from "react";
 import { Gallery } from "../gallery/Gallery";
 
@@ -12,4 +13,12 @@ export const routes: { path: string; element: ReactNode }[] = [
 	{ path: "/", element: <Gallery locale="en" /> },
 	{ path: "/zh-CN", element: <Gallery locale="zh" /> },
 	{ path: "/zh-CN/", element: <Gallery locale="zh" /> },
+	{
+		path: "*",
+		element: (
+			<Page title="Not found">
+				<Note text="That page does not exist." tone="warn" />
+			</Page>
+		),
+	},
 ];
