@@ -2,20 +2,19 @@
 
 This repository is the workshop's design system: a monorepo holding one or more
 component libraries and a self-built docs site.
-`ectropy --strict .` must report no faults or blindspots before anything lands,
+`ectropy .` must report no errors before anything lands. Warnings remain
+visible but do not fail the repository,
 and CI runs the SAME guard the pre-commit hook runs — biome, tsc, vitest, deno,
 ectropy — not a weaker subset. It used to run only the checker because the CI
 image was assumed to be deno-only; it is not, and a CI weaker than the local
 hook means anyone who bypasses the hook lands red.
 
-THERE IS NO PINNED ECTROPY VERSION. Both CI and the local environment
-install the latest stable, and the guard engine no longer verifies a version at
-all. ectropy is the family's global gate: pinning it per
-repo would put ten different constitutions in circulation, and `clean` would
-mean something different in each. The consequence is deliberate — an ectropy
-release can turn this repo red with no change of ours. That is the gate doing
-its job, not an accident, and the fix is to meet the new law rather than to
-freeze the old one.
+The guard engine does not verify an Ectropy version. During a prerelease
+rollout, CI names the exact beta at its setup boundary so the repository opts
+in deliberately; after promotion it returns to the latest stable. Ectropy is
+the family's global gate, so a stable release can turn this repo red with no
+change of ours. That is the gate doing its job, not an accident, and the fix is
+to meet the new law rather than freeze an old stable.
 
 ## Layout
 

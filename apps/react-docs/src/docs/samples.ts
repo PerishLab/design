@@ -30,7 +30,7 @@ export const seeds: Record<string, Record<string, unknown>> = {
 	},
 	Card: { title: "laws", children: "eight of them" },
 	Code: { children: 'const seal = "clean";\n', name: "seal.ts", copy: true },
-	Copy: { text: "ectropy --strict ." },
+	Copy: { text: "ectropy ." },
 	Field: {
 		label: "name",
 		value: "",
