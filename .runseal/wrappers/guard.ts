@@ -27,7 +27,6 @@ await guard(
       label: "deno check release metadata",
       runs: [["deno", [
         "check",
-        ".forgejo/scripts/release/metadata/beta.ts",
         ".forgejo/scripts/release/metadata/stable.ts",
         ".forgejo/scripts/release/jsr/probes/vite-plugin-design.ts",
       ]]],

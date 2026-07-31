@@ -1,0 +1,40 @@
+name: release-exact
+
+on:
+  workflow_dispatch:
+    inputs:
+      product:
+        description: Package slug (vite-plugin-design or react-components)
+        required: true
+        default: vite-plugin-design
+        type: string
+      channel:
+        description: Exact non-stable channel
+        required: true
+        default: beta
+        type: string
+      version:
+        description: Exact non-stable version, for example v0.1.1-beta.2
+        required: true
+        type: string
+      publish:
+        description: Publish when true; rehearse without mutation when false
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    uses: PerishLab/actions/.forgejo/workflows/release-exact.yml@main
+    with:
+      product: ${{ inputs.product }}
+      channel: ${{ inputs.channel }}
+      version: ${{ inputs.version }}
+      publish: ${{ inputs.publish }}
+      smoke: .forgejo/scripts/release/jsr/smoke.sh
+    secrets:
+      jsr_token: ${{ secrets.JSR_PUBLISH_TOKEN }}
+      npm_token: ${{ secrets.NPM_PUBLISH_TOKEN }}
