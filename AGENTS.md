@@ -121,117 +121,31 @@ to meet the new law rather than freeze an old stable.
 
 ## Shipping
 
-The site follows the workshop's delivery law, written down in
-`plumb/docs/site.md`. What is below is this repository's vocabulary for it.
+The site follows the workshop delivery law in `plumb/docs/site.md`. The one
+operator entry is `plumb site deploy`; the dispatch-only `deploy.yml` installs
+stable Plumb and calls that same entry. Product repositories carry no ship
+wrapper or product-specific deployment mechanism.
 
-`runseal :ship` deploys the docs site as Cloudflare Workers Static Assets, and
-`deploy.yml` calls that same wrapper on dispatch — one implementation, two
-callers, which is why credentials enter through an env door rather than a file
-the lane cannot have:
+`plumb site plan` is the credential-free rehearsal, and `plumb site inspect`
+reads token, worker, and binding state without deploying. Plumb derives the app,
+package, assets, worker, custom domain and published routes from
+`apps/react-docs/wrangler.jsonc` plus the built artifact. Verification compares
+the live fingerprint with the freshly built page and reports deployed, bound,
+and reachable separately. `PLUMB_SITE_BLIND=true` may declare a vantage unable
+to see the edge, but cannot excuse a deploy whose binding and reachability are
+both unknown.
 
-1. `pnpm --filter react-docs build` — vite build, then an SSR pass that
-   prerenders one HTML file per locale. `BUILD_COMMIT` and `BUILD_VERSION` are
-   fed in so `/health` names the commit and the documented library version
-   instead of `0.0.0`.
-2. `pnpm dlx wrangler@<pinned> deploy --domain <DESIGN_SITE_DOMAIN>` from
-   `apps/react-docs/`; `--domain` attaches the custom domain and its DNS record
-   at deploy time, so DNS is never a separate manual step. `wrangler.jsonc` also
-   declares the binding, so the attachment is readable from the repository and
-   not only from a flag someone remembered to pass.
-3. verify, as three separate findings — see below.
+The CLI reads `PLUMB_SITE_TOKEN`, `PLUMB_SITE_ACCOUNT`, and
+`PLUMB_SITE_DOMAIN`. The workflow maps the existing `DESIGN_SITE_TOKEN` secret
+and `DESIGN_SITE_ACCOUNT` / `DESIGN_SITE_DOMAIN` repository variables into
+those typed doors, so no forge credential rotation is required. The
+`design-site-deploy` token remains purpose-scoped to Workers write on the
+account plus Zone read, DNS write, and Workers Routes write on the one zone
+carrying the domain; its value exists only in the forge secret.
 
-THE SHIPPER READS THE ARTIFACT, NEVER THE SOURCE. Routes come from the
-prerendered documents in `dist` — every directory holding an `index.html` is a
-route the build actually produced. It used to scrape `path:` out of
-`src/lib/routes.tsx`, which couples the lane to a file the app is free to move
-or absorb; plumb's copy of this wrapper broke exactly that way when its routes
-became a virtual module. If a build stops prerendering, the deep probe
-disappears with it, which is the honest outcome.
-
-`not_found_handling` is `404-page`, NOT open-web's `single-page-application`.
-The locales are prerendered to real files (`dist/index.html`,
-`dist/zh-CN/index.html`); an SPA fallback would serve the English shell for
-`/zh-CN/` and silently undo the prerender.
-
-wrangler is NOT a workspace dependency. It is fetched on demand with
-`pnpm dlx wrangler@<pinned>` inside `:ship`, because it drags
-`@cloudflare/workerd-linux-64` — 122MB, 45% of the whole dependency tree — and
-CI never deploys. Carrying it in the lockfile pushed the CI guard from 43s to
-287s for a tool no CI step invokes. The version is pinned in `ship.ts`.
-
-Verify asserts the BUILD, not just a heartbeat. It reads the fingerprinted
-asset out of the freshly built `dist/index.html` and requires the live page to
-reference that exact file, because Cloudflare keeps serving the previous build
-for a while after a deploy — a plain 200 check passes on the old site and calls
-the deploy done. open-web printed `ship: ok` in exactly that state.
-
-DEPLOYED, BOUND, AND REACHABLE ARE THREE FINDINGS, NOT ONE. The upload
-succeeding, the platform reporting the domain attached to this worker, and the
-edge actually serving this build to a client are independent facts, and the
-wrapper prints and enforces each. An unbound domain fails. An unreachable one
-fails too, and the only way out is `DESIGN_SITE_BLIND=1`, which declares a
-vantage that cannot see the public edge and makes the lane say plainly that it
-did not prove the site answers. Collapsing these is how a lane comes to report
-success over a domain returning 522 — plumb's did, over a binding whose every
-control-plane field matched a healthy sibling. A second, otherwise identical
-ship cleared it.
-
-The FIRST deploy of a hostname gets a long verify window — 20 tries at 15s
-rather than 3 at 5s — because Cloudflare needs minutes to spread the edge
-routing for a new custom domain. Measured at ~240s the first time
-react.design.perish.uk went up, against a 15s window, so the lane called a
-successful deploy failed. The wide window applies only when the worker domain
-is not yet bound, which `:ship` reads from the API before deploying, so a
-routine redeploy is unaffected.
-
-Note what that failure was NOT: not certificate issuance (the perish.uk
-wildcard predated the deploy by an hour) and not the house's internal DNS. A
-hostname the edge does not yet route drops the TLS connection, which surfaces
-as `SSL_ERROR_SYSCALL` and reads like a network fault.
-
-Flags: `--dry-run` prints the plan with redacted credentials then runs a
-credential-free `wrangler deploy --dry-run`; `--check` probes the token and
-whether the worker domain is bound. Both degrade cleanly while secrets are
-unfilled.
-
-Shipping happens from CI and from a workstation, so credentials reach `:ship`
-through one env door with a file behind it. The lane exports `DESIGN_SITE_*`
-directly; locally those are unset and the wrapper falls back to
-`.local/secrets/` (gitignored):
-
-- `ship.env` — `DESIGN_SITE_DOMAIN`, the public host with no scheme
-- `cloudflare.env` — `CLOUDFLARE_ACCOUNT_ID`, `CLOUDFLARE_API_TOKEN`,
-  `CLOUDFLARE_ZONE_NAME`
-
-SECRETS CARRY WHAT MUST NOT BE READ BACK; VARIABLES CARRY WHAT MERELY MUST BE
-CORRECT. On the forge the domain and the account identifier are repository
-variables and only the key is a secret.
-
-The site now has its OWN token, which reverses an earlier decision under the
-condition that decision named. Sharing open-web's credentials was defensible
-while shipping was local: Cloudflare's DNS permission is zone level, so a second
-token could still edit every record in perish.uk, and both files sat in the same
-`.local/secrets/` on the same machine — the compromise that leaks one leaks
-both. Separation bought audit attribution and nothing else. A forge secret is a
-different trust domain, which is exactly the revisit condition, so
-`design-site-deploy` is minted for this purpose alone: Workers Scripts Write on
-the account, and Zone Read, DNS Write, and Workers Routes Write on the one zone
-that carries the domain. It does not expire, which is only defensible because it
-is narrow and revocable on its own.
-
-That token's value exists ONLY in the forge secret — no copy was kept on any
-workstation, which is what makes "revocable on its own" mean something. A local
-`:ship` still runs under whatever Cloudflare credentials `cloudflare.env` holds;
-the separation being bought here is the forge's, not the workstation's.
-
-Widening that token later does NOT require rotating the forge secret: updating
-an existing token's policies with `PUT` leaves its value unchanged. plumb's
-first deploy failed for want of `Workers Routes Write` and was repaired that
-way.
-- `:ship --check` verifies the token through `/zones?name=<zone>`, NOT
-  `/user/tokens/verify`. That endpoint rejects account-scoped tokens with 401
-  Invalid API Token even when they are perfectly valid, which reads as a dead
-  credential and sends you chasing the wrong thing.
+`not_found_handling` remains `404-page`, not `single-page-application`: locale
+routes are prerendered real files, and an SPA fallback would silently serve the
+English shell for `/zh-CN/`.
 
 ## Tags
 

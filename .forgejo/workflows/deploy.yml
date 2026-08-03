@@ -13,11 +13,16 @@ jobs:
     container:
       image: mirror.perish.lan/ci/deno
     env:
-      DESIGN_SITE_TOKEN: ${{ secrets.DESIGN_SITE_TOKEN }}
-      DESIGN_SITE_ACCOUNT: ${{ vars.DESIGN_SITE_ACCOUNT }}
-      DESIGN_SITE_DOMAIN: ${{ vars.DESIGN_SITE_DOMAIN }}
+      PLUMB_SITE_TOKEN: ${{ secrets.DESIGN_SITE_TOKEN }}
+      PLUMB_SITE_ACCOUNT: ${{ vars.DESIGN_SITE_ACCOUNT }}
+      PLUMB_SITE_DOMAIN: ${{ vars.DESIGN_SITE_DOMAIN }}
     steps:
       - uses: actions/checkout@v6
+
+      - name: Install stable Plumb
+        uses: PerishLab/actions/setup-binary@main
+        env:
+          PERISH_SETUP_PRODUCT: plumb
 
       - name: Install JS dependencies
         run: |
@@ -26,11 +31,11 @@ jobs:
           corepack enable
           pnpm install --frozen-lockfile
 
-      - name: Ship
+      - name: Deploy
         run: |
           set -eu
           exec > >(tee -a "$RUNNER_TEMP/lane.log") 2>&1
-          deno run --allow-read "--allow-write=." --allow-env --allow-net "--allow-run=git,deno,sh,bash,pnpm,node" --config .runseal/deno.json --lock .runseal/deno.lock --frozen=true .runseal/wrappers/ship.ts
+          plumb site deploy .
 
       - name: Report failure
         if: failure()
@@ -41,7 +46,7 @@ jobs:
           deno eval '
             const temp = Deno.env.get("RUNNER_TEMP");
             const log = await Deno.readTextFile(`${temp}/lane.log`).catch(() => "(no lane.log captured)");
-            const keys = ["DESIGN_SITE_TOKEN"];
+            const keys = ["PLUMB_SITE_TOKEN"];
             let safe = log;
             for (const key of keys) {
               const held = Deno.env.get(key) ?? "";

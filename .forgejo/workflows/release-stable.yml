@@ -51,7 +51,18 @@ jobs:
         run: |
           set -eu
           exec > >(tee -a "$RUNNER_TEMP/lane.log") 2>&1
-          deno run --allow-read "--allow-write=." --allow-env --allow-net "--allow-run=git,tea,deno,ectropy,plumb,runseal,sh,pnpm,node,npm,rustc" --config .runseal/deno.json --lock .runseal/deno.lock --frozen=true .runseal/wrappers/guard.ts --fresh
+          pnpm biome ci .
+          pnpm -r build
+          pnpm -r exec tsc --noEmit
+          pnpm -r test
+          deno check \
+            .forgejo/scripts/release/metadata/stable.ts \
+            .forgejo/scripts/release/jsr/probes/vite-plugin-design.ts
+          sh -n .forgejo/scripts/release/jsr/verify.sh
+          sh -n .forgejo/scripts/release/jsr/smoke.sh
+          node --check .forgejo/scripts/release/jsr/probes/react-components.mjs
+          plumb doctor .
+          ectropy .
 
   release:
     needs: guard
