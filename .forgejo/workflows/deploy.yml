@@ -34,4 +34,4 @@ jobs:
         run: |
           set -eu
           exec > >(tee -a "$RUNNER_TEMP/lane.log") 2>&1
-          plumb site deploy .
+          plumb site deploy --root .
