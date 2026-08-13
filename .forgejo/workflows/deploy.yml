@@ -10,8 +10,7 @@ concurrency:
 jobs:
   deploy:
     runs-on: docker
-    container:
-      image: mirror.perish.lan/ci/deno
+    container: git.perish.top/perishfire/images/forge@sha256:e952adc3442568f415668a72d84e5efa80c56ecc4df7847d41e87b97c15f588d
     env:
       PLUMB_SITE_TOKEN: ${{ secrets.DESIGN_SITE_TOKEN }}
       PLUMB_SITE_ACCOUNT: ${{ vars.DESIGN_SITE_ACCOUNT }}
@@ -36,39 +35,3 @@ jobs:
           set -eu
           exec > >(tee -a "$RUNNER_TEMP/lane.log") 2>&1
           plumb site deploy .
-
-      - name: Report failure
-        if: failure()
-        env:
-          PROBE_TOKEN: ${{ github.token }}
-        run: |
-          set -eu
-          deno eval '
-            const temp = Deno.env.get("RUNNER_TEMP");
-            const log = await Deno.readTextFile(`${temp}/lane.log`).catch(() => "(no lane.log captured)");
-            const keys = ["PLUMB_SITE_TOKEN"];
-            let safe = log;
-            for (const key of keys) {
-              const held = Deno.env.get(key) ?? "";
-              if (held !== "") safe = safe.split(held).join("<secret>");
-            }
-            const tail = safe.split("\n").slice(-120).join("\n");
-            const api = Deno.env.get("GITHUB_API_URL");
-            const repo = Deno.env.get("GITHUB_REPOSITORY");
-            const flow = Deno.env.get("GITHUB_WORKFLOW");
-            const run = Deno.env.get("GITHUB_RUN_NUMBER");
-            const job = Deno.env.get("GITHUB_JOB");
-            const res = await fetch(`${api}/repos/${repo}/issues`, {
-              method: "POST",
-              headers: {
-                Authorization: `token ${Deno.env.get("PROBE_TOKEN")}`,
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({
-                title: `${flow} run ${run}: ${job} failed`,
-                body: "```\n" + tail + "\n```",
-              }),
-            });
-            console.log(`failure report: HTTP ${res.status}`);
-            await res.body?.cancel();
-          '

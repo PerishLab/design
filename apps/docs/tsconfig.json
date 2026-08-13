@@ -1,0 +1,19 @@
+{
+	"compilerOptions": {
+		"target": "ES2022",
+		"lib": ["ES2022", "DOM"],
+		"module": "ESNext",
+		"moduleResolution": "bundler",
+		"allowImportingTsExtensions": true,
+		"strict": true,
+		"noEmit": true,
+		"isolatedModules": true,
+		"skipLibCheck": true,
+		"paths": {
+			"@perish/design": ["../../packages/design/src/lib.ts"],
+			"@perish/design/vite": ["../../packages/design/src/vite/lib.ts"]
+		},
+		"types": ["vite/client", "node"]
+	},
+	"include": ["src", "tests", "vite.config.ts", "vitest.config.ts"]
+}

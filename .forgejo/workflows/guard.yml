@@ -3,8 +3,7 @@ name: guard
 on:
   pull_request:
   push:
-    branches:
-      - main
+    branches: [main]
   workflow_dispatch:
 
 concurrency:
@@ -14,10 +13,9 @@ concurrency:
 jobs:
   guard:
     runs-on: docker
-    container: mirror.perish.lan/ci/deno
+    container: git.perish.top/perishfire/images/forge@sha256:e952adc3442568f415668a72d84e5efa80c56ecc4df7847d41e87b97c15f588d
     steps:
-      - name: Checkout
-        uses: actions/checkout@v6
+      - uses: actions/checkout@v6
 
       - name: Install stable Ectropy
         uses: PerishLab/actions/setup-binary@main
@@ -38,44 +36,9 @@ jobs:
       - name: Guard
         run: |
           set -eu
-          exec > >(tee -a "$RUNNER_TEMP/lane.log") 2>&1
-          pnpm biome ci .
-          pnpm -r build
-          pnpm -r exec tsc --noEmit
-          pnpm -r test
-          deno check \
-            .forgejo/scripts/release/metadata/stable.ts \
-            .forgejo/scripts/release/jsr/probes/vite-plugin-design.ts
-          sh -n .forgejo/scripts/release/jsr/verify.sh
-          sh -n .forgejo/scripts/release/jsr/smoke.sh
-          node --check .forgejo/scripts/release/jsr/probes/react-components.mjs
+          pnpm check
+          pnpm typecheck
+          pnpm test
+          pnpm build
           plumb doctor .
           ectropy .
-
-      - name: Report failure
-        if: failure()
-        env:
-          PROBE_TOKEN: ${{ github.token }}
-        run: |
-          set -eu
-          deno eval '
-            const temp = Deno.env.get("RUNNER_TEMP");
-            const log = await Deno.readTextFile(`${temp}/lane.log`).catch(() => "(no lane.log captured)");
-            const tail = log.split("\n").slice(-120).join("\n");
-            const api = Deno.env.get("GITHUB_API_URL");
-            const repo = Deno.env.get("GITHUB_REPOSITORY");
-            const run = Deno.env.get("GITHUB_RUN_NUMBER");
-            const res = await fetch(`${api}/repos/${repo}/issues`, {
-              method: "POST",
-              headers: {
-                Authorization: `token ${Deno.env.get("PROBE_TOKEN")}`,
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({
-                title: `guard run ${run} failed`,
-                body: "```\n" + tail + "\n```",
-              }),
-            });
-            console.log(`failure report: HTTP ${res.status}`);
-            await res.body?.cancel();
-          '

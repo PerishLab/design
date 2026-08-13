@@ -1,0 +1,45 @@
+{
+	"name": "@perish/design",
+	"version": "0.2.0",
+	"license": "MIT",
+	"type": "module",
+	"files": [
+		"dist"
+	],
+	"svelte": "./dist/lib.js",
+	"exports": {
+		".": {
+			"types": "./dist/lib.d.ts",
+			"svelte": "./dist/lib.js",
+			"default": "./dist/lib.js"
+		},
+		"./vite": {
+			"types": "./dist/vite/lib.d.ts",
+			"default": "./dist/vite/lib.js"
+		}
+	},
+	"publishConfig": {
+		"access": "public",
+		"registry": "https://git.perish.top/api/packages/PerishLab/npm/"
+	},
+	"scripts": {
+		"build": "svelte-package -i src -o dist",
+		"check": "svelte-check --tsconfig ./tsconfig.json",
+		"test": "vitest run"
+	},
+	"peerDependencies": {
+		"sass": ">=1.101",
+		"svelte": ">=5.56"
+	},
+	"devDependencies": {
+		"@sveltejs/package": "catalog:",
+		"@sveltejs/vite-plugin-svelte": "catalog:",
+		"@types/node": "catalog:",
+		"sass": "catalog:",
+		"svelte": "catalog:",
+		"svelte-check": "catalog:",
+		"typescript": "catalog:",
+		"vite": "catalog:",
+		"vitest": "catalog:"
+	}
+}

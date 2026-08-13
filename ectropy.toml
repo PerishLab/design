@@ -2,10 +2,9 @@
 allow = ["path"]
 note = "vite and vitest require root-level config files; path law anchors to src and tests"
 paths = [
-    "packages/react-components/vitest.config.ts",
-    "packages/vite-plugin-design/vitest.config.ts",
-    "apps/react-docs/vite.config.ts",
-    "apps/react-docs/vitest.config.ts",
+    "packages/design/vitest.config.ts",
+    "apps/docs/vite.config.ts",
+    "apps/docs/vitest.config.ts",
 ]
 
 [comment]
@@ -13,27 +12,23 @@ allow = false
 
 [[grant]]
 paths = [
-    "packages/react-components/**",
-    "apps/react-docs/**",
+    "packages/design/**",
+    "apps/docs/**",
 ]
 syntax = "style"
 
 [[grant]]
 paths = [
     "apps/*/tests/**/*.test.ts",
-    "apps/*/tests/**/*.test.tsx",
     "packages/*/tests/**/*.test.ts",
-    "packages/*/tests/**/*.test.tsx",
 ]
 syntax = "test"
 
 [[grant]]
 paths = [
     "apps/*/tests/**/*.test.ts",
-    "apps/*/tests/**/*.test.tsx",
     "packages/*/tests/**/*.test.ts",
-    "packages/*/tests/**/*.test.tsx",
-    "packages/vite-plugin-design/src/config.ts",
+    "packages/design/src/vite/config.ts",
 ]
 syntax = "environment"
 
@@ -58,16 +53,17 @@ roots = [
 exclude = [
     "**/dist/**",
     "**/node_modules/**",
+    "**/.svelte-kit/**",
 ]
 include = [
     "apps/**/*.css",
     "apps/**/*.scss",
     "apps/**/*.ts",
-    "apps/**/*.tsx",
+    "apps/**/*.svelte",
     "packages/**/*.css",
     "packages/**/*.scss",
     "packages/**/*.ts",
-    "packages/**/*.tsx",
+    "packages/**/*.svelte",
 ]
 
 [vocabulary]

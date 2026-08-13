@@ -6,7 +6,13 @@
 		"useIgnoreFile": true
 	},
 	"files": {
-		"includes": ["**", "!.runseal", "!.forgejo"]
+		"includes": [
+			"**",
+			"!**/*.svelte",
+			"!**/.svelte-kit",
+			"!.runseal",
+			"!.forgejo"
+		]
 	},
 	"formatter": {
 		"enabled": true

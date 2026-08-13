@@ -1,26 +1,24 @@
 # design
 
-The workshop's design system. A monorepo:
+The Perish Svelte design system.
 
-- `@perish/react-components` — a React component library published to npm.
-  TypeScript builds each component to JavaScript and declarations while
-  preserving its co-located stylesheet in `dist`.
-- `@perish/vite-plugin-design` — the vite plugin this system's publish shape
-  needs, published to JSR. The library ships stylesheets but never imports
-  them, so the plugin injects each component's co-located `X.scss` as Vite
-  compiles the emitted module. It also compiles `views/**/*.tsx` into the
-  in-memory `virtual:perish/views` manifest, owns Vite's development port and
-  `/api` proxy, emits build metadata at `dist/health`, and emits a
-  zero-dependency production Web server at `dist/.perish/server.mjs`. The server
-  serves real files, rejects `/api`, and returns `index.html` only for browser
-  document requests, leaving route matching and Web 404 behavior to the client
-  runtime. Static sites deployed to an existing platform can use
-  `design({ serve: false })`. The typeface needs nothing from the plugin: the
-  library's scss declares `@font-face` against a pinned URL, so the browser
-  fetches Spectral on its own and falls back to Georgia if it cannot.
-- a self-built docs site at react.design.perish.uk — gallery, interactive
-  knobs, and hand-written, drift-guarded prop docs in English and 简体中文.
+```ts
+import { Button, Frame, Note } from "@perish/design";
+import { design } from "@perish/design/vite";
+```
 
-The system is internal-general house work, reused across the workshop's sites.
-The library is pre-built for npm; the raw TypeScript plugin stays on JSR and
-materializes the library's co-located styles in each Vite consumer.
+`packages/design` carries one-word Svelte components plus the framework-neutral
+Vite integration. `apps/docs` is the bilingual gallery published at
+`design.perish.uk`.
+
+```sh
+pnpm install --frozen-lockfile
+pnpm check
+pnpm typecheck
+pnpm test
+pnpm build
+ectropy .
+```
+
+`typecheck` reads workspace source directly; it does not generate package
+artifacts. `build` creates the npm payload and prerendered documentation site.
