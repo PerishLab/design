@@ -1,4 +1,6 @@
-:root {
+:root,
+[data-tone="dark"] {
+	color-scheme: dark;
 	--ground: #0f1115;
 	--panel: #151a21;
 	--well: #0b0e12;

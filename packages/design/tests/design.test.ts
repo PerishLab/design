@@ -1,3 +1,4 @@
+import { createRawSnippet as snippet } from "svelte";
 import { render } from "svelte/server";
 import { expect, test } from "vitest";
 import * as design from "../src/lib.ts";
@@ -52,4 +53,12 @@ test("renders component identity", () => {
 			props: { stops: [{ mark: "01", name: "declare", text: "shape" }] },
 		}).body,
 	).toContain("declare");
+	expect(
+		render(design.Shell, {
+			props: {
+				tone: "dark",
+				children: snippet(() => ({ render: () => "inside" })),
+			},
+		}).body,
+	).toContain('data-tone="dark"');
 });

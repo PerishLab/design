@@ -1,11 +1,11 @@
 <script lang="ts">
-	import { Card } from "@perish/design";
+	import { Board } from "@perish/design";
 	import { notes } from "../docs/notes.ts";
 	import { seeds } from "../docs/samples.ts";
 	import Knobs from "../knobs/Knobs.svelte";
-	import Stage from "./Stage.svelte";
+	import Realm from "./Realm.svelte";
 
-	let { name, locale }: { name: string; locale: "en" | "zh" } = $props();
+	let { name, locale, tone, labels }: { name: string; locale: "en" | "zh"; tone: "light" | "dark"; labels: { preview: string; props: string } } = $props();
 	function seed(): Record<string, unknown> {
 		return { ...(seeds[name] ?? {}) };
 	}
@@ -13,7 +13,11 @@
 	let entry = $derived(notes[name] ?? {});
 </script>
 
-<Card title={name}>
-	<Stage {name} {values} />
-	<Knobs {entry} {values} {locale} change={(prop, next) => (values = { ...values, [prop]: next })} />
-</Card>
+<article id={name.toLowerCase()}>
+	<Board title={name} brief={labels.preview}>
+		<Realm {name} {values} {tone} />
+		<p><code>{labels.props}</code></p>
+		<Knobs {entry} {values} {locale} change={(prop, next) => (values[prop] = next)} />
+	</Board>
+	<br />
+</article>

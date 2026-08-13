@@ -2,6 +2,7 @@ import { existsSync, readdirSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { expect, test } from "vitest";
+import { catalog, groups } from "../src/docs/catalog.ts";
 import { notes } from "../src/docs/notes.ts";
 
 const root = join(
@@ -36,4 +37,10 @@ test("speaks every property in both languages", () => {
 		}
 	}
 	expect(empty).toEqual([]);
+});
+
+test("groups every documented component once", () => {
+	const names = groups.flatMap((group) => catalog[group]);
+	expect(names.length).toBe(new Set(names).size);
+	expect(names.sort()).toEqual(Object.keys(notes).sort());
 });

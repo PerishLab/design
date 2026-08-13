@@ -1,6 +1,5 @@
 <script lang="ts">
 	import type { Entry } from "../docs/notes.ts";
-	import "./Knobs.scss";
 
 	let { entry, values, locale, change }: { entry: Entry; values: Record<string, unknown>; locale: "en" | "zh"; change: (prop: string, next: unknown) => void } = $props();
 </script>
