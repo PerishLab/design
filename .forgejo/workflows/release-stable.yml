@@ -36,5 +36,6 @@ jobs:
       publish: ${{ inputs.publish }}
       npm_url: https://git.perish.top/api/packages/PerishLab/npm/
       smoke: .forgejo/scripts/smoke.sh
+      guard_contexts: '["guard / guard (push)"]'
     secrets:
       npm_token: ${{ secrets.PACKAGE_RELEASE_TOKEN }}
