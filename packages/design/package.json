@@ -1,6 +1,6 @@
 {
 	"name": "@perish/design",
-	"version": "0.2.1",
+	"version": "0.3.0",
 	"license": "MIT",
 	"type": "module",
 	"files": [
@@ -41,5 +41,8 @@
 		"typescript": "catalog:",
 		"vite": "catalog:",
 		"vitest": "catalog:"
+	},
+	"dependencies": {
+		"@perish/token": "workspace:*"
 	}
 }

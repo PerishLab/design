@@ -1,0 +1,10 @@
+@layer component {
+	.list {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-2);
+		margin: var(--space-2) 0 var(--space-4);
+		padding: 0;
+		list-style: none;
+	}
+}

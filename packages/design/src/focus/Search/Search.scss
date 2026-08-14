@@ -1,0 +1,17 @@
+@layer component {
+	.search {
+		width: 100%;
+		min-width: 0;
+		box-sizing: border-box;
+		padding: var(--space-2) var(--space-3);
+		border: var(--line) solid var(--rule);
+		border-radius: var(--slot);
+		background: var(--well);
+		color: var(--bright);
+		font-size: var(--body);
+
+		&:focus {
+			outline: var(--line) solid var(--accent);
+		}
+	}
+}

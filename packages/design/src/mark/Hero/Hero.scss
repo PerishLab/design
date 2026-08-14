@@ -1,0 +1,45 @@
+@use "pkg:@perish/token/media.scss";
+
+@layer component {
+	.hero {
+		position: relative;
+		padding: var(--space-5) 0 var(--space-3);
+
+		h1 {
+			margin: 0 0 var(--space-3);
+			font-family: var(--crown);
+			font-weight: var(--heft);
+			line-height: var(--tight);
+			letter-spacing: var(--track);
+			font-size: var(--hero);
+			text-wrap: balance;
+		}
+
+		p {
+			margin: 0 0 var(--space-3);
+			max-width: var(--prose);
+			font-size: var(--lead);
+			color: var(--muted);
+		}
+
+		.ghost {
+			position: absolute;
+			top: var(--space-3);
+			right: 0;
+			width: calc(var(--hero) * 4);
+			color: var(--accent);
+			font-family: var(--crown);
+			font-size: calc(var(--hero) * 4);
+			line-height: 1;
+			text-align: center;
+			opacity: var(--haze);
+			pointer-events: none;
+		}
+	}
+
+	@include media.slim {
+		.hero .ghost {
+			display: none;
+		}
+	}
+}

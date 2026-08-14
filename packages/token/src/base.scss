@@ -1,0 +1,57 @@
+@use "media";
+@use "tokens";
+@use "type";
+@use "themes/tone/dark";
+@use "themes/tone/light";
+@use "themes/probe";
+
+@layer base {
+	body {
+		margin: 0;
+		background-color: var(--ground);
+		background-image: var(--wash);
+		background-attachment: fixed;
+		color: var(--ink);
+		font-family: var(--plain);
+		font-size: var(--body);
+		line-height: var(--leading);
+	}
+
+	*,
+	*::before,
+	*::after {
+		box-sizing: border-box;
+	}
+
+	::selection {
+		background: var(--accent);
+		color: var(--onaccent);
+	}
+
+	:focus-visible {
+		outline: var(--rim) solid var(--accent);
+		outline-offset: var(--rim);
+	}
+
+	.skip {
+		position: fixed;
+		top: 0;
+		left: 0;
+		padding: var(--space-2) var(--space-3);
+		background: var(--panel);
+		color: var(--bright);
+		opacity: 0;
+		pointer-events: none;
+	}
+
+	.skip:focus {
+		opacity: 1;
+		pointer-events: auto;
+	}
+
+	@include media.calm {
+		* {
+			transition: none;
+		}
+	}
+}

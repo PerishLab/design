@@ -1,0 +1,51 @@
+@layer component {
+	.menu {
+		position: relative;
+		display: inline-flex;
+	}
+
+	.menu-cue {
+		padding: var(--space-2) var(--space-3);
+		border: var(--line) solid var(--rule);
+		border-radius: var(--knob);
+		background: var(--panel);
+		color: var(--ink);
+		font-family: var(--plain);
+		font-size: var(--body);
+		cursor: pointer;
+	}
+
+	.menu-list {
+		position: absolute;
+		top: calc(100% + var(--space-1));
+		left: 0;
+		z-index: 1;
+		min-width: 100%;
+		margin: 0;
+		padding: var(--space-1);
+		border: var(--line) solid var(--rule);
+		border-radius: var(--radius);
+		background: var(--panel);
+		list-style: none;
+		box-shadow: var(--lift);
+		backdrop-filter: var(--frost);
+	}
+
+	.menu-item {
+		width: 100%;
+		padding: var(--space-2) var(--space-3);
+		border: none;
+		border-radius: var(--slot);
+		background: transparent;
+		color: var(--ink);
+		font-family: var(--plain);
+		font-size: var(--fine);
+		text-align: left;
+		cursor: pointer;
+	}
+
+	.menu-item:hover {
+		background: var(--well);
+		color: var(--bright);
+	}
+}

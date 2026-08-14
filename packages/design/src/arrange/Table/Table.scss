@@ -1,0 +1,21 @@
+@layer component {
+	.table {
+		width: 100%;
+		border-collapse: collapse;
+		font-size: var(--fine);
+	}
+
+	.table th {
+		padding: var(--space-2) var(--space-3);
+		border-bottom: var(--rim) solid var(--rule);
+		color: var(--muted);
+		font-weight: var(--heft);
+		text-align: left;
+	}
+
+	.table td {
+		padding: var(--space-2) var(--space-3);
+		border-bottom: var(--line) solid var(--rule);
+		color: var(--ink);
+	}
+}

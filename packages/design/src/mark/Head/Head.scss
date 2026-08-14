@@ -1,0 +1,13 @@
+@layer component {
+	.head {
+		margin: var(--space-5) 0 var(--space-3);
+		padding-top: var(--space-4);
+		border-top: var(--line) solid var(--rule);
+		font-family: var(--crown);
+		font-size: var(--title);
+		font-weight: var(--heft);
+		line-height: var(--tight);
+		letter-spacing: var(--track);
+		scroll-margin-top: var(--space-4);
+	}
+}

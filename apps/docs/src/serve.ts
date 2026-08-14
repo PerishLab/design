@@ -3,9 +3,10 @@ import { render } from "svelte/server";
 import App from "./App.svelte";
 
 const shell = readFileSync("dist/index.html", "utf8");
-const locales = [
+const pages = [
 	{ path: "/", lang: "en" },
 	{ path: "/zh-CN/", lang: "zh-CN" },
+	{ path: "/proof/", lang: "en" },
 ];
 
 function page(path: string, lang: string): string {
@@ -15,9 +16,9 @@ function page(path: string, lang: string): string {
 		.replace('<div id="root"></div>', `<div id="root">${body}</div>`);
 }
 
-for (const locale of locales) {
-	const dir = locale.path === "/" ? "dist" : `dist${locale.path}`;
+for (const held of pages) {
+	const dir = held.path === "/" ? "dist" : `dist${held.path}`;
 	mkdirSync(dir, { recursive: true });
-	writeFileSync(`${dir}/index.html`, page(locale.path, locale.lang));
+	writeFileSync(`${dir}/index.html`, page(held.path, held.lang));
 }
 writeFileSync("dist/404.html", page("/404", "en"));

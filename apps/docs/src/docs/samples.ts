@@ -10,26 +10,45 @@ export const stops = [
 	{ mark: "03", name: "consume", text: "an app eats what we shipped" },
 ];
 
+export const choices = [
+	{ value: "design", label: "design" },
+	{ value: "ectropy", label: "ectropy" },
+];
+
+export const picks = [
+	{ value: "one", label: "preview" },
+	{ value: "two", label: "props" },
+];
+
+export const heads = ["plane", "state"];
+
+export const grid = [
+	["design", "published"],
+	["ectropy", "clean"],
+];
+
 export const seeds: Record<string, Record<string, unknown>> = {
-	Badge: { children: "stable" },
 	Banner: {
 		mark: "◆",
 		title: "a banner carries one line",
 		line: "and an optional body beneath it",
 		children: "",
 	},
-	Board: { title: "identity", brief: "one bounded concern", children: "rows" },
+	Board: { title: "identity", line: "one bounded concern", children: "rows" },
 	Button: {
 		children: "press",
 		label: "",
 		press: () => {},
-		tone: "solid",
+		look: "solid",
 		wide: false,
 		busy: false,
+		halt: false,
 		submit: false,
 	},
 	Card: { title: "laws", children: "eight of them" },
-	Code: { children: 'const seal = "clean";\n', name: "seal.ts", copy: true },
+	Code: { text: 'const seal = "clean";\n', name: "seal.ts", copy: true },
+	Cell: { span: 2, children: "a cell that spans two" },
+	Check: { label: "guarded", held: true, change: () => {}, look: "box" },
 	Copy: { text: "ectropy ." },
 	Field: {
 		label: "name",
@@ -38,26 +57,75 @@ export const seeds: Record<string, Record<string, unknown>> = {
 		kind: "text",
 		hint: "perish",
 	},
-	Footer: { children: "beta" },
-	Forge: { repo: "PerishFire/design" },
+	Footer: { text: "a workshop colophon", children: "beta" },
+	Forge: { host: "https://git.perish.top", repo: "PerishFire/design" },
 	Frame: { children: "a frame wraps the whole page" },
-	Grid: { children: "cells" },
+	Grid: { cols: 4, children: "cells" },
 	Hero: {
 		title: "perish design",
-		text: "one system, many flavours",
+		line: "one system, many flavours",
 		mark: "◆",
 	},
+	Head: { text: "Laws", seat: "laws" },
+	Item: { children: "declare" },
 	Ledger: { atoms },
 	Line: { name: "shape", meta: "living", children: "clean" },
 	Link: { label: "open", href: "/" },
 	List: { children: "declare" },
-	Nav: { children: "design" },
-	Note: { text: "one quiet note", tone: "calm" },
-	Page: { title: "workshop", children: "the current plane" },
+	Nav: { children: "design", links: [{ label: "design", href: "#nav" }] },
+	Face: { name: "Ada Lovelace" },
+	Fold: {
+		label: "why one word",
+		open: false,
+		children: "because two words is a composition",
+	},
+	Menu: {
+		label: "actions",
+		items: [
+			{ value: "cut", label: "cut a release" },
+			{ value: "prove", label: "prove the guard" },
+		],
+		open: false,
+		choose: () => {},
+	},
+	Meter: { label: "guard", value: 0.62 },
+	Modal: {
+		title: "cut a release",
+		open: false,
+		children: "the transaction is exact",
+	},
+	Note: { text: "one quiet note", mood: "calm" },
+	Pick: {
+		label: "plane",
+		value: "design",
+		choices: [
+			{ value: "design", label: "design" },
+			{ value: "ectropy", label: "ectropy" },
+		],
+		change: () => {},
+	},
 	Rail: { stops },
+	Table: {
+		heads: ["plane", "state"],
+		rows: [
+			["design", "published"],
+			["ectropy", "clean"],
+		],
+	},
+	Tabs: {
+		tabs: [
+			{ value: "one", label: "preview" },
+			{ value: "two", label: "props" },
+		],
+		value: "one",
+		change: () => {},
+	},
+	Tip: { text: "one word, one meaning", children: "hover me" },
 	Search: { value: "", change: () => {}, hint: "filter components" },
 	Sheet: { children: "a bounded surface" },
 	Shell: { children: "a full product shell" },
 	Split: { children: "two sides" },
-	Tag: { text: "stable", tone: "calm" },
+	Toast: { notes: ["the guard is green"], mood: "calm" },
+	Tag: { text: "stable", look: "solid", mood: "calm" },
+	Text: { children: "one paragraph of prose, measured to the reading width" },
 };

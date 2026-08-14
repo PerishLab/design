@@ -1,0 +1,77 @@
+@use "../../tokens";
+
+@layer system {
+	[data-system="relief"] {
+		color-scheme: light;
+
+		@include tokens.dress(
+			(
+				ground: #e0e5ec,
+				panel: #e0e5ec,
+				well: #e0e5ec,
+				rule: #c8cfd8,
+				ink: #2d3748,
+				bright: #1a202c,
+				muted: #4a5568,
+				accent: #4c51bf,
+				onaccent: #ffffff,
+				warn: #9b2c2c,
+				flush: #fed7d7,
+				lift: (
+					-6px -6px 12px #f4f8fd,
+					6px 6px 12px #a3b1c6,
+				),
+				fine: 0.875rem,
+				body: 1rem,
+				lead: 1.125rem,
+				title: 1.25rem,
+				hero: 2.5rem,
+				space-1: 0.25rem,
+				space-2: 0.5rem,
+				space-3: 1rem,
+				space-4: 1.5rem,
+				space-5: 2rem,
+				space-6: 4rem,
+				radius: 1rem,
+				knob: 1rem,
+				slot: 1rem,
+				bead: 100px,
+				line: 1px,
+				rim: 2px,
+				page: 60rem,
+				prose: 40rem,
+				cell: 16rem,
+				sheet: 24rem,
+				track: 0em,
+				tight: 1.2,
+				heft: 600,
+				firm: 600,
+				dent: 4,
+				mist: 0.4,
+				haze: 0.12,
+				hover: 0.06,
+				press: 0.12,
+				leading: 1.6,
+				beat: 200ms,
+				plain: (
+					"Nunito",
+					system-ui,
+					sans-serif,
+				),
+				crown: (
+					"Nunito",
+					Georgia,
+					serif,
+				),
+				wash: radial-gradient(at 50% 0%, #eef2f8 0, transparent 70%),
+				frost: none,
+				exact: (
+					ui-monospace,
+					Menlo,
+					monospace,
+				),
+			),
+			"the relief system"
+		);
+	}
+}

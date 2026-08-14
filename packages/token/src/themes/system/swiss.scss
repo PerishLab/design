@@ -1,0 +1,77 @@
+@use "../../tokens";
+
+@layer system {
+	[data-system="swiss"] {
+		color-scheme: light;
+
+		@include tokens.dress(
+			(
+				ground: #ffffff,
+				panel: #ffffff,
+				well: #f4f4f4,
+				rule: #000000,
+				ink: #000000,
+				bright: #000000,
+				muted: #767676,
+				accent: #d81e05,
+				onaccent: #ffffff,
+				warn: #d81e05,
+				flush: #fff2f0,
+				lift: none,
+				fine: 0.8125rem,
+				body: 1rem,
+				lead: 1.125rem,
+				title: 1.375rem,
+				hero: 4.5rem,
+				space-1: 0.25rem,
+				space-2: 0.5rem,
+				space-3: 1rem,
+				space-4: 1.5rem,
+				space-5: 3rem,
+				space-6: 6rem,
+				radius: 0px,
+				knob: 0px,
+				slot: 0px,
+				bead: 0px,
+				line: 1px,
+				rim: 4px,
+				page: 64rem,
+				prose: 34rem,
+				cell: 14rem,
+				sheet: 22rem,
+				track: -0.025em,
+				tight: 0.95,
+				heft: 700,
+				firm: 700,
+				dent: 4,
+				mist: 0.4,
+				haze: 0,
+				hover: 0.15,
+				press: 0.3,
+				leading: 1.45,
+				beat: 0s,
+				plain: (
+					"Helvetica Neue",
+					Helvetica,
+					Arial,
+					sans-serif,
+				),
+				crown: (
+					"Helvetica Neue",
+					Helvetica,
+					Arial,
+					sans-serif,
+				),
+				wash: none,
+				frost: none,
+				exact: (
+					"SF Mono",
+					ui-monospace,
+					Menlo,
+					monospace,
+				),
+			),
+			"the swiss system"
+		);
+	}
+}

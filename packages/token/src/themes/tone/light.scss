@@ -1,0 +1,35 @@
+@use "../../media";
+@use "../../tokens";
+
+$held: (
+	ground: #f3f5f8,
+	panel: #e0e5eb,
+	well: #f9fafb,
+	rule: #c6ccd4,
+	ink: #2b313a,
+	bright: #10151c,
+	muted: #5a646f,
+	accent: #33608f,
+	onaccent: #ffffff,
+	warn: #a1261d,
+	flush: #f8dedb,
+	lift: 0 1px 3px rgb(16 21 28 / 0.14),
+);
+
+@layer tone.given {
+	@include media.light {
+		:root {
+			color-scheme: light;
+
+			@include tokens.palette($held, "the light tone");
+		}
+	}
+}
+
+@layer tone.chosen {
+	[data-tone="light"] {
+		color-scheme: light;
+
+		@include tokens.palette($held, "the light tone");
+	}
+}

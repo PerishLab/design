@@ -1,0 +1,28 @@
+@layer component {
+	.tabs {
+		display: flex;
+		gap: var(--space-4);
+		border-bottom: var(--line) solid var(--rule);
+	}
+
+	.tabs-one {
+		padding: var(--space-2) 0;
+		border: none;
+		border-bottom: var(--rim) solid transparent;
+		background: transparent;
+		color: var(--muted);
+		font-family: var(--plain);
+		font-size: var(--body);
+		cursor: pointer;
+		transition: color var(--beat), border-color var(--beat);
+	}
+
+	.tabs-one:hover {
+		color: var(--bright);
+	}
+
+	.tabs-one.live {
+		border-bottom-color: var(--accent);
+		color: var(--bright);
+	}
+}

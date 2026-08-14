@@ -1,23 +1,49 @@
-export type Group = "content" | "control" | "layout" | "surface";
+export type Group =
+	| "mark"
+	| "arrange"
+	| "enclose"
+	| "focus"
+	| "layer"
+	| "document";
 
-export const groups: Group[] = ["content", "control", "layout", "surface"];
+export const groups: Group[] = [
+	"mark",
+	"arrange",
+	"enclose",
+	"focus",
+	"layer",
+	"document",
+];
 
 export const catalog: Record<Group, string[]> = {
-	content: ["Badge", "Code", "Ledger", "List", "Note", "Tag"],
-	control: ["Button", "Copy", "Field", "Forge", "Link", "Search"],
-	layout: [
-		"Banner",
-		"Card",
-		"Footer",
-		"Frame",
-		"Grid",
+	mark: [
+		"Code",
+		"Face",
+		"Head",
 		"Hero",
+		"Item",
 		"Line",
-		"Nav",
-		"Rail",
-		"Split",
+		"Meter",
+		"Note",
+		"Tag",
+		"Text",
 	],
-	surface: ["Board", "Page", "Sheet", "Shell"],
+	arrange: ["Cell", "Grid", "Ledger", "List", "Nav", "Rail", "Split", "Table"],
+	enclose: ["Banner", "Board", "Card", "Footer", "Sheet"],
+	focus: [
+		"Button",
+		"Check",
+		"Copy",
+		"Field",
+		"Fold",
+		"Forge",
+		"Link",
+		"Pick",
+		"Search",
+		"Tabs",
+	],
+	layer: ["Menu", "Modal", "Tip", "Toast"],
+	document: ["Frame", "Shell"],
 };
 
 export const copy = {
@@ -25,32 +51,35 @@ export const copy = {
 		title: "perish design",
 		line: "one system, many flavours",
 		intro:
-			"A living Svelte vocabulary for the workshop. Inspect each word in isolation, then shape it without leaving the page.",
+			"A living Svelte vocabulary for the workshop. Every word is filed by what it takes responsibility for.",
 		filter: "filter components",
 		empty: "no component carries that word",
 		preview: "preview",
 		props: "props",
 		language: "简体中文",
 		theme: "dark",
-		content: "content",
-		control: "control",
-		layout: "layout",
-		surface: "surface",
+		mark: "mark",
+		arrange: "arrange",
+		enclose: "enclose",
+		focus: "focus",
+		layer: "layer",
+		document: "document",
 	},
 	zh: {
 		title: "perish 设计系统",
 		line: "一套系统，多种风味",
-		intro:
-			"为工作坊而生的 Svelte 活词汇。在隔离环境中观察每个词，也可以留在页面内直接调整它。",
+		intro: "为工作坊而生的 Svelte 活词汇。每个词都按它所负责之事归档。",
 		filter: "筛选组件",
 		empty: "没有组件承载这个词",
 		preview: "预览",
 		props: "属性",
 		language: "English",
 		theme: "深色",
-		content: "内容",
-		control: "控件",
-		layout: "布局",
-		surface: "界面",
+		mark: "标记",
+		arrange: "排布",
+		enclose: "围合",
+		focus: "焦点",
+		layer: "层",
+		document: "文档",
 	},
 };

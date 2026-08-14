@@ -1,0 +1,44 @@
+@layer component {
+	.banner {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: var(--space-4);
+		padding: var(--space-5) 0 var(--space-4);
+
+		.mark {
+			display: grid;
+			width: calc(var(--hero) * 1.4);
+			height: calc(var(--hero) * 1.4);
+			place-items: center;
+			color: var(--accent);
+			font-family: var(--crown);
+			font-size: var(--hero);
+			line-height: 1;
+		}
+
+		h1 {
+			margin: 0;
+			font-family: var(--crown);
+			font-weight: var(--heft);
+			line-height: var(--tight);
+			letter-spacing: var(--track);
+			font-size: var(--hero);
+		}
+
+		p {
+			margin: var(--space-1) 0 0;
+			font-family: var(--crown);
+			font-style: italic;
+			font-size: var(--lead);
+			color: var(--muted);
+		}
+
+		nav {
+			display: flex;
+			align-items: center;
+			gap: var(--space-3);
+			margin-left: auto;
+		}
+	}
+}

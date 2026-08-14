@@ -1,0 +1,123 @@
+@use "sass:list";
+@use "sass:map";
+@use "media";
+
+@layer tokens, tone.given, tone.chosen, system, base, component, override;
+
+$hues: ground, panel, well, rule, ink, bright, muted, accent, onaccent, warn,
+	flush;
+$veils: lift;
+$spans: fine, body, lead, title, hero, space-1, space-2, space-3, space-4,
+	space-5, space-6, radius, knob, slot, bead, line, rim, page, prose, cell, sheet,
+	track;
+$rates: tight, heft, firm, dent, mist, haze, hover, press, leading;
+$beats: beat;
+$faces: plain, crown, exact;
+$films: frost, wash;
+$flows: seam;
+
+$toned: list.join($hues, $veils);
+
+$dressed: list.join(
+	list.join(list.join($toned, $spans), list.join($rates, $beats)),
+	list.join($faces, $films)
+);
+
+@mixin register($names, $kind, $seed) {
+	@each $name in $names {
+		@property --#{$name} {
+			syntax: $kind;
+			inherits: true;
+			initial-value: $seed;
+		}
+	}
+}
+
+@mixin loosen($names) {
+	@each $name in $names {
+		@property --#{$name} {
+			syntax: "*";
+			inherits: true;
+		}
+	}
+}
+
+@include register($hues, "<color>", magenta);
+@include register($spans, "<length>", 0px);
+@include register($rates, "<number>", 0);
+@include register($beats, "<time>", 0s);
+@include loosen($faces);
+@include loosen($flows);
+@include loosen($veils);
+@include loosen($films);
+
+@mixin bind($values, $names, $whose) {
+	@each $name in $names {
+		@if not map.has-key($values, $name) {
+			@error "#{$whose} does not define the atom #{$name}";
+		}
+	}
+	@each $name, $value in $values {
+		@if not list.index($dressed, $name) {
+			@error "#{$whose} defines #{$name}, which is not an atom";
+		}
+		--#{$name}: #{$value};
+	}
+}
+
+@mixin palette($values, $whose) {
+	@include bind($values, $toned, $whose);
+}
+
+@mixin dress($values, $whose) {
+	@include bind($values, $dressed, $whose);
+}
+
+@layer tokens {
+	:root {
+		--fine: 0.875rem;
+		--body: 1rem;
+		--lead: 1.125rem;
+		--title: 1.25rem;
+		--hero: 2.5rem;
+		--space-1: 0.25rem;
+		--space-2: 0.5rem;
+		--space-3: 1rem;
+		--space-4: 1.5rem;
+		--space-5: 2rem;
+		--space-6: 4rem;
+		--radius: 0.5rem;
+		--knob: 0.5rem;
+		--slot: 0.5rem;
+		--bead: 1rem;
+		--line: 1px;
+		--rim: 2px;
+		--page: 60rem;
+		--prose: 42rem;
+		--cell: 15rem;
+		--sheet: 24rem;
+		--track: -0.01em;
+		--tight: 1.2;
+		--heft: 600;
+		--firm: 600;
+		--dent: 2;
+		--mist: 0.4;
+		--haze: 0.15;
+		--hover: 0.08;
+		--press: 0.16;
+		--leading: 1.6;
+		--beat: 150ms;
+		--plain: system-ui, sans-serif;
+		--crown: "Spectral", Georgia, serif;
+		--exact: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+		--frost: none;
+		--wash: none;
+	}
+
+	@include media.narrow {
+		:root {
+			--hero: 2rem;
+			--space-6: 3rem;
+		}
+	}
+}

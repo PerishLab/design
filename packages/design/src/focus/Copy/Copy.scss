@@ -1,0 +1,45 @@
+@layer component {
+	.copy {
+		position: relative;
+		isolation: isolate;
+		padding: var(--space-1) var(--space-2);
+		border: var(--line) solid var(--rule);
+		border-radius: var(--knob);
+		background: var(--panel);
+		color: var(--ink);
+		font-family: var(--exact);
+		font-size: var(--fine);
+		cursor: pointer;
+		transition: color var(--beat), border-color var(--beat);
+	}
+
+	.copy::after {
+		content: "";
+		position: absolute;
+		inset: 0;
+		z-index: -1;
+		border-radius: inherit;
+		background: currentColor;
+		opacity: 0;
+		pointer-events: none;
+		transition: opacity var(--beat);
+	}
+
+	.copy:hover::after {
+		opacity: var(--hover);
+	}
+
+	.copy:active::after {
+		opacity: var(--press);
+	}
+
+	.copy:hover {
+		color: var(--bright);
+		border-color: var(--accent);
+	}
+
+	.copy.done {
+		color: var(--accent);
+		border-color: var(--accent);
+	}
+}

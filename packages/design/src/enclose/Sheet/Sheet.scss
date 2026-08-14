@@ -1,0 +1,20 @@
+@use "pkg:@perish/token/media.scss";
+
+@layer component {
+	.sheet {
+		@include media.room;
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-4);
+		width: 100%;
+		max-width: var(--sheet);
+		margin-inline: auto;
+		padding: var(--space-5);
+		border: var(--line) solid var(--rule);
+		border-radius: var(--radius);
+		background: var(--panel);
+		box-sizing: border-box;
+		box-shadow: var(--lift);
+		backdrop-filter: var(--frost);
+	}
+}

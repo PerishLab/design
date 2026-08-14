@@ -13,6 +13,7 @@ allow = false
 [[grant]]
 paths = [
     "packages/design/**",
+    "packages/token/**",
 ]
 syntax = "style"
 

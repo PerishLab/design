@@ -1,0 +1,17 @@
+@use "pkg:@perish/token/media.scss";
+
+@layer component {
+	.grid {
+		display: grid;
+		gap: var(--space-3);
+		grid-template-columns: repeat(auto-fill, minmax(var(--cell), 1fr));
+		margin: var(--space-3) 0 var(--space-5);
+	}
+
+	@include media.broad {
+		.grid:has(> :last-child:nth-child(2)),
+		.grid:has(> :last-child:nth-child(4)) {
+			grid-template-columns: minmax(var(--cell), 1fr) minmax(var(--cell), 1fr);
+		}
+	}
+}

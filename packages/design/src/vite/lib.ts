@@ -1,4 +1,5 @@
 import { isAbsolute, join, relative } from "node:path";
+import { NodePackageImporter } from "sass";
 import { config } from "./config.js";
 import { health } from "./health.js";
 import { runtime } from "./server.js";
@@ -67,7 +68,14 @@ function wiring(env: ReturnType<typeof config>): object {
 	if (env.target !== undefined) {
 		server.proxy = proxy(env.target);
 	}
-	const shared = { resolve: { dedupe: ["svelte"] } };
+	const shared = {
+		css: {
+			preprocessorOptions: {
+				scss: { importers: [new NodePackageImporter()] },
+			},
+		},
+		resolve: { dedupe: ["svelte"] },
+	};
 	return Object.keys(server).length === 0 ? shared : { ...shared, server };
 }
 

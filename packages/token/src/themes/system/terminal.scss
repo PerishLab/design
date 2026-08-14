@@ -1,0 +1,80 @@
+@use "../../tokens";
+
+@layer system {
+	[data-system="terminal"] {
+		color-scheme: dark;
+
+		@include tokens.dress(
+			(
+				ground: #0c0c0c,
+				panel: #141414,
+				well: #000000,
+				rule: #303030,
+				ink: #c8c8c8,
+				bright: #ffffff,
+				muted: #7a7a7a,
+				accent: #35d07f,
+				onaccent: #04170d,
+				warn: #ff5f56,
+				flush: #2a0f0f,
+				lift: none,
+				fine: 0.8125rem,
+				body: 0.875rem,
+				lead: 0.875rem,
+				title: 1rem,
+				hero: 1.5rem,
+				space-1: 1ch,
+				space-2: 1ch,
+				space-3: 2ch,
+				space-4: 2ch,
+				space-5: 4ch,
+				space-6: 6ch,
+				radius: 0px,
+				knob: 0px,
+				slot: 0px,
+				bead: 0px,
+				line: 1px,
+				rim: 1px,
+				page: 88ch,
+				prose: 72ch,
+				cell: 32ch,
+				sheet: 44ch,
+				track: 0em,
+				tight: 1.2,
+				heft: 400,
+				firm: 700,
+				dent: 8,
+				mist: 0.4,
+				haze: 0,
+				hover: 0.2,
+				press: 0.35,
+				leading: 1.35,
+				beat: 0s,
+				plain: (
+					ui-monospace,
+					"SF Mono",
+					Menlo,
+					Consolas,
+					monospace,
+				),
+				crown: (
+					ui-monospace,
+					"SF Mono",
+					Menlo,
+					Consolas,
+					monospace,
+				),
+				wash: none,
+				frost: none,
+				exact: (
+					ui-monospace,
+					"SF Mono",
+					Menlo,
+					Consolas,
+					monospace,
+				),
+			),
+			"the terminal system"
+		);
+	}
+}

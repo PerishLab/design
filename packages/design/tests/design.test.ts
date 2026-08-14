@@ -5,32 +5,45 @@ import * as design from "../src/lib.ts";
 
 test("exports one-word components", () => {
 	expect(Object.keys(design).sort()).toEqual([
-		"Badge",
 		"Banner",
 		"Board",
 		"Button",
 		"Card",
+		"Cell",
+		"Check",
 		"Code",
 		"Copy",
+		"Face",
 		"Field",
+		"Fold",
 		"Footer",
 		"Forge",
 		"Frame",
 		"Grid",
+		"Head",
 		"Hero",
+		"Item",
 		"Ledger",
 		"Line",
 		"Link",
 		"List",
+		"Menu",
+		"Meter",
+		"Modal",
 		"Nav",
 		"Note",
-		"Page",
+		"Pick",
 		"Rail",
 		"Search",
 		"Sheet",
 		"Shell",
 		"Split",
+		"Table",
+		"Tabs",
 		"Tag",
+		"Text",
+		"Tip",
+		"Toast",
 		"Views",
 		"path",
 	]);
@@ -41,11 +54,11 @@ test("renders component identity", () => {
 		'type="button"',
 	);
 	expect(
-		render(design.Note, { props: { text: "held", tone: "warn" } }).body,
+		render(design.Note, { props: { text: "held", mood: "warn" } }).body,
 	).toContain("note-warn");
 	expect(
 		render(design.Hero, {
-			props: { title: "design", text: "singleword", mark: "◆" },
+			props: { title: "design", line: "singleword", mark: "◆" },
 		}).body,
 	).toContain("◆");
 	expect(

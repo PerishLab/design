@@ -1,0 +1,33 @@
+@layer component {
+	.field {
+		display: flex;
+		flex: 1;
+		flex-direction: column;
+		gap: var(--space-2);
+	}
+
+	.field-label {
+		color: var(--muted);
+		font-size: var(--fine);
+		font-weight: var(--firm);
+	}
+
+	.field-input {
+		box-sizing: border-box;
+		width: 100%;
+		padding: var(--space-2) var(--space-3);
+		border: var(--line) solid var(--rule);
+		border-radius: var(--slot);
+		background: var(--well);
+		color: var(--bright);
+		font-family: var(--plain);
+		font-size: var(--body);
+		transition: border-color var(--beat);
+	}
+
+	.field-input:hover,
+	.field-input:focus {
+		border-color: var(--accent);
+		outline: none;
+	}
+}

@@ -1,0 +1,32 @@
+@use "pkg:@perish/token/media.scss";
+
+@layer component {
+	.card {
+		@include media.room;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: var(--space-2);
+		padding: var(--space-1) 0 var(--space-1) var(--space-3);
+		border-left: var(--rim) solid var(--rule);
+		font-size: var(--fine);
+		color: var(--muted);
+		transition: border-color var(--beat);
+	}
+
+	.card-title {
+		margin: 0;
+		font-family: var(--crown);
+		font-weight: var(--heft);
+		line-height: var(--tight);
+		font-size: var(--body);
+	}
+
+	.card > :last-child {
+		margin-top: auto;
+	}
+
+	.card:hover {
+		border-left-color: var(--accent);
+	}
+}

@@ -3,7 +3,7 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { expect, test } from "vitest";
 import { catalog, groups } from "../src/docs/catalog.ts";
-import { notes } from "../src/docs/notes.ts";
+import { notes } from "../src/docs/notes/lib.ts";
 
 const root = join(
 	dirname(fileURLToPath(import.meta.url)),

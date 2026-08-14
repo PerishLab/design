@@ -1,0 +1,13 @@
+@layer component {
+	.link {
+		color: var(--accent);
+		font-size: var(--fine);
+		font-weight: var(--heft);
+		text-decoration: none;
+	}
+
+	.link:hover {
+		color: var(--bright);
+		text-decoration: underline;
+	}
+}

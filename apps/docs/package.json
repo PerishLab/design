@@ -6,7 +6,8 @@
 		"dev": "vite",
 		"build": "vite build && vite build --ssr src/serve.ts --outDir .local/server && node .local/server/serve.js",
 		"check": "svelte-check --tsconfig ./tsconfig.json",
-		"test": "vitest run"
+		"test": "vitest run",
+		"look": "LOOK=1 vitest run tests/look.test.ts"
 	},
 	"dependencies": {
 		"@perish/design": "workspace:*",

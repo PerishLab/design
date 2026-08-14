@@ -1,0 +1,32 @@
+@use "../../tokens";
+
+$held: (
+	ground: #0c0e12,
+	panel: #191f28,
+	well: #0b0e12,
+	rule: #262d36,
+	ink: #cfd6dd,
+	bright: #eef2f6,
+	muted: #8b96a2,
+	accent: #7fb4e0,
+	onaccent: #0b1119,
+	warn: #f09a91,
+	flush: #301d20,
+	lift: 0 1px 3px rgb(0 0 0 / 0.55),
+);
+
+@layer tone.given {
+	:root {
+		color-scheme: dark;
+
+		@include tokens.palette($held, "the dark tone");
+	}
+}
+
+@layer tone.chosen {
+	[data-tone="dark"] {
+		color-scheme: dark;
+
+		@include tokens.palette($held, "the dark tone");
+	}
+}

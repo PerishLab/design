@@ -1,0 +1,31 @@
+@layer component {
+	.meter {
+		overflow: hidden;
+		width: 100%;
+		height: var(--space-2);
+		border-radius: var(--bead);
+		background: var(--well);
+	}
+
+	.meter-fill {
+		height: 100%;
+		border-radius: inherit;
+		background: var(--accent);
+		transition: width var(--beat);
+	}
+
+	.meter-fill.waiting {
+		width: 40%;
+		animation: waiting 1.2s linear infinite;
+	}
+
+	@keyframes waiting {
+		from {
+			translate: -100% 0;
+		}
+
+		to {
+			translate: 250% 0;
+		}
+	}
+}

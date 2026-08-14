@@ -1,0 +1,34 @@
+@layer component {
+	.modal {
+		width: 100%;
+		max-width: var(--sheet);
+		padding: 0;
+		border: var(--line) solid var(--rule);
+		border-radius: var(--radius);
+		background: var(--panel);
+		color: var(--ink);
+		box-shadow: var(--lift);
+		backdrop-filter: var(--frost);
+	}
+
+	.modal::backdrop {
+		background: var(--ground);
+		opacity: 0.72;
+	}
+
+	.modal-head {
+		padding: var(--space-3) var(--space-4);
+		border-bottom: var(--line) solid var(--rule);
+		color: var(--bright);
+		font-family: var(--crown);
+		font-size: var(--lead);
+		font-weight: var(--heft);
+	}
+
+	.modal-body {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-3);
+		padding: var(--space-4);
+	}
+}

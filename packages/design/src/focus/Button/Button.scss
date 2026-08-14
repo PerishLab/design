@@ -1,0 +1,62 @@
+@layer component {
+	.button {
+		position: relative;
+		isolation: isolate;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding: var(--space-2) var(--space-4);
+		border: var(--line) solid transparent;
+		border-radius: var(--knob);
+		font-family: var(--plain);
+		font-size: var(--body);
+		font-weight: var(--firm);
+		white-space: nowrap;
+		cursor: pointer;
+		transition: border-color var(--beat);
+	}
+
+	.button::after {
+		content: "";
+		position: absolute;
+		inset: 0;
+		z-index: -1;
+		border-radius: inherit;
+		background: currentColor;
+		opacity: 0;
+		pointer-events: none;
+		transition: opacity var(--beat);
+	}
+
+	.button:hover:not(:disabled)::after {
+		opacity: var(--hover);
+	}
+
+	.button:active:not(:disabled)::after {
+		opacity: var(--press);
+	}
+
+	.button:disabled {
+		opacity: var(--mist);
+		cursor: default;
+	}
+
+	.button-wide {
+		width: 100%;
+	}
+
+	.button-solid {
+		background: var(--accent);
+		color: var(--onaccent);
+	}
+
+	.button-quiet {
+		border-color: var(--rule);
+		background: transparent;
+		color: var(--accent);
+	}
+
+	.button-quiet:hover:not(:disabled) {
+		border-color: var(--accent);
+	}
+}

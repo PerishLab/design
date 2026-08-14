@@ -1,0 +1,75 @@
+@use "../../tokens";
+
+@layer system {
+	[data-system="brutal"] {
+		color-scheme: light;
+
+		@include tokens.dress(
+			(
+				ground: #fffbe6,
+				panel: #ffffff,
+				well: #fff0a8,
+				rule: #000000,
+				ink: #000000,
+				bright: #000000,
+				muted: #3d3d3d,
+				accent: #ff5252,
+				onaccent: #000000,
+				warn: #c2001e,
+				flush: #ffd6d6,
+				lift: 5px 5px 0 #000000,
+				fine: 0.875rem,
+				body: 1rem,
+				lead: 1.125rem,
+				title: 1.5rem,
+				hero: 3.5rem,
+				space-1: 0.25rem,
+				space-2: 0.5rem,
+				space-3: 1rem,
+				space-4: 1.5rem,
+				space-5: 2rem,
+				space-6: 4rem,
+				radius: 0px,
+				knob: 0px,
+				slot: 0px,
+				bead: 0px,
+				line: 3px,
+				rim: 4px,
+				page: 62rem,
+				prose: 40rem,
+				cell: 16rem,
+				sheet: 24rem,
+				track: -0.02em,
+				tight: 1,
+				heft: 800,
+				firm: 900,
+				dent: 4,
+				mist: 0.35,
+				haze: 0.35,
+				hover: 0.1,
+				press: 0.2,
+				leading: 1.5,
+				beat: 0s,
+				plain: (
+					system-ui,
+					"Helvetica Neue",
+					sans-serif,
+				),
+				crown: (
+					"Archivo Black",
+					Impact,
+					"Helvetica Neue",
+					sans-serif,
+				),
+				wash: none,
+				frost: none,
+				exact: (
+					ui-monospace,
+					Menlo,
+					monospace,
+				),
+			),
+			"the brutal system"
+		);
+	}
+}

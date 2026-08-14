@@ -1,0 +1,13 @@
+@use "pkg:@perish/token/media.scss";
+@use "pkg:@perish/token/base.scss";
+
+@layer component {
+	.frame {
+		@include media.room;
+		width: 100%;
+		max-width: var(--page);
+		margin: 0 auto;
+		padding: 0 var(--space-4) var(--space-6);
+		box-sizing: border-box;
+	}
+}
