@@ -7,10 +7,12 @@
 		"build": "vite build && vite build --ssr src/serve.ts --outDir .local/server && node .local/server/serve.js",
 		"check": "svelte-check --tsconfig ./tsconfig.json",
 		"test": "vitest run",
-		"look": "LOOK=1 vitest run tests/look.test.ts"
+		"look": "LOOK=1 vitest run tests/look.test.ts tests/shape.test.ts",
+		"preview": "vite preview"
 	},
 	"dependencies": {
 		"@perish/design": "workspace:*",
+		"@perish/sign": "workspace:*",
 		"svelte": "catalog:"
 	},
 	"devDependencies": {

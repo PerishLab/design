@@ -1,5 +1,18 @@
 @layer component {
 	.cell {
+		display: grid;
+		grid-column: var(--seat, auto);
+		align-content: start;
+		gap: var(--space-3);
 		min-width: 0;
+	}
+
+	.cell > :last-child {
+		margin-block-end: 0;
+	}
+
+	.cell-fill {
+		grid-template-rows: min-content;
+		align-content: stretch;
 	}
 }

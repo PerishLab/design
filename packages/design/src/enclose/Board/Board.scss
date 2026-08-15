@@ -3,8 +3,9 @@
 @layer component {
 	.board {
 		@include media.room;
+		text-wrap: balance;
 		background: var(--panel);
-		border: var(--line) solid var(--rule);
+		border: var(--line) solid var(--edge);
 		border-radius: var(--radius);
 		box-shadow: var(--lift);
 		backdrop-filter: var(--frost);
@@ -36,5 +37,14 @@
 		flex-direction: column;
 		gap: var(--space-3);
 		padding: var(--space-3) var(--space-4) var(--space-4);
+	}
+
+	.board-flush {
+		overflow: hidden;
+	}
+
+	.board-flush .board-body {
+		gap: 0;
+		padding: 0;
 	}
 }

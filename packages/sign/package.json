@@ -1,0 +1,20 @@
+{
+	"name": "@perish/sign",
+	"version": "0.1.0",
+	"license": "MIT",
+	"type": "module",
+	"files": [
+		"src"
+	],
+	"exports": {
+		"./ant": "./src/ant.ts",
+		"./base": "./src/base.ts",
+		"./material": "./src/material.ts",
+		"./sets": "./src/sets.ts",
+		"./terminal": "./src/terminal.ts"
+	},
+	"publishConfig": {
+		"access": "public",
+		"registry": "https://git.perish.top/api/packages/PerishLab/npm/"
+	}
+}

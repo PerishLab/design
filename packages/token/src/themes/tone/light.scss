@@ -2,18 +2,22 @@
 @use "../../tokens";
 
 $held: (
-	ground: #f3f5f8,
-	panel: #e0e5eb,
-	well: #f9fafb,
-	rule: #c6ccd4,
-	ink: #2b313a,
+	ground: #f2f5f9,
+	panel: #fcfdfd,
+	well: #dde4ee,
+	rule: #c9d0da,
+	edge: #6b7480,
+	ink: #1e242d,
 	bright: #10151c,
-	muted: #5a646f,
+	muted: #57606b,
 	accent: #33608f,
 	onaccent: #ffffff,
 	warn: #a1261d,
 	flush: #f8dedb,
-	lift: 0 1px 3px rgb(16 21 28 / 0.14),
+	deck: rgb(255 255 255 / 0.72),
+	ondeck: #10151c,
+	wash: radial-gradient(140% 70% at 50% 0%, rgb(255 255 255 / 0.45) 0%, rgb(255 255 255 / 0) 60%),
+	lift: (0 1px 2px rgb(16 21 28 / 0.10), 0 6px 16px rgb(16 21 28 / 0.10)),
 );
 
 @layer tone.given {

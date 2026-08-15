@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Sign from "../../mark/Sign/Sign.svelte";
 	import "./Check.scss";
 
 	let {
@@ -21,6 +22,6 @@
 
 <label class="check check-{look}">
 	<input class="check-input" type="checkbox" role={look === "switch" ? "switch" : undefined} checked={held} onchange={(event) => take(event.currentTarget.checked)} />
-	<span class="check-mark"></span>
+	<span class="check-mark"><Sign name="tick" /></span>
 	<span class="check-label">{label}</span>
 </label>

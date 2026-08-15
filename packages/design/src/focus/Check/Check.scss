@@ -1,19 +1,54 @@
 @layer component {
 	.check {
 		display: inline-flex;
+		font-family: var(--brisk);
 		align-items: center;
 		gap: var(--space-2);
 		cursor: pointer;
 	}
 
 	.check-input {
-		width: var(--body);
-		height: var(--body);
-		accent-color: var(--accent);
-		cursor: pointer;
+		appearance: none;
+		position: absolute;
+		width: 0;
+		height: 0;
+		opacity: 0;
+		pointer-events: none;
 	}
 
-	.check-mark {
+	.check-box .check-mark {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: calc(var(--body) * 1.15);
+		height: calc(var(--body) * 1.15);
+		border: var(--line) solid var(--edge);
+		border-radius: var(--knob);
+		background: var(--well);
+		color: var(--onaccent);
+		transition: background var(--beat), border-color var(--beat);
+	}
+
+	.check-box .check-mark .sign {
+		opacity: 0;
+		transition: opacity var(--beat);
+	}
+
+	.check-box .check-input:checked + .check-mark {
+		border-color: var(--accent);
+		background: var(--accent);
+	}
+
+	.check-box .check-input:checked + .check-mark .sign {
+		opacity: 1;
+	}
+
+	.check-box .check-input:focus-visible + .check-mark {
+		outline: var(--rim) solid var(--accent);
+		outline-offset: var(--rim);
+	}
+
+	.check-switch .check-mark .sign {
 		display: none;
 	}
 
@@ -35,7 +70,7 @@
 		display: inline-block;
 		width: calc(var(--body) * 2);
 		height: calc(var(--body) * 1.15);
-		border: var(--line) solid var(--rule);
+		border: var(--line) solid var(--edge);
 		border-radius: var(--bead);
 		background: var(--well);
 		transition: background var(--beat), border-color var(--beat);

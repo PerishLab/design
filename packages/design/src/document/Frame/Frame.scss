@@ -5,9 +5,31 @@
 	.frame {
 		@include media.room;
 		width: 100%;
-		max-width: var(--page);
-		margin: 0 auto;
 		padding: 0 var(--space-4) var(--space-6);
 		box-sizing: border-box;
+	}
+
+	.frame-page {
+		max-width: var(--page);
+		margin: 0 auto;
+	}
+
+	.frame-read {
+		max-width: calc(var(--prose) * 1.5);
+		margin: 0 auto;
+	}
+
+	.frame-sheet {
+		max-width: calc(var(--prose) * 1.5 + var(--space-6) * 2);
+		margin: var(--space-5) auto;
+		padding: var(--space-6) var(--space-6) var(--space-6);
+		background: var(--panel);
+		border: var(--line) solid var(--edge);
+		border-radius: var(--radius);
+		box-shadow: var(--lift);
+	}
+
+	.frame-full {
+		padding: var(--space-4) var(--space-6) var(--space-6);
 	}
 }

@@ -9,6 +9,9 @@
 		"noEmit": true,
 		"isolatedModules": true,
 		"skipLibCheck": true,
+		"paths": {
+			"@perish/bone": ["../bone/src/lib.ts"]
+		},
 		"types": ["vite/client", "node"]
 	},
 	"include": ["src", "tests", "vitest.config.ts"]

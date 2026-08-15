@@ -1,0 +1,13 @@
+@layer bone {
+	.skin {
+		box-sizing: border-box;
+		block-size: 100%;
+		inline-size: 100%;
+	}
+
+	.skin-drive {
+		animation-timeline: scroll(root block);
+		animation-fill-mode: both;
+		animation-timing-function: linear;
+	}
+}

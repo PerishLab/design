@@ -6,6 +6,10 @@
 @use "themes/probe";
 
 @layer base {
+	html {
+		overscroll-behavior: none;
+	}
+
 	body {
 		margin: 0;
 		background-color: var(--ground);

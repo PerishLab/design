@@ -5,13 +5,15 @@
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
+		gap: var(--space-2);
 		padding: var(--space-2) var(--space-4);
 		border: var(--line) solid transparent;
 		border-radius: var(--knob);
-		font-family: var(--plain);
+		font-family: var(--brisk);
 		font-size: var(--body);
 		font-weight: var(--firm);
 		white-space: nowrap;
+		text-decoration: none;
 		cursor: pointer;
 		transition: border-color var(--beat);
 	}
@@ -51,7 +53,7 @@
 	}
 
 	.button-quiet {
-		border-color: var(--rule);
+		border-color: var(--edge);
 		background: transparent;
 		color: var(--accent);
 	}

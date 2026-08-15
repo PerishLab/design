@@ -5,10 +5,11 @@
 		height: calc(var(--body) * 2);
 		place-items: center;
 		overflow: hidden;
-		border: var(--line) solid var(--rule);
+		border: var(--line) solid var(--edge);
 		border-radius: var(--bead);
 		background: var(--well);
 		color: var(--muted);
+		font-family: var(--brisk);
 		font-size: var(--fine);
 		font-weight: var(--heft);
 		object-fit: cover;

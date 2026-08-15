@@ -1,0 +1,39 @@
+@use "pkg:@perish/token/media.scss";
+
+@layer component {
+	.aside {
+		display: grid;
+		gap: var(--space-5);
+		grid-template-columns: var(--cell) minmax(0, 1fr);
+		align-items: start;
+	}
+
+	.aside-under .aside-side {
+		top: calc(var(--band) + var(--space-3));
+		max-height: calc(100dvh - var(--band) - var(--space-5));
+	}
+
+	.aside-side {
+		position: sticky;
+		top: var(--space-4);
+		max-height: calc(100dvh - var(--space-6));
+		overflow: auto;
+		overscroll-behavior: contain;
+		scrollbar-width: thin;
+	}
+
+	.aside-main {
+		@include media.room;
+		min-width: 0;
+	}
+
+	@include media.slim {
+		.aside {
+			grid-template-columns: minmax(0, 1fr);
+		}
+
+		.aside-side {
+			display: none;
+		}
+	}
+}

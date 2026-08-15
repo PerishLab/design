@@ -3,12 +3,14 @@
 @layer component {
 	.card {
 		@include media.room;
+		text-wrap: pretty;
 		display: flex;
 		flex-direction: column;
 		align-items: flex-start;
 		gap: var(--space-2);
 		padding: var(--space-1) 0 var(--space-1) var(--space-3);
-		border-left: var(--rim) solid var(--rule);
+		border-left: var(--rim) solid var(--edge);
+		font-family: var(--brisk);
 		font-size: var(--fine);
 		color: var(--muted);
 		transition: border-color var(--beat);

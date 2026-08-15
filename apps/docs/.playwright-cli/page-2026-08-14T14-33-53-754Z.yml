@@ -1,0 +1,141 @@
+- generic [ref=f2e3]:
+  - banner [ref=f2e6]:
+    - heading "@perish/design" [level=1] [ref=f2e8]
+    - navigation [ref=f2e9]:
+      - link "gallery" [ref=f2e10] [cursor=pointer]:
+        - /url: /gallery/
+      - combobox "language" [ref=f2e12] [cursor=pointer]:
+        - option "English" [selected]
+        - option "简体中文"
+      - combobox "theme" [ref=f2e14] [cursor=pointer]:
+        - option "system" [selected]
+        - option "light"
+        - option "dark"
+  - generic [ref=f2e16]:
+    - banner [ref=f2e17]:
+      - generic: ◆
+      - heading "Eleven design languages. One structure." [level=1] [ref=f2e18]
+      - paragraph [ref=f2e19]: A theme states values and never a template, so every language rides the same generators.
+    - paragraph [ref=f2e20]: "Eleven design languages share one component set and one set of atoms. Nothing below is a skin over a fork: Swiss and Material render the same markup, and every atom either of them asked for and could not find is written down beside the render that found it."
+    - generic [ref=f2e21]:
+      - link "browse the gallery" [ref=f2e22] [cursor=pointer]:
+        - /url: /gallery/
+      - link "read the source" [ref=f2e23] [cursor=pointer]:
+        - /url: https://git.perish.top/PerishFire/design
+  - generic [ref=f2e25]:
+    - generic [ref=f2e26]:
+      - heading "Four voices, one component" [level=2] [ref=f2e27]
+      - link "all eleven in the gallery" [ref=f2e28] [cursor=pointer]:
+        - /url: /gallery/
+    - paragraph [ref=f2e29]: The same card, dressed by four of the eleven languages. No branch in the code, no fork in the tree.
+    - generic [ref=f2e30]:
+      - generic [ref=f2e32]:
+        - heading "swiss" [level=2] [ref=f2e34]
+        - generic [ref=f2e38]:
+          - heading "one structure" [level=3] [ref=f2e39]
+          - paragraph [ref=f2e40]: The same generators, dressed by one language.
+          - button "press" [ref=f2e41] [cursor=pointer]
+      - generic [ref=f2e43]:
+        - heading "material" [level=2] [ref=f2e45]
+        - generic [ref=f2e49]:
+          - heading "one structure" [level=3] [ref=f2e50]
+          - paragraph [ref=f2e51]: The same generators, dressed by one language.
+          - button "press" [ref=f2e52] [cursor=pointer]
+      - generic [ref=f2e54]:
+        - heading "terminal" [level=2] [ref=f2e56]
+        - generic [ref=f2e60]:
+          - heading "one structure" [level=3] [ref=f2e61]
+          - paragraph [ref=f2e62]: The same generators, dressed by one language.
+          - button "press" [ref=f2e63] [cursor=pointer]
+      - generic [ref=f2e65]:
+        - heading "console" [level=2] [ref=f2e67]
+        - generic [ref=f2e71]:
+          - heading "one structure" [level=3] [ref=f2e72]
+          - paragraph [ref=f2e73]: The same generators, dressed by one language.
+          - button "press" [ref=f2e74] [cursor=pointer]
+  - generic [ref=f2e77]:
+    - generic [ref=f2e78]:
+      - heading "Six rooms" [level=2] [ref=f2e79]
+      - paragraph [ref=f2e80]: Every generator is filed by what it takes responsibility for, because that is the axis every behaviour hangs off. Taking focus means keyboard and roles and a ring; taking a layer means the top layer and escape and a trap.
+      - heading "What it is made of" [level=2] [ref=f2e81]
+      - list [ref=f2e82]:
+        - listitem [ref=f2e83]:
+          - generic [ref=f2e84]: generators
+          - generic [ref=f2e86]: "43"
+        - listitem [ref=f2e87]:
+          - generic [ref=f2e88]: rooms
+          - generic [ref=f2e90]: "6"
+        - listitem [ref=f2e91]:
+          - generic [ref=f2e92]: atoms
+          - generic [ref=f2e94]: "57"
+        - listitem [ref=f2e95]:
+          - generic [ref=f2e96]: languages
+          - generic [ref=f2e98]: "11"
+    - list [ref=f2e100]:
+      - listitem [ref=f2e101]:
+        - link "mark draws its content" [ref=f2e102] [cursor=pointer]:
+          - /url: /gallery/#mark
+          - generic [ref=f2e103]: "01"
+          - generic [ref=f2e104]: mark
+          - generic [ref=f2e105]: draws its content
+      - listitem [ref=f2e106]:
+        - link "arrange places its members" [ref=f2e107] [cursor=pointer]:
+          - /url: /gallery/#arrange
+          - generic [ref=f2e108]: "02"
+          - generic [ref=f2e109]: arrange
+          - generic [ref=f2e110]: places its members
+      - listitem [ref=f2e111]:
+        - link "enclose bounds a region" [ref=f2e112] [cursor=pointer]:
+          - /url: /gallery/#enclose
+          - generic [ref=f2e113]: "03"
+          - generic [ref=f2e114]: enclose
+          - generic [ref=f2e115]: bounds a region
+      - listitem [ref=f2e116]:
+        - link "focus takes the focus" [ref=f2e117] [cursor=pointer]:
+          - /url: /gallery/#focus
+          - generic [ref=f2e118]: "04"
+          - generic [ref=f2e119]: focus
+          - generic [ref=f2e120]: takes the focus
+      - listitem [ref=f2e121]:
+        - link "layer owns a layer" [ref=f2e122] [cursor=pointer]:
+          - /url: /gallery/#layer
+          - generic [ref=f2e123]: "05"
+          - generic [ref=f2e124]: layer
+          - generic [ref=f2e125]: owns a layer
+      - listitem [ref=f2e126]:
+        - link "document owns the document" [ref=f2e127] [cursor=pointer]:
+          - /url: /gallery/#document
+          - generic [ref=f2e128]: "06"
+          - generic [ref=f2e129]: document
+          - generic [ref=f2e130]: owns the document
+  - generic [ref=f2e132]:
+    - heading "Install" [level=2] [ref=f2e133]
+    - generic [ref=f2e134]:
+      - generic [ref=f2e135]:
+        - heading "add the packages" [level=2] [ref=f2e136]
+        - generic [ref=f2e137]:
+          - banner [ref=f2e138]:
+            - generic [ref=f2e139]: terminal
+            - button "copy" [ref=f2e140] [cursor=pointer]
+          - code [ref=f2e142]: pnpm add @perish/design @perish/token
+      - generic [ref=f2e143]:
+        - heading "wire the plugin" [level=2] [ref=f2e144]
+        - generic [ref=f2e145]:
+          - banner [ref=f2e146]:
+            - generic [ref=f2e147]: vite.config.ts
+            - button "copy" [ref=f2e148] [cursor=pointer]
+          - code [ref=f2e150]: "import { design } from \"@perish/design/vite\"; export default { plugins: [design(), svelte()], };"
+      - generic [ref=f2e151]:
+        - heading "write a screen" [level=2] [ref=f2e152]
+        - generic [ref=f2e153]:
+          - banner [ref=f2e154]:
+            - generic [ref=f2e155]: App.svelte
+            - button "copy" [ref=f2e156] [cursor=pointer]
+          - code [ref=f2e158]: <Shell system="swiss"> <Course look="raise"> <Hero title="hello" /> </Course> </Shell>
+  - contentinfo [ref=f2e161]:
+    - generic [ref=f2e162]: one system, many flavours
+    - navigation [ref=f2e163]:
+      - link "gallery" [ref=f2e164] [cursor=pointer]:
+        - /url: /gallery/
+      - link "source" [ref=f2e165] [cursor=pointer]:
+        - /url: https://git.perish.top/PerishFire/design

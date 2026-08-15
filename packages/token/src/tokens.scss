@@ -2,18 +2,19 @@
 @use "sass:map";
 @use "media";
 
-@layer tokens, tone.given, tone.chosen, system, base, component, override;
+@layer tokens, tone.given, tone.chosen, system, base, bone, component, override;
 
 $hues: ground, panel, well, rule, ink, bright, muted, accent, onaccent, warn,
-	flush;
+	flush, deck, ondeck, edge;
 $veils: lift;
-$spans: fine, body, lead, title, hero, space-1, space-2, space-3, space-4,
-	space-5, space-6, radius, knob, slot, bead, line, rim, page, prose, cell, sheet,
-	track;
-$rates: tight, heft, firm, dent, mist, haze, hover, press, leading;
+$spans: fine, body, read, lead, title, hero, space-1, space-2, space-3, space-4,
+	space-5, space-6, radius, knob, slot, bead, line, rim, sign, reach, page, prose, cell,
+	sheet, track, band, verge;
+$rates: tight, heft, firm, dent, mist, haze, hover, press, leading, stoop,
+	apart, nib;
 $beats: beat;
-$faces: plain, crown, exact;
-$films: frost, wash;
+$faces: plain, brisk, crown, exact;
+$films: frost, wash, fog;
 $flows: seam;
 
 $toned: list.join($hues, $veils);
@@ -76,28 +77,33 @@ $dressed: list.join(
 @layer tokens {
 	:root {
 		--fine: 0.875rem;
-		--body: 1rem;
-		--lead: 1.125rem;
-		--title: 1.25rem;
-		--hero: 2.5rem;
+		--body: 0.9375rem;
+		--read: 1.1875rem;
+		--lead: 1.25rem;
+		--title: 1.5625rem;
+		--hero: 2.75rem;
 		--space-1: 0.25rem;
 		--space-2: 0.5rem;
-		--space-3: 1rem;
-		--space-4: 1.5rem;
-		--space-5: 2rem;
-		--space-6: 4rem;
+		--space-3: 0.75rem;
+		--space-4: 1.125rem;
+		--space-5: 1.5rem;
+		--space-6: 2.75rem;
 		--radius: 0.5rem;
 		--knob: 0.5rem;
 		--slot: 0.5rem;
 		--bead: 1rem;
 		--line: 1px;
 		--rim: 2px;
+		--sign: 1.125rem;
+		--reach: 90rem;
 		--page: 60rem;
-		--prose: 42rem;
+		--prose: 38rem;
 		--cell: 15rem;
 		--sheet: 24rem;
+		--band: 4.5rem;
+		--verge: 0.75rem;
 		--track: -0.01em;
-		--tight: 1.2;
+		--tight: 1.16;
 		--heft: 600;
 		--firm: 600;
 		--dent: 2;
@@ -105,18 +111,23 @@ $dressed: list.join(
 		--haze: 0.15;
 		--hover: 0.08;
 		--press: 0.16;
-		--leading: 1.6;
+		--leading: 1.5;
+		--apart: 0.6;
+		--nib: 1.75;
+		--stoop: 1;
 		--beat: 150ms;
-		--plain: system-ui, sans-serif;
+		--plain: "Spectral", Georgia, serif;
+		--brisk: system-ui, sans-serif;
 		--crown: "Spectral", Georgia, serif;
 		--exact: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
 		--frost: none;
 		--wash: none;
+		--fog: blur(12px) saturate(1.2);
 	}
 
 	@include media.narrow {
 		:root {
-			--hero: 2rem;
+			--hero: 2.25rem;
 			--space-6: 3rem;
 		}
 	}

@@ -1,6 +1,34 @@
 @use "pkg:@perish/token/media.scss";
 
 @layer component {
+	.nav.nav-list {
+		position: sticky;
+		flex-wrap: nowrap;
+		top: var(--space-4);
+		flex-direction: column;
+		align-items: flex-start;
+		gap: var(--space-1);
+		max-height: calc(100vh - var(--space-6));
+		overflow-y: auto;
+		padding: 0;
+		margin: 0;
+		border-bottom: none;
+		scrollbar-width: thin;
+	}
+
+	.nav-list .nav-group {
+		margin-top: var(--space-3);
+		color: var(--bright);
+		font-family: var(--crown);
+		font-size: var(--fine);
+		font-weight: var(--heft);
+		letter-spacing: var(--track);
+	}
+
+	.nav-list .nav-group:first-child {
+		margin-top: 0;
+	}
+
 	.nav {
 		display: flex;
 		flex-wrap: wrap;

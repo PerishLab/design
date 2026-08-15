@@ -1,0 +1,35 @@
+@use "pkg:@perish/token/media.scss";
+
+@layer component {
+	.course {
+		width: 100%;
+		padding: var(--space-6) var(--space-6);
+		box-sizing: border-box;
+	}
+
+	.course-body {
+		@include media.room;
+		max-width: var(--reach);
+		margin: 0 auto;
+	}
+
+	.course-bare {
+		padding-block: 0;
+	}
+
+	.course-raise {
+		background: var(--panel);
+		border-block: var(--line) solid var(--edge);
+	}
+
+	.course-well {
+		background: var(--well);
+		border-block: var(--line) solid var(--edge);
+	}
+
+	@include media.narrow {
+		.course {
+			padding-inline: var(--space-4);
+		}
+	}
+}

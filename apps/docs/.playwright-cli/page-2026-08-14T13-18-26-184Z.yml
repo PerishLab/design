@@ -1,0 +1,185 @@
+- generic [ref=e3]:
+  - banner [ref=e6]:
+    - generic [ref=e7]: ◆
+    - heading "perish workshop" [level=1] [ref=e9]
+    - navigation [ref=e10]:
+      - link [ref=e11] [cursor=pointer]:
+        - /url: https://git.perish.top/PerishFire/design
+        - img "forge" [ref=e12]
+        - text: PerishFire/design
+      - link "gallery" [ref=e14] [cursor=pointer]:
+        - /url: /gallery/
+      - button "dark" [ref=e15] [cursor=pointer]
+  - generic [ref=e16]:
+    - navigation [ref=e17]:
+      - link "planes" [ref=e18] [cursor=pointer]:
+        - /url: "#planes"
+      - link "release" [ref=e19] [cursor=pointer]:
+        - /url: "#release"
+      - link "laws" [ref=e20] [cursor=pointer]:
+        - /url: "#laws"
+      - link "access" [ref=e21] [cursor=pointer]:
+        - /url: "#access"
+    - tablist [ref=e22]:
+      - tab "live" [selected] [ref=e23] [cursor=pointer]
+      - tab "held" [ref=e24] [cursor=pointer]
+    - banner [ref=e25]:
+      - generic: ◆
+      - heading "Six planes are live." [level=1] [ref=e26]
+      - paragraph [ref=e27]: Every plane carries its own constitution, and no release is a publish until it is first a proof.
+    - generic [ref=e28]:
+      - searchbox "filter planes" [ref=e29]
+      - button "new plane" [ref=e30] [cursor=pointer]
+    - heading "Planes" [level=2] [ref=e31]
+    - generic [ref=e32]:
+      - generic [ref=e34]:
+        - heading "design" [level=3] [ref=e35]
+        - paragraph [ref=e36]: The Svelte vocabulary, its tokens, and every theme built on them.
+        - link "open" [ref=e37] [cursor=pointer]:
+          - /url: "#planes"
+      - generic [ref=e39]:
+        - heading "ectropy" [level=3] [ref=e40]
+        - paragraph [ref=e41]: Structural and vocabulary law, enforced on every file in the tree.
+        - link "open" [ref=e42] [cursor=pointer]:
+          - /url: "#planes"
+      - generic [ref=e44]:
+        - heading "plumb" [level=3] [ref=e45]
+        - paragraph [ref=e46]: Build, inspect, prove, release, and land a governed repository.
+        - link "open" [ref=e47] [cursor=pointer]:
+          - /url: "#planes"
+      - generic [ref=e49]:
+        - heading "runseal" [level=3] [ref=e50]
+        - paragraph [ref=e51]: Per-run profile isolation, so one run can never poison the next.
+        - link "open" [ref=e52] [cursor=pointer]:
+          - /url: "#planes"
+    - heading "Release" [level=2] [ref=e53]
+    - generic [ref=e54]:
+      - generic [ref=e55]:
+        - heading "design v0.3.0" [level=2] [ref=e56]
+        - paragraph [ref=e57]: the npm transaction is owned by Actions; product workflows are thin callers
+      - generic [ref=e58]:
+        - generic [ref=e59]:
+          - generic [ref=e60]:
+            - generic [ref=e61]: packages/design
+            - generic [ref=e62]: 0.3.0
+          - generic [ref=e63]: published
+        - generic [ref=e65]:
+          - generic [ref=e66]:
+            - generic [ref=e67]: packages/token
+            - generic [ref=e68]: 0.1.0
+          - generic [ref=e69]: published
+        - generic [ref=e71]:
+          - generic [ref=e72]:
+            - generic [ref=e73]: break-glass operator
+            - generic [ref=e74]: rejected
+          - generic [ref=e75]: denied
+        - generic [ref=e77]:
+          - generic [ref=e78]:
+            - generic [ref=e79]: git.perish.top/api/packages/PerishLab/npm/
+            - generic [ref=e80]: registry
+          - button "copy" [ref=e82] [cursor=pointer]
+        - progressbar "guard" [ref=e83]
+        - generic [ref=e85]:
+          - button "actions" [ref=e87] [cursor=pointer]
+          - button "cut 0.4.0" [ref=e88] [cursor=pointer]
+    - table [ref=e89]:
+      - rowgroup [ref=e90]:
+        - row [ref=e91]:
+          - columnheader "plane" [ref=e92]
+          - columnheader "version" [ref=e93]
+          - columnheader "state" [ref=e94]
+      - rowgroup [ref=e95]:
+        - row [ref=e96]:
+          - cell "design" [ref=e97]
+          - cell "0.3.0" [ref=e98]
+          - cell "published" [ref=e99]
+        - row [ref=e100]:
+          - cell "token" [ref=e101]
+          - cell "0.1.0" [ref=e102]
+          - cell "published" [ref=e103]
+        - row [ref=e104]:
+          - cell "ectropy" [ref=e105]
+          - cell "—" [ref=e106]
+          - cell "clean" [ref=e107]
+    - heading "Laws" [level=2] [ref=e108]
+    - list [ref=e109]:
+      - listitem [ref=e110]:
+        - generic [ref=e111]: "01"
+        - generic [ref=e112]: declare
+        - generic [ref=e113]: the library names the design
+      - listitem [ref=e114]:
+        - generic [ref=e115]: "02"
+        - generic [ref=e116]: materialise
+        - generic [ref=e117]: the plugin wires it up
+      - listitem [ref=e118]:
+        - generic [ref=e119]: "03"
+        - generic [ref=e120]: consume
+        - generic [ref=e121]: an app eats what we shipped
+    - paragraph [ref=e122]: Every law below is machine enforced. None of it is a style preference, and none of it is advisory.
+    - generic [ref=e123]:
+      - banner [ref=e124]:
+        - generic [ref=e125]: ectropy.toml
+        - button "copy" [ref=e126] [cursor=pointer]
+      - code [ref=e128]: "[limit] block = 4 fanout = 10 file = 300 markup = 8 param = 4 path = 4"
+    - list [ref=e129]:
+      - listitem [ref=e130]:
+        - text: every declaration is one word
+        - generic [ref=e131]: word
+      - listitem [ref=e132]:
+        - text: no comment survives the scan
+        - generic [ref=e133]: comment
+      - listitem [ref=e134]:
+        - text: ten generators to a node
+        - generic [ref=e135]: fanout
+      - listitem [ref=e136]:
+        - text: this screen writes no tag of its own
+        - generic [ref=e137]: markup
+    - list [ref=e138]:
+      - listitem [ref=e139]:
+        - generic [ref=e140]: kernel
+        - generic [ref=e142]: "12"
+      - listitem [ref=e143]:
+        - generic [ref=e144]: grammar
+        - generic [ref=e146]: "8"
+      - listitem [ref=e147]:
+        - generic [ref=e148]: seal
+        - generic [ref=e150]: "3"
+    - group [ref=e151]:
+      - generic "why one word" [ref=e152] [cursor=pointer]
+    - heading "Access" [level=2] [ref=e153]
+    - generic [ref=e154]:
+      - generic [ref=e155]:
+        - img "Ada Lovelace" [ref=e156]: AL
+        - generic [ref=e157]:
+          - generic [ref=e158]: v0.3.0
+          - tooltip "one word, one meaning"
+      - generic [ref=e159]:
+        - generic [ref=e160]: operator
+        - textbox "operator" [ref=e161]:
+          - /placeholder: who is asking
+      - generic [ref=e162]:
+        - generic [ref=e163]: token
+        - textbox "token" [ref=e164]:
+          - /placeholder: purpose scoped only
+      - generic [ref=e165]:
+        - generic [ref=e166]: plane
+        - combobox "plane" [ref=e167] [cursor=pointer]:
+          - option "design" [selected]
+          - option "ectropy"
+          - option "plumb"
+      - generic [ref=e168] [cursor=pointer]:
+        - switch "refuse a break-glass token" [checked]
+        - generic [ref=e170]: refuse a break-glass token
+      - paragraph [ref=e171]: A break-glass token is never accepted on this path.
+      - button "sign in" [ref=e172] [cursor=pointer]
+    - contentinfo [ref=e173]:
+      - generic [ref=e174]: a PerishLab workshop — this site is MIT and guarded by its own constitution.
+      - navigation [ref=e175]:
+        - link "gallery" [ref=e176] [cursor=pointer]:
+          - /url: /gallery/
+        - link [ref=e177] [cursor=pointer]:
+          - /url: https://git.perish.top/PerishFire/design
+          - img "forge" [ref=e178]
+          - text: PerishFire/design
+  - status [ref=e180]:
+    - generic [ref=e181]: the guard is green

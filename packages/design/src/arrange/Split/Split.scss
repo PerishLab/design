@@ -1,8 +1,23 @@
 @layer component {
 	.split {
 		display: flex;
+		flex-wrap: wrap;
 		align-items: flex-end;
 		justify-content: space-between;
 		gap: var(--space-3);
+	}
+
+	.split-close {
+		align-items: center;
+		justify-content: flex-start;
+		margin-block: var(--space-5) 0;
+	}
+
+	.split-close:first-child {
+		margin-block-start: 0;
+	}
+
+	.split-close:last-child {
+		margin-block-end: 0;
 	}
 }

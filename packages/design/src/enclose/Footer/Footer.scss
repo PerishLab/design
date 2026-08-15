@@ -19,4 +19,8 @@
 			margin-left: auto;
 		}
 	}
+
+	.footer:first-child {
+		margin-block-start: 0;
+	}
 }

@@ -3,15 +3,17 @@
 @layer component {
 	.hero {
 		position: relative;
-		padding: var(--space-5) 0 var(--space-3);
+		overflow: hidden;
+		padding: var(--space-5) 0 var(--space-5);
 
 		h1 {
-			margin: 0 0 var(--space-3);
+			margin: 0 0 var(--space-5);
 			font-family: var(--crown);
 			font-weight: var(--heft);
 			line-height: var(--tight);
 			letter-spacing: var(--track);
 			font-size: var(--hero);
+			max-width: calc(var(--prose) * 1.2);
 			text-wrap: balance;
 		}
 
@@ -20,12 +22,13 @@
 			max-width: var(--prose);
 			font-size: var(--lead);
 			color: var(--muted);
+			text-wrap: balance;
 		}
 
 		.ghost {
 			position: absolute;
-			top: var(--space-3);
-			right: 0;
+			top: calc(var(--space-5) * -1);
+			right: calc(var(--space-6) * -1);
 			width: calc(var(--hero) * 4);
 			color: var(--accent);
 			font-family: var(--crown);
@@ -35,6 +38,14 @@
 			opacity: var(--haze);
 			pointer-events: none;
 		}
+	}
+
+	.hero:first-child {
+		padding-block-start: 0;
+	}
+
+	.hero:last-child {
+		padding-block-end: 0;
 	}
 
 	@include media.slim {

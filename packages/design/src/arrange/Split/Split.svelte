@@ -2,7 +2,13 @@
 	import type { Snippet } from "svelte";
 	import "./Split.scss";
 
-	let { children }: { children: Snippet } = $props();
+	let {
+		look = "apart",
+		children,
+	}: {
+		look?: "apart" | "close";
+		children: Snippet;
+	} = $props();
 </script>
 
-<div class="split">{@render children()}</div>
+<div class="split split-{look}">{@render children()}</div>

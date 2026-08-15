@@ -12,6 +12,7 @@ allow = false
 
 [[grant]]
 paths = [
+    "packages/bone/**",
     "packages/design/**",
     "packages/token/**",
 ]

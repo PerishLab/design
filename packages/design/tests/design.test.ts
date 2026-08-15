@@ -5,6 +5,7 @@ import * as design from "../src/lib.ts";
 
 test("exports one-word components", () => {
 	expect(Object.keys(design).sort()).toEqual([
+		"Aside",
 		"Banner",
 		"Board",
 		"Button",
@@ -13,6 +14,7 @@ test("exports one-word components", () => {
 		"Check",
 		"Code",
 		"Copy",
+		"Course",
 		"Face",
 		"Field",
 		"Fold",
@@ -37,7 +39,9 @@ test("exports one-word components", () => {
 		"Search",
 		"Sheet",
 		"Shell",
+		"Sign",
 		"Split",
+		"Stage",
 		"Table",
 		"Tabs",
 		"Tag",

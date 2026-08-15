@@ -1,0 +1,185 @@
+- generic [ref=f11e3]:
+  - banner [ref=f11e6]:
+    - generic [ref=f11e7]: ◆
+    - heading "perish workshop" [level=1] [ref=f11e9]
+    - navigation [ref=f11e10]:
+      - link [ref=f11e11] [cursor=pointer]:
+        - /url: https://git.perish.top/PerishFire/design
+        - img "forge" [ref=f11e12]
+        - text: PerishFire/design
+      - link "gallery" [ref=f11e14] [cursor=pointer]:
+        - /url: /gallery/
+      - button "dark" [ref=f11e15] [cursor=pointer]
+  - generic [ref=f11e16]:
+    - navigation [ref=f11e17]:
+      - link "planes" [ref=f11e18] [cursor=pointer]:
+        - /url: "#planes"
+      - link "release" [ref=f11e19] [cursor=pointer]:
+        - /url: "#release"
+      - link "laws" [ref=f11e20] [cursor=pointer]:
+        - /url: "#laws"
+      - link "access" [ref=f11e21] [cursor=pointer]:
+        - /url: "#access"
+    - tablist [ref=f11e22]:
+      - tab "live" [selected] [ref=f11e23] [cursor=pointer]
+      - tab "held" [ref=f11e24] [cursor=pointer]
+    - banner [ref=f11e25]:
+      - generic: ◆
+      - heading "Six planes are live." [level=1] [ref=f11e26]
+      - paragraph [ref=f11e27]: Every plane carries its own constitution, and no release is a publish until it is first a proof.
+    - generic [ref=f11e28]:
+      - searchbox "filter planes" [ref=f11e29]
+      - button "new plane" [ref=f11e30] [cursor=pointer]
+    - heading "Planes" [level=2] [ref=f11e31]
+    - generic [ref=f11e32]:
+      - generic [ref=f11e34]:
+        - heading "design" [level=3] [ref=f11e35]
+        - paragraph [ref=f11e36]: The Svelte vocabulary, its tokens, and every theme built on them.
+        - link "open" [ref=f11e37] [cursor=pointer]:
+          - /url: "#planes"
+      - generic [ref=f11e39]:
+        - heading "ectropy" [level=3] [ref=f11e40]
+        - paragraph [ref=f11e41]: Structural and vocabulary law, enforced on every file in the tree.
+        - link "open" [ref=f11e42] [cursor=pointer]:
+          - /url: "#planes"
+      - generic [ref=f11e44]:
+        - heading "plumb" [level=3] [ref=f11e45]
+        - paragraph [ref=f11e46]: Build, inspect, prove, release, and land a governed repository.
+        - link "open" [ref=f11e47] [cursor=pointer]:
+          - /url: "#planes"
+      - generic [ref=f11e49]:
+        - heading "runseal" [level=3] [ref=f11e50]
+        - paragraph [ref=f11e51]: Per-run profile isolation, so one run can never poison the next.
+        - link "open" [ref=f11e52] [cursor=pointer]:
+          - /url: "#planes"
+    - heading "Release" [level=2] [ref=f11e53]
+    - generic [ref=f11e54]:
+      - generic [ref=f11e55]:
+        - heading "design v0.3.0" [level=2] [ref=f11e56]
+        - paragraph [ref=f11e57]: the npm transaction is owned by Actions; product workflows are thin callers
+      - generic [ref=f11e58]:
+        - generic [ref=f11e59]:
+          - generic [ref=f11e60]:
+            - generic [ref=f11e61]: packages/design
+            - generic [ref=f11e62]: 0.3.0
+          - generic [ref=f11e63]: published
+        - generic [ref=f11e65]:
+          - generic [ref=f11e66]:
+            - generic [ref=f11e67]: packages/token
+            - generic [ref=f11e68]: 0.1.0
+          - generic [ref=f11e69]: published
+        - generic [ref=f11e71]:
+          - generic [ref=f11e72]:
+            - generic [ref=f11e73]: break-glass operator
+            - generic [ref=f11e74]: rejected
+          - generic [ref=f11e75]: denied
+        - generic [ref=f11e77]:
+          - generic [ref=f11e78]:
+            - generic [ref=f11e79]: git.perish.top/api/packages/PerishLab/npm/
+            - generic [ref=f11e80]: registry
+          - button "copy" [ref=f11e82] [cursor=pointer]
+        - progressbar "guard" [ref=f11e83]
+        - generic [ref=f11e85]:
+          - button "actions" [ref=f11e87] [cursor=pointer]
+          - button "cut 0.4.0" [ref=f11e88] [cursor=pointer]
+    - table [ref=f11e89]:
+      - rowgroup [ref=f11e90]:
+        - row [ref=f11e91]:
+          - columnheader "plane" [ref=f11e92]
+          - columnheader "version" [ref=f11e93]
+          - columnheader "state" [ref=f11e94]
+      - rowgroup [ref=f11e95]:
+        - row [ref=f11e96]:
+          - cell "design" [ref=f11e97]
+          - cell "0.3.0" [ref=f11e98]
+          - cell "published" [ref=f11e99]
+        - row [ref=f11e100]:
+          - cell "token" [ref=f11e101]
+          - cell "0.1.0" [ref=f11e102]
+          - cell "published" [ref=f11e103]
+        - row [ref=f11e104]:
+          - cell "ectropy" [ref=f11e105]
+          - cell "—" [ref=f11e106]
+          - cell "clean" [ref=f11e107]
+    - heading "Laws" [level=2] [ref=f11e108]
+    - list [ref=f11e109]:
+      - listitem [ref=f11e110]:
+        - generic [ref=f11e111]: "01"
+        - generic [ref=f11e112]: declare
+        - generic [ref=f11e113]: the library names the design
+      - listitem [ref=f11e114]:
+        - generic [ref=f11e115]: "02"
+        - generic [ref=f11e116]: materialise
+        - generic [ref=f11e117]: the plugin wires it up
+      - listitem [ref=f11e118]:
+        - generic [ref=f11e119]: "03"
+        - generic [ref=f11e120]: consume
+        - generic [ref=f11e121]: an app eats what we shipped
+    - paragraph [ref=f11e122]: Every law below is machine enforced. None of it is a style preference, and none of it is advisory.
+    - generic [ref=f11e123]:
+      - banner [ref=f11e124]:
+        - generic [ref=f11e125]: ectropy.toml
+        - button "copy" [ref=f11e126] [cursor=pointer]
+      - code [ref=f11e128]: "[limit] block = 4 fanout = 10 file = 300 markup = 8 param = 4 path = 4"
+    - list [ref=f11e129]:
+      - listitem [ref=f11e130]:
+        - text: every declaration is one word
+        - generic [ref=f11e131]: word
+      - listitem [ref=f11e132]:
+        - text: no comment survives the scan
+        - generic [ref=f11e133]: comment
+      - listitem [ref=f11e134]:
+        - text: ten generators to a node
+        - generic [ref=f11e135]: fanout
+      - listitem [ref=f11e136]:
+        - text: this screen writes no tag of its own
+        - generic [ref=f11e137]: markup
+    - list [ref=f11e138]:
+      - listitem [ref=f11e139]:
+        - generic [ref=f11e140]: kernel
+        - generic [ref=f11e142]: "12"
+      - listitem [ref=f11e143]:
+        - generic [ref=f11e144]: grammar
+        - generic [ref=f11e146]: "8"
+      - listitem [ref=f11e147]:
+        - generic [ref=f11e148]: seal
+        - generic [ref=f11e150]: "3"
+    - group [ref=f11e151]:
+      - generic "why one word" [ref=f11e152] [cursor=pointer]
+    - heading "Access" [level=2] [ref=f11e153]
+    - generic [ref=f11e154]:
+      - generic [ref=f11e155]:
+        - img "Ada Lovelace" [ref=f11e156]: AL
+        - generic [ref=f11e157]:
+          - generic [ref=f11e158]: v0.3.0
+          - tooltip "one word, one meaning"
+      - generic [ref=f11e159]:
+        - generic [ref=f11e160]: operator
+        - textbox "operator" [ref=f11e161]:
+          - /placeholder: who is asking
+      - generic [ref=f11e162]:
+        - generic [ref=f11e163]: token
+        - textbox "token" [ref=f11e164]:
+          - /placeholder: purpose scoped only
+      - generic [ref=f11e165]:
+        - generic [ref=f11e166]: plane
+        - combobox "plane" [ref=f11e167] [cursor=pointer]:
+          - option "design" [selected]
+          - option "ectropy"
+          - option "plumb"
+      - generic [ref=f11e168] [cursor=pointer]:
+        - switch "refuse a break-glass token" [checked]
+        - generic [ref=f11e170]: refuse a break-glass token
+      - paragraph [ref=f11e171]: A break-glass token is never accepted on this path.
+      - button "sign in" [ref=f11e172] [cursor=pointer]
+    - contentinfo [ref=f11e173]:
+      - generic [ref=f11e174]: a PerishLab workshop — this site is MIT and guarded by its own constitution.
+      - navigation [ref=f11e175]:
+        - link "gallery" [ref=f11e176] [cursor=pointer]:
+          - /url: /gallery/
+        - link [ref=f11e177] [cursor=pointer]:
+          - /url: https://git.perish.top/PerishFire/design
+          - img "forge" [ref=f11e178]
+          - text: PerishFire/design
+  - status [ref=f11e180]:
+    - generic [ref=f11e181]: the guard is green

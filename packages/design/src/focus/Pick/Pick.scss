@@ -12,14 +12,28 @@
 		font-weight: var(--firm);
 	}
 
+	.pick-slot {
+		position: relative;
+		display: flex;
+		align-items: center;
+		color: var(--muted);
+	}
+
+	.pick-slot .sign {
+		position: absolute;
+		right: var(--space-3);
+		pointer-events: none;
+	}
+
 	.pick-input {
+		appearance: none;
 		width: 100%;
-		padding: var(--space-2) var(--space-3);
-		border: var(--line) solid var(--rule);
+		padding: var(--space-2) calc(var(--space-4) + var(--sign)) var(--space-2) var(--space-3);
+		border: var(--line) solid var(--edge);
 		border-radius: var(--slot);
 		background: var(--well);
 		color: var(--bright);
-		font-family: var(--plain);
+		font-family: var(--brisk);
 		font-size: var(--body);
 		cursor: pointer;
 		transition: border-color var(--beat);
@@ -29,5 +43,28 @@
 	.pick-input:focus {
 		border-color: var(--accent);
 		outline: none;
+	}
+
+	.pick-bare {
+		flex: 0 0 auto;
+	}
+
+	.pick-bare .pick-slot .sign {
+		right: var(--space-2);
+	}
+
+	.pick-bare .pick-input {
+		width: auto;
+		padding: var(--space-1) calc(var(--space-3) + var(--sign)) var(--space-1) var(--space-2);
+		border-color: transparent;
+		background: transparent;
+		color: var(--muted);
+		font-size: var(--fine);
+	}
+
+	.pick-bare .pick-input:hover,
+	.pick-bare .pick-input:focus {
+		border-color: var(--edge);
+		color: var(--bright);
 	}
 }

@@ -1,0 +1,38 @@
+{
+	"name": "@perish/bone",
+	"version": "0.1.0",
+	"license": "MIT",
+	"type": "module",
+	"files": [
+		"dist"
+	],
+	"svelte": "./dist/lib.js",
+	"exports": {
+		".": {
+			"types": "./dist/lib.d.ts",
+			"svelte": "./dist/lib.js",
+			"default": "./dist/lib.js"
+		}
+	},
+	"publishConfig": {
+		"access": "public",
+		"registry": "https://git.perish.top/api/packages/PerishLab/npm/"
+	},
+	"scripts": {
+		"build": "svelte-package -i src -o dist",
+		"check": "svelte-check --tsconfig ./tsconfig.json",
+		"test": "vitest run"
+	},
+	"peerDependencies": {
+		"svelte": ">=5.56"
+	},
+	"devDependencies": {
+		"@sveltejs/package": "catalog:",
+		"@types/node": "catalog:",
+		"svelte": "catalog:",
+		"svelte-check": "catalog:",
+		"typescript": "catalog:",
+		"vite": "catalog:",
+		"vitest": "catalog:"
+	}
+}

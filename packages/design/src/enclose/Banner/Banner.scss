@@ -1,19 +1,43 @@
+@use "pkg:@perish/token/media.scss";
+
+@property --sink {
+	syntax: "<number>";
+	inherits: true;
+	initial-value: 1;
+}
+
 @layer component {
+	.banner-band {
+		block-size: var(--band);
+		animation-name: dock;
+		animation-range: 0 var(--band);
+	}
+
+	.banner-skin {
+		animation-name: float;
+		animation-range: 0 var(--band);
+	}
+
 	.banner {
 		display: flex;
 		flex-wrap: wrap;
 		align-items: center;
+		align-content: center;
 		gap: var(--space-4);
+		block-size: 100%;
+		max-inline-size: calc(var(--reach) + var(--space-6) * 2);
+		margin-inline: auto;
 		padding: var(--space-5) 0 var(--space-4);
+		box-sizing: border-box;
 
 		.mark {
 			display: grid;
-			width: calc(var(--hero) * 1.4);
-			height: calc(var(--hero) * 1.4);
-			place-items: center;
+			width: calc(var(--lead) * 1.4);
+			height: calc(var(--lead) * 1.4);
+			place-items: center start;
 			color: var(--accent);
 			font-family: var(--crown);
-			font-size: var(--hero);
+			font-size: var(--lead);
 			line-height: 1;
 		}
 
@@ -22,8 +46,9 @@
 			font-family: var(--crown);
 			font-weight: var(--heft);
 			line-height: var(--tight);
-			letter-spacing: var(--track);
-			font-size: var(--hero);
+			letter-spacing: 0.01em;
+			font-size: var(--lead);
+			white-space: nowrap;
 		}
 
 		p {
@@ -39,6 +64,61 @@
 			align-items: center;
 			gap: var(--space-3);
 			margin-left: auto;
+		}
+	}
+
+	.banner-exact h1 {
+		text-wrap: balance;
+		font-family: var(--exact);
+		font-size: var(--lead);
+		font-weight: var(--heft);
+		letter-spacing: 0;
+	}
+
+	.banner-exact .link,
+	.banner-exact .pick-input {
+		font-family: var(--exact);
+		letter-spacing: 0;
+	}
+
+	.banner-exact .link {
+		text-transform: uppercase;
+		letter-spacing: 0.07em;
+	}
+
+	.banner-band .banner {
+		padding: 0 var(--space-6);
+	}
+
+	@include media.narrow {
+		.banner-band {
+			block-size: auto;
+			min-block-size: var(--band);
+		}
+
+		.banner-band .banner {
+			padding: var(--space-3) var(--space-4);
+		}
+	}
+
+	.banner-band h1 {
+		font-size: calc(var(--lead) * var(--sink));
+	}
+
+	@keyframes dock {
+		to {
+			padding: var(--verge);
+		}
+	}
+
+	@keyframes float {
+		to {
+			--sink: var(--stoop);
+			background: var(--deck);
+			color: var(--ondeck);
+			border-radius: min(var(--radius), var(--verge));
+			box-shadow: var(--lift);
+			backdrop-filter: var(--fog);
 		}
 	}
 }

@@ -1,0 +1,478 @@
+- generic [ref=f4e3]:
+  - banner [ref=f4e6]:
+    - generic [ref=f4e7]: ◆
+    - generic [ref=f4e8]:
+      - heading "@perish/design" [level=1] [ref=f4e9]
+      - paragraph [ref=f4e10]: one system, many flavours
+    - navigation [ref=f4e11]:
+      - link "front" [ref=f4e12] [cursor=pointer]:
+        - /url: /
+      - link "proof" [ref=f4e13] [cursor=pointer]:
+        - /url: /proof/
+      - combobox "language" [ref=f4e15] [cursor=pointer]:
+        - option "English" [selected]
+        - option "简体中文"
+      - combobox "theme" [ref=f4e17] [cursor=pointer]:
+        - option "system" [selected]
+        - option "light"
+        - option "dark"
+  - generic [ref=f4e18]:
+    - generic [ref=f4e19]:
+      - generic [ref=f4e20]:
+        - searchbox "filter components" [ref=f4e21]
+        - generic [ref=f4e22]:
+          - generic [ref=f4e23]: design system
+          - combobox "design system" [ref=f4e24] [cursor=pointer]:
+            - option "all"
+            - option "base" [selected]
+            - option "ant"
+            - option "brutal"
+            - option "carbon"
+            - option "console"
+            - option "cupertino"
+            - option "folio"
+            - option "glass"
+            - option "material"
+            - option "paper"
+            - option "relief"
+            - option "signal"
+            - option "swiss"
+            - option "terminal"
+        - navigation [ref=f4e25]:
+          - generic [ref=f4e26]: mark
+          - link "Code" [ref=f4e27] [cursor=pointer]:
+            - /url: "#code"
+          - link "Face" [ref=f4e28] [cursor=pointer]:
+            - /url: "#face"
+          - link "Head" [ref=f4e29] [cursor=pointer]:
+            - /url: "#head"
+          - link "Hero" [ref=f4e30] [cursor=pointer]:
+            - /url: "#hero"
+          - link "Item" [ref=f4e31] [cursor=pointer]:
+            - /url: "#item"
+          - link "Line" [ref=f4e32] [cursor=pointer]:
+            - /url: "#line"
+          - link "Meter" [ref=f4e33] [cursor=pointer]:
+            - /url: "#meter"
+          - link "Note" [ref=f4e34] [cursor=pointer]:
+            - /url: "#note"
+          - link "Tag" [ref=f4e35] [cursor=pointer]:
+            - /url: "#tag"
+          - link "Text" [ref=f4e36] [cursor=pointer]:
+            - /url: "#text"
+          - generic [ref=f4e37]: arrange
+          - link "Aside" [ref=f4e38] [cursor=pointer]:
+            - /url: "#aside"
+          - link "Cell" [ref=f4e39] [cursor=pointer]:
+            - /url: "#cell"
+          - link "Grid" [ref=f4e40] [cursor=pointer]:
+            - /url: "#grid"
+          - link "Ledger" [ref=f4e41] [cursor=pointer]:
+            - /url: "#ledger"
+          - link "List" [ref=f4e42] [cursor=pointer]:
+            - /url: "#list"
+          - link "Nav" [ref=f4e43] [cursor=pointer]:
+            - /url: "#nav"
+          - link "Rail" [ref=f4e44] [cursor=pointer]:
+            - /url: "#rail"
+          - link "Split" [ref=f4e45] [cursor=pointer]:
+            - /url: "#split"
+          - link "Table" [ref=f4e46] [cursor=pointer]:
+            - /url: "#table"
+          - generic [ref=f4e47]: enclose
+          - link "Banner" [ref=f4e48] [cursor=pointer]:
+            - /url: "#banner"
+          - link "Board" [ref=f4e49] [cursor=pointer]:
+            - /url: "#board"
+          - link "Card" [ref=f4e50] [cursor=pointer]:
+            - /url: "#card"
+          - link "Course" [ref=f4e51] [cursor=pointer]:
+            - /url: "#course"
+          - link "Footer" [ref=f4e52] [cursor=pointer]:
+            - /url: "#footer"
+          - link "Sheet" [ref=f4e53] [cursor=pointer]:
+            - /url: "#sheet"
+          - link "Stage" [ref=f4e54] [cursor=pointer]:
+            - /url: "#stage"
+          - generic [ref=f4e55]: focus
+          - link "Button" [ref=f4e56] [cursor=pointer]:
+            - /url: "#button"
+          - link "Check" [ref=f4e57] [cursor=pointer]:
+            - /url: "#check"
+          - link "Copy" [ref=f4e58] [cursor=pointer]:
+            - /url: "#copy"
+          - link "Field" [ref=f4e59] [cursor=pointer]:
+            - /url: "#field"
+          - link "Fold" [ref=f4e60] [cursor=pointer]:
+            - /url: "#fold"
+          - link "Forge" [ref=f4e61] [cursor=pointer]:
+            - /url: "#forge"
+          - link "Link" [ref=f4e62] [cursor=pointer]:
+            - /url: "#link"
+          - link "Pick" [ref=f4e63] [cursor=pointer]:
+            - /url: "#pick"
+          - link "Search" [ref=f4e64] [cursor=pointer]:
+            - /url: "#search"
+          - link "Tabs" [ref=f4e65] [cursor=pointer]:
+            - /url: "#tabs"
+          - generic [ref=f4e66]: layer
+          - link "Menu" [ref=f4e67] [cursor=pointer]:
+            - /url: "#menu"
+          - link "Modal" [ref=f4e68] [cursor=pointer]:
+            - /url: "#modal"
+          - link "Tip" [ref=f4e69] [cursor=pointer]:
+            - /url: "#tip"
+          - link "Toast" [ref=f4e70] [cursor=pointer]:
+            - /url: "#toast"
+          - generic [ref=f4e71]: document
+          - link "Frame" [ref=f4e72] [cursor=pointer]:
+            - /url: "#frame"
+          - link "Shell" [ref=f4e73] [cursor=pointer]:
+            - /url: "#shell"
+      - generic [ref=f4e74]:
+        - paragraph [ref=f4e75]: A living Svelte vocabulary for the workshop. Every word is filed by what it takes responsibility for.
+        - heading "mark · 10" [level=2] [ref=f4e76]
+        - generic [ref=f4e77]:
+          - generic [ref=f4e79]:
+            - heading "Code" [level=2] [ref=f4e81]
+            - generic [ref=f4e82]:
+              - generic [ref=f4e85]:
+                - generic [ref=f4e86]:
+                  - generic [ref=f4e87]: seal.ts
+                  - button "copy" [ref=f4e88] [cursor=pointer]
+                - code [ref=f4e90]: let seal = true;
+              - group [ref=f4e91]:
+                - generic "props" [ref=f4e92] [cursor=pointer]
+          - generic [ref=f4e94]:
+            - heading "Face" [level=2] [ref=f4e96]
+            - generic [ref=f4e97]:
+              - img "Ada Lovelace" [ref=f4e100]: AL
+              - group [ref=f4e101]:
+                - generic "props" [ref=f4e102] [cursor=pointer]
+          - generic [ref=f4e104]:
+            - heading "Head" [level=2] [ref=f4e106]
+            - generic [ref=f4e107]:
+              - heading "Laws" [level=2] [ref=f4e110]
+              - group [ref=f4e111]:
+                - generic "props" [ref=f4e112] [cursor=pointer]
+          - generic [ref=f4e114]:
+            - heading "Hero" [level=2] [ref=f4e116]
+            - generic [ref=f4e117]:
+              - generic [ref=f4e120]:
+                - heading "perish design" [level=1] [ref=f4e121]
+                - paragraph [ref=f4e122]: one system, many flavours
+              - group [ref=f4e123]:
+                - generic "props" [ref=f4e124] [cursor=pointer]
+          - generic [ref=f4e126]:
+            - heading "Item" [level=2] [ref=f4e128]
+            - generic [ref=f4e129]:
+              - list [ref=f4e132]:
+                - listitem [ref=f4e133]: declare
+              - group [ref=f4e134]:
+                - generic "props" [ref=f4e135] [cursor=pointer]
+          - generic [ref=f4e137]:
+            - heading "Line" [level=2] [ref=f4e139]
+            - generic [ref=f4e140]:
+              - generic [ref=f4e143]:
+                - generic [ref=f4e144]:
+                  - generic [ref=f4e145]: shape
+                  - generic [ref=f4e146]: living
+                - generic [ref=f4e147]: clean
+              - group [ref=f4e148]:
+                - generic "props" [ref=f4e149] [cursor=pointer]
+          - generic [ref=f4e151]:
+            - heading "Meter" [level=2] [ref=f4e153]
+            - generic [ref=f4e154]:
+              - progressbar "guard" [ref=f4e157]
+              - group [ref=f4e159]:
+                - generic "props" [ref=f4e160] [cursor=pointer]
+          - generic [ref=f4e162]:
+            - heading "Note" [level=2] [ref=f4e164]
+            - generic [ref=f4e165]:
+              - paragraph [ref=f4e168]: one quiet note
+              - group [ref=f4e169]:
+                - generic "props" [ref=f4e170] [cursor=pointer]
+          - generic [ref=f4e172]:
+            - heading "Tag" [level=2] [ref=f4e174]
+            - generic [ref=f4e175]:
+              - generic [ref=f4e176]: stable
+              - group [ref=f4e179]:
+                - generic "props" [ref=f4e180] [cursor=pointer]
+          - generic [ref=f4e182]:
+            - heading "Text" [level=2] [ref=f4e184]
+            - generic [ref=f4e185]:
+              - paragraph [ref=f4e188]: one paragraph of prose, measured to the reading width
+              - group [ref=f4e189]:
+                - generic "props" [ref=f4e190] [cursor=pointer]
+        - heading "arrange · 9" [level=2] [ref=f4e191]
+        - generic [ref=f4e192]:
+          - generic [ref=f4e194]:
+            - heading "Aside" [level=2] [ref=f4e196]
+            - generic [ref=f4e197]:
+              - generic [ref=f4e198]: the main region
+              - group [ref=f4e202]:
+                - generic "props" [ref=f4e203] [cursor=pointer]
+          - generic [ref=f4e205]:
+            - heading "Cell" [level=2] [ref=f4e207]
+            - generic [ref=f4e208]:
+              - generic [ref=f4e209]: a cell that spans two
+              - group [ref=f4e213]:
+                - generic "props" [ref=f4e214] [cursor=pointer]
+          - generic [ref=f4e216]:
+            - heading "Grid" [level=2] [ref=f4e218]
+            - generic [ref=f4e219]:
+              - generic [ref=f4e220]: cells
+              - group [ref=f4e223]:
+                - generic "props" [ref=f4e224] [cursor=pointer]
+          - generic [ref=f4e226]:
+            - heading "Ledger" [level=2] [ref=f4e228]
+            - generic [ref=f4e229]:
+              - list [ref=f4e232]:
+                - listitem [ref=f4e233]:
+                  - generic [ref=f4e234]: kernel
+                  - generic [ref=f4e236]: "12"
+                - listitem [ref=f4e237]:
+                  - generic [ref=f4e238]: grammar
+                  - generic [ref=f4e240]: "8"
+                - listitem [ref=f4e241]:
+                  - generic [ref=f4e242]: seal
+                  - generic [ref=f4e244]: "3"
+              - group [ref=f4e245]:
+                - generic "props" [ref=f4e246] [cursor=pointer]
+          - generic [ref=f4e248]:
+            - heading "List" [level=2] [ref=f4e250]
+            - generic [ref=f4e251]:
+              - list [ref=f4e254]:
+                - listitem [ref=f4e255]: declare
+              - group [ref=f4e256]:
+                - generic "props" [ref=f4e257] [cursor=pointer]
+          - generic [ref=f4e259]:
+            - heading "Nav" [level=2] [ref=f4e261]
+            - generic [ref=f4e262]:
+              - navigation [ref=f4e265]:
+                - link "design" [ref=f4e266] [cursor=pointer]:
+                  - /url: "#nav"
+              - group [ref=f4e267]:
+                - generic "props" [ref=f4e268] [cursor=pointer]
+          - generic [ref=f4e270]:
+            - heading "Rail" [level=2] [ref=f4e272]
+            - generic [ref=f4e273]:
+              - list [ref=f4e276]:
+                - listitem [ref=f4e277]:
+                  - generic [ref=f4e278]: "01"
+                  - generic [ref=f4e279]: declare
+                  - generic [ref=f4e280]: the library names the design
+                - listitem [ref=f4e281]:
+                  - generic [ref=f4e282]: "02"
+                  - generic [ref=f4e283]: materialise
+                  - generic [ref=f4e284]: the plugin wires it up
+                - listitem [ref=f4e285]:
+                  - generic [ref=f4e286]: "03"
+                  - generic [ref=f4e287]: consume
+                  - generic [ref=f4e288]: an app eats what we shipped
+              - group [ref=f4e289]:
+                - generic "props" [ref=f4e290] [cursor=pointer]
+          - generic [ref=f4e292]:
+            - heading "Split" [level=2] [ref=f4e294]
+            - generic [ref=f4e295]:
+              - generic [ref=f4e296]: two sides
+              - group [ref=f4e299]:
+                - generic "props" [ref=f4e300] [cursor=pointer]
+          - generic [ref=f4e302]:
+            - heading "Table" [level=2] [ref=f4e304]
+            - generic [ref=f4e305]:
+              - table [ref=f4e308]:
+                - rowgroup [ref=f4e309]:
+                  - row [ref=f4e310]:
+                    - columnheader "plane" [ref=f4e311]
+                    - columnheader "state" [ref=f4e312]
+                - rowgroup [ref=f4e313]:
+                  - row [ref=f4e314]:
+                    - cell "design" [ref=f4e315]
+                    - cell "published" [ref=f4e316]
+                  - row [ref=f4e317]:
+                    - cell "ectropy" [ref=f4e318]
+                    - cell "clean" [ref=f4e319]
+              - group [ref=f4e320]:
+                - generic "props" [ref=f4e321] [cursor=pointer]
+        - heading "enclose · 7" [level=2] [ref=f4e322]
+        - generic [ref=f4e323]:
+          - generic [ref=f4e325]:
+            - heading "Banner" [level=2] [ref=f4e327]
+            - generic [ref=f4e328]:
+              - generic [ref=f4e333]:
+                - generic [ref=f4e334]: ◆
+                - generic [ref=f4e335]:
+                  - heading "a banner carries one line" [level=1] [ref=f4e336]
+                  - paragraph [ref=f4e337]: and an optional body beneath it
+                - navigation
+              - group [ref=f4e338]:
+                - generic "props" [ref=f4e339] [cursor=pointer]
+          - generic [ref=f4e341]:
+            - heading "Board" [level=2] [ref=f4e343]
+            - generic [ref=f4e344]:
+              - generic [ref=f4e347]:
+                - generic [ref=f4e348]:
+                  - heading "identity" [level=2] [ref=f4e349]
+                  - paragraph [ref=f4e350]: one bounded concern
+                - generic [ref=f4e351]: rows
+              - group [ref=f4e352]:
+                - generic "props" [ref=f4e353] [cursor=pointer]
+          - generic [ref=f4e355]:
+            - heading "Card" [level=2] [ref=f4e357]
+            - generic [ref=f4e358]:
+              - generic [ref=f4e361]:
+                - heading "laws" [level=3] [ref=f4e362]
+                - text: eight of them
+              - group [ref=f4e363]:
+                - generic "props" [ref=f4e364] [cursor=pointer]
+          - generic [ref=f4e366]:
+            - heading "Course" [level=2] [ref=f4e368]
+            - generic [ref=f4e369]:
+              - generic [ref=f4e370]: a run across the page
+              - group [ref=f4e373]:
+                - generic "props" [ref=f4e374] [cursor=pointer]
+          - generic [ref=f4e376]:
+            - heading "Footer" [level=2] [ref=f4e378]
+            - generic [ref=f4e379]:
+              - generic [ref=f4e382]:
+                - generic [ref=f4e383]: a workshop colophon
+                - navigation [ref=f4e384]: beta
+              - group [ref=f4e385]:
+                - generic "props" [ref=f4e386] [cursor=pointer]
+          - generic [ref=f4e388]:
+            - heading "Sheet" [level=2] [ref=f4e390]
+            - generic [ref=f4e391]:
+              - generic [ref=f4e392]: a bounded surface
+              - group [ref=f4e395]:
+                - generic "props" [ref=f4e396] [cursor=pointer]
+          - generic [ref=f4e398]:
+            - heading "Stage" [level=2] [ref=f4e400]
+            - generic [ref=f4e401]:
+              - generic [ref=f4e402]: one thing, framed
+              - group [ref=f4e405]:
+                - generic "props" [ref=f4e406] [cursor=pointer]
+        - heading "focus · 10" [level=2] [ref=f4e407]
+        - generic [ref=f4e408]:
+          - generic [ref=f4e410]:
+            - heading "Button" [level=2] [ref=f4e412]
+            - generic [ref=f4e413]:
+              - button "press" [ref=f4e416] [cursor=pointer]
+              - group [ref=f4e417]:
+                - generic "props" [ref=f4e418] [cursor=pointer]
+          - generic [ref=f4e420]:
+            - heading "Check" [level=2] [ref=f4e422]
+            - generic [ref=f4e423]:
+              - generic [ref=f4e426] [cursor=pointer]:
+                - checkbox "guarded" [checked] [ref=f4e427]
+                - generic [ref=f4e428]: guarded
+              - group [ref=f4e429]:
+                - generic "props" [ref=f4e430] [cursor=pointer]
+          - generic [ref=f4e432]:
+            - heading "Copy" [level=2] [ref=f4e434]
+            - generic [ref=f4e435]:
+              - button "copy" [ref=f4e438] [cursor=pointer]
+              - group [ref=f4e439]:
+                - generic "props" [ref=f4e440] [cursor=pointer]
+          - generic [ref=f4e442]:
+            - heading "Field" [level=2] [ref=f4e444]
+            - generic [ref=f4e445]:
+              - generic [ref=f4e448]:
+                - generic [ref=f4e449]: name
+                - textbox "name" [ref=f4e450]:
+                  - /placeholder: perish
+              - group [ref=f4e451]:
+                - generic "props" [ref=f4e452] [cursor=pointer]
+          - generic [ref=f4e454]:
+            - heading "Fold" [level=2] [ref=f4e456]
+            - generic [ref=f4e457]:
+              - group [ref=f4e460]:
+                - generic "why one word" [ref=f4e461] [cursor=pointer]
+              - group [ref=f4e462]:
+                - generic "props" [ref=f4e463] [cursor=pointer]
+          - generic [ref=f4e465]:
+            - heading "Forge" [level=2] [ref=f4e467]
+            - generic [ref=f4e468]:
+              - link [ref=f4e471] [cursor=pointer]:
+                - /url: https://git.perish.top/PerishFire/design
+                - img "forge" [ref=f4e472]
+                - text: PerishFire/design
+              - group [ref=f4e474]:
+                - generic "props" [ref=f4e475] [cursor=pointer]
+          - generic [ref=f4e477]:
+            - heading "Link" [level=2] [ref=f4e479]
+            - generic [ref=f4e480]:
+              - link "open" [ref=f4e483] [cursor=pointer]:
+                - /url: /
+              - group [ref=f4e484]:
+                - generic "props" [ref=f4e485] [cursor=pointer]
+          - generic [ref=f4e487]:
+            - heading "Pick" [level=2] [ref=f4e489]
+            - generic [ref=f4e490]:
+              - generic [ref=f4e493]:
+                - generic [ref=f4e494]: plane
+                - combobox "plane" [ref=f4e495] [cursor=pointer]:
+                  - option "design" [selected]
+                  - option "ectropy"
+              - group [ref=f4e496]:
+                - generic "props" [ref=f4e497] [cursor=pointer]
+          - generic [ref=f4e499]:
+            - heading "Search" [level=2] [ref=f4e501]
+            - generic [ref=f4e502]:
+              - searchbox "filter components" [ref=f4e505]
+              - group [ref=f4e506]:
+                - generic "props" [ref=f4e507] [cursor=pointer]
+          - generic [ref=f4e509]:
+            - heading "Tabs" [level=2] [ref=f4e511]
+            - generic [ref=f4e512]:
+              - tablist [ref=f4e515]:
+                - tab "preview" [selected] [ref=f4e516] [cursor=pointer]
+                - tab "props" [ref=f4e517] [cursor=pointer]
+              - group [ref=f4e518]:
+                - generic "props" [ref=f4e519] [cursor=pointer]
+        - heading "layer · 4" [level=2] [ref=f4e520]
+        - generic [ref=f4e521]:
+          - generic [ref=f4e523]:
+            - heading "Menu" [level=2] [ref=f4e525]
+            - generic [ref=f4e526]:
+              - button "actions" [ref=f4e530] [cursor=pointer]
+              - group [ref=f4e531]:
+                - generic "props" [ref=f4e532] [cursor=pointer]
+          - generic [ref=f4e534]:
+            - heading "Modal" [level=2] [ref=f4e536]
+            - group [ref=f4e540]:
+              - generic "props" [ref=f4e541] [cursor=pointer]
+          - generic [ref=f4e543]:
+            - heading "Tip" [level=2] [ref=f4e545]
+            - generic [ref=f4e546]:
+              - generic [ref=f4e549]:
+                - text: hover me
+                - tooltip "one word, one meaning"
+              - group [ref=f4e550]:
+                - generic "props" [ref=f4e551] [cursor=pointer]
+          - generic [ref=f4e553]:
+            - heading "Toast" [level=2] [ref=f4e555]
+            - generic [ref=f4e556]:
+              - status [ref=f4e559]:
+                - generic [ref=f4e560]: the guard is green
+              - group [ref=f4e561]:
+                - generic "props" [ref=f4e562] [cursor=pointer]
+        - heading "document · 2" [level=2] [ref=f4e563]
+        - generic [ref=f4e564]:
+          - generic [ref=f4e566]:
+            - heading "Frame" [level=2] [ref=f4e568]
+            - generic [ref=f4e569]:
+              - generic [ref=f4e570]: a frame wraps the whole page
+              - group [ref=f4e573]:
+                - generic "props" [ref=f4e574] [cursor=pointer]
+          - generic [ref=f4e576]:
+            - heading "Shell" [level=2] [ref=f4e578]
+            - generic [ref=f4e579]:
+              - generic [ref=f4e580]: a full product shell
+              - group [ref=f4e583]:
+                - generic "props" [ref=f4e584] [cursor=pointer]
+    - contentinfo [ref=f4e585]:
+      - generic [ref=f4e586]: 42 / 42
+      - navigation [ref=f4e587]:
+        - link "source" [ref=f4e588] [cursor=pointer]:
+          - /url: https://git.perish.top/PerishFire/design

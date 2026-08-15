@@ -1,6 +1,12 @@
 @layer component {
 	.text {
 		max-width: var(--prose);
-		margin: 0 0 var(--space-3);
+		font-size: var(--read);
+		text-wrap: pretty;
+		margin: 0 0 calc(1em * var(--leading) * var(--apart));
+	}
+
+	.text:last-child {
+		margin-block-end: 0;
 	}
 }

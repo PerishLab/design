@@ -1,0 +1,19 @@
+@layer bone {
+	.bay {
+		box-sizing: border-box;
+		display: block;
+		inline-size: 100%;
+	}
+
+	.bay-stick {
+		position: sticky;
+		inset-block-start: 0;
+		z-index: 1;
+	}
+
+	.bay-drive {
+		animation-timeline: scroll(root block);
+		animation-fill-mode: both;
+		animation-timing-function: linear;
+	}
+}

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Sign from "../../mark/Sign/Sign.svelte";
 	import "./Copy.scss";
 
 	let { text }: { text: string } = $props();
@@ -11,4 +12,4 @@
 	}
 </script>
 
-<button class:done class="copy" type="button" onclick={grab}>{done ? "copied" : "copy"}</button>
+<button class:done class="copy" type="button" onclick={grab}><Sign name={done ? "tick" : "copy"} />{done ? "copied" : "copy"}</button>

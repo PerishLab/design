@@ -61,7 +61,6 @@ function proxy(target: string): object {
 function wiring(env: ReturnType<typeof config>): object {
 	const server: Record<string, unknown> = {};
 	if (env.port !== undefined) {
-		server.host = "127.0.0.1";
 		server.port = env.port;
 		server.strictPort = true;
 	}
@@ -76,7 +75,9 @@ function wiring(env: ReturnType<typeof config>): object {
 		},
 		resolve: { dedupe: ["svelte"] },
 	};
-	return Object.keys(server).length === 0 ? shared : { ...shared, server };
+	return Object.keys(server).length === 0
+		? shared
+		: { ...shared, preview: { ...server }, server };
 }
 
 function serve(body: () => string): Middle {

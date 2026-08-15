@@ -3,7 +3,9 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { expect, test } from "vitest";
 import { catalog, groups } from "../src/docs/catalog.ts";
-import { notes } from "../src/docs/notes/lib.ts";
+import { kinds } from "../src/docs/kinds.ts";
+import * as english from "../src/lib/i18n/en/index.ts";
+import * as chinese from "../src/lib/i18n/zh/index.ts";
 
 const root = join(
 	dirname(fileURLToPath(import.meta.url)),
@@ -24,23 +26,40 @@ function walk(path: string): string[] {
 	return found;
 }
 
+function paths(held: unknown, stem: string): string[] {
+	if (typeof held === "string") return [stem];
+	if (Array.isArray(held))
+		return held.flatMap((one, seat) => paths(one, `${stem}.${seat}`));
+	if (held !== null && typeof held === "object")
+		return Object.entries(held).flatMap(([key, one]) =>
+			paths(one, stem === "" ? key : `${stem}.${key}`),
+		);
+	return [];
+}
+
 test("covers every styled component", () => {
-	expect(walk(root).sort()).toEqual(Object.keys(notes).sort());
+	expect(walk(root).sort()).toEqual(Object.keys(kinds).sort());
 });
 
-test("speaks every property in both languages", () => {
-	const empty: string[] = [];
-	for (const [name, entry] of Object.entries(notes)) {
-		for (const [prop, note] of Object.entries(entry)) {
-			if (!note.en.trim()) empty.push(`${name}.${prop}.en`);
-			if (!note.zh.trim()) empty.push(`${name}.${prop}.zh`);
+test("says the same keys in every tongue", () => {
+	expect(paths(chinese, "").sort()).toEqual(paths(english, "").sort());
+});
+
+test("speaks every property it documents", () => {
+	const dumb: string[] = [];
+	for (const [name, entry] of Object.entries(kinds))
+		for (const prop of Object.keys(entry)) {
+			const said = english.notes[name as keyof typeof english.notes] as Record<
+				string,
+				string
+			>;
+			if (said?.[prop] === undefined) dumb.push(`${name}.${prop}`);
 		}
-	}
-	expect(empty).toEqual([]);
+	expect(dumb).toEqual([]);
 });
 
 test("groups every documented component once", () => {
 	const names = groups.flatMap((group) => catalog[group]);
 	expect(names.length).toBe(new Set(names).size);
-	expect(names.sort()).toEqual(Object.keys(notes).sort());
+	expect(names.sort()).toEqual(Object.keys(kinds).sort());
 });

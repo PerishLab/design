@@ -4,12 +4,29 @@
 	}
 
 	.fold-cue {
+		display: flex;
+		align-items: center;
+		gap: var(--space-2);
 		padding: var(--space-3) 0;
-		color: var(--ink);
-		font-family: var(--plain);
-		font-size: var(--body);
+		list-style: none;
+		color: var(--muted);
+		font-family: var(--brisk);
+		font-size: var(--fine);
 		font-weight: var(--firm);
 		cursor: pointer;
+		transition: color var(--beat);
+	}
+
+	.fold-cue .sign {
+		transition: rotate var(--beat);
+	}
+
+	.fold[open] .fold-cue .sign {
+		rotate: 90deg;
+	}
+
+	.fold-cue:hover {
+		color: var(--bright);
 	}
 
 	.fold-body {

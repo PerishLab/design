@@ -1,0 +1,198 @@
+export const notes = {
+	Aside: {
+		side: "立在主区旁边并保持不动的内容",
+		children: "主区内容",
+	},
+	Banner: {
+		mark: "标题前的单个字形",
+		title: "横幅的标题",
+		line: "一行辅助文字",
+		children: "文字下方的可选内容",
+	},
+	Board: {
+		title: "面板标题",
+		look: "held 让主体保持内边距,flush 把整个主体交给填充它的东西",
+		line: "标题下方的可选辅助文字",
+		seat: "可选的锚点,供链接抵达",
+		children: "面板内的行与控件",
+	},
+	Button: {
+		children: "按钮内的文字",
+		sign: "画在文字之后的符号",
+		label: "没有子节点时使用的文字标签",
+		press: "按钮被按下时调用",
+		look: "实心或安静的视觉强调",
+		wide: "是否占满可用宽度",
+		busy: "标记按钮正在工作并拒绝按压",
+		halt: "拒绝按压但并不声称正在工作",
+		submit: "是否提交最近的表单",
+	},
+	Card: {
+		title: "卡片的标题",
+		children: "卡片的正文",
+	},
+	Cell: {
+		span: "这一格占据栅格的几列",
+		start: "起始列,用于指定位置时",
+		children: "格子里放置的内容",
+	},
+	Check: {
+		label: "方框旁的文字",
+		held: "方框当前是否被勾选",
+		change: "勾选状态变化时以新值调用",
+		look: "可勾选的方框或可拨动的开关",
+	},
+	Code: {
+		text: "要展示的源码文本",
+		name: "可选的文件名,显示在上方",
+		copy: "是否显示复制控件",
+	},
+	Copy: {
+		text: "写入剪贴板的文本",
+	},
+	Course: {
+		look: "bare 不陈述空间,plain 陈述空间,raise 与 well 各自陈述它承载的表面",
+		children: "这一道在页面度量上居中承载的区域",
+	},
+	Face: {
+		name: "这张面孔所代表的人或物",
+		src: "可选的图片,用以替代缩写",
+	},
+	Field: {
+		label: "字段标签",
+		value: "当前字段值",
+		change: "字段变化时以新值调用",
+		kind: "普通文本或密码输入",
+		hint: "可选的占位提示文字",
+	},
+	Fold: {
+		label: "折叠状态下显示的文字",
+		open: "当前是否展开",
+		children: "折叠所隐藏的内容",
+	},
+	Footer: {
+		text: "产品自己署上的版本说明行",
+		children: "页脚的可选内容",
+	},
+	Forge: {
+		host: "承载该仓库的代码平台源",
+		repo: "仓库的所有者与名称",
+	},
+	Frame: {
+		children: "外壳内的整个页面",
+	},
+	Grid: {
+		look: "格子等高,或各自然高",
+		cols: "固定列数,留空则按单元宽度自动填充",
+		children: "要排布的单元格",
+	},
+	Head: {
+		text: "区块标题",
+		seat: "可选的锚点,供链接抵达",
+	},
+	Hero: {
+		title: "页面上最大的一行",
+		line: "标题下的一行文字",
+		mark: "标题旁的可选字形",
+	},
+	Item: {
+		children: "单个条目的内容",
+	},
+	Ledger: {
+		atoms: "要统计的词与计数对",
+	},
+	Line: {
+		name: "行的主要文字",
+		meta: "可选的次要文字",
+		children: "另一侧的可选控件或标签",
+	},
+	Link: {
+		label: "可见的链接文字",
+		href: "链接目标",
+	},
+	List: {
+		children: "列表项",
+	},
+	Menu: {
+		label: "打开菜单的按钮上的文字",
+		items: "每个条目的值与文字",
+		open: "列表当前是否展开",
+		choose: "被选中时以该值调用",
+	},
+	Meter: {
+		label: "这条进度条在度量什么",
+		value: "0 到 1 之间的比例,留空表示仍在等待",
+	},
+	Modal: {
+		title: "对话框所询问之事的名称",
+		open: "对话框当前是否占据屏幕",
+		children: "对话框的内容",
+	},
+	Nav: {
+		look: "横贯顶部的条或沿边竖排的列表",
+		links: "每个条目的文字、目标与当前态",
+	},
+	Note: {
+		text: "要显示的消息",
+		mood: "平静或警告强调",
+	},
+	Sign: {
+		name: "画哪一个符号",
+		look: "文字旁的提示,还是有分量的图版",
+		label: "符号独自出现时,它代表什么",
+	},
+	Pick: {
+		label: "选项上方的标签",
+		value: "当前选中的值",
+		choices: "可供选择的值与标签对",
+		change: "选择变化时以新值调用",
+	},
+	Rail: {
+		stops: "轨道上有序的站点",
+	},
+	Search: {
+		value: "当前的查询文本",
+		change: "查询文本变化时被调用",
+		hint: "可选的占位提示文字",
+	},
+	Sheet: {
+		children: "有限界面中的控件与文字",
+	},
+	Shell: {
+		children: "完整的产品界面",
+		tone: "这块界面的浅色或深色偏好",
+		system: "为这块界面赋予令牌的设计系统",
+	},
+	Split: {
+		children: "分置两侧的内容",
+	},
+	Stage: {
+		look: "view 与 strip 是取景窗,把取景之物拉满;pane 本身就是表面,把站在上面的东西居中",
+		children: "展台取景的那一件东西,居中,超出即裁",
+	},
+	Table: {
+		heads: "各列的表头",
+		rows: "按列序排列的每行单元格",
+	},
+	Tabs: {
+		tabs: "每个标签页的值与文字",
+		value: "当前展开的标签页",
+		change: "切换时以新的标签页调用",
+	},
+	Tag: {
+		text: "简短的标签文字",
+		look: "填充标签或描边标签",
+		mood: "平静或警告强调",
+	},
+	Text: {
+		children: "一段正文",
+	},
+	Tip: {
+		text: "提示所承载的文字",
+		children: "提示所解释的对象",
+	},
+	Toast: {
+		notes: "等待被朗读的消息",
+		mood: "平静或警告强调",
+	},
+};

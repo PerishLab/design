@@ -1,13 +1,51 @@
 @layer component {
 	.link {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--space-1);
 		color: var(--accent);
 		font-size: var(--fine);
-		font-weight: var(--heft);
 		text-decoration: none;
+		transition: color var(--beat);
 	}
 
 	.link:hover {
 		color: var(--bright);
-		text-decoration: underline;
+	}
+
+	.link-text {
+		background-image: linear-gradient(currentColor, currentColor);
+		background-position: 0 100%;
+		background-repeat: no-repeat;
+		background-size: 100% var(--line);
+		padding-bottom: var(--space-1);
+		transition: background-size var(--beat), color var(--beat);
+	}
+
+	.link-text:hover {
+		background-size: 100% var(--rim);
+	}
+
+	.link-nav {
+		position: relative;
+		font-family: var(--brisk);
+		color: var(--muted);
+		padding-block: var(--space-1);
+	}
+
+	.link-nav::after {
+		content: "";
+		position: absolute;
+		inset-inline: 0;
+		inset-block-end: 0;
+		block-size: var(--rim);
+		background: var(--accent);
+		scale: 0 1;
+		transform-origin: left;
+		transition: scale var(--beat);
+	}
+
+	.link-nav:hover::after {
+		scale: 1 1;
 	}
 }

@@ -2,7 +2,13 @@
 	import type { Snippet } from "svelte";
 	import "./Frame.scss";
 
-	let { children }: { children: Snippet } = $props();
+	let {
+		look = "page",
+		children,
+	}: {
+		look?: "page" | "read" | "sheet" | "full";
+		children: Snippet;
+	} = $props();
 </script>
 
-<div class="frame">{@render children()}</div>
+<div class="frame frame-{look}">{@render children()}</div>

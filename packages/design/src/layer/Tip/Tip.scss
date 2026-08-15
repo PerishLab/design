@@ -2,6 +2,7 @@
 	.tip {
 		position: relative;
 		display: inline-flex;
+		font-family: var(--brisk);
 	}
 
 	.tip-note {
@@ -11,7 +12,7 @@
 		z-index: 1;
 		translate: -50% 0;
 		padding: var(--space-1) var(--space-2);
-		border: var(--line) solid var(--rule);
+		border: var(--line) solid var(--edge);
 		border-radius: var(--slot);
 		background: var(--panel);
 		color: var(--ink);

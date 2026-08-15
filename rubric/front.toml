@@ -1,0 +1,357 @@
+# The rubric for `/`.
+#
+# A rubric states what a surface must be true of. It judges; it never generates.
+# The keys below are the half that is decidable today. The comments are the half
+# that is not. When a comment becomes decidable it becomes a key, and that
+# migration is the record of the paradigm crystallising — the moving boundary is
+# the point of this file, not its contents.
+#
+# Nothing reads this yet, deliberately. Six of its laws have a machine home
+# (`apps/docs/tests/onramp.test.ts`, `apps/docs/tests/tally.test.ts`); the rest
+# are held by a person, and one of them — `one-payload` — is held by a person
+# permanently, because mechanizing it would cost the thing it checks. A tool
+# that reads this file should not exist until the shape stops moving.
+#
+# LEDGER.md records what went wrong. This records what must hold. The evidence
+# for both lives in LEDGER; the direction lives in the Concord task
+# `perish.code/design-aesthetic-coldstart`.
+
+[surface]
+path = "/"
+runs = 5
+height = 2111                # at 1440 wide, 2026-08-15
+glyphs = 1967
+density = 647                # glyphs per megapixel; see LEDGER P105/P107
+# The same gauge read 1661 glyphs in 1902 pixels — 606 — immediately before this
+# pass, so the surface grew by 277 pixels and gained 21 glyphs per megapixel:
+# it got longer because it says more, which is the only direction growth is
+# allowed to run.
+# The whole pass moved zero library parts: `look.json` is byte-identical across
+# all fourteen languages, twice over. Every cut here was composition and copy.
+
+# The bar is a sixth block and it is not listed below, because it is not this
+# surface's: every page carries it. It belongs to a rubric that does not exist
+# yet — the one for what all surfaces share. Left out on purpose, not missed.
+
+# --- the demand side ------------------------------------------------------
+# Tags are an open set. Anything can be a tag; the entry fee is that someone can
+# write a falsifiable assertion for it. An unfalsifiable tag is a mood.
+
+[[tag]]
+name = "eleven languages, one structure"
+holds = true
+# The surface's own claim, and the one tag no borrowed paradigm carries: every
+# other library's component page shows one language. Where a world paradigm
+# cannot hold this, the refusal is the finding.
+
+[[tag]]
+name = "a stranger can say what this is in one sentence"
+holds = true
+# Was false, and measurably so: 1791 characters carrying neither "Svelte" nor
+# "CSS", with the category recoverable only from `pnpm add` in the third block.
+# The claim block had spent all three of its text seats on the difference and
+# none on the category, so its order read difference -> mechanism -> difference.
+# It reads category -> difference -> mechanism now.
+
+[[tag]]
+name = "dense enough to read as a tool, not a poster"
+holds = true
+# Reached at 629 glyphs per megapixel, from 439. The knob that carried it was
+# space, not type: they are orthogonal and space is a four times larger lever
+# (LEDGER P107). No atom states density yet, so this tag is held by values that
+# happened to be measured rather than by a rule.
+
+# --- the blocks -----------------------------------------------------------
+# Each run carries one rhetorical role. The skeleton three of them share is
+# [heading] [lede] [payload] [exit]; a role may leave the lede or the exit
+# empty, but the payload count is what the laws below hold.
+
+[[block]]
+role = "claim"
+run = 0
+heading = "none"             # the claim is its own heading
+lede = 2                     # the hero's line, then the elaboration
+payload = 0                  # the claim is its own payload
+exits = 2
+columns = 2
+rag = 108
+# Paid: the supporting line names the category now, and the mechanism sentence
+# it displaced moved down into the elaboration, which is the seat mechanism
+# belongs in. A reader can repeat what this is after one reading.
+# Open: whether a claim run wants an ornament at all. One was placed to anchor a
+# void and removed when the void became a paragraph.
+
+[[block]]
+role = "specimen"
+run = 1
+heading = "Four voices, one component"
+lede = 1
+payload = 1
+exits = 1
+columns = 4
+rag = 0
+# Paid: the four are swiss / relief / glass / terminal, chosen so that no two
+# grounds read as one. The old four were two near-whites and two near-blacks,
+# and one of them — console — is not a language at all but a draft base
+# candidate, so the caption "four of the eleven" was false. A count the surface
+# states and a set the surface shows had drifted apart with nothing watching.
+# Paid: the exit stands after the payload now, where the reader has just looked
+# at four cards and wants the rest, instead of beside the heading.
+# Not a debt: the same sentence in all four is the mechanism, not noise. If the
+# copy varied, a reader could not tell whether the difference is the language or
+# the words. The remedy for the noise was to make the dressings differ enough
+# that the eye compares grounds instead of reading four paragraphs.
+# Open: four of eleven is a sample, and now a curated one — picked for maximum
+# ground spread. Whether a curated sample can carry the claim, or whether the
+# surface must show all eleven, is unsettled and the caption does not say
+# "chosen".
+
+[[block]]
+role = "model"
+run = 2
+heading = "Six rooms"
+lede = 1
+payload = 1
+exits = 6                    # every stop of the rail links; none sits in an exit seat
+columns = 2
+rag = 134
+# Paid: the tally left. It was never this run's — of its four nouns, two are said
+# by this run's own furniture (the heading says "Six rooms" and the rail shows
+# six) and two are said in the claim run. A count whose nouns are sourced from
+# more than one run is a summary of the surface, and a summary belongs at the
+# end. See `tally-last`.
+# Not a debt after all: this run was read as having no exit because none stood in
+# an exit seat. It has six, one per stop, each more specific than any block-level
+# link could be. The law was counting seats; the reader wants a way on. Third
+# instance of the same mistake — see `leftover-owned`.
+
+[[block]]
+role = "onramp"
+run = 3
+heading = "Install"
+lede = 0
+payload = 1
+exits = 1
+columns = 3
+rag = 0
+# Paid: an exit, and it is the one run where zero was a real defect rather than a
+# miscount — three code boxes carry no link at all. It stands after the payload,
+# not beside the heading, because a reader is readiest to act once the steps have
+# landed. What it hands on is the attribute the reader now holds: the screen is
+# swiss because `Shell` says so, and ten more values fit the same seat. The exit
+# closes the loop to the claim at the first moment the reader can test it.
+# Paid: the three boxes size to their own content instead of stretching to the
+# tallest. The void inside the first box was interior space carrying nothing
+# (P106); the ragged bottoms it leaves are terminal rag, which the run's own edge
+# closes — the exact distinction `leftover-owned` was retired for getting wrong.
+# Debt: no verification. Nothing tells a stranger it worked. Note that
+# `onramp-suffices` is marked as holding while no step says how to run anything:
+# it is true only for a reader who already has a dev server, which a stranger by
+# definition does not.
+
+[[block]]
+role = "colophon"
+run = 4
+heading = "quiet"            # "What it is made of", carried in with the tally
+lede = 1
+payload = 1
+exits = 2
+columns = 2
+rag = 0
+# Paid: the tally landed here, and it could not land without the run becoming a
+# colophon in fact — a bare tagline gives four counts no referent. The run now
+# names the work, its version and its licence, and says how finished it is.
+# The seat was not chosen by taste: `counted-said` already forbade the claim run,
+# and among the legal seats the colophon is the one whose role is extent.
+# Paid: the version, the licence and the commit are generated at build time from
+# the package and from git, so the run cannot state a version the tree does not
+# have. The commit is also the answer to "are we both looking at the same page":
+# a stale tab shows a stale hash, and a trailing `+` means the tree was dirty
+# when the server started.
+# Open: whether a colophon wants a heading at all. This one has "What it is made
+# of" only because the tally arrived with it.
+
+# --- the laws -------------------------------------------------------------
+# Derived from what a role means, never from what the page does: a law read off
+# the artefact can only describe it (LEDGER P109). `kind` is where the law can
+# live — machine, a person in minutes, or nowhere, and the third kind must not
+# be written as a law at all.
+
+[[law]]
+id = "claim-largest"
+says = "the claim is the largest type on the surface"
+kind = "machine"
+holds = true
+
+[[law]]
+id = "claim-whole"
+says = "the claim stands complete inside the first screen"
+kind = "machine"
+holds = true
+
+[[law]]
+id = "way-in"
+says = "a way in is offered inside the first screen"
+kind = "machine"
+holds = true
+
+[[law]]
+id = "proof-in-sight"
+says = "one whole specimen stands inside the first screen"
+kind = "machine"
+holds = true
+# It missed by eight pixels, which is why nothing had complained: the surface had
+# no one-glance defect, it had a near-miss. A page whose claim is about how
+# things look owes one complete instance before the reader scrolls. Measured at
+# the reference 1440x900: the first card ran 633 to 908 against a fold at 900,
+# and runs 609 to 884 now.
+# No machine home. `look.json` samples `/proof/`, not this surface, so a home
+# would need a front-page browser check that does not exist yet.
+
+[[law]]
+id = "proof-follows"
+says = "the specimen run stands immediately after the claim"
+kind = "machine"
+holds = true
+
+[[law]]
+id = "specimens-differ"
+says = "no two specimens agree on more than four fifths of their traits"
+kind = "retired"
+holds = false
+# Retired, and this one was not merely mis-aimed — it runs backwards. Measured
+# over the same eight traits: the old four (two near-whites, two near-blacks)
+# had a worst pair at 59 percent agreement; the new four, which the eye reads as
+# four plainly different cards, have a worst pair at 69. The set that looks more
+# different scores as more alike, because relief and glass share a radius, a
+# shadow and a face while their grounds are a pale blue-grey and a purple-teal
+# wash. Anti-correlated with the complaint on real data, not just silent about
+# it. Replaced by `grounds-differ`.
+
+[[law]]
+id = "grounds-differ"
+says = "no two specimens stand on grounds the eye reads as one"
+kind = "machine"
+holds = true
+home = "apps/docs/tests/runs.test.ts"
+# The same complaint aimed at the channel it is actually about. Grounds are read
+# out of the theme files, converted to Lab, and no pair may fall under ten units
+# apart. Verified to bite by restoring the old four: swiss/material 5.2 and
+# terminal/console 3.1 — exactly the two pairs the eye called repeats, and
+# exactly the two the trait law waved through.
+# The threshold is a value that happened to be measured, not a rule: ten sits in
+# the gap between the old set's worst (5.2) and the new set's worst (10.1).
+
+[[law]]
+id = "counted-said"
+says = "every noun the surface counts is said before it is counted"
+kind = "machine"
+holds = true
+home = "apps/docs/tests/tally.test.ts"
+# Held by a person until this pass. The machine half reads the runs out of
+# `Front.svelte` and the nouns out of every tongue, so it also bites a
+# translation that counts a noun it never says.
+
+[[law]]
+id = "tally-last"
+says = "a count whose nouns are sourced from more than one run stands in the last run"
+kind = "machine"
+holds = true
+home = "apps/docs/tests/tally.test.ts"
+# The law that decided where the tally goes, and it is derived rather than read
+# off: a summary of the whole can only be honest once the whole has been said.
+# Verified to bite by putting the tally back in the model run: expected 2 to be 4.
+
+[[law]]
+id = "one-payload"
+says = "a run carries exactly one payload"
+kind = "reading"
+holds = true
+# Demoted from `machine`, and the demotion is the finding. A machine can only
+# count payloads if the composition declares which member is one — and letting
+# the composition state its own roles is the cascade-band proposal this line
+# already refused: once a run can say "I am the model", whether it is one stops
+# being checkable. So this law is held by a person permanently, not for now.
+# What is mechanizable is never the count but the consequence: `tally-last`
+# catches the specific way this run broke, without asking anything to declare
+# itself.
+
+[[law]]
+id = "step-runs"
+says = "every step of an onramp brings in what it uses"
+kind = "machine"
+holds = true
+home = "apps/docs/tests/onramp.test.ts"
+# The first law in this repository that holds a statement about meaning rather
+# than shape. It found two faults the eye had passed a dozen times.
+
+[[law]]
+id = "step-fits"
+says = "no step exceeds the column it is displayed in"
+kind = "machine"
+holds = true
+home = "apps/docs/tests/onramp.test.ts"
+
+[[law]]
+id = "leftover-owned"
+says = "the leftover under an unequal column has an owner"
+kind = "retired"
+holds = false
+# Retired on the day it was written, and the reason is worth more than the law.
+# It was read as the one confirmed infrastructure gap here — nothing can state
+# who takes the space an unequal two-column run leaves — and buying that
+# infrastructure would have been wrong. The complaint it was meant to encode was
+# invalid whitespace, which is *interior* space carrying nothing (the ninety six
+# pixels paid four times, LEDGER P106). What this law actually measures is
+# terminal rag, and terminal rag is closed by the run's own edge: both instances
+# it fired on read as a paragraph ending, not as an accident.
+#
+# Two of the fourteen laws written here were aimed at geometry when the
+# complaint was about perception, and they fail in opposite directions:
+# `specimens-differ` passes while the eye still reads two of four as repeats,
+# and this one fires where nothing is wrong. **A law has to be aimed at the
+# thing the complaint is about, and geometry is usually not it.**
+
+[[law]]
+id = "exit-offered"
+says = "every run offers a way on, from anywhere inside it"
+kind = "machine"
+holds = true
+home = "apps/docs/tests/runs.test.ts"
+# It fired on two runs and the two answers were opposite, which is why it had to
+# be settled one run at a time rather than as a policy. The model run was a
+# miscount: it holds six links and none of them sits where an exit was being
+# looked for. The onramp run was a real defect: it holds none anywhere.
+# The restatement is the whole repair — "from anywhere inside it" moves the law
+# off the seat and onto the thing the complaint is about, which is whether the
+# reader can continue. Once restated it became mechanizable, and the machine
+# read run 3 and only run 3, which is the evidence the restatement was right.
+# It was kept as `reading` on the theory that a machine cannot know whether a
+# reader wanted an exit. True, and beside the point: a machine can know whether
+# one exists, and every run of a landing surface owes one.
+
+[[law]]
+id = "claim-repeatable"
+says = "a stranger can repeat the claim after one reading"
+kind = "reading"
+holds = true
+# "A Svelte component library whose design language is a value, not a fork."
+
+[[law]]
+id = "proof-varies-the-claim"
+says = "the specimen varies exactly what the claim says varies, and holds the rest"
+kind = "reading"
+holds = true
+
+[[law]]
+id = "onramp-suffices"
+says = "the steps, run in order, produce a running screen"
+kind = "reading"
+holds = true
+# True again as of the repair that forced the imports back in. It was false for
+# two rounds while looking fine.
+# Under doubt: no step starts anything. It holds for a reader who already has a
+# dev server running, and a stranger is exactly the reader who does not. Left as
+# holding rather than flipped, because the last pass verified it deliberately and
+# a law should not change hands on one reading. Settle it with the verification
+# debt on the onramp block, not separately.

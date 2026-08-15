@@ -7,6 +7,12 @@ and its self-built documentation site.
 
 - `packages/token` publishes `@perish/token`: the atoms, the contract that
   guards them, and every theme. It carries no component and no framework.
+- `packages/bone` publishes `@perish/bone`: the seam CSS does not have. `Bay`
+  reserves space and may move it, `Skin` fills its bay and paints it, and one
+  border box could hold neither without the other. The package may not name a
+  single atom, and its own test refuses `var(--` and any reach for the
+  substrate. It is a dependency of the design package and of nothing else; the
+  app layer must never receive a generic box.
 - `packages/design` publishes `@perish/design` and depends on the substrate.
   Components are exported from the package root. Every component declaration
   and filename is one word.
@@ -63,7 +69,7 @@ every generator into one plausible product surface and writes no tag of its own.
 A tone supplies a palette and a system supplies the whole vocabulary. Both are
 refused at compile time if they omit an atom or invent one.
 
-The cascade is banded: `tokens, tone.given, tone.chosen, system, base,
+The cascade is banded: `tokens, tone.given, tone.chosen, system, base, bone,
 component, override`. A system outranks a tone by sitting in a later band, and
 an explicit tone outranks the one the operating system offered, without anyone
 stacking selectors to win.

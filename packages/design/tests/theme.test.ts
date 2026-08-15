@@ -11,16 +11,26 @@ const dressed = [
 	"ant",
 	"brutal",
 	"carbon",
+	"console",
 	"cupertino",
 	"folio",
 	"glass",
 	"material",
+	"paper",
 	"relief",
+	"signal",
 	"swiss",
 	"terminal",
 ];
-const sheer = ["glass.bright", "glass.warn"];
+const sheer = [
+	"cupertino.ondeck",
+	"glass.bright",
+	"glass.ondeck",
+	"glass.warn",
+	"signal.ondeck",
+];
 const toned = ["light", "dark"];
+const veiled = ["glass.rim", "glass.seam"];
 
 function block(axis: string, name: string): Record<string, string> {
 	const hook = `\\[${axis}="?${name}"?\\]\\s*\\{([^}]*)\\}`;
@@ -34,6 +44,35 @@ function block(axis: string, name: string): Record<string, string> {
 	}
 	return held;
 }
+
+function seed(): Record<string, string> {
+	const found = /:root\s*\{([^}]*)\}/.exec(sheet);
+	if (found === null) throw new Error("no rule carries the seed");
+	const held: Record<string, string> = {};
+	for (const line of found[1].split(";")) {
+		const at = line.indexOf(":");
+		const name = line.slice(0, at).trim();
+		if (name.startsWith("--")) held[name.slice(2)] = line.slice(at + 1).trim();
+	}
+	return held;
+}
+
+function rhythm(held: Record<string, string>): string {
+	return [1, 2, 3, 4, 5, 6].map((step) => held[`space-${step}`]).join(" ");
+}
+
+test("every system authors its own spatial rhythm", () => {
+	const heard = new Map<string, string[]>();
+	heard.set(rhythm(seed()), ["base"]);
+	for (const name of dressed) {
+		const run = rhythm(block("data-system", name));
+		heard.set(run, [...(heard.get(run) ?? []), name]);
+	}
+	const copied = [...heard.entries()]
+		.filter(([, names]) => names.length > 1)
+		.map(([run, names]) => `${names.join(" ")} all state ${run}`);
+	expect(copied).toEqual([]);
+});
 
 function channel(raw: number): number {
 	const held = raw / 255;
@@ -71,8 +110,33 @@ function pairs(
 		bright: contrast(held.bright, held.panel),
 		warn: contrast(held.warn, held.flush),
 		muted: contrast(held.muted, held.ground),
+		ondeck: contrast(held.ondeck, held.deck),
 	};
 }
+
+function bounds(
+	held: Record<string, string>,
+): Record<string, number | undefined> {
+	return {
+		seam: contrast(held.edge, held.panel),
+		rim: contrast(held.edge, held.ground),
+	};
+}
+
+test("every boundary is visible against what it bounds", () => {
+	const faint: string[] = [];
+	const vague: string[] = [];
+	for (const name of [...dressed, ...toned]) {
+		const axis = toned.includes(name) ? "data-tone" : "data-system";
+		const held = bounds(block(axis, name));
+		for (const [role, ratio] of Object.entries(held)) {
+			if (ratio === undefined) vague.push(`${name}.${role}`);
+			else if (ratio < 3) faint.push(`${name}.${role} ${ratio.toFixed(2)}`);
+		}
+	}
+	expect(faint).toEqual([]);
+	expect(vague.sort()).toEqual(veiled);
+});
 
 test("every system states a legible foreground for every fill", () => {
 	const thin: string[] = [];

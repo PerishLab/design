@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Sign from "../../mark/Sign/Sign.svelte";
 	import "./Search.scss";
 
 	let {
@@ -17,4 +18,4 @@
 	}
 </script>
 
-<input class="search" type="search" {value} placeholder={hint} oninput={(event) => take(event.currentTarget.value)} />
+<span class="search"><Sign name="find" /><input class="search-input" type="search" {value} placeholder={hint} oninput={(event) => take(event.currentTarget.value)} /></span>

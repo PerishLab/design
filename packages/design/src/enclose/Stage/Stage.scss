@@ -1,0 +1,30 @@
+@use "pkg:@perish/token/media.scss";
+
+@layer component {
+	.stage {
+		@include media.room;
+		display: grid;
+		align-items: safe center;
+		border: var(--line) solid var(--edge);
+		padding: var(--space-4);
+		overflow: hidden;
+	}
+
+	.stage-view {
+		aspect-ratio: 3 / 2;
+	}
+
+	.stage-strip {
+		aspect-ratio: 3 / 1;
+	}
+
+	.stage-pane {
+		aspect-ratio: 3 / 2;
+		border: none;
+	}
+
+	.stage > * {
+		max-width: 100%;
+		mask-image: linear-gradient(to bottom, black 88%, transparent);
+	}
+}

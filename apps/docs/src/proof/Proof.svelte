@@ -44,12 +44,12 @@
 </script>
 
 <Shell {tone} {system}>
+	<Banner stick mark="◆" title="perish workshop">
+		<Forge host="https://git.perish.top" repo="PerishFire/design" />
+		<Link href="/gallery/" label="gallery" />
+		<Button look="quiet" label={tone === "light" ? "dark" : "light"} press={flip} />
+	</Banner>
 	<Frame>
-		<Banner mark="◆" title="perish workshop" line="one console for every plane">
-			<Forge host="https://git.perish.top" repo="PerishFire/design" />
-			<Link href="/" label="gallery" />
-			<Button look="quiet" label={tone === "light" ? "dark" : "light"} press={flip} />
-		</Banner>
 		<Nav links={ways} />
 		<Tabs tabs={views} bind:value={view} />
 		<Hero mark="◆" title="Six planes are live." line="Every plane carries its own constitution, and no release is a publish until it is first a proof." />
@@ -105,7 +105,7 @@
 			<Button label="sign in" wide submit />
 		</Sheet>
 		<Footer text="a PerishLab workshop — this site is MIT and guarded by its own constitution.">
-			<Link href="/" label="gallery" />
+			<Link href="/gallery/" label="gallery" />
 			<Forge host="https://git.perish.top" repo="PerishFire/design" />
 		</Footer>
 	</Frame>

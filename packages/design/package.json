@@ -43,6 +43,8 @@
 		"vitest": "catalog:"
 	},
 	"dependencies": {
+		"@perish/bone": "workspace:*",
+		"@perish/sign": "workspace:*",
 		"@perish/token": "workspace:*"
 	}
 }

@@ -4,6 +4,7 @@
 		padding: 0 var(--space-2);
 		border: var(--line) solid transparent;
 		border-radius: var(--bead);
+		font-family: var(--brisk);
 		font-size: var(--fine);
 		font-weight: var(--firm);
 	}
@@ -23,7 +24,7 @@
 	}
 
 	.tag-quiet.tag-calm {
-		border-color: var(--rule);
+		border-color: var(--edge);
 		color: var(--muted);
 	}
 

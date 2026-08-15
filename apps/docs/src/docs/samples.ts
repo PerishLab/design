@@ -28,13 +28,19 @@ export const grid = [
 ];
 
 export const seeds: Record<string, Record<string, unknown>> = {
+	Aside: { side: "beside", children: "the main region" },
 	Banner: {
 		mark: "◆",
 		title: "a banner carries one line",
 		line: "and an optional body beneath it",
 		children: "",
 	},
-	Board: { title: "identity", line: "one bounded concern", children: "rows" },
+	Board: {
+		title: "identity",
+		line: "one bounded concern",
+		seat: "identity",
+		children: "rows",
+	},
 	Button: {
 		children: "press",
 		label: "",
@@ -46,10 +52,16 @@ export const seeds: Record<string, Record<string, unknown>> = {
 		submit: false,
 	},
 	Card: { title: "laws", children: "eight of them" },
-	Code: { text: 'const seal = "clean";\n', name: "seal.ts", copy: true },
+	Code: { text: "let seal = true;\n", name: "seal.ts", copy: true },
 	Cell: { span: 2, children: "a cell that spans two" },
 	Check: { label: "guarded", held: true, change: () => {}, look: "box" },
 	Copy: { text: "ectropy ." },
+	Course: { look: "raise", children: "a run across the page" },
+	Voice: {
+		title: "one structure",
+		children: "The same generators, dressed by one language.",
+		label: "press",
+	},
 	Field: {
 		label: "name",
 		value: "",
@@ -60,7 +72,7 @@ export const seeds: Record<string, Record<string, unknown>> = {
 	Footer: { text: "a workshop colophon", children: "beta" },
 	Forge: { host: "https://git.perish.top", repo: "PerishFire/design" },
 	Frame: { children: "a frame wraps the whole page" },
-	Grid: { cols: 4, children: "cells" },
+	Grid: { cols: 4, look: "even", children: "cells" },
 	Hero: {
 		title: "perish design",
 		line: "one system, many flavours",
@@ -72,7 +84,11 @@ export const seeds: Record<string, Record<string, unknown>> = {
 	Line: { name: "shape", meta: "living", children: "clean" },
 	Link: { label: "open", href: "/" },
 	List: { children: "declare" },
-	Nav: { children: "design", links: [{ label: "design", href: "#nav" }] },
+	Nav: {
+		children: "design",
+		look: "bar",
+		links: [{ label: "design", href: "#nav" }],
+	},
 	Face: { name: "Ada Lovelace" },
 	Fold: {
 		label: "why one word",
@@ -94,6 +110,7 @@ export const seeds: Record<string, Record<string, unknown>> = {
 		open: false,
 		children: "the transaction is exact",
 	},
+	Sign: { name: "next", label: "next" },
 	Note: { text: "one quiet note", mood: "calm" },
 	Pick: {
 		label: "plane",
@@ -125,6 +142,7 @@ export const seeds: Record<string, Record<string, unknown>> = {
 	Sheet: { children: "a bounded surface" },
 	Shell: { children: "a full product shell" },
 	Split: { children: "two sides" },
+	Stage: { children: "one thing, framed" },
 	Toast: { notes: ["the guard is green"], mood: "calm" },
 	Tag: { text: "stable", look: "solid", mood: "calm" },
 	Text: { children: "one paragraph of prose, measured to the reading width" },

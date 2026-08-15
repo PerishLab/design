@@ -6,11 +6,11 @@
 
 	.menu-cue {
 		padding: var(--space-2) var(--space-3);
-		border: var(--line) solid var(--rule);
+		border: var(--line) solid var(--edge);
 		border-radius: var(--knob);
 		background: var(--panel);
 		color: var(--ink);
-		font-family: var(--plain);
+		font-family: var(--brisk);
 		font-size: var(--body);
 		cursor: pointer;
 	}
@@ -23,7 +23,7 @@
 		min-width: 100%;
 		margin: 0;
 		padding: var(--space-1);
-		border: var(--line) solid var(--rule);
+		border: var(--line) solid var(--edge);
 		border-radius: var(--radius);
 		background: var(--panel);
 		list-style: none;
@@ -38,7 +38,7 @@
 		border-radius: var(--slot);
 		background: transparent;
 		color: var(--ink);
-		font-family: var(--plain);
+		font-family: var(--brisk);
 		font-size: var(--fine);
 		text-align: left;
 		cursor: pointer;

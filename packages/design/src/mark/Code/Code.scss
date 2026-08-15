@@ -1,7 +1,7 @@
 @layer component {
 	.code {
 		margin: var(--space-3) 0;
-		border: var(--line) solid var(--rule);
+		border: var(--line) solid var(--edge);
 		border-radius: var(--radius);
 		background: var(--well);
 		overflow: hidden;
