@@ -1,6 +1,6 @@
 import { isAbsolute, join, relative } from "node:path";
 import { NodePackageImporter } from "sass";
-import { config } from "./config.js";
+import { config, type Env } from "./config.js";
 import { health } from "./health.js";
 import { runtime } from "./server.js";
 import { type Route, scan } from "./views.js";
@@ -39,7 +39,7 @@ type Options = {
 type Plugin = {
 	name: string;
 	enforce: "pre";
-	config(): object | undefined;
+	config(): Promise<object>;
 	configResolved(config: Config): void;
 	buildStart(this: Context): void;
 	resolveId(id: string): string | null;
@@ -58,7 +58,7 @@ function proxy(target: string): object {
 	return { "^/api(?:/|$)": { target } };
 }
 
-function wiring(env: ReturnType<typeof config>): object {
+function wiring(env: Env): object {
 	const server: Record<string, unknown> = {};
 	if (env.port !== undefined) {
 		server.port = env.port;
@@ -104,7 +104,8 @@ function source(routes: Route[], login: boolean): string {
 export function design(options: Options = {}): Plugin {
 	const login = options.login ?? true;
 	const server = options.serve ?? true;
-	const env = config();
+	const pending = config();
+	let env: Env = { build: "" };
 	let root = "";
 	let folder = "";
 	let routes: Route[] = [];
@@ -149,7 +150,8 @@ export function design(options: Options = {}): Plugin {
 	return {
 		name: "perish-design",
 		enforce: "pre",
-		config(): object {
+		async config(): Promise<object> {
+			env = await pending;
 			return wiring(env);
 		},
 		configResolved(config): void {

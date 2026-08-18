@@ -5,10 +5,14 @@ export const kinds: Record<string, Record<string, Kind>> = {
 		side: "node",
 		children: "node",
 	},
-	Banner: {
+	Navigator: {
 		mark: "text",
+		owner: "text",
 		title: "text",
 		line: "text",
+		home: "text",
+		look: "text",
+		stick: "flag",
 		children: "node",
 	},
 	Board: {
@@ -111,6 +115,8 @@ export const kinds: Record<string, Record<string, Kind>> = {
 	Link: {
 		label: "text",
 		href: "text",
+		look: "text",
+		here: "flag",
 	},
 	List: {
 		children: "node",
@@ -118,6 +124,9 @@ export const kinds: Record<string, Record<string, Kind>> = {
 	Menu: {
 		label: "text",
 		items: "list",
+		value: "text",
+		sign: "text",
+		look: "text",
 		open: "flag",
 		choose: "call",
 	},
@@ -191,6 +200,7 @@ export const kinds: Record<string, Record<string, Kind>> = {
 	},
 	Tip: {
 		text: "text",
+		look: "text",
 		children: "node",
 	},
 	Toast: {

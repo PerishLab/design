@@ -1,5 +1,6 @@
 export const gallery = {
-	title: "@perish/design",
+	owner: "@perish/",
+	title: "design",
 	line: "one system, many flavours",
 	intro:
 		"A living Svelte vocabulary for the workshop. Every word is filed by what it takes responsibility for.",

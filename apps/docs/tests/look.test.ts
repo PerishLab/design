@@ -28,7 +28,7 @@ const systems = [
 ];
 
 const parts = [
-	".banner h1",
+	".navigator-name",
 	".nav a",
 	".tabs-one",
 	".hero h1",
@@ -57,7 +57,12 @@ const parts = [
 	".toast-note",
 ];
 
-const banded = [".banner-bay", ".banner-skin", ".banner h1", ".mark"];
+const banded = [
+	".navigator-bay",
+	".navigator-skin",
+	".navigator-name",
+	".mark",
+];
 
 const denser = [
 	["carbon", "folio"],
@@ -101,7 +106,7 @@ function seats(): string {
 	return `(() => {
 		const traits = ${JSON.stringify(traits)};
 		const parts = ${JSON.stringify(banded)};
-		const bay = document.querySelector(".banner-bay").getBoundingClientRect();
+		const bay = document.querySelector(".navigator-bay").getBoundingClientRect();
 		const held = {};
 		for (const part of parts) {
 			const node = document.querySelector(part);
@@ -252,8 +257,8 @@ test.skipIf(process.env.LOOK !== "1")(
 		const drift: string[] = [];
 		for (const system of systems) {
 			const rows = written[system];
-			const one = middle(rows[".banner h1 dock"]);
-			const other = middle(rows[".banner h1 float"]);
+			const one = middle(rows[".navigator-name dock"]);
+			const other = middle(rows[".navigator-name float"]);
 			if (Math.abs(one - other) > 1) drift.push(`${system} ${one} ${other}`);
 		}
 		expect(drift).toEqual([]);

@@ -52,6 +52,22 @@ $dressed: list.join(
 @include loosen($veils);
 @include loosen($films);
 
+$fluid: list.join($hues, list.join($spans, $rates));
+
+@mixin morph($over) {
+	$moves: ();
+
+	@each $name in $fluid {
+		$moves: list.append($moves, #{"--" + $name} $over, comma);
+	}
+
+	transition: $moves;
+
+	@include media.calm {
+		transition: none;
+	}
+}
+
 @mixin bind($values, $names, $whose) {
 	@each $name in $names {
 		@if not map.has-key($values, $name) {

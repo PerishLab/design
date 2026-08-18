@@ -1,0 +1,16 @@
+{
+	"name": "@perish/crest",
+	"version": "0.1.0",
+	"license": "MIT",
+	"type": "module",
+	"files": [
+		"src"
+	],
+	"exports": {
+		"./crest": "./src/crest.ts"
+	},
+	"publishConfig": {
+		"access": "public",
+		"registry": "https://git.perish.top/api/packages/PerishLab/npm/"
+	}
+}

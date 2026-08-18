@@ -1,5 +1,6 @@
 export const gallery = {
-	title: "@perish/design",
+	owner: "@perish/",
+	title: "design",
 	line: "一套系统,多种风味",
 	intro: "为工作坊而生的 Svelte 活词汇。每个词都按它所负责之事归档。",
 	filter: "筛选组件",

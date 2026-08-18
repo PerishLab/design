@@ -11,5 +11,15 @@ export const terminal: Cut = {
 		next: ["→"],
 		pick: ["▾"],
 	},
-	spurns: ["copy", "draws", "places", "bounds", "takes", "owns", "keeps"],
+	spurns: [
+		"copy",
+		"draws",
+		"places",
+		"bounds",
+		"takes",
+		"owns",
+		"keeps",
+		"tongue",
+		"shade",
+	],
 };

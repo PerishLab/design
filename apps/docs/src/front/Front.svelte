@@ -1,12 +1,14 @@
 <script lang="ts">
-	import { Banner, Button, Cell, Code, Course, Footer, Grid, Head, Hero, Ledger, Link, Pick, Rail, Shell, Split, Text } from "@perish/design";
+	import { Navigator, Button, Cell, Code, Course, Footer, Grid, Head, Hero, Ledger, Link, Menu, Rail, Shell, Split, Text } from "@perish/design";
 	import { stamp } from "virtual:stamp";
-	import { shown, spell, wired } from "../docs/front.ts";
-	import Choir from "../gallery/Choir.svelte";
+	import { borne, shown, spell, wired } from "../docs/front.ts";
+	import Turn from "./Turn.svelte";
 	import { speak, tongue } from "../lib/i18n/index.ts";
 
 	type Tone = "system" | "light" | "dark";
-	const voices = ["swiss", "relief", "glass", "terminal"];
+	const voices = ["base", "folio", "glass", "carbon", "relief", "ant", "brutal", "material", "swiss", "cupertino", "terminal"];
+	const beat = 2600;
+	const slide = 900;
 	const t = speak();
 	const heard = tongue();
 	let tone: Tone = $state("system");
@@ -26,11 +28,11 @@
 </script>
 
 <Shell tone={tone === "system" ? undefined : tone}>
-	<Banner stick look="exact" title={t("front.title")}>
+	<Navigator stick look="exact" mark="design" owner={t("front.owner")} title={t("front.title")} home={here}>
 		<Link look="nav" href={`${here}gallery/`} label={t("front.gallery")} />
-		<Pick look="bare" label={t("front.tongue")} value={heard()} choices={tongues} change={travel} />
-		<Pick look="bare" label={t("front.shade")} bind:value={tone} choices={shades} />
-	</Banner>
+		<Menu look="bare" sign="tongue" label={t("front.tongue")} value={heard()} items={tongues} choose={travel} />
+		<Menu look="bare" sign="shade" label={t("front.shade")} value={tone} items={shades} choose={(next) => (tone = next as Tone)} />
+	</Navigator>
 
 	<Course>
 		<Grid cols={12}>
@@ -47,12 +49,19 @@
 		</Split>
 	</Course>
 	<Course look="well">
-		<Head text={t("front.voice")} seat="voice" />
-		<Text>{t("front.voiced")}</Text>
-		<Choir name="Voice" tone={tone === "system" ? undefined : tone} {voices} cols={4} look="pane" />
-		<Split look="close">
-			<Button look="quiet" href={`${here}gallery/`} label={t("front.visit")} sign="next" />
-		</Split>
+		<Grid cols={12}>
+			<Cell span={5}>
+				<Head text={t("front.voice")} seat="voice" />
+				<Text>{t("front.voiced")}</Text>
+				<Code name={t("front.borne")} text={borne} />
+				<Split look="close">
+					<Button look="quiet" href={`${here}gallery/`} label={t("front.visit")} sign="next" />
+				</Split>
+			</Cell>
+			<Cell span={7}>
+				<Turn name="Voice" tone={tone === "system" ? undefined : tone} {voices} {beat} {slide} />
+			</Cell>
+		</Grid>
 	</Course>
 	<Course>
 		<Grid cols={12}>

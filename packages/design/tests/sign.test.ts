@@ -10,7 +10,9 @@ const spurned = [
 	"terminal.keeps",
 	"terminal.owns",
 	"terminal.places",
+	"terminal.shade",
 	"terminal.takes",
+	"terminal.tongue",
 ];
 
 test("the authored language answers its own roster", () => {

@@ -42,10 +42,22 @@
 		background: var(--accent);
 		scale: 0 1;
 		transform-origin: left;
-		transition: scale var(--beat);
+		transition: scale var(--beat) ease-out;
 	}
 
-	.link-nav:hover::after {
+	.link-nav:hover,
+	.link-nav:focus-visible,
+	.link-nav.live {
+		color: var(--bright);
+	}
+
+	.link-nav:hover::after,
+	.link-nav:focus-visible::after,
+	.link-nav.live::after {
 		scale: 1 1;
+	}
+
+	.link-nav.live::after {
+		background: var(--ink);
 	}
 }

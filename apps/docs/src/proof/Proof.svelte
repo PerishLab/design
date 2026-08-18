@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Banner, Board, Button, Card, Cell, Check, Code, Copy, Face, Field, Fold, Footer, Forge, Frame, Grid, Head, Hero, Item, Ledger, Line, Link, List, Menu, Meter, Modal, Nav, Note, Pick, Rail, Search, Sheet, Shell, Split, Table, Tabs, Tag, Text, Tip, Toast } from "@perish/design";
+	import { Navigator, Board, Button, Card, Cell, Check, Code, Copy, Face, Field, Fold, Footer, Forge, Frame, Grid, Head, Hero, Item, Ledger, Line, Link, List, Menu, Meter, Modal, Nav, Note, Pick, Rail, Search, Sheet, Shell, Split, Table, Tabs, Tag, Text, Tip, Toast } from "@perish/design";
 	import { atoms, stops } from "../docs/samples.ts";
 
 	const law = `[limit]\nblock = 4\nfanout = 10\nfile = 300\nmarkup = 8\nparam = 4\npath = 4`;
@@ -44,11 +44,11 @@
 </script>
 
 <Shell {tone} {system}>
-	<Banner stick mark="◆" title="perish workshop">
+	<Navigator stick mark="perish.code" title="perish workshop" home="/">
 		<Forge host="https://git.perish.top" repo="PerishFire/design" />
 		<Link href="/gallery/" label="gallery" />
 		<Button look="quiet" label={tone === "light" ? "dark" : "light"} press={flip} />
-	</Banner>
+	</Navigator>
 	<Frame>
 		<Nav links={ways} />
 		<Tabs tabs={views} bind:value={view} />

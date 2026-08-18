@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Aside, Banner, Cell, Footer, Frame, Grid, Head, Link, Nav, Pick, Search, Shell, Text } from "@perish/design";
+	import { Aside, Navigator, Cell, Footer, Frame, Grid, Head, Link, Menu, Nav, Pick, Search, Shell, Text } from "@perish/design";
 	import { catalog, groups } from "../docs/catalog.ts";
 	import { speak, tongue } from "../lib/i18n/index.ts";
 	import Bench from "./Bench.svelte";
@@ -82,12 +82,12 @@
 <svelte:window onhashchange={() => (here = globalThis.location.hash.slice(1))} />
 
 <Shell tone={tone === "system" ? undefined : tone} system={plan === "base" || plan === "all" ? undefined : plan}>
-	<Banner stick look="exact" mark="◆" title={t("gallery.title")} line={t("gallery.line")}>
+	<Navigator stick look="exact" mark="design" owner={t("gallery.owner")} title={t("gallery.title")} line={t("gallery.line")} {home}>
 		<Link look="nav" href={home} label={t("gallery.front")} />
 		<Link look="nav" href="/proof/" label={t("gallery.proof")} />
-		<Pick look="bare" label={t("gallery.tongue")} value={heard()} choices={tongues} change={travel} />
-		<Pick look="bare" label={t("gallery.shade")} bind:value={tone} choices={shades} />
-	</Banner>
+		<Menu look="bare" sign="tongue" label={t("gallery.tongue")} value={heard()} items={tongues} choose={travel} />
+		<Menu look="bare" sign="shade" label={t("gallery.shade")} value={tone} items={shades} choose={(next) => (tone = next as Tone)} />
+	</Navigator>
 	<Frame look="full">
 		<Aside under>
 			{#snippet side()}

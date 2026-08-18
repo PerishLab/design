@@ -1,5 +1,6 @@
 @use "pkg:@perish/token/media.scss";
 @use "pkg:@perish/token/base.scss";
+@use "pkg:@perish/token/tokens.scss";
 
 @layer component {
 	.shell .shell {
@@ -18,5 +19,9 @@
 		font-family: var(--plain);
 		font-size: var(--body);
 		line-height: var(--leading);
+	}
+
+	.shell[data-slide] {
+		@include tokens.morph(var(--slid, var(--beat)));
 	}
 }

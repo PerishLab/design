@@ -2,7 +2,11 @@
 	import type { Snippet } from "svelte";
 	import "./Tip.scss";
 
-	let { text, children }: { text: string; children: Snippet } = $props();
+	let {
+		text,
+		look = "over",
+		children,
+	}: { text: string; look?: "over" | "under"; children: Snippet } = $props();
 </script>
 
-<span class="tip">{@render children()}<span class="tip-note" role="tooltip">{text}</span></span>
+<span class="tip tip-{look}">{@render children()}<span class="tip-note" role="tooltip">{text}</span></span>

@@ -1,12 +1,14 @@
 export const front = {
-	title: "@perish/design",
+	owner: "@perish/",
+	title: "design",
 	claim: "Eleven design languages. One structure.",
 	line: "A Svelte component library whose design language is a value, not a fork.",
 	lede: "A theme states values and never a template, so every language rides the same generators. Swiss and Material render the same markup, and every atom either of them asked for and could not find is written down beside the render that found it.",
-	voice: "Four voices, one component",
+	voice: "Eleven voices, one component",
+	borne: "the markup, all eleven times",
 	voiced:
-		"The same card, dressed by four of the eleven languages. No branch in the code, no fork in the tree.",
-	visit: "all eleven in the gallery",
+		"One card, dressed by every one of the eleven languages in turn. Nothing in the markup changes as it goes. Take a tab and it stops where you put it.",
+	visit: "see all eleven at once",
 	start: "browse the gallery",
 	source: "read the source",
 	tongue: "language",

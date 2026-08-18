@@ -3,11 +3,15 @@ export const notes = {
 		side: "what stands beside the main region and stays put",
 		children: "the main region",
 	},
-	Banner: {
-		mark: "a single glyph shown before the title",
-		title: "the headline of the banner",
+	Navigator: {
+		mark: "the crest of the product this surface belongs to",
+		owner: "the scope the name sits under, set quieter than the name",
+		home: "where the lockup goes when a reader takes it",
+		look: "plain sets the name in the display face, exact sets the whole strip as an identifier",
+		stick: "keep the strip in place while the document scrolls",
+		title: "the name of the surface this navigator belongs to",
 		line: "one line of supporting text",
-		children: "optional content below the line",
+		children: "the ways out of this surface",
 	},
 	Board: {
 		title: "the board heading",
@@ -107,6 +111,8 @@ export const notes = {
 		children: "optional controls or tags on the far side",
 	},
 	Link: {
+		look: "text stands in prose, nav stands in a strip",
+		here: "this link is the surface the reader is on",
 		label: "the visible link text",
 		href: "the link destination",
 	},
@@ -114,6 +120,9 @@ export const notes = {
 		children: "the list items",
 	},
 	Menu: {
+		value: "the choice standing now, marked in the list",
+		sign: "the shape the trigger shows in place of its label",
+		look: "cue is a button, bare is a mark in a strip",
 		label: "the words on the button that opens it",
 		items: "the value and label of each entry",
 		open: "whether the list stands open",
@@ -162,6 +171,8 @@ export const notes = {
 		children: "the complete product surface",
 		tone: "the light or dark preference for this surface",
 		system: "the design system whose tokens dress this surface",
+		slide:
+			"how long the atoms take to reach their next values, instead of cutting to them",
 	},
 	Split: {
 		children: "the contents placed at opposite sides",
@@ -179,6 +190,7 @@ export const notes = {
 		tabs: "the value and label of each tab",
 		value: "the tab standing open",
 		change: "called with the next open tab",
+		beat: "how long each tab stands open on its own, until a reader takes one",
 	},
 	Tag: {
 		text: "the short tag text",
@@ -189,6 +201,7 @@ export const notes = {
 		children: "one paragraph of prose",
 	},
 	Tip: {
+		look: "over opens above what it explains, under opens below it",
 		text: "the words the tip carries",
 		children: "what the tip explains",
 	},

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Aside, Banner, Cell, Course, Face, Fold, Menu, Meter, Stage, Table, Tabs, Tip, Modal, Toast, Check, Head, Item, Pick, Text, Board, Button, Card, Code, Copy, Field, Footer, Forge, Frame, Grid, Hero, Ledger, Line, Link, List, Nav, Note, Rail, Search, Sheet, Shell, Split, Tag } from "@perish/design";
+	import { Aside, Navigator, Cell, Course, Face, Fold, Menu, Meter, Stage, Table, Tabs, Tip, Modal, Toast, Check, Head, Item, Pick, Text, Board, Button, Card, Code, Copy, Field, Footer, Forge, Frame, Grid, Hero, Ledger, Line, Link, List, Nav, Note, Rail, Search, Sheet, Shell, Split, Tag } from "@perish/design";
 	import { atoms, choices, grid, heads, picks, stops } from "../docs/samples.ts";
 
 	let { name, values }: { name: string; values: Record<string, unknown> } = $props();
@@ -9,7 +9,7 @@
 </script>
 
 {#if name === "Aside"}<Aside>{#snippet side()}{said("side")}{/snippet}{said("children")}</Aside>
-{:else if name === "Banner"}<Banner mark={said("mark")} title={said("title")} line={said("line")}>{said("children")}</Banner>
+{:else if name === "Navigator"}<Navigator mark={said("mark")} title={said("title")} line={said("line")}>{said("children")}</Navigator>
 {:else if name === "Board"}<Board title={said("title")} line={said("line")}>{said("children")}</Board>
 {:else if name === "Button"}<Button label={said("label")} look={said("look") === "quiet" ? "quiet" : "solid"} wide={Boolean(values.wide)} busy={Boolean(values.busy)} halt={Boolean(values.halt)} submit={Boolean(values.submit)}>{said("children")}</Button>
 {:else if name === "Card"}<Card title={said("title")}>{said("children")}</Card>

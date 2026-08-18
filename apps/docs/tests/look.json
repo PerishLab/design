@@ -1,16 +1,16 @@
 {
 	"base": {
-		"density": 466,
-		".banner h1": {
+		"density": 465,
+		".navigator-name": {
 			"color": "rgb(30, 36, 45)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
 			"borderTopWidth": "0px",
 			"fontFamily": "Spectral, Georgia, serif",
 			"fontSize": "20px",
-			"fontWeight": "600",
+			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "154x23"
+			"box": "188x26"
 		},
 		".nav a": {
 			"color": "rgb(16, 21, 28)",
@@ -76,7 +76,7 @@
 			"fontSize": "15px",
 			"fontWeight": "400",
 			"boxShadow": "rgba(16, 21, 28, 0.1) 0px 1px 2px 0px, rgba(16, 21, 28, 0.1) 0px 6px 16px 0px",
-			"box": "924x380"
+			"box": "924x398"
 		},
 		".board-title": {
 			"color": "rgb(16, 21, 28)",
@@ -131,7 +131,7 @@
 			"fontSize": "15px",
 			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "80x36"
+			"box": "106x54"
 		},
 		".table th": {
 			"color": "rgb(87, 96, 107)",
@@ -298,7 +298,7 @@
 			"boxShadow": "rgba(16, 21, 28, 0.1) 0px 1px 2px 0px, rgba(16, 21, 28, 0.1) 0px 6px 16px 0px",
 			"box": "155x39"
 		},
-		".banner-bay dock": {
+		".navigator-bay dock": {
 			"color": "rgb(30, 36, 45)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
@@ -310,7 +310,7 @@
 			"box": "1280x72",
 			"seat": "0,0"
 		},
-		".banner-skin dock": {
+		".navigator-skin dock": {
 			"color": "rgb(30, 36, 45)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
@@ -322,20 +322,8 @@
 			"box": "1280x72",
 			"seat": "0,0"
 		},
-		".banner h1 dock": {
+		".navigator-name dock": {
 			"color": "rgb(30, 36, 45)",
-			"backgroundColor": "rgba(0, 0, 0, 0)",
-			"borderRadius": "0px",
-			"borderTopWidth": "0px",
-			"fontFamily": "Spectral, Georgia, serif",
-			"fontSize": "20px",
-			"fontWeight": "600",
-			"boxShadow": "none",
-			"box": "154x23",
-			"seat": "90,24"
-		},
-		".mark dock": {
-			"color": "rgb(51, 96, 143)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
 			"borderTopWidth": "0px",
@@ -343,10 +331,22 @@
 			"fontSize": "20px",
 			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "28x28",
-			"seat": "44,22"
+			"box": "188x26",
+			"seat": "44,23"
 		},
-		".banner-bay float": {
+		".mark dock": {
+			"color": "rgb(30, 36, 45)",
+			"backgroundColor": "rgba(0, 0, 0, 0)",
+			"borderRadius": "0px",
+			"borderTopWidth": "0px",
+			"fontFamily": "Spectral, Georgia, serif",
+			"fontSize": "20px",
+			"fontWeight": "400",
+			"boxShadow": "none",
+			"box": "26x26",
+			"seat": "44,23"
+		},
+		".navigator-bay float": {
 			"color": "rgb(30, 36, 45)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
@@ -358,7 +358,7 @@
 			"box": "1280x72",
 			"seat": "0,0"
 		},
-		".banner-skin float": {
+		".navigator-skin float": {
 			"color": "rgb(16, 21, 28)",
 			"backgroundColor": "rgba(255, 255, 255, 0.72)",
 			"borderRadius": "8px",
@@ -370,20 +370,8 @@
 			"box": "1256x48",
 			"seat": "12,12"
 		},
-		".banner h1 float": {
-			"color": "rgb(16, 21, 28)",
-			"backgroundColor": "rgba(0, 0, 0, 0)",
-			"borderRadius": "0px",
-			"borderTopWidth": "0px",
-			"fontFamily": "Spectral, Georgia, serif",
-			"fontSize": "20px",
-			"fontWeight": "600",
-			"boxShadow": "none",
-			"box": "154x23",
-			"seat": "102,24"
-		},
-		".mark float": {
-			"color": "rgb(51, 96, 143)",
+		".navigator-name float": {
+			"color": "rgb(30, 36, 45)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
 			"borderTopWidth": "0px",
@@ -391,22 +379,34 @@
 			"fontSize": "20px",
 			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "28x28",
-			"seat": "56,22"
+			"box": "188x26",
+			"seat": "56,23"
+		},
+		".mark float": {
+			"color": "rgb(30, 36, 45)",
+			"backgroundColor": "rgba(0, 0, 0, 0)",
+			"borderRadius": "0px",
+			"borderTopWidth": "0px",
+			"fontFamily": "Spectral, Georgia, serif",
+			"fontSize": "20px",
+			"fontWeight": "400",
+			"boxShadow": "none",
+			"box": "26x26",
+			"seat": "56,23"
 		}
 	},
 	"ant": {
-		"density": 505,
-		".banner h1": {
+		"density": 503,
+		".navigator-name": {
 			"color": "rgb(38, 38, 38)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
 			"borderTopWidth": "0px",
 			"fontFamily": "Georgia, \"Times New Roman\", serif",
 			"fontSize": "16px",
-			"fontWeight": "600",
+			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "117x22"
+			"box": "145x22"
 		},
 		".nav a": {
 			"color": "rgb(0, 0, 0)",
@@ -472,7 +472,7 @@
 			"fontSize": "14px",
 			"fontWeight": "400",
 			"boxShadow": "rgba(0, 0, 0, 0.08) 0px 6px 16px 0px",
-			"box": "1048x368"
+			"box": "1048x386"
 		},
 		".board-title": {
 			"color": "rgb(0, 0, 0)",
@@ -527,7 +527,7 @@
 			"fontSize": "14px",
 			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "70x34"
+			"box": "96x52"
 		},
 		".table th": {
 			"color": "rgb(89, 89, 89)",
@@ -694,7 +694,7 @@
 			"boxShadow": "rgba(0, 0, 0, 0.08) 0px 6px 16px 0px",
 			"box": "123x37"
 		},
-		".banner-bay dock": {
+		".navigator-bay dock": {
 			"color": "rgb(38, 38, 38)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
@@ -706,7 +706,7 @@
 			"box": "1280x64",
 			"seat": "0,0"
 		},
-		".banner-skin dock": {
+		".navigator-skin dock": {
 			"color": "rgb(38, 38, 38)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
@@ -718,20 +718,8 @@
 			"box": "1280x64",
 			"seat": "0,0"
 		},
-		".banner h1 dock": {
+		".navigator-name dock": {
 			"color": "rgb(38, 38, 38)",
-			"backgroundColor": "rgba(0, 0, 0, 0)",
-			"borderRadius": "0px",
-			"borderTopWidth": "0px",
-			"fontFamily": "Georgia, \"Times New Roman\", serif",
-			"fontSize": "16px",
-			"fontWeight": "600",
-			"boxShadow": "none",
-			"box": "117x22",
-			"seat": "82,21"
-		},
-		".mark dock": {
-			"color": "rgb(9, 88, 217)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
 			"borderTopWidth": "0px",
@@ -739,10 +727,22 @@
 			"fontSize": "16px",
 			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "22x22",
+			"box": "145x22",
 			"seat": "40,21"
 		},
-		".banner-bay float": {
+		".mark dock": {
+			"color": "rgb(38, 38, 38)",
+			"backgroundColor": "rgba(0, 0, 0, 0)",
+			"borderRadius": "0px",
+			"borderTopWidth": "0px",
+			"fontFamily": "Georgia, \"Times New Roman\", serif",
+			"fontSize": "16px",
+			"fontWeight": "400",
+			"boxShadow": "none",
+			"box": "21x21",
+			"seat": "40,22"
+		},
+		".navigator-bay float": {
 			"color": "rgb(38, 38, 38)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
@@ -754,7 +754,7 @@
 			"box": "1280x64",
 			"seat": "0,0"
 		},
-		".banner-skin float": {
+		".navigator-skin float": {
 			"color": "rgb(38, 38, 38)",
 			"backgroundColor": "rgb(255, 255, 255)",
 			"borderRadius": "0px",
@@ -766,20 +766,8 @@
 			"box": "1280x64",
 			"seat": "0,0"
 		},
-		".banner h1 float": {
+		".navigator-name float": {
 			"color": "rgb(38, 38, 38)",
-			"backgroundColor": "rgba(0, 0, 0, 0)",
-			"borderRadius": "0px",
-			"borderTopWidth": "0px",
-			"fontFamily": "Georgia, \"Times New Roman\", serif",
-			"fontSize": "16px",
-			"fontWeight": "600",
-			"boxShadow": "none",
-			"box": "117x22",
-			"seat": "82,21"
-		},
-		".mark float": {
-			"color": "rgb(9, 88, 217)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
 			"borderTopWidth": "0px",
@@ -787,22 +775,34 @@
 			"fontSize": "16px",
 			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "22x22",
+			"box": "145x22",
 			"seat": "40,21"
+		},
+		".mark float": {
+			"color": "rgb(38, 38, 38)",
+			"backgroundColor": "rgba(0, 0, 0, 0)",
+			"borderRadius": "0px",
+			"borderTopWidth": "0px",
+			"fontFamily": "Georgia, \"Times New Roman\", serif",
+			"fontSize": "16px",
+			"fontWeight": "400",
+			"boxShadow": "none",
+			"box": "21x21",
+			"seat": "40,22"
 		}
 	},
 	"brutal": {
 		"density": 340,
-		".banner h1": {
+		".navigator-name": {
 			"color": "rgb(0, 0, 0)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
 			"borderTopWidth": "0px",
 			"fontFamily": "\"Archivo Black\", Impact, \"Helvetica Neue\", sans-serif",
 			"fontSize": "18px",
-			"fontWeight": "800",
+			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "147x18"
+			"box": "178x23"
 		},
 		".nav a": {
 			"color": "rgb(0, 0, 0)",
@@ -868,7 +868,7 @@
 			"fontSize": "16px",
 			"fontWeight": "400",
 			"boxShadow": "rgb(0, 0, 0) 5px 5px 0px 0px",
-			"box": "928x458"
+			"box": "928x480"
 		},
 		".board-title": {
 			"color": "rgb(0, 0, 0)",
@@ -923,7 +923,7 @@
 			"fontSize": "16px",
 			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "96x41"
+			"box": "134x63"
 		},
 		".table th": {
 			"color": "rgb(61, 61, 61)",
@@ -1090,7 +1090,7 @@
 			"boxShadow": "rgb(0, 0, 0) 5px 5px 0px 0px",
 			"box": "167x43"
 		},
-		".banner-bay dock": {
+		".navigator-bay dock": {
 			"color": "rgb(0, 0, 0)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
@@ -1102,7 +1102,7 @@
 			"box": "1280x72",
 			"seat": "0,0"
 		},
-		".banner-skin dock": {
+		".navigator-skin dock": {
 			"color": "rgb(0, 0, 0)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
@@ -1114,20 +1114,8 @@
 			"box": "1280x72",
 			"seat": "0,0"
 		},
-		".banner h1 dock": {
+		".navigator-name dock": {
 			"color": "rgb(0, 0, 0)",
-			"backgroundColor": "rgba(0, 0, 0, 0)",
-			"borderRadius": "0px",
-			"borderTopWidth": "0px",
-			"fontFamily": "\"Archivo Black\", Impact, \"Helvetica Neue\", sans-serif",
-			"fontSize": "18px",
-			"fontWeight": "800",
-			"boxShadow": "none",
-			"box": "147x18",
-			"seat": "153,27"
-		},
-		".mark dock": {
-			"color": "rgb(255, 82, 82)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
 			"borderTopWidth": "0px",
@@ -1135,10 +1123,22 @@
 			"fontSize": "18px",
 			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "25x25",
-			"seat": "96,23"
+			"box": "178x23",
+			"seat": "96,24"
 		},
-		".banner-bay float": {
+		".mark dock": {
+			"color": "rgb(0, 0, 0)",
+			"backgroundColor": "rgba(0, 0, 0, 0)",
+			"borderRadius": "0px",
+			"borderTopWidth": "0px",
+			"fontFamily": "\"Archivo Black\", Impact, \"Helvetica Neue\", sans-serif",
+			"fontSize": "18px",
+			"fontWeight": "400",
+			"boxShadow": "none",
+			"box": "23x23",
+			"seat": "96,24"
+		},
+		".navigator-bay float": {
 			"color": "rgb(0, 0, 0)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
@@ -1150,7 +1150,7 @@
 			"box": "1280x72",
 			"seat": "0,0"
 		},
-		".banner-skin float": {
+		".navigator-skin float": {
 			"color": "rgb(0, 0, 0)",
 			"backgroundColor": "rgb(255, 251, 230)",
 			"borderRadius": "0px",
@@ -1162,20 +1162,8 @@
 			"box": "1280x72",
 			"seat": "0,0"
 		},
-		".banner h1 float": {
+		".navigator-name float": {
 			"color": "rgb(0, 0, 0)",
-			"backgroundColor": "rgba(0, 0, 0, 0)",
-			"borderRadius": "0px",
-			"borderTopWidth": "0px",
-			"fontFamily": "\"Archivo Black\", Impact, \"Helvetica Neue\", sans-serif",
-			"fontSize": "18px",
-			"fontWeight": "800",
-			"boxShadow": "none",
-			"box": "147x18",
-			"seat": "153,27"
-		},
-		".mark float": {
-			"color": "rgb(255, 82, 82)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
 			"borderTopWidth": "0px",
@@ -1183,22 +1171,34 @@
 			"fontSize": "18px",
 			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "25x25",
-			"seat": "96,23"
+			"box": "178x23",
+			"seat": "96,24"
+		},
+		".mark float": {
+			"color": "rgb(0, 0, 0)",
+			"backgroundColor": "rgba(0, 0, 0, 0)",
+			"borderRadius": "0px",
+			"borderTopWidth": "0px",
+			"fontFamily": "\"Archivo Black\", Impact, \"Helvetica Neue\", sans-serif",
+			"fontSize": "18px",
+			"fontWeight": "400",
+			"boxShadow": "none",
+			"box": "23x23",
+			"seat": "96,24"
 		}
 	},
 	"carbon": {
 		"density": 580,
-		".banner h1": {
+		".navigator-name": {
 			"color": "rgb(22, 22, 22)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
 			"borderTopWidth": "0px",
 			"fontFamily": "\"IBM Plex Serif\", Georgia, serif",
 			"fontSize": "16px",
-			"fontWeight": "600",
+			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "117x20"
+			"box": "141x21"
 		},
 		".nav a": {
 			"color": "rgb(0, 0, 0)",
@@ -1264,7 +1264,7 @@
 			"fontSize": "14px",
 			"fontWeight": "400",
 			"boxShadow": "rgba(0, 0, 0, 0.2) 0px 2px 6px 0px",
-			"box": "1024x273"
+			"box": "1024x283"
 		},
 		".board-title": {
 			"color": "rgb(0, 0, 0)",
@@ -1319,7 +1319,7 @@
 			"fontSize": "14px",
 			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "68x26"
+			"box": "86x36"
 		},
 		".table th": {
 			"color": "rgb(82, 82, 82)",
@@ -1486,7 +1486,7 @@
 			"boxShadow": "rgba(0, 0, 0, 0.2) 0px 2px 6px 0px",
 			"box": "128x27"
 		},
-		".banner-bay dock": {
+		".navigator-bay dock": {
 			"color": "rgb(22, 22, 22)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
@@ -1498,7 +1498,7 @@
 			"box": "1280x48",
 			"seat": "0,0"
 		},
-		".banner-skin dock": {
+		".navigator-skin dock": {
 			"color": "rgb(22, 22, 22)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
@@ -1510,20 +1510,8 @@
 			"box": "1280x48",
 			"seat": "0,0"
 		},
-		".banner h1 dock": {
+		".navigator-name dock": {
 			"color": "rgb(22, 22, 22)",
-			"backgroundColor": "rgba(0, 0, 0, 0)",
-			"borderRadius": "0px",
-			"borderTopWidth": "0px",
-			"fontFamily": "\"IBM Plex Serif\", Georgia, serif",
-			"fontSize": "16px",
-			"fontWeight": "600",
-			"boxShadow": "none",
-			"box": "117x20",
-			"seat": "86,14"
-		},
-		".mark dock": {
-			"color": "rgb(15, 98, 254)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
 			"borderTopWidth": "0px",
@@ -1531,10 +1519,22 @@
 			"fontSize": "16px",
 			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "22x22",
-			"seat": "48,13"
+			"box": "141x21",
+			"seat": "48,14"
 		},
-		".banner-bay float": {
+		".mark dock": {
+			"color": "rgb(22, 22, 22)",
+			"backgroundColor": "rgba(0, 0, 0, 0)",
+			"borderRadius": "0px",
+			"borderTopWidth": "0px",
+			"fontFamily": "\"IBM Plex Serif\", Georgia, serif",
+			"fontSize": "16px",
+			"fontWeight": "400",
+			"boxShadow": "none",
+			"box": "21x21",
+			"seat": "48,14"
+		},
+		".navigator-bay float": {
 			"color": "rgb(22, 22, 22)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
@@ -1546,7 +1546,7 @@
 			"box": "1280x48",
 			"seat": "0,0"
 		},
-		".banner-skin float": {
+		".navigator-skin float": {
 			"color": "rgb(255, 255, 255)",
 			"backgroundColor": "rgb(22, 22, 22)",
 			"borderRadius": "0px",
@@ -1558,20 +1558,8 @@
 			"box": "1280x48",
 			"seat": "0,0"
 		},
-		".banner h1 float": {
-			"color": "rgb(255, 255, 255)",
-			"backgroundColor": "rgba(0, 0, 0, 0)",
-			"borderRadius": "0px",
-			"borderTopWidth": "0px",
-			"fontFamily": "\"IBM Plex Serif\", Georgia, serif",
-			"fontSize": "16px",
-			"fontWeight": "600",
-			"boxShadow": "none",
-			"box": "117x20",
-			"seat": "86,14"
-		},
-		".mark float": {
-			"color": "rgb(15, 98, 254)",
+		".navigator-name float": {
+			"color": "rgb(22, 22, 22)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
 			"borderTopWidth": "0px",
@@ -1579,22 +1567,34 @@
 			"fontSize": "16px",
 			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "22x22",
-			"seat": "48,13"
+			"box": "141x21",
+			"seat": "48,14"
+		},
+		".mark float": {
+			"color": "rgb(22, 22, 22)",
+			"backgroundColor": "rgba(0, 0, 0, 0)",
+			"borderRadius": "0px",
+			"borderTopWidth": "0px",
+			"fontFamily": "\"IBM Plex Serif\", Georgia, serif",
+			"fontSize": "16px",
+			"fontWeight": "400",
+			"boxShadow": "none",
+			"box": "21x21",
+			"seat": "48,14"
 		}
 	},
 	"console": {
-		"density": 519,
-		".banner h1": {
+		"density": 518,
+		".navigator-name": {
 			"color": "rgb(201, 209, 217)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
 			"borderTopWidth": "0px",
 			"fontFamily": "ui-monospace, \"SF Mono\", Menlo, monospace",
 			"fontSize": "16px",
-			"fontWeight": "600",
+			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "147x20"
+			"box": "174x21"
 		},
 		".nav a": {
 			"color": "rgb(240, 244, 248)",
@@ -1660,7 +1660,7 @@
 			"fontSize": "15px",
 			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "1120x344"
+			"box": "1120x358"
 		},
 		".board-title": {
 			"color": "rgb(240, 244, 248)",
@@ -1715,7 +1715,7 @@
 			"fontSize": "15px",
 			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "89x32"
+			"box": "115x46"
 		},
 		".table th": {
 			"color": "rgb(125, 135, 146)",
@@ -1882,7 +1882,7 @@
 			"boxShadow": "none",
 			"box": "156x32"
 		},
-		".banner-bay dock": {
+		".navigator-bay dock": {
 			"color": "rgb(201, 209, 217)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
@@ -1894,7 +1894,7 @@
 			"box": "1280x56",
 			"seat": "0,0"
 		},
-		".banner-skin dock": {
+		".navigator-skin dock": {
 			"color": "rgb(201, 209, 217)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
@@ -1906,20 +1906,20 @@
 			"box": "1280x56",
 			"seat": "0,0"
 		},
-		".banner h1 dock": {
+		".navigator-name dock": {
 			"color": "rgb(201, 209, 217)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
 			"borderTopWidth": "0px",
 			"fontFamily": "ui-monospace, \"SF Mono\", Menlo, monospace",
 			"fontSize": "16px",
-			"fontWeight": "600",
+			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "147x20",
-			"seat": "78,18"
+			"box": "174x21",
+			"seat": "40,18"
 		},
 		".mark dock": {
-			"color": "rgb(63, 208, 127)",
+			"color": "rgb(201, 209, 217)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
 			"borderTopWidth": "0px",
@@ -1927,10 +1927,10 @@
 			"fontSize": "16px",
 			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "22x22",
-			"seat": "40,17"
+			"box": "21x21",
+			"seat": "40,18"
 		},
-		".banner-bay float": {
+		".navigator-bay float": {
 			"color": "rgb(201, 209, 217)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
@@ -1942,7 +1942,7 @@
 			"box": "1280x56",
 			"seat": "0,0"
 		},
-		".banner-skin float": {
+		".navigator-skin float": {
 			"color": "rgb(240, 244, 248)",
 			"backgroundColor": "rgb(22, 25, 31)",
 			"borderRadius": "0px",
@@ -1954,20 +1954,8 @@
 			"box": "1280x56",
 			"seat": "0,0"
 		},
-		".banner h1 float": {
-			"color": "rgb(240, 244, 248)",
-			"backgroundColor": "rgba(0, 0, 0, 0)",
-			"borderRadius": "0px",
-			"borderTopWidth": "0px",
-			"fontFamily": "ui-monospace, \"SF Mono\", Menlo, monospace",
-			"fontSize": "16px",
-			"fontWeight": "600",
-			"boxShadow": "none",
-			"box": "147x20",
-			"seat": "78,18"
-		},
-		".mark float": {
-			"color": "rgb(63, 208, 127)",
+		".navigator-name float": {
+			"color": "rgb(201, 209, 217)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
 			"borderTopWidth": "0px",
@@ -1975,22 +1963,34 @@
 			"fontSize": "16px",
 			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "22x22",
-			"seat": "40,17"
+			"box": "174x21",
+			"seat": "40,18"
+		},
+		".mark float": {
+			"color": "rgb(201, 209, 217)",
+			"backgroundColor": "rgba(0, 0, 0, 0)",
+			"borderRadius": "0px",
+			"borderTopWidth": "0px",
+			"fontFamily": "ui-monospace, \"SF Mono\", Menlo, monospace",
+			"fontSize": "16px",
+			"fontWeight": "400",
+			"boxShadow": "none",
+			"box": "21x21",
+			"seat": "40,18"
 		}
 	},
 	"cupertino": {
-		"density": 437,
-		".banner h1": {
+		"density": 436,
+		".navigator-name": {
 			"color": "rgb(28, 28, 30)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
 			"borderTopWidth": "0px",
 			"fontFamily": "\"New York\", Georgia, serif",
 			"fontSize": "17px",
-			"fontWeight": "600",
+			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "124x19"
+			"box": "154x22"
 		},
 		".nav a": {
 			"color": "rgb(0, 0, 0)",
@@ -2056,7 +2056,7 @@
 			"fontSize": "17px",
 			"fontWeight": "400",
 			"boxShadow": "rgba(0, 0, 0, 0.1) 0px 1px 3px 0px",
-			"box": "920x415"
+			"box": "920x433"
 		},
 		".board-title": {
 			"color": "rgb(0, 0, 0)",
@@ -2111,7 +2111,7 @@
 			"fontSize": "17px",
 			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "95x38"
+			"box": "129x56"
 		},
 		".table th": {
 			"color": "rgb(75, 75, 80)",
@@ -2278,7 +2278,7 @@
 			"boxShadow": "rgba(0, 0, 0, 0.1) 0px 1px 3px 0px",
 			"box": "154x37"
 		},
-		".banner-bay dock": {
+		".navigator-bay dock": {
 			"color": "rgb(28, 28, 30)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
@@ -2290,7 +2290,7 @@
 			"box": "1280x56",
 			"seat": "0,0"
 		},
-		".banner-skin dock": {
+		".navigator-skin dock": {
 			"color": "rgb(28, 28, 30)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
@@ -2302,20 +2302,8 @@
 			"box": "1280x56",
 			"seat": "0,0"
 		},
-		".banner h1 dock": {
+		".navigator-name dock": {
 			"color": "rgb(28, 28, 30)",
-			"backgroundColor": "rgba(0, 0, 0, 0)",
-			"borderRadius": "0px",
-			"borderTopWidth": "0px",
-			"fontFamily": "\"New York\", Georgia, serif",
-			"fontSize": "17px",
-			"fontWeight": "600",
-			"boxShadow": "none",
-			"box": "124x19",
-			"seat": "100,18"
-		},
-		".mark dock": {
-			"color": "rgb(0, 113, 227)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
 			"borderTopWidth": "0px",
@@ -2323,10 +2311,22 @@
 			"fontSize": "17px",
 			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "24x24",
-			"seat": "56,16"
+			"box": "154x22",
+			"seat": "56,17"
 		},
-		".banner-bay float": {
+		".mark dock": {
+			"color": "rgb(28, 28, 30)",
+			"backgroundColor": "rgba(0, 0, 0, 0)",
+			"borderRadius": "0px",
+			"borderTopWidth": "0px",
+			"fontFamily": "\"New York\", Georgia, serif",
+			"fontSize": "17px",
+			"fontWeight": "400",
+			"boxShadow": "none",
+			"box": "22x22",
+			"seat": "56,17"
+		},
+		".navigator-bay float": {
 			"color": "rgb(28, 28, 30)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
@@ -2338,7 +2338,7 @@
 			"box": "1280x56",
 			"seat": "0,0"
 		},
-		".banner-skin float": {
+		".navigator-skin float": {
 			"color": "rgb(28, 28, 30)",
 			"backgroundColor": "rgba(249, 249, 249, 0.82)",
 			"borderRadius": "8px",
@@ -2350,43 +2350,43 @@
 			"box": "1264x40",
 			"seat": "8,8"
 		},
-		".banner h1 float": {
+		".navigator-name float": {
 			"color": "rgb(28, 28, 30)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
 			"borderTopWidth": "0px",
 			"fontFamily": "\"New York\", Georgia, serif",
 			"fontSize": "9.35px",
-			"fontWeight": "600",
+			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "68x10",
-			"seat": "108,23"
+			"box": "98x22",
+			"seat": "64,17"
 		},
 		".mark float": {
-			"color": "rgb(0, 113, 227)",
+			"color": "rgb(28, 28, 30)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
 			"borderTopWidth": "0px",
 			"fontFamily": "\"New York\", Georgia, serif",
-			"fontSize": "17px",
+			"fontSize": "9.35px",
 			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "24x24",
-			"seat": "64,16"
+			"box": "22x22",
+			"seat": "64,17"
 		}
 	},
 	"folio": {
-		"density": 236,
-		".banner h1": {
+		"density": 235,
+		".navigator-name": {
 			"color": "rgb(35, 32, 27)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
 			"borderTopWidth": "0px",
 			"fontFamily": "Spectral, Georgia, serif",
 			"fontSize": "20px",
-			"fontWeight": "700",
+			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "154x22"
+			"box": "192x26"
 		},
 		".nav a": {
 			"color": "rgb(0, 0, 0)",
@@ -2452,7 +2452,7 @@
 			"fontSize": "18px",
 			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "632x583"
+			"box": "632x609"
 		},
 		".board-title": {
 			"color": "rgb(0, 0, 0)",
@@ -2507,7 +2507,7 @@
 			"fontSize": "18px",
 			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "107x53"
+			"box": "157x79"
 		},
 		".table th": {
 			"color": "rgb(92, 86, 75)",
@@ -2674,7 +2674,7 @@
 			"boxShadow": "none",
 			"box": "161x50"
 		},
-		".banner-bay dock": {
+		".navigator-bay dock": {
 			"color": "rgb(35, 32, 27)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
@@ -2686,7 +2686,7 @@
 			"box": "1280x80",
 			"seat": "0,0"
 		},
-		".banner-skin dock": {
+		".navigator-skin dock": {
 			"color": "rgb(35, 32, 27)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
@@ -2698,20 +2698,20 @@
 			"box": "1280x80",
 			"seat": "0,0"
 		},
-		".banner h1 dock": {
+		".navigator-name dock": {
 			"color": "rgb(35, 32, 27)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
 			"borderTopWidth": "0px",
 			"fontFamily": "Spectral, Georgia, serif",
 			"fontSize": "20px",
-			"fontWeight": "700",
+			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "154x22",
-			"seat": "152,29"
+			"box": "192x26",
+			"seat": "88,27"
 		},
 		".mark dock": {
-			"color": "rgb(139, 47, 29)",
+			"color": "rgb(35, 32, 27)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
 			"borderTopWidth": "0px",
@@ -2719,10 +2719,10 @@
 			"fontSize": "20px",
 			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "28x28",
-			"seat": "88,26"
+			"box": "26x26",
+			"seat": "88,27"
 		},
-		".banner-bay float": {
+		".navigator-bay float": {
 			"color": "rgb(35, 32, 27)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
@@ -2734,7 +2734,7 @@
 			"box": "1280x80",
 			"seat": "0,0"
 		},
-		".banner-skin float": {
+		".navigator-skin float": {
 			"color": "rgb(35, 32, 27)",
 			"backgroundColor": "rgb(251, 249, 244)",
 			"borderRadius": "0px",
@@ -2746,20 +2746,8 @@
 			"box": "1280x80",
 			"seat": "0,0"
 		},
-		".banner h1 float": {
+		".navigator-name float": {
 			"color": "rgb(35, 32, 27)",
-			"backgroundColor": "rgba(0, 0, 0, 0)",
-			"borderRadius": "0px",
-			"borderTopWidth": "0px",
-			"fontFamily": "Spectral, Georgia, serif",
-			"fontSize": "20px",
-			"fontWeight": "700",
-			"boxShadow": "none",
-			"box": "154x22",
-			"seat": "152,29"
-		},
-		".mark float": {
-			"color": "rgb(139, 47, 29)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
 			"borderTopWidth": "0px",
@@ -2767,22 +2755,34 @@
 			"fontSize": "20px",
 			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "28x28",
-			"seat": "88,26"
+			"box": "192x26",
+			"seat": "88,27"
+		},
+		".mark float": {
+			"color": "rgb(35, 32, 27)",
+			"backgroundColor": "rgba(0, 0, 0, 0)",
+			"borderRadius": "0px",
+			"borderTopWidth": "0px",
+			"fontFamily": "Spectral, Georgia, serif",
+			"fontSize": "20px",
+			"fontWeight": "400",
+			"boxShadow": "none",
+			"box": "26x26",
+			"seat": "88,27"
 		}
 	},
 	"glass": {
-		"density": 340,
-		".banner h1": {
+		"density": 339,
+		".navigator-name": {
 			"color": "rgb(236, 234, 255)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
 			"borderTopWidth": "0px",
 			"fontFamily": "Georgia, serif",
 			"fontSize": "18px",
-			"fontWeight": "600",
+			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "131x21"
+			"box": "167x23"
 		},
 		".nav a": {
 			"color": "rgb(255, 255, 255)",
@@ -2848,7 +2848,7 @@
 			"fontSize": "16px",
 			"fontWeight": "400",
 			"boxShadow": "rgba(0, 0, 0, 0.32) 0px 8px 32px 0px",
-			"box": "896x519"
+			"box": "896x545"
 		},
 		".board-title": {
 			"color": "rgb(255, 255, 255)",
@@ -2903,7 +2903,7 @@
 			"fontSize": "16px",
 			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "100x45"
+			"box": "142x71"
 		},
 		".table th": {
 			"color": "rgb(201, 197, 239)",
@@ -3070,7 +3070,7 @@
 			"boxShadow": "rgba(0, 0, 0, 0.32) 0px 8px 32px 0px",
 			"box": "171x48"
 		},
-		".banner-bay dock": {
+		".navigator-bay dock": {
 			"color": "rgb(236, 234, 255)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
@@ -3082,7 +3082,7 @@
 			"box": "1280x72",
 			"seat": "0,0"
 		},
-		".banner-skin dock": {
+		".navigator-skin dock": {
 			"color": "rgb(236, 234, 255)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
@@ -3094,20 +3094,8 @@
 			"box": "1280x72",
 			"seat": "0,0"
 		},
-		".banner h1 dock": {
+		".navigator-name dock": {
 			"color": "rgb(236, 234, 255)",
-			"backgroundColor": "rgba(0, 0, 0, 0)",
-			"borderRadius": "0px",
-			"borderTopWidth": "0px",
-			"fontFamily": "Georgia, serif",
-			"fontSize": "18px",
-			"fontWeight": "600",
-			"boxShadow": "none",
-			"box": "131x21",
-			"seat": "129,26"
-		},
-		".mark dock": {
-			"color": "rgb(255, 209, 102)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
 			"borderTopWidth": "0px",
@@ -3115,10 +3103,22 @@
 			"fontSize": "18px",
 			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "25x25",
-			"seat": "72,23"
+			"box": "167x23",
+			"seat": "72,24"
 		},
-		".banner-bay float": {
+		".mark dock": {
+			"color": "rgb(236, 234, 255)",
+			"backgroundColor": "rgba(0, 0, 0, 0)",
+			"borderRadius": "0px",
+			"borderTopWidth": "0px",
+			"fontFamily": "Georgia, serif",
+			"fontSize": "18px",
+			"fontWeight": "400",
+			"boxShadow": "none",
+			"box": "23x23",
+			"seat": "72,24"
+		},
+		".navigator-bay float": {
 			"color": "rgb(236, 234, 255)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
@@ -3130,7 +3130,7 @@
 			"box": "1280x72",
 			"seat": "0,0"
 		},
-		".banner-skin float": {
+		".navigator-skin float": {
 			"color": "rgb(255, 255, 255)",
 			"backgroundColor": "rgba(255, 255, 255, 0.22)",
 			"borderRadius": "16px",
@@ -3142,20 +3142,8 @@
 			"box": "1248x40",
 			"seat": "16,16"
 		},
-		".banner h1 float": {
-			"color": "rgb(255, 255, 255)",
-			"backgroundColor": "rgba(0, 0, 0, 0)",
-			"borderRadius": "0px",
-			"borderTopWidth": "0px",
-			"fontFamily": "Georgia, serif",
-			"fontSize": "18px",
-			"fontWeight": "600",
-			"boxShadow": "none",
-			"box": "131x21",
-			"seat": "145,26"
-		},
-		".mark float": {
-			"color": "rgb(255, 209, 102)",
+		".navigator-name float": {
+			"color": "rgb(236, 234, 255)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
 			"borderTopWidth": "0px",
@@ -3163,22 +3151,34 @@
 			"fontSize": "18px",
 			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "25x25",
-			"seat": "88,23"
+			"box": "167x23",
+			"seat": "88,24"
+		},
+		".mark float": {
+			"color": "rgb(236, 234, 255)",
+			"backgroundColor": "rgba(0, 0, 0, 0)",
+			"borderRadius": "0px",
+			"borderTopWidth": "0px",
+			"fontFamily": "Georgia, serif",
+			"fontSize": "18px",
+			"fontWeight": "400",
+			"boxShadow": "none",
+			"box": "23x23",
+			"seat": "88,24"
 		}
 	},
 	"material": {
-		"density": 495,
-		".banner h1": {
+		"density": 494,
+		".navigator-name": {
 			"color": "rgb(29, 27, 32)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
 			"borderTopWidth": "0px",
 			"fontFamily": "Roboto, \"Helvetica Neue\", system-ui, sans-serif",
 			"fontSize": "16px",
-			"fontWeight": "500",
+			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "134x18"
+			"box": "163x21"
 		},
 		".nav a": {
 			"color": "rgb(0, 0, 0)",
@@ -3244,7 +3244,7 @@
 			"fontSize": "14px",
 			"fontWeight": "400",
 			"boxShadow": "rgba(0, 0, 0, 0.3) 0px 1px 2px 0px, rgba(0, 0, 0, 0.15) 0px 2px 6px 2px",
-			"box": "928x363"
+			"box": "928x381"
 		},
 		".board-title": {
 			"color": "rgb(0, 0, 0)",
@@ -3299,7 +3299,7 @@
 			"fontSize": "14px",
 			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "76x34"
+			"box": "102x52"
 		},
 		".table th": {
 			"color": "rgb(73, 69, 79)",
@@ -3466,7 +3466,7 @@
 			"boxShadow": "rgba(0, 0, 0, 0.3) 0px 1px 2px 0px, rgba(0, 0, 0, 0.15) 0px 2px 6px 2px",
 			"box": "136x36"
 		},
-		".banner-bay dock": {
+		".navigator-bay dock": {
 			"color": "rgb(29, 27, 32)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
@@ -3478,7 +3478,7 @@
 			"box": "1280x64",
 			"seat": "0,0"
 		},
-		".banner-skin dock": {
+		".navigator-skin dock": {
 			"color": "rgb(29, 27, 32)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
@@ -3490,20 +3490,8 @@
 			"box": "1280x64",
 			"seat": "0,0"
 		},
-		".banner h1 dock": {
+		".navigator-name dock": {
 			"color": "rgb(29, 27, 32)",
-			"backgroundColor": "rgba(0, 0, 0, 0)",
-			"borderRadius": "0px",
-			"borderTopWidth": "0px",
-			"fontFamily": "Roboto, \"Helvetica Neue\", system-ui, sans-serif",
-			"fontSize": "16px",
-			"fontWeight": "500",
-			"boxShadow": "none",
-			"box": "134x18",
-			"seat": "86,23"
-		},
-		".mark dock": {
-			"color": "rgb(103, 80, 164)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
 			"borderTopWidth": "0px",
@@ -3511,10 +3499,22 @@
 			"fontSize": "16px",
 			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "22x22",
-			"seat": "48,21"
+			"box": "163x21",
+			"seat": "48,22"
 		},
-		".banner-bay float": {
+		".mark dock": {
+			"color": "rgb(29, 27, 32)",
+			"backgroundColor": "rgba(0, 0, 0, 0)",
+			"borderRadius": "0px",
+			"borderTopWidth": "0px",
+			"fontFamily": "Roboto, \"Helvetica Neue\", system-ui, sans-serif",
+			"fontSize": "16px",
+			"fontWeight": "400",
+			"boxShadow": "none",
+			"box": "21x21",
+			"seat": "48,22"
+		},
+		".navigator-bay float": {
 			"color": "rgb(29, 27, 32)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
@@ -3526,7 +3526,7 @@
 			"box": "1280x64",
 			"seat": "0,0"
 		},
-		".banner-skin float": {
+		".navigator-skin float": {
 			"color": "rgb(29, 27, 32)",
 			"backgroundColor": "rgb(236, 230, 240)",
 			"borderRadius": "0px",
@@ -3538,20 +3538,8 @@
 			"box": "1280x64",
 			"seat": "0,0"
 		},
-		".banner h1 float": {
+		".navigator-name float": {
 			"color": "rgb(29, 27, 32)",
-			"backgroundColor": "rgba(0, 0, 0, 0)",
-			"borderRadius": "0px",
-			"borderTopWidth": "0px",
-			"fontFamily": "Roboto, \"Helvetica Neue\", system-ui, sans-serif",
-			"fontSize": "16px",
-			"fontWeight": "500",
-			"boxShadow": "none",
-			"box": "134x18",
-			"seat": "86,23"
-		},
-		".mark float": {
-			"color": "rgb(103, 80, 164)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
 			"borderTopWidth": "0px",
@@ -3559,22 +3547,34 @@
 			"fontSize": "16px",
 			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "22x22",
-			"seat": "48,21"
+			"box": "163x21",
+			"seat": "48,22"
+		},
+		".mark float": {
+			"color": "rgb(29, 27, 32)",
+			"backgroundColor": "rgba(0, 0, 0, 0)",
+			"borderRadius": "0px",
+			"borderTopWidth": "0px",
+			"fontFamily": "Roboto, \"Helvetica Neue\", system-ui, sans-serif",
+			"fontSize": "16px",
+			"fontWeight": "400",
+			"boxShadow": "none",
+			"box": "21x21",
+			"seat": "48,22"
 		}
 	},
 	"paper": {
 		"density": 347,
-		".banner h1": {
+		".navigator-name": {
 			"color": "rgb(42, 38, 33)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
 			"borderTopWidth": "0px",
 			"fontFamily": "Spectral, Georgia, serif",
 			"fontSize": "20px",
-			"fontWeight": "600",
+			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "154x22"
+			"box": "188x26"
 		},
 		".nav a": {
 			"color": "rgb(20, 17, 13)",
@@ -3640,7 +3640,7 @@
 			"fontSize": "17px",
 			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "872x472"
+			"box": "872x490"
 		},
 		".board-title": {
 			"color": "rgb(20, 17, 13)",
@@ -3695,7 +3695,7 @@
 			"fontSize": "17px",
 			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "92x44"
+			"box": "130x62"
 		},
 		".table th": {
 			"color": "rgb(107, 99, 87)",
@@ -3862,7 +3862,7 @@
 			"boxShadow": "none",
 			"box": "141x40"
 		},
-		".banner-bay dock": {
+		".navigator-bay dock": {
 			"color": "rgb(42, 38, 33)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
@@ -3874,7 +3874,7 @@
 			"box": "1280x80",
 			"seat": "0,0"
 		},
-		".banner-skin dock": {
+		".navigator-skin dock": {
 			"color": "rgb(42, 38, 33)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
@@ -3886,20 +3886,20 @@
 			"box": "1280x80",
 			"seat": "0,0"
 		},
-		".banner h1 dock": {
+		".navigator-name dock": {
 			"color": "rgb(42, 38, 33)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
 			"borderTopWidth": "0px",
 			"fontFamily": "Spectral, Georgia, serif",
 			"fontSize": "20px",
-			"fontWeight": "600",
+			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "154x22",
-			"seat": "144,29"
+			"box": "188x26",
+			"seat": "88,27"
 		},
 		".mark dock": {
-			"color": "rgb(140, 47, 36)",
+			"color": "rgb(42, 38, 33)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
 			"borderTopWidth": "0px",
@@ -3907,10 +3907,10 @@
 			"fontSize": "20px",
 			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "28x28",
-			"seat": "88,26"
+			"box": "26x26",
+			"seat": "88,27"
 		},
-		".banner-bay float": {
+		".navigator-bay float": {
 			"color": "rgb(42, 38, 33)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
@@ -3922,7 +3922,7 @@
 			"box": "1280x80",
 			"seat": "0,0"
 		},
-		".banner-skin float": {
+		".navigator-skin float": {
 			"color": "rgb(20, 17, 13)",
 			"backgroundColor": "rgb(255, 253, 249)",
 			"borderRadius": "0px",
@@ -3934,20 +3934,8 @@
 			"box": "1280x80",
 			"seat": "0,0"
 		},
-		".banner h1 float": {
-			"color": "rgb(20, 17, 13)",
-			"backgroundColor": "rgba(0, 0, 0, 0)",
-			"borderRadius": "0px",
-			"borderTopWidth": "0px",
-			"fontFamily": "Spectral, Georgia, serif",
-			"fontSize": "20px",
-			"fontWeight": "600",
-			"boxShadow": "none",
-			"box": "154x22",
-			"seat": "144,29"
-		},
-		".mark float": {
-			"color": "rgb(140, 47, 36)",
+		".navigator-name float": {
+			"color": "rgb(42, 38, 33)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
 			"borderTopWidth": "0px",
@@ -3955,22 +3943,34 @@
 			"fontSize": "20px",
 			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "28x28",
-			"seat": "88,26"
+			"box": "188x26",
+			"seat": "88,27"
+		},
+		".mark float": {
+			"color": "rgb(42, 38, 33)",
+			"backgroundColor": "rgba(0, 0, 0, 0)",
+			"borderRadius": "0px",
+			"borderTopWidth": "0px",
+			"fontFamily": "Spectral, Georgia, serif",
+			"fontSize": "20px",
+			"fontWeight": "400",
+			"boxShadow": "none",
+			"box": "26x26",
+			"seat": "88,27"
 		}
 	},
 	"relief": {
-		"density": 314,
-		".banner h1": {
+		"density": 312,
+		".navigator-name": {
 			"color": "rgb(45, 55, 72)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
 			"borderTopWidth": "0px",
 			"fontFamily": "Nunito, Georgia, serif",
 			"fontSize": "18px",
-			"fontWeight": "600",
+			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "131x22"
+			"box": "171x23"
 		},
 		".nav a": {
 			"color": "rgb(26, 32, 44)",
@@ -4036,7 +4036,7 @@
 			"fontSize": "16px",
 			"fontWeight": "400",
 			"boxShadow": "rgb(244, 248, 253) -6px -6px 12px 0px, rgb(163, 177, 198) 6px 6px 12px 0px",
-			"box": "896x601"
+			"box": "896x635"
 		},
 		".board-title": {
 			"color": "rgb(26, 32, 44)",
@@ -4091,7 +4091,7 @@
 			"fontSize": "16px",
 			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "108x53"
+			"box": "158x87"
 		},
 		".table th": {
 			"color": "rgb(74, 85, 104)",
@@ -4258,7 +4258,7 @@
 			"boxShadow": "rgb(244, 248, 253) -6px -6px 12px 0px, rgb(163, 177, 198) 6px 6px 12px 0px",
 			"box": "179x56"
 		},
-		".banner-bay dock": {
+		".navigator-bay dock": {
 			"color": "rgb(45, 55, 72)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
@@ -4270,7 +4270,7 @@
 			"box": "1280x72",
 			"seat": "0,0"
 		},
-		".banner-skin dock": {
+		".navigator-skin dock": {
 			"color": "rgb(45, 55, 72)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
@@ -4282,20 +4282,8 @@
 			"box": "1280x72",
 			"seat": "0,0"
 		},
-		".banner h1 dock": {
+		".navigator-name dock": {
 			"color": "rgb(45, 55, 72)",
-			"backgroundColor": "rgba(0, 0, 0, 0)",
-			"borderRadius": "0px",
-			"borderTopWidth": "0px",
-			"fontFamily": "Nunito, Georgia, serif",
-			"fontSize": "18px",
-			"fontWeight": "600",
-			"boxShadow": "none",
-			"box": "131x22",
-			"seat": "137,25"
-		},
-		".mark dock": {
-			"color": "rgb(76, 81, 191)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
 			"borderTopWidth": "0px",
@@ -4303,10 +4291,22 @@
 			"fontSize": "18px",
 			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "25x25",
-			"seat": "80,23"
+			"box": "171x23",
+			"seat": "80,24"
 		},
-		".banner-bay float": {
+		".mark dock": {
+			"color": "rgb(45, 55, 72)",
+			"backgroundColor": "rgba(0, 0, 0, 0)",
+			"borderRadius": "0px",
+			"borderTopWidth": "0px",
+			"fontFamily": "Nunito, Georgia, serif",
+			"fontSize": "18px",
+			"fontWeight": "400",
+			"boxShadow": "none",
+			"box": "23x23",
+			"seat": "80,24"
+		},
+		".navigator-bay float": {
 			"color": "rgb(45, 55, 72)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
@@ -4318,7 +4318,7 @@
 			"box": "1280x72",
 			"seat": "0,0"
 		},
-		".banner-skin float": {
+		".navigator-skin float": {
 			"color": "rgb(45, 55, 72)",
 			"backgroundColor": "rgb(224, 229, 236)",
 			"borderRadius": "16px",
@@ -4330,20 +4330,8 @@
 			"box": "1248x40",
 			"seat": "16,16"
 		},
-		".banner h1 float": {
+		".navigator-name float": {
 			"color": "rgb(45, 55, 72)",
-			"backgroundColor": "rgba(0, 0, 0, 0)",
-			"borderRadius": "0px",
-			"borderTopWidth": "0px",
-			"fontFamily": "Nunito, Georgia, serif",
-			"fontSize": "18px",
-			"fontWeight": "600",
-			"boxShadow": "none",
-			"box": "131x22",
-			"seat": "153,25"
-		},
-		".mark float": {
-			"color": "rgb(76, 81, 191)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
 			"borderTopWidth": "0px",
@@ -4351,22 +4339,34 @@
 			"fontSize": "18px",
 			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "25x25",
-			"seat": "96,23"
+			"box": "171x23",
+			"seat": "96,24"
+		},
+		".mark float": {
+			"color": "rgb(45, 55, 72)",
+			"backgroundColor": "rgba(0, 0, 0, 0)",
+			"borderRadius": "0px",
+			"borderTopWidth": "0px",
+			"fontFamily": "Nunito, Georgia, serif",
+			"fontSize": "18px",
+			"fontWeight": "400",
+			"boxShadow": "none",
+			"box": "23x23",
+			"seat": "96,24"
 		}
 	},
 	"signal": {
-		"density": 372,
-		".banner h1": {
+		"density": 371,
+		".navigator-name": {
 			"color": "rgb(27, 34, 48)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
 			"borderTopWidth": "0px",
 			"fontFamily": "system-ui, sans-serif",
 			"fontSize": "18px",
-			"fontWeight": "800",
+			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "171x18"
+			"box": "203x23"
 		},
 		".nav a": {
 			"color": "rgb(10, 15, 24)",
@@ -4432,7 +4432,7 @@
 			"fontSize": "16px",
 			"fontWeight": "400",
 			"boxShadow": "rgba(15, 23, 42, 0.12) 0px 8px 24px 0px",
-			"box": "976x429"
+			"box": "976x447"
 		},
 		".board-title": {
 			"color": "rgb(10, 15, 24)",
@@ -4487,7 +4487,7 @@
 			"fontSize": "16px",
 			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "92x37"
+			"box": "126x55"
 		},
 		".table th": {
 			"color": "rgb(93, 107, 128)",
@@ -4654,7 +4654,7 @@
 			"boxShadow": "rgba(15, 23, 42, 0.12) 0px 8px 24px 0px",
 			"box": "163x40"
 		},
-		".banner-bay dock": {
+		".navigator-bay dock": {
 			"color": "rgb(27, 34, 48)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
@@ -4666,7 +4666,7 @@
 			"box": "1280x80",
 			"seat": "0,0"
 		},
-		".banner-skin dock": {
+		".navigator-skin dock": {
 			"color": "rgb(27, 34, 48)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
@@ -4678,20 +4678,8 @@
 			"box": "1280x80",
 			"seat": "0,0"
 		},
-		".banner h1 dock": {
+		".navigator-name dock": {
 			"color": "rgb(27, 34, 48)",
-			"backgroundColor": "rgba(0, 0, 0, 0)",
-			"borderRadius": "0px",
-			"borderTopWidth": "0px",
-			"fontFamily": "system-ui, sans-serif",
-			"fontSize": "18px",
-			"fontWeight": "800",
-			"boxShadow": "none",
-			"box": "171x18",
-			"seat": "129,31"
-		},
-		".mark dock": {
-			"color": "rgb(47, 91, 255)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
 			"borderTopWidth": "0px",
@@ -4699,10 +4687,22 @@
 			"fontSize": "18px",
 			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "25x25",
-			"seat": "80,27"
+			"box": "203x23",
+			"seat": "80,28"
 		},
-		".banner-bay float": {
+		".mark dock": {
+			"color": "rgb(27, 34, 48)",
+			"backgroundColor": "rgba(0, 0, 0, 0)",
+			"borderRadius": "0px",
+			"borderTopWidth": "0px",
+			"fontFamily": "system-ui, sans-serif",
+			"fontSize": "18px",
+			"fontWeight": "400",
+			"boxShadow": "none",
+			"box": "23x23",
+			"seat": "80,28"
+		},
+		".navigator-bay float": {
 			"color": "rgb(27, 34, 48)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
@@ -4714,7 +4714,7 @@
 			"box": "1280x80",
 			"seat": "0,0"
 		},
-		".banner-skin float": {
+		".navigator-skin float": {
 			"color": "rgb(10, 15, 24)",
 			"backgroundColor": "rgba(255, 255, 255, 0.78)",
 			"borderRadius": "16px",
@@ -4726,20 +4726,8 @@
 			"box": "1248x48",
 			"seat": "16,16"
 		},
-		".banner h1 float": {
-			"color": "rgb(10, 15, 24)",
-			"backgroundColor": "rgba(0, 0, 0, 0)",
-			"borderRadius": "0px",
-			"borderTopWidth": "0px",
-			"fontFamily": "system-ui, sans-serif",
-			"fontSize": "18px",
-			"fontWeight": "800",
-			"boxShadow": "none",
-			"box": "171x18",
-			"seat": "145,31"
-		},
-		".mark float": {
-			"color": "rgb(47, 91, 255)",
+		".navigator-name float": {
+			"color": "rgb(27, 34, 48)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
 			"borderTopWidth": "0px",
@@ -4747,22 +4735,34 @@
 			"fontSize": "18px",
 			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "25x25",
-			"seat": "96,27"
+			"box": "203x23",
+			"seat": "96,28"
+		},
+		".mark float": {
+			"color": "rgb(27, 34, 48)",
+			"backgroundColor": "rgba(0, 0, 0, 0)",
+			"borderRadius": "0px",
+			"borderTopWidth": "0px",
+			"fontFamily": "system-ui, sans-serif",
+			"fontSize": "18px",
+			"fontWeight": "400",
+			"boxShadow": "none",
+			"box": "23x23",
+			"seat": "96,28"
 		}
 	},
 	"swiss": {
-		"density": 389,
-		".banner h1": {
+		"density": 388,
+		".navigator-name": {
 			"color": "rgb(0, 0, 0)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
 			"borderTopWidth": "0px",
 			"fontFamily": "\"Helvetica Neue\", Helvetica, Arial, sans-serif",
 			"fontSize": "18px",
-			"fontWeight": "700",
+			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "147x17"
+			"box": "178x23"
 		},
 		".nav a": {
 			"color": "rgb(0, 0, 0)",
@@ -4828,7 +4828,7 @@
 			"fontSize": "16px",
 			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "976x413"
+			"box": "976x431"
 		},
 		".board-title": {
 			"color": "rgb(0, 0, 0)",
@@ -4883,7 +4883,7 @@
 			"fontSize": "16px",
 			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "85x36"
+			"box": "119x54"
 		},
 		".table th": {
 			"color": "rgb(118, 118, 118)",
@@ -5050,7 +5050,7 @@
 			"boxShadow": "none",
 			"box": "139x37"
 		},
-		".banner-bay dock": {
+		".navigator-bay dock": {
 			"color": "rgb(0, 0, 0)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
@@ -5062,7 +5062,7 @@
 			"box": "1280x72",
 			"seat": "0,0"
 		},
-		".banner-skin dock": {
+		".navigator-skin dock": {
 			"color": "rgb(0, 0, 0)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
@@ -5074,20 +5074,20 @@
 			"box": "1280x72",
 			"seat": "0,0"
 		},
-		".banner h1 dock": {
+		".navigator-name dock": {
 			"color": "rgb(0, 0, 0)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
 			"borderTopWidth": "0px",
 			"fontFamily": "\"Helvetica Neue\", Helvetica, Arial, sans-serif",
 			"fontSize": "18px",
-			"fontWeight": "700",
+			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "147x17",
-			"seat": "145,27"
+			"box": "178x23",
+			"seat": "96,24"
 		},
 		".mark dock": {
-			"color": "rgb(216, 30, 5)",
+			"color": "rgb(0, 0, 0)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
 			"borderTopWidth": "0px",
@@ -5095,10 +5095,10 @@
 			"fontSize": "18px",
 			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "25x25",
-			"seat": "96,23"
+			"box": "23x23",
+			"seat": "96,24"
 		},
-		".banner-bay float": {
+		".navigator-bay float": {
 			"color": "rgb(0, 0, 0)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
@@ -5110,7 +5110,7 @@
 			"box": "1280x72",
 			"seat": "0,0"
 		},
-		".banner-skin float": {
+		".navigator-skin float": {
 			"color": "rgb(0, 0, 0)",
 			"backgroundColor": "rgb(255, 255, 255)",
 			"borderRadius": "0px",
@@ -5122,20 +5122,8 @@
 			"box": "1280x72",
 			"seat": "0,0"
 		},
-		".banner h1 float": {
+		".navigator-name float": {
 			"color": "rgb(0, 0, 0)",
-			"backgroundColor": "rgba(0, 0, 0, 0)",
-			"borderRadius": "0px",
-			"borderTopWidth": "0px",
-			"fontFamily": "\"Helvetica Neue\", Helvetica, Arial, sans-serif",
-			"fontSize": "18px",
-			"fontWeight": "700",
-			"boxShadow": "none",
-			"box": "147x17",
-			"seat": "145,27"
-		},
-		".mark float": {
-			"color": "rgb(216, 30, 5)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
 			"borderTopWidth": "0px",
@@ -5143,13 +5131,25 @@
 			"fontSize": "18px",
 			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "25x25",
-			"seat": "96,23"
+			"box": "178x23",
+			"seat": "96,24"
+		},
+		".mark float": {
+			"color": "rgb(0, 0, 0)",
+			"backgroundColor": "rgba(0, 0, 0, 0)",
+			"borderRadius": "0px",
+			"borderTopWidth": "0px",
+			"fontFamily": "\"Helvetica Neue\", Helvetica, Arial, sans-serif",
+			"fontSize": "18px",
+			"fontWeight": "400",
+			"boxShadow": "none",
+			"box": "23x23",
+			"seat": "96,24"
 		}
 	},
 	"terminal": {
-		"density": 383,
-		".banner h1": {
+		"density": 382,
+		".navigator-name": {
 			"color": "rgb(200, 200, 200)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
@@ -5158,7 +5158,7 @@
 			"fontSize": "14px",
 			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "129x17"
+			"box": "155x18"
 		},
 		".nav a": {
 			"color": "rgb(255, 255, 255)",
@@ -5224,7 +5224,7 @@
 			"fontSize": "14px",
 			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "708x359"
+			"box": "708x378"
 		},
 		".board-title": {
 			"color": "rgb(255, 255, 255)",
@@ -5279,7 +5279,7 @@
 			"fontSize": "14px",
 			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "86x35"
+			"box": "114x54"
 		},
 		".table th": {
 			"color": "rgb(122, 122, 122)",
@@ -5446,7 +5446,7 @@
 			"boxShadow": "none",
 			"box": "168x36"
 		},
-		".banner-bay dock": {
+		".navigator-bay dock": {
 			"color": "rgb(200, 200, 200)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
@@ -5458,7 +5458,7 @@
 			"box": "1280x48",
 			"seat": "0,0"
 		},
-		".banner-skin dock": {
+		".navigator-skin dock": {
 			"color": "rgb(200, 200, 200)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
@@ -5470,7 +5470,7 @@
 			"box": "1280x48",
 			"seat": "0,0"
 		},
-		".banner h1 dock": {
+		".navigator-name dock": {
 			"color": "rgb(200, 200, 200)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
@@ -5479,11 +5479,11 @@
 			"fontSize": "14px",
 			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "129x17",
-			"seat": "70,16"
+			"box": "155x18",
+			"seat": "34,15"
 		},
 		".mark dock": {
-			"color": "rgb(53, 208, 127)",
+			"color": "rgb(200, 200, 200)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
 			"borderTopWidth": "0px",
@@ -5491,10 +5491,10 @@
 			"fontSize": "14px",
 			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "20x20",
-			"seat": "34,14"
+			"box": "18x18",
+			"seat": "34,15"
 		},
-		".banner-bay float": {
+		".navigator-bay float": {
 			"color": "rgb(200, 200, 200)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
@@ -5506,7 +5506,7 @@
 			"box": "1280x48",
 			"seat": "0,0"
 		},
-		".banner-skin float": {
+		".navigator-skin float": {
 			"color": "rgb(200, 200, 200)",
 			"backgroundColor": "rgb(12, 12, 12)",
 			"borderRadius": "0px",
@@ -5518,7 +5518,7 @@
 			"box": "1280x48",
 			"seat": "0,0"
 		},
-		".banner h1 float": {
+		".navigator-name float": {
 			"color": "rgb(200, 200, 200)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
@@ -5527,11 +5527,11 @@
 			"fontSize": "14px",
 			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "129x17",
-			"seat": "70,16"
+			"box": "155x18",
+			"seat": "34,15"
 		},
 		".mark float": {
-			"color": "rgb(53, 208, 127)",
+			"color": "rgb(200, 200, 200)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
 			"borderRadius": "0px",
 			"borderTopWidth": "0px",
@@ -5539,8 +5539,8 @@
 			"fontSize": "14px",
 			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "20x20",
-			"seat": "34,14"
+			"box": "18x18",
+			"seat": "34,15"
 		}
 	}
 }

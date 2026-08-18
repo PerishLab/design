@@ -3,11 +3,15 @@ export const notes = {
 		side: "立在主区旁边并保持不动的内容",
 		children: "主区内容",
 	},
-	Banner: {
-		mark: "标题前的单个字形",
-		title: "横幅的标题",
+	Navigator: {
+		mark: "这块界面所属产品的徽记",
+		owner: "名字所在的域,排得比名字安静",
+		home: "读者接住这枚锁型时去往何处",
+		look: "plain 用展示字排名字,exact 把整条排成标识符",
+		stick: "文档滚动时让这条留在原处",
+		title: "这条导航所属界面的名字",
 		line: "一行辅助文字",
-		children: "文字下方的可选内容",
+		children: "离开这块界面的所有出口",
 	},
 	Board: {
 		title: "面板标题",
@@ -107,6 +111,8 @@ export const notes = {
 		children: "另一侧的可选控件或标签",
 	},
 	Link: {
+		look: "text 站在散文里,nav 站在带子里",
+		here: "这条链接就是读者当前所在的界面",
 		label: "可见的链接文字",
 		href: "链接目标",
 	},
@@ -114,6 +120,9 @@ export const notes = {
 		children: "列表项",
 	},
 	Menu: {
+		value: "当前站着的那个选择,在列表里被标出",
+		sign: "触发处以形状代替文字时画的那一个",
+		look: "cue 是一颗按钮,bare 是一条带子里的一个记号",
 		label: "打开菜单的按钮上的文字",
 		items: "每个条目的值与文字",
 		open: "列表当前是否展开",
@@ -162,6 +171,7 @@ export const notes = {
 		children: "完整的产品界面",
 		tone: "这块界面的浅色或深色偏好",
 		system: "为这块界面赋予令牌的设计系统",
+		slide: "原子滑到下一组值要花多久,而不是直接切过去",
 	},
 	Split: {
 		children: "分置两侧的内容",
@@ -178,6 +188,7 @@ export const notes = {
 		tabs: "每个标签页的值与文字",
 		value: "当前展开的标签页",
 		change: "切换时以新的标签页调用",
+		beat: "每个标签页自己站多久,直到读者接手为止",
 	},
 	Tag: {
 		text: "简短的标签文字",
@@ -188,6 +199,7 @@ export const notes = {
 		children: "一段正文",
 	},
 	Tip: {
+		look: "over 开在被解释之物的上方,under 开在下方",
 		text: "提示所承载的文字",
 		children: "提示所解释的对象",
 	},

@@ -41,6 +41,11 @@ test("covers every styled component", () => {
 	expect(walk(root).sort()).toEqual(Object.keys(kinds).sort());
 });
 
+test("files every component in the room its source stands in", () => {
+	for (const group of groups)
+		expect(walk(join(root, group)).sort()).toEqual([...catalog[group]].sort());
+});
+
 test("says the same keys in every tongue", () => {
 	expect(paths(chinese, "").sort()).toEqual(paths(english, "").sort());
 });

@@ -29,10 +29,10 @@ export const grid = [
 
 export const seeds: Record<string, Record<string, unknown>> = {
 	Aside: { side: "beside", children: "the main region" },
-	Banner: {
+	Navigator: {
 		mark: "◆",
-		title: "a banner carries one line",
-		line: "and an optional body beneath it",
+		title: "perish workshop",
+		line: "and the ways out of it",
 		children: "",
 	},
 	Board: {

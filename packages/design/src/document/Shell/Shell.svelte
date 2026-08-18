@@ -3,9 +3,9 @@
 	import { wear } from "../../worn.ts";
 	import "./Shell.scss";
 
-	let { children, tone, system }: { children: Snippet; tone?: "light" | "dark"; system?: string } = $props();
+	let { children, tone, system, slide }: { children: Snippet; tone?: "light" | "dark"; system?: string; slide?: number } = $props();
 
 	wear(() => system);
 </script>
 
-<div class="shell" data-tone={tone} data-system={system}>{@render children()}</div>
+<div class="shell" data-tone={tone} data-system={system} data-slide={slide === undefined ? undefined : ""} style:--slid={slide === undefined ? null : `${slide}ms`}>{@render children()}</div>

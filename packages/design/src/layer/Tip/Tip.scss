@@ -7,7 +7,6 @@
 
 	.tip-note {
 		position: absolute;
-		bottom: calc(100% + var(--space-1));
 		left: 50%;
 		z-index: 1;
 		translate: -50% 0;
@@ -22,6 +21,14 @@
 		pointer-events: none;
 		box-shadow: var(--lift);
 		transition: opacity var(--beat);
+	}
+
+	.tip-over .tip-note {
+		bottom: calc(100% + var(--space-1));
+	}
+
+	.tip-under .tip-note {
+		top: calc(100% + var(--space-2));
 	}
 
 	.tip:hover .tip-note,

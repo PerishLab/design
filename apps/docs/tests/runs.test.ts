@@ -89,8 +89,8 @@ const dressed = join(
 );
 
 function ground(voice: string): string {
-	const rooms = ["system", "draft"].map((room) =>
-		join(dressed, room, `${voice}.scss`),
+	const rooms = ["system", "draft", "tone"].map((room) =>
+		join(dressed, room, `${voice === "base" ? "light" : voice}.scss`),
 	);
 	const found = rooms.find((path) => existsSync(path));
 	const hit = readFileSync(found ?? "", "utf8").match(
@@ -118,10 +118,70 @@ function lab(hex: string): number[] {
 	];
 }
 
-function apart(one: string, other: string): number {
-	const here = lab(ground(one));
-	const there = lab(ground(other));
-	return Math.hypot(...here.map((value, at) => value - there[at]));
+function paint(said: string): number[] {
+	const raw = [...(said.match(/[\d.]+/g) ?? [])].map(Number);
+	if (raw.length === 0) return lab("#000000");
+	const over = raw.length > 3 ? raw[3] : 1;
+	const flat = raw
+		.slice(0, 3)
+		.map((one) => Math.round(255 * (1 - over) + one * over));
+	return lab(
+		`#${flat.map((one) => one.toString(16).padStart(2, "0")).join("")}`,
+	);
+}
+
+function size(said: string): number {
+	const hit = said.match(/-?[\d.]+/);
+	return hit === null ? 0 : Number(hit[0]);
+}
+
+const looked = JSON.parse(
+	readFileSync(
+		join(dirname(fileURLToPath(import.meta.url)), "look.json"),
+		"utf8",
+	),
+) as Record<string, Record<string, Record<string, string>>>;
+
+function traits(voice: string): Record<string, number[] | number | string> {
+	const board = looked[voice][".board"];
+	const solid = looked[voice][".button-solid"];
+	return {
+		ground: lab(ground(voice)),
+		ink: paint(board.color),
+		accent: paint(solid.backgroundColor),
+		radius: size(board.borderRadius),
+		rim: size(board.borderTopWidth),
+		size: size(board.fontSize),
+		face: board.fontFamily,
+		shadow: board.boxShadow === "none" ? "flat" : "lifted",
+	};
+}
+
+const noticed: Record<string, number> = {
+	ground: 10,
+	ink: 10,
+	accent: 20,
+	radius: 4,
+	rim: 1,
+	size: 2,
+	face: 1,
+	shadow: 1,
+};
+
+function gap(here: unknown, there: unknown): number {
+	if (Array.isArray(here) && Array.isArray(there))
+		return Math.hypot(...here.map((one, at) => one - there[at]));
+	if (typeof here === "number" && typeof there === "number")
+		return Math.abs(here - there);
+	return here === there ? 0 : 1;
+}
+
+function moved(one: string, other: string): number {
+	const here = traits(one);
+	const there = traits(other);
+	return Object.entries(noticed).filter(
+		([name, edge]) => gap(here[name], there[name]) >= edge,
+	).length;
 }
 
 function voices(): string[] {
@@ -131,18 +191,16 @@ function voices(): string[] {
 		: [...hit[1].matchAll(/"(\w+)"/g)].map((one) => one[1]);
 }
 
-function pairs(shown: string[]): string[][] {
-	return shown.flatMap((one, at) =>
-		shown.slice(at + 1).map((other) => [one, other]),
-	);
+function running(shown: string[]): string[][] {
+	return shown.map((one, at) => [one, shown[(at + 1) % shown.length]]);
 }
 
-const near = 10;
+const least = 4;
 
-test("dresses no two specimens on grounds the eye reads as one", () => {
-	const same = pairs(voices())
-		.map((two) => ({ two, gap: apart(two[0], two[1]) }))
-		.filter((row) => row.gap < near)
-		.map((row) => `${row.two.join("/")} ${row.gap.toFixed(1)}`);
-	expect(same).toEqual([]);
+test("changes something the eye can see at every step it takes", () => {
+	const still = running(voices())
+		.map((two) => ({ two, seen: moved(two[0], two[1]) }))
+		.filter((row) => row.seen < least)
+		.map((row) => `${row.two.join("/")} ${row.seen}`);
+	expect(still).toEqual([]);
 });

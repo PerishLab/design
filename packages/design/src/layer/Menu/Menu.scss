@@ -5,6 +5,9 @@
 	}
 
 	.menu-cue {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--space-2);
 		padding: var(--space-2) var(--space-3);
 		border: var(--line) solid var(--edge);
 		border-radius: var(--knob);
@@ -13,14 +16,39 @@
 		font-family: var(--brisk);
 		font-size: var(--body);
 		cursor: pointer;
+		transition: color var(--beat), background-color var(--beat), border-color var(--beat);
+	}
+
+	.menu-cue:has(.sign) .menu-word {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		overflow: hidden;
+		clip-path: inset(50%);
+		white-space: nowrap;
+	}
+
+	.menu-bare .menu-cue {
+		padding: var(--space-1);
+		border-color: transparent;
+		background: transparent;
+		color: var(--muted);
+		font-size: var(--fine);
+	}
+
+	.menu-bare .menu-cue:hover,
+	.menu-bare .menu-cue:focus-visible,
+	.menu-bare .menu-cue[aria-expanded="true"] {
+		background: var(--well);
+		color: var(--bright);
 	}
 
 	.menu-list {
 		position: absolute;
-		top: calc(100% + var(--space-1));
-		left: 0;
+		top: calc(100% + var(--space-2));
+		right: 0;
 		z-index: 1;
-		min-width: 100%;
+		min-width: max-content;
 		margin: 0;
 		padding: var(--space-1);
 		border: var(--line) solid var(--edge);
@@ -32,6 +60,10 @@
 	}
 
 	.menu-item {
+		display: flex;
+		align-items: center;
+		gap: var(--space-4);
+		justify-content: space-between;
 		width: 100%;
 		padding: var(--space-2) var(--space-3);
 		border: none;
@@ -42,10 +74,21 @@
 		font-size: var(--fine);
 		text-align: left;
 		cursor: pointer;
+		transition: background-color var(--beat), color var(--beat);
 	}
 
-	.menu-item:hover {
+	.menu-item:hover,
+	.menu-item:focus-visible {
 		background: var(--well);
 		color: var(--bright);
+	}
+
+	.menu-item.live {
+		color: var(--bright);
+		font-weight: var(--firm);
+	}
+
+	.menu-item .sign {
+		color: var(--accent);
 	}
 }

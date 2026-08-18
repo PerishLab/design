@@ -6,17 +6,17 @@ root = "."
 [app]
 name = "docs"
 command = "pnpm"
-args = ["--filter", "design-docs", "dev", "--host", "0.0.0.0", "--"]
+args = ["--filter", "design-docs", "dev", "--host", "0.0.0.0"]
 cwd = "."
 mode = "dev"
-port = 4290
+port = 0
 health_url = "http://127.0.0.1:{port}/health"
 
 [[sidecars]]
 name = "preview"
 command = "pnpm"
-args = ["--filter", "design-docs", "preview", "--host", "127.0.0.1", "--"]
+args = ["--filter", "design-docs", "preview", "--host", "127.0.0.1"]
 cwd = "."
 mode = "built"
-port = 4287
+port = 0
 health_url = "http://127.0.0.1:{port}/health"

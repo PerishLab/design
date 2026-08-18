@@ -53,6 +53,19 @@ no value.
 The other axes are real and are not directories. Arity, flow, and territory are
 projections, and the gallery is where they belong.
 
+A room is an obligation, so two of them state one a machine can hold:
+`packages/design/tests/room.test.ts` refuses a `focus` generator that owns no
+focusable element, and a `layer` generator that opens with no way to close it
+but a pointer. `apps/docs/tests/drift.test.ts` refuses a catalog that files a
+component in a room its source does not stand in.
+
+The other four rooms are held by a person, and not for now. `mark`, `arrange`,
+`enclose`, and `document` state what a generator means rather than what its
+source contains, and checking meaning would need the component to declare its
+own role — which is the proposal this repository has already refused twice. A
+generator with no stylesheet is outside every one of these, because the laws
+that read the tree read the ones that carry a dress.
+
 ## App layer
 
 `apps/*` may write no CSS and no native HTML tag. The first is enforced by the

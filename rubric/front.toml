@@ -19,19 +19,23 @@
 [surface]
 path = "/"
 runs = 5
-height = 2111                # at 1440 wide, 2026-08-15
-glyphs = 1967
-density = 647                # glyphs per megapixel; see LEDGER P105/P107
-# The same gauge read 1661 glyphs in 1902 pixels — 606 — immediately before this
-# pass, so the surface grew by 277 pixels and gained 21 glyphs per megapixel:
-# it got longer because it says more, which is the only direction growth is
-# allowed to run.
-# The whole pass moved zero library parts: `look.json` is byte-identical across
-# all fourteen languages, twice over. Every cut here was composition and copy.
+height = 2224                # at 1440 wide, 2026-08-18
+glyphs = 1755
+density = 548                # glyphs per megapixel; see LEDGER P105/P107
+# Down from 647, and the fall is the gauge rather than the surface: the glyphs
+# that left were three repetitions of one sentence, carried by the three
+# duplicate specimen cards. A density figure only compares surfaces that repeat
+# themselves equally (LEDGER P183). What went in their place is not repetition —
+# the markup every language renders, stated beside the render.
+# The pass moved zero library appearances: `look.json` is byte-identical across
+# all fourteen languages. What moved is behaviour, which that gauge cannot see,
+# and which nothing on this surface had before.
 
-# The bar is a sixth block and it is not listed below, because it is not this
-# surface's: every page carries it. It belongs to a rubric that does not exist
-# yet — the one for what all surfaces share. Left out on purpose, not missed.
+# The navigator is a sixth block and it is not listed below, because it is not
+# this surface's: every page carries it. It belongs to a rubric that does not
+# exist yet — the one for what all surfaces share. Left out on purpose, not
+# missed. It is named `Navigator` as of 2026-08-18, and the name is a decision
+# with a record: LEDGER P183 to P185.
 
 # --- the demand side ------------------------------------------------------
 # Tags are an open set. Anything can be a tag; the entry fee is that someone can
@@ -60,6 +64,19 @@ holds = true
 # space, not type: they are orthogonal and space is a four times larger lever
 # (LEDGER P107). No atom states density yet, so this tag is held by values that
 # happened to be measured rather than by a rule.
+# Reads 548 now and still holds. The threshold was measured on a surface
+# carrying three redundant copies of one sentence, so it was never comparable
+# across this change; the number to watch is whether the glyphs are saying
+# different things, and it is not a number this gauge reports.
+
+[[tag]]
+name = "the claim is demonstrated, not asserted"
+holds = true
+# New, and it is the tag the run now exists to carry. The surface claims one
+# structure under eleven languages. Four static cards asserted it; one card
+# walking through all eleven while the markup stands beside it unchanged is the
+# reader watching it happen. The entry fee was paid the same day: `change-shown`
+# is the falsifiable assertion, and it fires.
 
 # --- the blocks -----------------------------------------------------------
 # Each run carries one rhetorical role. The skeleton three of them share is
@@ -84,11 +101,11 @@ rag = 108
 [[block]]
 role = "specimen"
 run = 1
-heading = "Four voices, one component"
+heading = "Eleven voices, one component"
 lede = 1
 payload = 1
 exits = 1
-columns = 4
+columns = 2
 rag = 0
 # Paid: the four are swiss / relief / glass / terminal, chosen so that no two
 # grounds read as one. The old four were two near-whites and two near-blacks,
@@ -101,10 +118,21 @@ rag = 0
 # copy varied, a reader could not tell whether the difference is the language or
 # the words. The remedy for the noise was to make the dressings differ enough
 # that the eye compares grounds instead of reading four paragraphs.
-# Open: four of eleven is a sample, and now a curated one — picked for maximum
-# ground spread. Whether a curated sample can carry the claim, or whether the
-# surface must show all eleven, is unsettled and the caption does not say
-# "chosen".
+# Closed, and not by settling the question. It asked whether a curated sample
+# of four could carry the claim, or whether the surface had to show all eleven.
+# The run shows all eleven, one at a time, on a beat of 2600ms with a 900ms
+# slide between them, and a reader who takes a tab keeps it. A sample that is
+# not a sample cannot be curated wrongly.
+# Paid: the payload is one specimen and a second seat beside it holding the
+# markup all eleven renders share. The run said "no branch in the code" and
+# offered no way to check it; the code stands next to the render now.
+# Paid: the run is the only place on the surface where anything moves. By P165
+# that is the class that has ever scored — a kind of element the page did not
+# have at all.
+# Open: the specimen is a 3:1 stage and its card fills about half of it, so the
+# language's ground carries the rest. That is deliberate — the ground is a
+# channel the reader is here to see — but it has never been measured against a
+# tighter frame.
 
 [[block]]
 role = "model"
@@ -215,6 +243,43 @@ kind = "machine"
 holds = true
 
 [[law]]
+id = "change-shown"
+says = "consecutive specimens differ on at least four of the eight channels a reader reads"
+kind = "machine"
+holds = true
+home = "apps/docs/tests/runs.test.ts"
+# The successor to `grounds-differ`, and the third law on this surface to be
+# re-aimed rather than relaxed. A run that shows its specimens in sequence is
+# making a change visible; a step nobody can see is not a demonstration, so the
+# law is derived from what the run is for and not from what it looks like.
+# Channels: ground, ink, accent, radius, rim, size, face, shadow, each with its
+# own noticing threshold, read from `look.json` and the theme sources.
+# Verified in both directions, which is what P121 cost. The designed order
+# carries a minimum of five channels; a naive order fires on base/ant 2,
+# ant/carbon 2 and cupertino/material 3 — the three pairs the eye reads as
+# repeats and no others. Four sits in the gap between them.
+# The consequence is that the order of the eleven is a designed object. It was
+# solved for, not chosen.
+
+[[law]]
+id = "grounds-differ"
+says = "no two specimens stand on grounds the eye reads as one"
+kind = "retired"
+holds = false
+home = "apps/docs/tests/runs.test.ts"
+# Retired on measurement, not on taste, and it was never wrong for the surface
+# it was written on. It read one channel because the four specimens it judged
+# had been curated on that channel. Shown all eleven, the best cycle any
+# ordering can reach has a worst consecutive gap of 5.6 against its threshold of
+# 10 — because eight of the eleven grounds are near-white, most design languages
+# being paper. **A law that reads one channel can only judge a set picked on
+# that channel.** See LEDGER P181.
+# It did bite while it stood, and that is why it is retired rather than deleted:
+# restoring the old four gave swiss/material 5.2 and terminal/console 3.1,
+# exactly the two pairs the eye called repeats and exactly the two the trait law
+# waved through.
+
+[[law]]
 id = "specimens-differ"
 says = "no two specimens agree on more than four fifths of their traits"
 kind = "retired"
@@ -227,20 +292,6 @@ holds = false
 # shadow and a face while their grounds are a pale blue-grey and a purple-teal
 # wash. Anti-correlated with the complaint on real data, not just silent about
 # it. Replaced by `grounds-differ`.
-
-[[law]]
-id = "grounds-differ"
-says = "no two specimens stand on grounds the eye reads as one"
-kind = "machine"
-holds = true
-home = "apps/docs/tests/runs.test.ts"
-# The same complaint aimed at the channel it is actually about. Grounds are read
-# out of the theme files, converted to Lab, and no pair may fall under ten units
-# apart. Verified to bite by restoring the old four: swiss/material 5.2 and
-# terminal/console 3.1 — exactly the two pairs the eye called repeats, and
-# exactly the two the trait law waved through.
-# The threshold is a value that happened to be measured, not a rule: ten sits in
-# the gap between the old set's worst (5.2) and the new set's worst (10.1).
 
 [[law]]
 id = "counted-said"

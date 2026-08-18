@@ -8,15 +8,17 @@
 		tone,
 		system,
 		look,
+		slide,
 	}: {
 		name: string;
 		values: Record<string, unknown>;
 		tone?: "light" | "dark";
 		system: string;
 		look?: "view" | "strip" | "pane";
+		slide?: number;
 	} = $props();
 </script>
 
-<Shell {tone} system={system === "base" ? undefined : system}>
+<Shell {tone} {slide} system={system === "base" ? undefined : system}>
 	<Stage {look}><Sample {name} {values} /></Stage>
 </Shell>
