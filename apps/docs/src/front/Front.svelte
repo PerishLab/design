@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { Navigator, Button, Cell, Code, Course, Footer, Grid, Head, Hero, Ledger, Link, Menu, Rail, Shell, Split, Text } from "@perish/design";
+	import { named } from "@perish/crest/crest";
 	import { stamp } from "virtual:stamp";
 	import { borne, shown, spell, wired } from "../docs/front.ts";
 	import Turn from "./Turn.svelte";
@@ -28,7 +29,7 @@
 </script>
 
 <Shell tone={tone === "system" ? undefined : tone}>
-	<Navigator stick look="exact" mark="design" owner={t("front.owner")} title={t("front.title")} home={here}>
+	<Navigator stick look="exact" mark="design" owner={named.design.owner} title={named.design.name} home={here}>
 		<Link look="nav" href={`${here}gallery/`} label={t("front.gallery")} />
 		<Menu look="bare" sign="tongue" label={t("front.tongue")} value={heard()} items={tongues} choose={travel} />
 		<Menu look="bare" sign="shade" label={t("front.shade")} value={tone} items={shades} choose={(next) => (tone = next as Tone)} />

@@ -44,7 +44,7 @@
 	},
 	"dependencies": {
 		"@perish/bone": "workspace:*",
-		"@perish/crest": "workspace:*",
+		"@perish/crest": "^0.1.0",
 		"@perish/sidecar": "0.8.0-beta.4",
 		"@perish/sign": "workspace:*",
 		"@perish/token": "workspace:*"
