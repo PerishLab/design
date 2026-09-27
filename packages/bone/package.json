@@ -19,6 +19,7 @@
 	},
 	"scripts": {
 		"build": "svelte-package -i src -o dist",
+		"prepack": "pnpm build",
 		"typecheck": "svelte-check --tsconfig ./tsconfig.json",
 		"test": "vitest run"
 	},
