@@ -1,6 +1,6 @@
 {
-	"name": "@perish/token",
-	"version": "0.1.0",
+	"name": "@perishlab/token",
+	"version": "0.0.0",
 	"license": "MIT",
 	"type": "module",
 	"files": [
@@ -10,8 +10,7 @@
 		"./*": "./src/*"
 	},
 	"publishConfig": {
-		"access": "public",
-		"registry": "https://git.perish.top/api/packages/PerishLab/npm/"
+		"access": "public"
 	},
 	"peerDependencies": {
 		"sass": ">=1.101"

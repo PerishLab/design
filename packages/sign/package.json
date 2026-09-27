@@ -1,6 +1,6 @@
 {
-	"name": "@perish/sign",
-	"version": "0.1.0",
+	"name": "@perishlab/sign",
+	"version": "0.0.0",
 	"license": "MIT",
 	"type": "module",
 	"files": [
@@ -14,7 +14,6 @@
 		"./terminal": "./src/terminal.ts"
 	},
 	"publishConfig": {
-		"access": "public",
-		"registry": "https://git.perish.top/api/packages/PerishLab/npm/"
+		"access": "public"
 	}
 }

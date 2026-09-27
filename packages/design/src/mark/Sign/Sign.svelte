@@ -1,6 +1,6 @@
 <script lang="ts">
 	import "./Sign.scss";
-	import { sets } from "@perish/sign/sets";
+	import { sets } from "@perishlab/sign/sets";
 	import { worn } from "../../worn.ts";
 
 	let {

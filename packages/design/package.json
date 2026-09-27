@@ -1,6 +1,6 @@
 {
-	"name": "@perish/design",
-	"version": "0.3.0",
+	"name": "@perishlab/design",
+	"version": "0.0.0",
 	"license": "MIT",
 	"type": "module",
 	"files": [
@@ -19,12 +19,11 @@
 		}
 	},
 	"publishConfig": {
-		"access": "public",
-		"registry": "https://git.perish.top/api/packages/PerishLab/npm/"
+		"access": "public"
 	},
 	"scripts": {
 		"build": "svelte-package -i src -o dist",
-		"check": "svelte-check --tsconfig ./tsconfig.json",
+		"typecheck": "svelte-check --tsconfig ./tsconfig.json",
 		"test": "vitest run"
 	},
 	"peerDependencies": {
@@ -43,10 +42,10 @@
 		"vitest": "catalog:"
 	},
 	"dependencies": {
-		"@perish/bone": "workspace:*",
-		"@perish/crest": "workspace:*",
-		"@perish/sidecar": "0.8.0-beta.4",
-		"@perish/sign": "workspace:*",
-		"@perish/token": "workspace:*"
+		"@perishlab/bone": "workspace:*",
+		"@perishlab/crest": "^0.1.0",
+		"@perishlab/sidecar": "0.9.0",
+		"@perishlab/sign": "workspace:*",
+		"@perishlab/token": "workspace:*"
 	}
 }

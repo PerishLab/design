@@ -7,7 +7,7 @@ export default defineConfig({
 	resolve: {
 		alias: [
 			{
-				find: "@perish/bone",
+				find: "@perishlab/bone",
 				replacement: fileURLToPath(
 					new URL("../bone/src/lib.ts", import.meta.url),
 				),

@@ -50,13 +50,13 @@ importers:
 
   apps/docs:
     dependencies:
-      '@perish/crest':
-        specifier: workspace:*
-        version: link:../../packages/crest
-      '@perish/design':
+      '@perishlab/crest':
+        specifier: ^0.1.0
+        version: 0.1.0
+      '@perishlab/design':
         specifier: workspace:*
         version: link:../../packages/design
-      '@perish/sign':
+      '@perishlab/sign':
         specifier: workspace:*
         version: link:../../packages/sign
       svelte:
@@ -112,23 +112,21 @@ importers:
         specifier: 'catalog:'
         version: 4.1.10(@types/node@24.13.3)(vite@8.1.4(@types/node@24.13.3)(esbuild@0.28.1)(sass@1.101.0))
 
-  packages/crest: {}
-
   packages/design:
     dependencies:
-      '@perish/bone':
+      '@perishlab/bone':
         specifier: workspace:*
         version: link:../bone
-      '@perish/crest':
-        specifier: workspace:*
-        version: link:../crest
-      '@perish/sidecar':
-        specifier: 0.8.0-beta.4
-        version: 0.8.0-beta.4
-      '@perish/sign':
+      '@perishlab/crest':
+        specifier: ^0.1.0
+        version: 0.1.0
+      '@perishlab/sidecar':
+        specifier: 0.9.0
+        version: 0.9.0
+      '@perishlab/sign':
         specifier: workspace:*
         version: link:../sign
-      '@perish/token':
+      '@perishlab/token':
         specifier: workspace:*
         version: link:../token
     devDependencies:
@@ -708,8 +706,11 @@ packages:
     resolution: {integrity: sha512-tmmZ3lQxAe/k/+rNnXQRawJ4NjxO2hqiOLTHvWchtGZULp4RyFeh6aU4XdOYBFe2KE1oShQTv4AblOs2iOrNnQ==}
     engines: {node: '>= 10.0.0'}
 
-  '@perish/sidecar@0.8.0-beta.4':
-    resolution: {integrity: sha512-utF9C4YxKfBQFHQju392Nak5uE7VZDIVPVoVVFzLBd18B59ByvTX0M+eBhpDZK6rgX6ZsUZf4Vh/haV6zkxg7A==, tarball: https://git.perish.top/api/packages/PerishLab/npm/%40perish%2Fsidecar/-/0.8.0-beta.4/sidecar-0.8.0-beta.4.tgz}
+  '@perishlab/crest@0.1.0':
+    resolution: {integrity: sha512-f9PC6mhO7FOvpRghjcwXA9/GbhbJeeoAYcX0e5u9asBiNsKo+hXdLL13g/hWLPlnZwI36Zux/0jj7ssXv5fkzA==, tarball: https://npm.pkg.github.com/download/@perishlab/crest/0.1.0/858bd85f43d28f2f757b87acbace907b6f5b399f}
+
+  '@perishlab/sidecar@0.9.0':
+    resolution: {integrity: sha512-4SXCPOx59a3XWJDC+EkXQn9oez6B1O0LiDRE0ApjzI8c5V1uO2Va08+z+XYWeAQbO7v5/98T2NB6zkJYgvnJWQ==, tarball: https://npm.pkg.github.com/download/@perishlab/sidecar/0.9.0/6d017f46f7a864633415c3112ae1faba074fafba}
 
   '@poppinss/colors@4.1.6':
     resolution: {integrity: sha512-H9xkIdFswbS8n1d6vmRd8+c10t2Qe+rZITbbDHHkQixH5+2x1FDGmi/0K+WgWiqQFKPSlIYB7jlH6Kpfn6Fleg==}
@@ -1720,7 +1721,9 @@ snapshots:
       '@parcel/watcher-win32-x64': 2.5.6
     optional: true
 
-  '@perish/sidecar@0.8.0-beta.4': {}
+  '@perishlab/crest@0.1.0': {}
+
+  '@perishlab/sidecar@0.9.0': {}
 
   '@poppinss/colors@4.1.6':
     dependencies:

@@ -5,25 +5,26 @@ and its self-built documentation site.
 
 ## Identity
 
-- `packages/token` publishes `@perish/token`: the atoms, the contract that
+- `packages/token` publishes `@perishlab/token`: the atoms, the contract that
   guards them, and every theme. It carries no component and no framework.
-- `packages/bone` publishes `@perish/bone`: the seam CSS does not have. `Bay`
+- `packages/bone` publishes `@perishlab/bone`: the seam CSS does not have. `Bay`
   reserves space and may move it, `Skin` fills its bay and paints it, and one
   border box could hold neither without the other. The package may not name a
   single atom, and its own test refuses `var(--` and any reach for the
   substrate. It is a dependency of the design package and of nothing else; the
   app layer must never receive a generic box.
-- `packages/design` publishes `@perish/design` and depends on the substrate.
+- `packages/design` publishes `@perishlab/design` and depends on the substrate.
   Components are exported from the package root. Every component declaration
   and filename is one word.
 - Component styles reach the substrate through `pkg:` specifiers. The design
   plugin carries the node package importer that makes them resolve, so a
   consumer configures nothing it was not already configuring.
 - The framework-neutral Vite integration is exported from
-  `@perish/design/vite`; it owns route discovery, health, local proxy wiring,
+  `@perishlab/design/vite`; it owns route discovery, health, local proxy wiring,
   the optional static server artifact, and the sass resolution above.
 - `apps/docs` builds `design.perish.uk`. It consumes the same source package
-  contract that is published, through explicit workspace resolution only.
+  contract that is published, through explicit workspace resolution only, and
+  takes `@perishlab/crest` from the registry like any other consumer.
 
 React, TSX, JSR, `useXxx` declarations, the old package names, and the old
 `react.design.perish.uk` domain are retired surfaces. Do not restore a
@@ -93,13 +94,18 @@ stops on every theme that has not answered for it.
 ## Guard
 
 Run `pnpm check`, `pnpm typecheck`, `pnpm test`, `pnpm build`, `plumb doctor .`,
-and `ectropy .`. Type checking is a source operation and must not build first.
-The package build is required only for packaging, the docs production build,
-and clean-consumer smoke.
+and `ectropy .`. Verify by exit code. Type checking is a source operation and
+must not build first. `plumb configuration install` projects the guard hooks,
+and every commit carries the proof Plumb's guard takes over the exact staged
+tree.
 
 `ectropy` must run from the repository root or it reads default law and scans
 build output. `plumb doctor` wants the build output removed and any deletion
 staged, or it reports paths it cannot see.
+
+`@perishlab/crest` and `@perishlab/sidecar` install from GitHub Packages, which
+wants a token even for a public package. Locally that is the `GH_TOKEN` Runseal's
+`liberte` profile carries, handed to pnpm through a user npmrc that names it.
 
 The theme contract only fires when a consumer compiles, because
 `svelte-package` copies `.scss` through untouched. A package build proves
@@ -108,13 +114,19 @@ missing atom.
 
 ## Release
 
-Actions owns the exact and stable npm transaction. Product workflows are thin
-callers. The registry authority is
-`https://git.perish.top/api/packages/PerishLab/npm/`; publication requires the
-purpose-scoped `package-release` token, never a break-glass operator token.
+`plumb.toml` declares the product. `@perishlab/bone`, `@perishlab/sign`,
+`@perishlab/token` and `@perishlab/design` publish to GitHub Packages in that
+order, so each lands after what it depends on, and `.npmrc` maps the scope
+there. The packages declare version `0.0.0` and share the product's version.
+`apps/docs` is the Cloudflare worker behind `design.perish.uk`; its
+`wrangler.jsonc` names the account and the domain.
 
-The site follows the Plumb site contract. `plumb site plan`, `inspect`, and
-`deploy` derive the app and domain from `apps/docs/wrangler.jsonc`.
+A release follows Plumb's lifecycle: `plumb release open` cuts
+`release/<version>` from a guarded `main`, `plumb release stamp` marks it, and
+`plumb ship dispatch` hands the marker to wharf, which stamps the version into
+the packages, publishes them, and deploys the worker. A stable's changelog is
+consigned to the Depot with `plumb depot consign --kind changelog`;
+`plumb release owed` lists what is still owed.
 
 ## Look
 

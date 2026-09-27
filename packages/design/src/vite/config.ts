@@ -1,4 +1,4 @@
-import { client } from "@perish/sidecar";
+import { client } from "@perishlab/sidecar";
 
 export type Env = {
 	build: string;

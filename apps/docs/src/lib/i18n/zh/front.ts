@@ -1,6 +1,4 @@
 export const front = {
-	owner: "@perish/",
-	title: "design",
 	claim: "十一种设计语言。一套结构。",
 	line: "一套 Svelte 组件库——设计语言在这里是一个值,不是一次分叉。",
 	lede: "主题只陈述值,从不陈述模板,所以每种语言骑的是同一批生成元。Swiss 与 Material 渲染的是同一份标记,而它们要过却找不到的每一个原子,都记在发现它的那次渲染旁边。",

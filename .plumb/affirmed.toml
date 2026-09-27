@@ -1,0 +1,5 @@
+[[record]]
+target = "AGENTS.md"
+rule = "rule://seat/affirmed"
+authority = "d258470ce40822e50bff0febe03903bf019651260321d323d0a6b490b56d7748"
+

@@ -20,7 +20,7 @@ test("names no atom", () => {
 	for (const seat of walk(root)) {
 		const text = readFileSync(seat, "utf8");
 		if (text.includes("var(--")) said.push(seat);
-		if (text.includes("@perish/token")) said.push(seat);
+		if (text.includes("@perishlab/token")) said.push(seat);
 	}
 	expect(said).toEqual([]);
 });

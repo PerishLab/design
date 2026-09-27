@@ -37,7 +37,7 @@ function stamped(): Plugin {
 		load: (seen) =>
 			seen === seat
 				? `export const stamp = ${JSON.stringify(
-						`@perish/design ${made.version} · ${made.license} · ${cut()}`,
+						`@perishlab/design ${made.version} · ${made.license} · ${cut()}`,
 					)};`
 				: undefined,
 		handleHotUpdate({ server, modules }) {
@@ -54,19 +54,19 @@ export default defineConfig({
 	resolve: {
 		alias: [
 			{
-				find: "@perish/design/vite",
+				find: "@perishlab/design/vite",
 				replacement: fileURLToPath(
 					new URL("../../packages/design/src/vite/lib.ts", import.meta.url),
 				),
 			},
 			{
-				find: "@perish/bone",
+				find: "@perishlab/bone",
 				replacement: fileURLToPath(
 					new URL("../../packages/bone/src/lib.ts", import.meta.url),
 				),
 			},
 			{
-				find: "@perish/design",
+				find: "@perishlab/design",
 				replacement: fileURLToPath(
 					new URL("../../packages/design/src/lib.ts", import.meta.url),
 				),

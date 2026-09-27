@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { Bay, Skin } from "@perish/bone";
-	import { crest, frame } from "@perish/crest/crest";
+	import { Bay, Skin } from "@perishlab/bone";
+	import { crest, frame } from "@perishlab/crest/crest";
 	import type { Snippet } from "svelte";
 	import "./Navigator.scss";
 
