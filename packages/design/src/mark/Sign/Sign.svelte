@@ -1,7 +1,7 @@
 <script lang="ts">
 	import "./Sign.scss";
 	import { sets } from "@perishlab/sign/sets";
-	import { worn } from "../../worn.ts";
+	import { worn } from "../../worn.js";
 
 	let {
 		name,

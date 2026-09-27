@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Snippet } from "svelte";
-	import { wear } from "../../worn.ts";
+	import { wear } from "../../worn.js";
 	import "./Shell.scss";
 
 	let { children, tone, system, slide }: { children: Snippet; tone?: "light" | "dark"; system?: string; slide?: number } = $props();
