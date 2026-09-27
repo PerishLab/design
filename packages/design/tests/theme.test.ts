@@ -2,7 +2,7 @@ import { pathToFileURL } from "node:url";
 import * as sass from "sass";
 import { expect, test } from "vitest";
 
-const sheet = sass.compileString('@use "pkg:@perish/token/base.scss";', {
+const sheet = sass.compileString('@use "pkg:@perishlab/token/base.scss";', {
 	importers: [new sass.NodePackageImporter()],
 	url: pathToFileURL(`${process.cwd()}/theme.scss`),
 }).css;

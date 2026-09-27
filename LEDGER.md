@@ -1063,3 +1063,15 @@ checked a member met it.
 | P193 | **Two of the six rooms state something a machine can hold, and which two was decided by the rooms' own wording rather than by effort.** `focus` says it owns a focusable element and `layer` says escape — both are facts about the source. `mark`, `arrange`, `enclose` and `document` say what a generator *means*, and checking meaning would need the component to declare its own role, which is the proposal that was refused for the cascade band and that makes `one-payload` permanently human-held. **P117 again: whether a law can be mechanised is decided by the rulings this line has already made.** |
 | P194 | `Views` escapes all of it. It is exported, it stands in `document/`, and it has no stylesheet — and every law that reads the tree reads only the generators that carry a dress, because that filter is what makes the documentation law true. **A filter written to make one law true also decides what every law built on it cannot see.** Recorded and not repaired: a router paints nothing and the gallery cannot show it, so the honest answer is that the catalog is a catalog of what can be shown, not of what is exported. |
 | — | The first probe for the layer rule reported that `Modal` handles no Escape. It was the wrong probe: `Modal` calls `showModal()`, and the platform supplies escape and the trap. P125 again, in the same hour it was being written into a law — the rule greps for `showModal(` as well as for the key, and both are real answers to the obligation. |
+
+## The crest left, and stopped being transparent
+
+`@perish/crest` is its own repository and its own published package now. The
+design package consumes `0.1.0` from the registry instead of a sibling in this
+workspace.
+
+| # | Entry |
+|---|---|
+| P195 | **A source-only package stops being transparent the moment it stops being a workspace sibling.** `@perish/sign` ships TypeScript and always has, and nothing ever noticed, because a workspace link is source to every tool that reads it. Installed from a registry the same package is `node_modules`, where Node refuses to strip types and vitest externalises by default — `shape.test.ts` failed on `@perish/crest/crest` the moment the dependency became real. Held by `server.deps.inline` in the docs vitest config. The forge smoke script had already met the same wall and answered it the same way, by compiling through vite rather than reading with bare `node`. |
+| P196 | The product's own name and scope moved out of the documentation site's translations. `@perish/` and `design` were sitting in `en/front.ts` and `zh/front.ts` as if they were prose to translate, and they are not: **`design` is not called anything else in Chinese.** They come from `named` in the crest package now, which is the seat that owns what a product is called. |
+| — | `sidecar.toml` on `main` no longer starts the docs app here: it states `port = 0` while its health probe interpolates `{port}`, and `sidecar status` reports `docs: stopped` immediately after `sidecar start docs`. The change did not come from this line of work and is recorded rather than reverted. The dev server runs by hand in the meantime. |

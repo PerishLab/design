@@ -70,7 +70,7 @@ export const seeds: Record<string, Record<string, unknown>> = {
 		hint: "perish",
 	},
 	Footer: { text: "a workshop colophon", children: "beta" },
-	Forge: { host: "https://git.perish.top", repo: "PerishFire/design" },
+	Forge: { host: "https://github.com", repo: "PerishLab/design" },
 	Frame: { children: "a frame wraps the whole page" },
 	Grid: { cols: 4, look: "even", children: "cells" },
 	Hero: {

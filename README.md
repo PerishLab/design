@@ -3,8 +3,8 @@
 The Perish Svelte design system.
 
 ```ts
-import { Button, Frame, Note } from "@perish/design";
-import { design } from "@perish/design/vite";
+import { Button, Frame, Note } from "@perishlab/design";
+import { design } from "@perishlab/design/vite";
 ```
 
 `packages/token` carries the atoms, the contract that guards them, and ten

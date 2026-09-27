@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Shell, Stage } from "@perish/design";
+	import { Shell, Stage } from "@perishlab/design";
 	import Sample from "./Sample.svelte";
 
 	let {

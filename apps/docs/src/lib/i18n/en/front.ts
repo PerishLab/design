@@ -1,6 +1,4 @@
 export const front = {
-	owner: "@perish/",
-	title: "design",
 	claim: "Eleven design languages. One structure.",
 	line: "A Svelte component library whose design language is a value, not a fork.",
 	lede: "A theme states values and never a template, so every language rides the same generators. Swiss and Material render the same markup, and every atom either of them asked for and could not find is written down beside the render that found it.",

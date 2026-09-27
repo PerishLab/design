@@ -1,6 +1,6 @@
 import { execFileSync } from "node:child_process";
-import { hold, marks } from "@perish/crest/crest";
-import { sets } from "@perish/sign/sets";
+import { hold, marks } from "@perishlab/crest/crest";
+import { sets } from "@perishlab/sign/sets";
 import { expect, test } from "vitest";
 
 const heaviest = 3;
