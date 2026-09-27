@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Board, Fold } from "@perish/design";
+	import { Board, Fold } from "@perishlab/design";
 	import { kinds } from "../docs/kinds.ts";
 	import { seeds } from "../docs/samples.ts";
 	import Knobs from "../knobs/Knobs.svelte";

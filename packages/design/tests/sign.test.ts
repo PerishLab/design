@@ -1,4 +1,4 @@
-import { sets } from "@perish/sign/sets";
+import { sets } from "@perishlab/sign/sets";
 import { expect, test } from "vitest";
 
 const roster = Object.keys(sets.base.drawn).sort();

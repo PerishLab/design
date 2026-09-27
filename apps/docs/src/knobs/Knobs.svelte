@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Check, Field, Note } from "@perish/design";
+	import { Check, Field, Note } from "@perishlab/design";
 	import type { Kind } from "../docs/kinds.ts";
 	import { speak } from "../lib/i18n/index.ts";
 

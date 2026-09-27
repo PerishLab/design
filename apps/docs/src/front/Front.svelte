@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { Navigator, Button, Cell, Code, Course, Footer, Grid, Head, Hero, Ledger, Link, Menu, Rail, Shell, Split, Text } from "@perish/design";
-	import { named } from "@perish/crest/crest";
+	import { Navigator, Button, Cell, Code, Course, Footer, Grid, Head, Hero, Ledger, Link, Menu, Rail, Shell, Split, Text } from "@perishlab/design";
+	import { named } from "@perishlab/crest/crest";
 	import { stamp } from "virtual:stamp";
 	import { borne, shown, spell, wired } from "../docs/front.ts";
 	import Turn from "./Turn.svelte";
@@ -46,7 +46,7 @@
 		</Grid>
 		<Split look="close">
 			<Button href={`${here}gallery/`} label={t("front.start")} sign="next" />
-			<Button look="quiet" href="https://git.perish.top/PerishFire/design" label={t("front.source")} sign="away" />
+			<Button look="quiet" href="https://github.com/PerishLab/design" label={t("front.source")} sign="away" />
 		</Split>
 	</Course>
 	<Course look="well">
@@ -108,7 +108,7 @@
 		</Grid>
 		<Footer text={stamp}>
 			<Link look="nav" href={`${here}gallery/`} label={t("front.gallery")} />
-			<Link look="nav" href="https://git.perish.top/PerishFire/design" label="source" />
+			<Link look="nav" href="https://github.com/PerishLab/design" label="source" />
 		</Footer>
 	</Course>
 </Shell>

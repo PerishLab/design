@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { Aside, Navigator, Cell, Footer, Frame, Grid, Head, Link, Menu, Nav, Pick, Search, Shell, Text } from "@perish/design";
-	import { named } from "@perish/crest/crest";
+	import { Aside, Navigator, Cell, Footer, Frame, Grid, Head, Link, Menu, Nav, Pick, Search, Shell, Text } from "@perishlab/design";
+	import { named } from "@perishlab/crest/crest";
 	import { catalog, groups } from "../docs/catalog.ts";
 	import { speak, tongue } from "../lib/i18n/index.ts";
 	import Bench from "./Bench.svelte";
@@ -110,7 +110,7 @@
 			{/if}
 		</Aside>
 		<Footer text={`${index.length} / ${total}`}>
-			<Link look="nav" href="https://git.perish.top/PerishFire/design" label={t("gallery.source")} />
+			<Link look="nav" href="https://github.com/PerishLab/design" label={t("gallery.source")} />
 		</Footer>
 	</Frame>
 </Shell>

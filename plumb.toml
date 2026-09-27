@@ -1,0 +1,44 @@
+[layout]
+
+[[layout.seat]]
+path = "packages/*"
+anchor = ["package.json"]
+note = "Publishable Svelte and Sass packages."
+
+[[layout.seat]]
+path = "apps/*"
+anchor = ["package.json"]
+note = "The documentation site, deployed as a Cloudflare worker."
+
+[[layout.seat]]
+path = ".runseal"
+note = "Committed inert Runseal resources."
+
+[[layout.seat]]
+path = "rubric"
+note = "The rubric the documentation front is judged against."
+
+[[layout.file]]
+name = ["README.md"]
+note = "The public introduction."
+
+[[layout.file]]
+name = ["LEDGER.md"]
+note = "The defect ledger the proof screen and probe themes feed."
+
+[[layout.file]]
+name = ["package.json", "pnpm-lock.yaml", "pnpm-workspace.yaml", "biome.json", ".npmrc"]
+note = "The pnpm workspace anchors."
+
+[release]
+product = "design"
+authority = "https://releases.design.perish.uk"
+skill = false
+
+[release.npm]
+registry = "https://npm.pkg.github.com/"
+packages = ["@perishlab/bone", "@perishlab/sign", "@perishlab/token", "@perishlab/design"]
+
+[release.cfworker]
+account = "a6776d8a453d1b84d01576245a9c4f8d"
+domain = "design.perish.uk"

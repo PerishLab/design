@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Tabs } from "@perish/design";
+	import { Tabs } from "@perishlab/design";
 	import { seeds } from "../docs/samples.ts";
 	import Realm from "../gallery/Realm.svelte";
 

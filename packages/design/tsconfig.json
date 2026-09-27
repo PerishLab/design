@@ -10,7 +10,7 @@
 		"isolatedModules": true,
 		"skipLibCheck": true,
 		"paths": {
-			"@perish/bone": ["../bone/src/lib.ts"]
+			"@perishlab/bone": ["../bone/src/lib.ts"]
 		},
 		"types": ["vite/client", "node"]
 	},

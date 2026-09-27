@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Board, Cell, Grid } from "@perish/design";
+	import { Board, Cell, Grid } from "@perishlab/design";
 	import { seeds } from "../docs/samples.ts";
 	import Realm from "./Realm.svelte";
 

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Frame, Hero, Link, Shell } from "@perish/design";
+	import { Frame, Hero, Link, Shell } from "@perishlab/design";
 	import Front from "./front/Front.svelte";
 	import Gallery from "./gallery/Gallery.svelte";
 	import { stage } from "./lib/i18n/index.ts";

@@ -1,6 +1,6 @@
 {
-	"name": "@perish/bone",
-	"version": "0.1.0",
+	"name": "@perishlab/bone",
+	"version": "0.0.0",
 	"license": "MIT",
 	"type": "module",
 	"files": [
@@ -15,12 +15,11 @@
 		}
 	},
 	"publishConfig": {
-		"access": "public",
-		"registry": "https://git.perish.top/api/packages/PerishLab/npm/"
+		"access": "public"
 	},
 	"scripts": {
 		"build": "svelte-package -i src -o dist",
-		"check": "svelte-check --tsconfig ./tsconfig.json",
+		"typecheck": "svelte-check --tsconfig ./tsconfig.json",
 		"test": "vitest run"
 	},
 	"peerDependencies": {

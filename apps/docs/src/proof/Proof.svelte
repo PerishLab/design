@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Navigator, Board, Button, Card, Cell, Check, Code, Copy, Face, Field, Fold, Footer, Forge, Frame, Grid, Head, Hero, Item, Ledger, Line, Link, List, Menu, Meter, Modal, Nav, Note, Pick, Rail, Search, Sheet, Shell, Split, Table, Tabs, Tag, Text, Tip, Toast } from "@perish/design";
+	import { Navigator, Board, Button, Card, Cell, Check, Code, Copy, Face, Field, Fold, Footer, Forge, Frame, Grid, Head, Hero, Item, Ledger, Line, Link, List, Menu, Meter, Modal, Nav, Note, Pick, Rail, Search, Sheet, Shell, Split, Table, Tabs, Tag, Text, Tip, Toast } from "@perishlab/design";
 	import { atoms, stops } from "../docs/samples.ts";
 
 	const law = `[limit]\nblock = 4\nfanout = 10\nfile = 300\nmarkup = 8\nparam = 4\npath = 4`;
@@ -45,7 +45,7 @@
 
 <Shell {tone} {system}>
 	<Navigator stick mark="perish.code" title="perish workshop" home="/">
-		<Forge host="https://git.perish.top" repo="PerishFire/design" />
+		<Forge host="https://github.com" repo="PerishLab/design" />
 		<Link href="/gallery/" label="gallery" />
 		<Button look="quiet" label={tone === "light" ? "dark" : "light"} press={flip} />
 	</Navigator>
@@ -69,7 +69,7 @@
 			<Line name="packages/design" meta="0.3.0"><Tag text="published" /></Line>
 			<Line name="packages/token" meta="0.1.0"><Tag text="published" /></Line>
 			<Line name="break-glass operator" meta="rejected"><Tag text="denied" mood="warn" /></Line>
-			<Line name="git.perish.top/api/packages/PerishLab/npm/" meta="registry"><Copy text="https://git.perish.top/api/packages/PerishLab/npm/" /></Line>
+			<Line name="npm.pkg.github.com" meta="registry"><Copy text="https://npm.pkg.github.com/" /></Line>
 			<Meter label="guard" value={0.82} />
 			<Split>
 				<Menu label="actions" items={deeds} bind:open={acting} />
@@ -106,7 +106,7 @@
 		</Sheet>
 		<Footer text="a PerishLab workshop — this site is MIT and guarded by its own constitution.">
 			<Link href="/gallery/" label="gallery" />
-			<Forge host="https://git.perish.top" repo="PerishFire/design" />
+			<Forge host="https://github.com" repo="PerishLab/design" />
 		</Footer>
 	</Frame>
 	<Modal title="cut 0.4.0" bind:open={cutting}>
