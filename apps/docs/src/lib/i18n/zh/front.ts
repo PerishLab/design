@@ -2,7 +2,7 @@ export const front = {
 	title: "Perish Design — Svelte 设计系统",
 	description:
 		"Perish Design 是一套 Svelte 设计系统:视觉语言可以变化,组件的含义、职责与组合保持不变。",
-	claim: "语言会变。结构不变。",
+	claim: "审美会变，骨架不变",
 	line: "一套 Svelte 设计系统——视觉语言在这里是一个值,不是一次分叉。",
 	lede: "每种语言都会改变同一批组件的外观与感受,但它们的含义、职责与组合保持不变。",
 	voice: "十一种语言,同一个组件",
