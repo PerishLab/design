@@ -83,6 +83,17 @@ test("renders component identity", () => {
 			props: { stops: [{ mark: "01", name: "declare", text: "shape" }] },
 		}).body,
 	).toContain("declare");
+	const tabs = render(design.Tabs, {
+		props: {
+			tabs: [
+				{ value: "one", label: "one" },
+				{ value: "two", label: "two" },
+			],
+			value: "two",
+		},
+	}).body;
+	expect(tabs).toContain('role="tablist"');
+	expect(tabs).toContain('aria-selected="true"');
 	expect(
 		render(design.Shell, {
 			props: {

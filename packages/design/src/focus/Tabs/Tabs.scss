@@ -1,11 +1,17 @@
 @layer component {
 	.tabs {
 		display: flex;
+		max-width: 100%;
+		min-width: 0;
 		gap: var(--space-4);
 		border-bottom: var(--line) solid var(--rule);
+		overflow-x: auto;
+		overscroll-behavior-inline: contain;
+		scrollbar-width: thin;
 	}
 
 	.tabs-one {
+		flex: 0 0 auto;
 		padding: var(--space-2) 0;
 		border: none;
 		border-bottom: var(--rim) solid transparent;
