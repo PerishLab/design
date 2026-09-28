@@ -22,7 +22,7 @@ const fronts = [
 		path: "/zh-CN/",
 		lang: "zh-CN",
 		title: "Perish Design — Svelte 设计系统",
-		claim: "语言会变。结构不变。",
+		claim: "审美会变，骨架不变",
 		book: chinese,
 	},
 ];
