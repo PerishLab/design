@@ -1096,3 +1096,14 @@ measured at desktop and mobile before the next visual pass.
 | # | Entry |
 |---|---|
 | P200 | **The opening run occupied 270 pixels of a 900-pixel desktop viewport, so the evidence run entered at pixel 342 and carried as much visible area as the proposition.** The page had a claim but no first impression: its 7/5 documentation grid gave the H1, explanation and actions neighbouring weights, and the same compact stack survived on mobile. The answer is opt-in rather than global. `Course full` gives an opening run the viewport measure it claims, while `Hero look="claim"` spends scale only where a surface is making its one proposition. Ordinary courses and heroes keep their existing shape. After the cut, the desktop opening is 828 pixels and the next run begins exactly at pixel 900; at 390 × 844 the opening content is complete and the next run begins at pixel 869. |
+
+## The specimen fits before it fills
+
+The full-screen claim made the following evidence more important, then exposed
+that its eleven-language control still imposed a desktop measure on narrow
+screens.
+
+| # | Entry |
+|---|---|
+| P201 | **The specimen widened the document to 700 pixels on a 390-pixel viewport and to 1,121 pixels at 1,024.** The tabs contributed their full minimum-content width to the surrounding grid, so the page scrolled instead of the control. The tabs now own their overflow, every item keeps its intrinsic label width, and autoplay brings only the active item into the control's visible interval. The page stays still while its evidence advances. |
+| P202 | **A 3:1 strip becomes roughly 119 pixels tall once it honestly fits a phone, which is too short to show the same component it claims to compare.** The strip keeps that panoramic ratio on wide screens and takes 4:3 below the seam. This is not extra mobile content or ornament: it is the space needed for the existing proof to remain legible after removing the accidental width. |
