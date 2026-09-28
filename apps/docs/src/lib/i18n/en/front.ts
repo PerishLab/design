@@ -1,8 +1,11 @@
 export const front = {
-	claim: "Eleven design languages. One structure.",
-	line: "A Svelte component library whose design language is a value, not a fork.",
-	lede: "A theme states values and never a template, so every language rides the same generators. Swiss and Material render the same markup, and every atom either of them asked for and could not find is written down beside the render that found it.",
-	voice: "Eleven voices, one component",
+	title: "Perish Design — Svelte design system",
+	description:
+		"Perish Design is a Svelte design system where visual language changes while component meaning, responsibility, and composition remain.",
+	claim: "Language changes. Structure remains.",
+	line: "A Svelte design system where visual language is a value, not a fork.",
+	lede: "Each language changes how the same components look and feel. Their meaning, responsibility, and composition stay intact.",
+	voice: "Eleven languages, one component",
 	borne: "the markup, all eleven times",
 	voiced:
 		"One card, dressed by every one of the eleven languages in turn. Nothing in the markup changes as it goes. Take a tab and it stops where you put it.",
@@ -13,8 +16,8 @@ export const front = {
 	shade: "theme",
 	system: "system",
 	tally: "What it is made of",
-	rooms: "Six rooms",
-	axis: "Every generator is filed by what it takes responsibility for, because that is the axis every behaviour hangs off. Taking focus means keyboard and roles and a ring; taking a layer means the top layer and escape and a trap.",
+	rooms: "Structure follows responsibility",
+	axis: "Six rooms hold the structure. Every generator is filed by what it takes responsibility for: taking focus means keyboard, roles, and a ring; taking a layer means the top layer, escape, and a trap.",
 	install: "Install",
 	after:
 		"The screen renders in swiss because Shell says so. The same markup renders in ten more, and that attribute is the only thing that changes.",
