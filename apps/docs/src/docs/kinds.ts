@@ -58,6 +58,7 @@ export const kinds: Record<string, Record<string, Kind>> = {
 	},
 	Course: {
 		look: "text",
+		full: "flag",
 		children: "node",
 	},
 	Face: {
@@ -100,6 +101,7 @@ export const kinds: Record<string, Record<string, Kind>> = {
 		title: "text",
 		line: "text",
 		mark: "text",
+		look: "text",
 	},
 	Item: {
 		children: "node",

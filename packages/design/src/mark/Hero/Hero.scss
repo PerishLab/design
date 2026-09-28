@@ -48,9 +48,25 @@
 		padding-block-end: 0;
 	}
 
+	.hero-claim {
+		padding-block-end: var(--space-6);
+
+		h1 {
+			max-width: min(24ch, 100%);
+			margin-block-end: var(--space-4);
+			font-size: min(calc(var(--hero) * 2), 8rem);
+			line-height: 1;
+			letter-spacing: calc(var(--track) * 2);
+		}
+	}
+
 	@include media.slim {
 		.hero .ghost {
 			display: none;
+		}
+
+		.hero-claim h1 {
+			font-size: calc(var(--hero) * 1.4);
 		}
 	}
 }

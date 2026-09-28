@@ -60,11 +60,24 @@ test("renders component identity", () => {
 	expect(
 		render(design.Note, { props: { text: "held", mood: "warn" } }).body,
 	).toContain("note-warn");
+	const hero = render(design.Hero, {
+		props: {
+			title: "design",
+			line: "singleword",
+			mark: "◆",
+			look: "claim",
+		},
+	}).body;
+	expect(hero).toContain("◆");
+	expect(hero).toContain('class="hero hero-claim"');
 	expect(
-		render(design.Hero, {
-			props: { title: "design", line: "singleword", mark: "◆" },
+		render(design.Course, {
+			props: {
+				full: true,
+				children: snippet(() => ({ render: () => "inside" })),
+			},
 		}).body,
-	).toContain("◆");
+	).toContain("course-full");
 	expect(
 		render(design.Rail, {
 			props: { stops: [{ mark: "01", name: "declare", text: "shape" }] },

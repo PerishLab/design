@@ -35,19 +35,19 @@
 		<Menu look="bare" sign="shade" label={t("front.shade")} value={tone} items={shades} choose={(next) => (tone = next as Tone)} />
 	</Navigator>
 
-	<Course>
+	<Course full>
+		<Hero look="claim" title={t("front.claim")} line={t("front.line")} />
 		<Grid cols={12}>
-			<Cell span={7}>
-				<Hero title={t("front.claim")} line={t("front.line")} />
-			</Cell>
 			<Cell span={5}>
 				<Text>{t("front.lede")}</Text>
 			</Cell>
+			<Cell span={5} start={8}>
+				<Split look="close">
+					<Button href={`${here}gallery/`} label={t("front.start")} sign="next" />
+					<Button look="quiet" href="https://github.com/PerishLab/design" label={t("front.source")} sign="away" />
+				</Split>
+			</Cell>
 		</Grid>
-		<Split look="close">
-			<Button href={`${here}gallery/`} label={t("front.start")} sign="next" />
-			<Button look="quiet" href="https://github.com/PerishLab/design" label={t("front.source")} sign="away" />
-		</Split>
 	</Course>
 	<Course look="well">
 		<Grid cols={12}>

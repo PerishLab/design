@@ -56,6 +56,7 @@ export const notes = {
 	},
 	Course: {
 		look: "bare 不陈述空间,plain 陈述空间,raise 与 well 各自陈述它承载的表面",
+		full: "让这一道至少占据导航带之下的一屏",
 		children: "这一道在页面度量上居中承载的区域",
 	},
 	Face: {
@@ -98,6 +99,7 @@ export const notes = {
 		title: "页面上最大的一行",
 		line: "标题下的一行文字",
 		mark: "标题旁的可选字形",
+		look: "plain 用于普通页面标题,claim 用于界面的唯一命题",
 	},
 	Item: {
 		children: "单个条目的内容",

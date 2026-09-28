@@ -4,11 +4,13 @@
 
 	let {
 		look = "plain",
+		full = false,
 		children,
 	}: {
 		look?: "bare" | "plain" | "raise" | "well";
+		full?: boolean;
 		children: Snippet;
 	} = $props();
 </script>
 
-<div class="course course-{look}"><div class="course-body">{@render children()}</div></div>
+<div class:course-full={full} class="course course-{look}"><div class="course-body">{@render children()}</div></div>
