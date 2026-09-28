@@ -42,11 +42,11 @@ density = 548                # glyphs per megapixel; see LEDGER P105/P107
 # write a falsifiable assertion for it. An unfalsifiable tag is a mood.
 
 [[tag]]
-name = "eleven languages, one structure"
+name = "language changes, structure remains"
 holds = true
-# The surface's own claim, and the one tag no borrowed paradigm carries: every
-# other library's component page shows one language. Where a world paradigm
-# cannot hold this, the refusal is the finding.
+# The surface's own claim. It no longer expires when the roster grows: the
+# count is evidence in the specimen run, while the durable proposition names
+# what varies and what does not.
 
 [[tag]]
 name = "a stranger can say what this is in one sentence"
@@ -101,7 +101,7 @@ rag = 108
 [[block]]
 role = "specimen"
 run = 1
-heading = "Eleven voices, one component"
+heading = "Eleven languages, one component"
 lede = 1
 payload = 1
 exits = 1
@@ -137,7 +137,7 @@ rag = 0
 [[block]]
 role = "model"
 run = 2
-heading = "Six rooms"
+heading = "Structure follows responsibility"
 lede = 1
 payload = 1
 exits = 6                    # every stop of the rail links; none sits in an exit seat
@@ -386,7 +386,8 @@ id = "claim-repeatable"
 says = "a stranger can repeat the claim after one reading"
 kind = "reading"
 holds = true
-# "A Svelte component library whose design language is a value, not a fork."
+# "Language changes. Structure remains." The supporting line separately names
+# the category and the value-not-fork mechanism.
 
 [[law]]
 id = "proof-varies-the-claim"
