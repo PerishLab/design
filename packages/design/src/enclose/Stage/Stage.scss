@@ -4,10 +4,13 @@
 	.stage {
 		@include media.room;
 		display: grid;
+		width: 100%;
+		min-width: 0;
 		align-items: safe center;
 		border: var(--line) solid var(--edge);
 		padding: var(--space-4);
 		overflow: hidden;
+		box-sizing: border-box;
 	}
 
 	.stage-view {
@@ -24,7 +27,15 @@
 	}
 
 	.stage > * {
+		width: 100%;
+		min-width: 0;
 		max-width: 100%;
 		mask-image: linear-gradient(to bottom, black 88%, transparent);
+	}
+
+	@include media.narrow {
+		.stage-strip {
+			aspect-ratio: 4 / 3;
+		}
 	}
 }
