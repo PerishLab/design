@@ -1,6 +1,7 @@
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { render } from "svelte/server";
 import App from "./App.svelte";
+import { page } from "./lib/page.ts";
 
 const shell = readFileSync("dist/index.html", "utf8");
 const pages = [
@@ -11,16 +12,11 @@ const pages = [
 	{ path: "/proof/", lang: "en" },
 ];
 
-function page(path: string, lang: string): string {
-	const body = render(App, { props: { path } }).body;
-	return shell
-		.replace('<html lang="en">', `<html lang="${lang}">`)
-		.replace('<div id="root"></div>', `<div id="root">${body}</div>`);
-}
-
 for (const held of pages) {
 	const dir = held.path === "/" ? "dist" : `dist${held.path}`;
+	const body = render(App, { props: { path: held.path } }).body;
 	mkdirSync(dir, { recursive: true });
-	writeFileSync(`${dir}/index.html`, page(held.path, held.lang));
+	writeFileSync(`${dir}/index.html`, page(shell, body, held.path, held.lang));
 }
-writeFileSync("dist/404.html", page("/404", "en"));
+const missing = render(App, { props: { path: "/404" } }).body;
+writeFileSync("dist/404.html", page(shell, missing, "/404", "en"));
