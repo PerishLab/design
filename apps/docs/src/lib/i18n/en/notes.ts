@@ -56,6 +56,7 @@ export const notes = {
 	},
 	Course: {
 		look: "bare for a run that states no space, plain for one that does, raise and well for the surface it carries",
+		full: "give the run at least the viewport left beneath the navigation band",
 		children: "the region the run centres on the page measure",
 	},
 	Face: {
@@ -98,6 +99,7 @@ export const notes = {
 		title: "the largest line on the page",
 		line: "one line under the title",
 		mark: "an optional glyph beside the title",
+		look: "plain for an ordinary page title, claim for the surface's one proposition",
 	},
 	Item: {
 		children: "the contents of one item",
