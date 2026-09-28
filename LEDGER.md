@@ -1087,3 +1087,12 @@ named a current inventory and left the lasting design judgment implicit.
 | P198 | The old first screen introduced `theme`, `values`, `generators`, `markup`, and `atoms` before the reader had seen the claim happen. **Mechanism was occupying the seat where consequence belonged.** The first screen now names the category and says only what varies and what holds: look and feel change; meaning, responsibility, and composition remain. The specimen earns the right to introduce markup, and the model run earns the right to introduce rooms and generators. |
 | P199 | **The two halves of the page were adjacent but not joined.** Eleven languages demonstrated variation; six rooms described classification. Renaming the model run `Structure follows responsibility` states the hinge: responsibility is the invariant that lets language vary without semantic drift. The run still says and shows all six rooms, so the tally keeps its referent. |
 | — | Search representation now carries the product category independently of the aphoristic H1. English and Chinese front routes state their own title and description, while the document template supplies a title fallback before hydration. The homepage can lead with a brand judgment without asking a search result to infer that it is a Svelte design system. |
+
+## The claim took the first screen
+
+The proposition changed before its composition did. The live homepage was
+measured at desktop and mobile before the next visual pass.
+
+| # | Entry |
+|---|---|
+| P200 | **The opening run occupied 270 pixels of a 900-pixel desktop viewport, so the evidence run entered at pixel 342 and carried as much visible area as the proposition.** The page had a claim but no first impression: its 7/5 documentation grid gave the H1, explanation and actions neighbouring weights, and the same compact stack survived on mobile. The answer is opt-in rather than global. `Course full` gives an opening run the viewport measure it claims, while `Hero look="claim"` spends scale only where a surface is making its one proposition. Ordinary courses and heroes keep their existing shape. After the cut, the desktop opening is 828 pixels and the next run begins exactly at pixel 900; at 390 × 844 the opening content is complete and the next run begins at pixel 869. |

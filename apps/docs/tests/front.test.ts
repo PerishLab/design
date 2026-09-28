@@ -41,3 +41,8 @@ test.each(fronts)("$lang front states one proposition", (front) => {
 test("the proposition occupies the hero title", () => {
 	expect(composition.match(/title=\{t\("front\.claim"\)\}/g)).toHaveLength(1);
 });
+
+test("the proposition opens in a full typographic course", () => {
+	expect(composition).toContain("<Course full>");
+	expect(composition).toContain('<Hero look="claim"');
+});
