@@ -7,7 +7,7 @@ import { front as chinese } from "../src/lib/i18n/zh/front.ts";
 
 const seat = join(
 	dirname(fileURLToPath(import.meta.url)),
-	"../src/front/Front.svelte",
+	"../src/front/What.svelte",
 );
 
 const books: Record<string, Record<string, unknown>> = {
@@ -57,9 +57,7 @@ test("says every noun it counts, before the run that counts it", () => {
 
 function onward(part: string, keys: string[]): boolean {
 	if (
-		part.includes("href=") ||
-		part.includes("<Gallery") ||
-		part.includes(" copy")
+		["href=", "<Gallery", "<Rail", " copy"].some((mark) => part.includes(mark))
 	)
 		return true;
 	return keys.some((key) =>
