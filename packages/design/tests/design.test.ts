@@ -67,6 +67,11 @@ test("renders component identity", () => {
 	expect(
 		render(design.Note, { props: { text: "held", mood: "warn" } }).body,
 	).toContain("note-warn");
+	const navigator = render(design.Navigator, {
+		props: { mark: "design", title: "design" },
+	}).body;
+	expect(navigator).toContain("--crest-ink: #2f679c");
+	expect(navigator).toContain("--crest-dark: #8fc7f2");
 	const hero = render(design.Hero, {
 		props: {
 			title: "design",

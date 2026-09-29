@@ -32,9 +32,9 @@
 
 		.mark {
 			flex: 0 0 auto;
-			inline-size: calc(var(--lead) * 1.3);
-			block-size: calc(var(--lead) * 1.3);
-			fill: var(--accent);
+			inline-size: calc(var(--lead) * 1.4);
+			block-size: calc(var(--lead) * 1.4);
+			fill: light-dark(var(--crest-ink), var(--crest-dark));
 			fill-rule: evenodd;
 		}
 
@@ -70,7 +70,7 @@
 		}
 
 		.navigator-home .mark {
-			transition: rotate var(--beat), fill var(--beat);
+			transition: rotate var(--beat);
 		}
 
 		.navigator-home:hover .mark,
