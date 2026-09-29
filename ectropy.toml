@@ -20,6 +20,13 @@ syntax = "style"
 
 [[grant]]
 paths = [
+    "apps/docs/vite.config.ts",
+    "packages/design/vitest.config.ts",
+]
+syntax = "embed"
+
+[[grant]]
+paths = [
     "apps/*/tests/**/*.test.ts",
     "packages/*/tests/**/*.test.ts",
 ]
