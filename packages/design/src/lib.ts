@@ -29,6 +29,7 @@ export { default as Forge } from "./focus/Forge/Forge.svelte";
 export { default as Link } from "./focus/Link/Link.svelte";
 export { default as Pick } from "./focus/Pick/Pick.svelte";
 export { default as Search } from "./focus/Search/Search.svelte";
+export { default as Carousel } from "./focus/Tabs/Carousel/Carousel.svelte";
 export { default as Tabs } from "./focus/Tabs/Tabs.svelte";
 export { default as Menu } from "./layer/Menu/Menu.svelte";
 export { default as Modal } from "./layer/Modal/Modal.svelte";

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Aside, Navigator, Cell, Course, Face, Fold, Menu, Meter, Stage, Table, Tabs, Tip, Modal, Toast, Check, Head, Item, Pick, Text, Board, Button, Card, Code, Copy, Field, Footer, Forge, Frame, Grid, Hero, Ledger, Line, Link, List, Nav, Note, Rail, Search, Sheet, Shell, Split, Tag } from "@perishlab/design";
+	import { Aside, Navigator, Cell, Course, Face, Fold, Menu, Meter, Stage, Table, Tabs, Tip, Modal, Toast, Check, Head, Item, Pick, Text, Board, Button, Carousel, Card, Code, Copy, Field, Footer, Forge, Frame, Grid, Hero, Ledger, Line, Link, List, Nav, Note, Rail, Search, Sheet, Shell, Split, Tag } from "@perishlab/design";
 	import { atoms, choices, grid, heads, picks, stops } from "../docs/samples.ts";
 
 	let { name, values }: { name: string; values: Record<string, unknown> } = $props();
@@ -16,6 +16,7 @@
 {:else if name === "Navigator"}<Navigator mark={said("mark")} title={said("title")} line={said("line")}>{said("children")}</Navigator>
 {:else if name === "Board"}<Board title={said("title")} line={said("line")}>{said("children")}</Board>
 {:else if name === "Button"}<Button label={said("label")} look={button()} wide={Boolean(values.wide)} busy={Boolean(values.busy)} halt={Boolean(values.halt)} submit={Boolean(values.submit)}>{said("children")}</Button>
+{:else if name === "Carousel"}<Carousel items={picks} value={said("value")} label={said("label")} pause={said("pause")} play={said("play")} beat={300000}>{#snippet children(choice)}<Stage look="pane">{choice}</Stage>{/snippet}</Carousel>
 {:else if name === "Card"}<Card title={said("title")}>{said("children")}</Card>
 {:else if name === "Cell"}<Grid cols={4}><Cell span={Number(values.span) || 1} look={said("look") === "fill" ? "fill" : "start"}>{said("children")}</Cell></Grid>
 {:else if name === "Check"}<Check label={said("label")} held={Boolean(values.held)} look={said("look") === "switch" ? "switch" : "box"} />

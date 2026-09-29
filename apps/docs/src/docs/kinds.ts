@@ -33,6 +33,18 @@ export const kinds: Record<string, Record<string, Kind>> = {
 		halt: "flag",
 		submit: "flag",
 	},
+	Carousel: {
+		items: "list",
+		value: "text",
+		label: "text",
+		pause: "text",
+		play: "text",
+		beat: "text",
+		lease: "text",
+		fade: "text",
+		change: "call",
+		children: "node",
+	},
 	Card: {
 		title: "text",
 		children: "node",

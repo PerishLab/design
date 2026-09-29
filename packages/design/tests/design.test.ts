@@ -9,6 +9,7 @@ test("exports one-word components", () => {
 		"Board",
 		"Button",
 		"Card",
+		"Carousel",
 		"Cell",
 		"Check",
 		"Code",
