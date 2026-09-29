@@ -1,27 +1,19 @@
 import { readFileSync } from "node:fs";
-import { dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
-import { expect, test } from "vitest";
+import { render } from "svelte/server";
+import { expect, test, vi } from "vitest";
+import App from "../src/App.svelte";
+import Front from "../src/front/Front.svelte";
 import { front as english } from "../src/lib/i18n/en/front.ts";
 import { front as chinese } from "../src/lib/i18n/zh/front.ts";
 import { page } from "../src/lib/page.ts";
 
-const root = join(dirname(fileURLToPath(import.meta.url)), "..");
-const template = readFileSync(join(root, "index.html"), "utf8");
-const composition = readFileSync(join(root, "src/front/Front.svelte"), "utf8");
-const application = readFileSync(join(root, "src/App.svelte"), "utf8");
-const gallery = readFileSync(join(root, "src/gallery/Gallery.svelte"), "utf8");
-const specimen = readFileSync(join(root, "src/gallery/Sample.svelte"), "utf8");
-const carousel = readFileSync(
-	join(root, "../../packages/design/src/focus/Tabs/Carousel/Carousel.svelte"),
-	"utf8",
+vi.mock(
+	"@perishlab/design",
+	() => import("../../../packages/design/src/lib.ts"),
 );
-const realm = readFileSync(join(root, "src/gallery/Realm.svelte"), "utf8");
-const server = readFileSync(join(root, "src/serve.ts"), "utf8");
-const shell = readFileSync(
-	join(root, "../../packages/design/src/document/Shell/Shell.scss"),
-	"utf8",
-);
+vi.mock("@perishlab/bone", () => import("../../../packages/bone/src/lib.ts"));
+
+const template = readFileSync("index.html", "utf8");
 
 const fronts = [
 	{
@@ -40,6 +32,36 @@ const fronts = [
 	},
 ];
 
+function shown(path: string): string {
+	return render(App, { props: { path } }).body.replace(/<!--[^>]*-->/g, "");
+}
+
+const composed = render(Front, { props: { tone: "system" } }).body.replace(
+	/<!--[^>]*-->/g,
+	"",
+);
+
+const bare = new Set(["input", "img", "br", "hr", "meta", "link", "source"]);
+
+function tops(html: string): string[] {
+	const found: string[] = [];
+	let depth = 0;
+	for (const hit of html.matchAll(/<(\/?)([a-z][\w-]*)[^>]*?(\/?)>/g)) {
+		if (hit[1] === "/") depth -= 1;
+		else if (hit[3] === "/" || bare.has(hit[2])) {
+			if (depth === 0) found.push(hit[0]);
+		} else {
+			if (depth === 0) found.push(hit[0]);
+			depth += 1;
+		}
+	}
+	return found;
+}
+
+function first(html: string): string {
+	return html.slice(0, html.indexOf('<div class="course course-well">'));
+}
+
 test.each(fronts)("$lang front states one proposition", (front) => {
 	const body = `<h1>${front.book.claim}</h1>`;
 	const document = page(template, body, front.path, front.lang);
@@ -51,58 +73,68 @@ test.each(fronts)("$lang front states one proposition", (front) => {
 	expect(document).toContain(`<h1>${front.claim}</h1>`);
 });
 
-test("the proposition occupies the hero title", () => {
-	expect(composition.match(/title=\{t\("front\.claim"\)\}/g)).toHaveLength(1);
+test.each(fronts)("$lang proposition occupies the hero title", (front) => {
+	const html = shown(front.path);
+	expect(html.split(`<h1>${front.claim}</h1>`)).toHaveLength(2);
+	expect(first(html)).toMatch(
+		new RegExp(`<header class="hero hero-claim"><h1>${front.claim}</h1>`),
+	);
 });
 
 test("the proposition opens in a full typographic course", () => {
-	expect(composition).toContain("<Course full>");
-	expect(composition).toContain('<Hero look="claim"');
+	expect(tops(composed)[0]).toBe(
+		'<div class="course course-plain course-full">',
+	);
+	expect(first(composed)).toContain('<header class="hero hero-claim">');
 });
 
 test("the first course pairs the proposition with its visual proof", () => {
-	const first = composition.slice(0, composition.indexOf("</Course>"));
-	expect(first).toContain("<Grid cols={12}>");
-	expect(first).toContain("<Cell span={5}>");
-	expect(first).toContain('<Cell span={7} look="fill">');
-	expect(first).toContain("<Carousel");
-	expect(first).not.toContain("front.voice");
-	expect(first).not.toContain("front.voiced");
-	expect(carousel).toContain('role="tablist"');
-	expect(carousel).toContain("aria-selected={item.value === current}");
-	expect(carousel).toContain("carousel-out");
-	expect(carousel).toContain("inert");
+	const held = first(composed);
+	expect(held).toContain("--ruled: repeat(12, minmax(0, 1fr));");
+	expect(held).toContain(
+		'<div class="cell cell-start" style="--seat: span 5;">',
+	);
+	expect(held).toContain(
+		'<div class="cell cell-fill" style="--seat: span 7;">',
+	);
+	expect(held).toContain('<section class="carousel"');
+	expect(held).not.toContain("front.voice");
+	expect(held).toContain('role="tablist"');
+	expect(held.match(/aria-selected="true"/g)).toHaveLength(1);
 });
 
 test("the homepage owns the complete gallery", () => {
-	expect(composition).toContain("<Gallery bind:system");
-	expect(gallery).toContain("<Search bind:value={query}");
-	expect(gallery).toContain("<Pick");
-	expect(gallery).toContain("<Bench");
-	expect(application).not.toContain('seat === "/gallery"');
-	expect(server).not.toContain('path: "/gallery/"');
-	expect(server).not.toContain('path: "/zh-CN/gallery/"');
-	expect(composition).not.toContain('look="portal"');
-	expect(composition.match(/<Course/g)).toHaveLength(2);
-	expect(composition.trim().endsWith("</Course>")).toBe(true);
+	expect(tops(composed)).toEqual([
+		'<div class="course course-plain course-full">',
+		'<div class="course course-well">',
+	]);
+	const gallery = composed.slice(first(composed).length);
+	expect(gallery).toContain('<input class="search-input" type="search"');
+	expect(gallery).toContain('<select class="pick-input"');
+	expect(gallery).toContain('<div class="stage stage-view">');
+	expect(composed).not.toContain("portal");
+	expect(shown("/gallery/")).toBe(shown("/404"));
+	expect(shown("/zh-CN/gallery/")).toBe(shown("/zh-CN/404"));
+	for (const path of ["/gallery/", "/zh-CN/gallery/"])
+		expect(page(template, "", path, "en")).toBe(template);
 });
 
 test("the language proof renders a real component composition", () => {
-	expect(composition).toContain('look="open" system={language}');
-	expect(realm).toContain("<Stage {look}");
-	expect(specimen).toContain('look="bare"');
-	expect(specimen).toContain("<Grid cols={2}");
-	expect(shell).toMatch(
-		/\.shell \.shell \{[^}]*background-color: transparent;/s,
-	);
-	expect(shell).toMatch(/\.shell \.shell \{[^}]*background-image: none;/s);
-	expect(shell).toMatch(/\.shell\[data-fade\][^{]*\{[^}]*transition: opacity/s);
+	const layer = first(composed).slice(composed.indexOf("carousel-layer"));
+	const inner = layer.slice(layer.indexOf(">") + 1);
+	expect(
+		inner.startsWith('<div class="shell"><div class="stage stage-open">'),
+	).toBe(true);
+	expect(layer).toContain('<section class="board board-bare">');
+	expect(layer).toContain("--ruled: repeat(2, minmax(0, 1fr));");
 });
 
 test("the former homepage material has focused destinations", () => {
-	for (const route of ["why", "what", "how", "blog"]) {
-		expect(application).toContain(`seat === "/${route}"`);
-		expect(server).toContain(`path: "/${route}/"`);
-		expect(server).toContain(`path: "/zh-CN/${route}/"`);
+	const routes = ["why", "what", "how", "blog"];
+	for (const path of routes.map((route) => `/${route}/`)) {
+		expect(shown(path)).not.toBe(shown("/404"));
+		expect(shown(`/zh-CN${path}`)).not.toBe(shown("/zh-CN/404"));
+		expect(page(template, "", path, "en")).not.toBe(template);
+		expect(page(template, "", `/zh-CN${path}`, "zh-CN")).not.toBe(template);
 	}
 });

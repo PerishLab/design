@@ -1,12 +1,9 @@
 import { execFileSync } from "node:child_process";
 import { readFileSync, writeFileSync } from "node:fs";
-import { dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
 import { expect, test } from "vitest";
 
-const seat = join(dirname(fileURLToPath(import.meta.url)), "look.json");
-const root = join(dirname(fileURLToPath(import.meta.url)), "..");
-const plant = join(root, "../..");
+const seat = "tests/look.json";
+const plant = "../..";
 const port = 4287;
 const target = "preview";
 
@@ -220,7 +217,6 @@ test.skipIf(process.env.LOOK !== "1")(
 	"captures how every system looks",
 	() => {
 		execFileSync("pnpm", ["exec", "vite", "build"], {
-			cwd: root,
 			stdio: "ignore",
 		});
 		const held = alive();

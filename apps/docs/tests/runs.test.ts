@@ -1,14 +1,10 @@
 import { existsSync, readFileSync } from "node:fs";
-import { dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
+import { join } from "node:path";
 import { expect, test } from "vitest";
 import { front as english } from "../src/lib/i18n/en/front.ts";
 import { front as chinese } from "../src/lib/i18n/zh/front.ts";
 
-const seat = join(
-	dirname(fileURLToPath(import.meta.url)),
-	"../src/front/What.svelte",
-);
+const seat = "src/front/What.svelte";
 
 const books: Record<string, Record<string, unknown>> = {
 	en: english,
@@ -86,10 +82,7 @@ test("stands in the last run when it sums more than one", () => {
 	expect(carries).toBe(held.length - 1);
 });
 
-const dressed = join(
-	dirname(fileURLToPath(import.meta.url)),
-	"../../../packages/token/src/themes",
-);
+const dressed = "../../packages/token/src/themes";
 
 function ground(voice: string): string {
 	const rooms = ["system", "draft", "tone"].map((room) =>
@@ -138,12 +131,10 @@ function size(said: string): number {
 	return hit === null ? 0 : Number(hit[0]);
 }
 
-const looked = JSON.parse(
-	readFileSync(
-		join(dirname(fileURLToPath(import.meta.url)), "look.json"),
-		"utf8",
-	),
-) as Record<string, Record<string, Record<string, string>>>;
+const looked = JSON.parse(readFileSync("tests/look.json", "utf8")) as Record<
+	string,
+	Record<string, Record<string, string>>
+>;
 
 function traits(voice: string): Record<string, number[] | number | string> {
 	const board = looked[voice][".board"];

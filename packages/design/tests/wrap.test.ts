@@ -1,9 +1,8 @@
 import { existsSync, readdirSync, readFileSync } from "node:fs";
-import { dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
+import { join } from "node:path";
 import { expect, test } from "vitest";
 
-const root = join(dirname(fileURLToPath(import.meta.url)), "../src");
+const root = "src";
 
 function walk(path: string): string[] {
 	const found: string[] = [];
