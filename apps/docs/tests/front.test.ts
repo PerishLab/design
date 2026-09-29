@@ -61,13 +61,16 @@ test("the first course pairs the proposition with its visual proof", () => {
 	const first = composition.slice(0, composition.indexOf("</Course>"));
 	expect(first).toContain("<Grid cols={12}>");
 	expect(first).toContain("<Cell span={5}>");
-	expect(first).toContain("<Cell span={7}>");
+	expect(first).toContain('<Cell span={7} look="fill">');
 	expect(first).toContain("<Turn");
 	expect(first).not.toContain("front.voice");
 	expect(first).not.toContain("front.voiced");
 	expect(turn).not.toContain("<Tabs");
 	expect(turn).not.toContain("label={voice}");
 	expect(turn).not.toContain("meta={mark}");
+	expect(turn).toContain("shown = false");
+	expect(turn).toContain("shown = true");
+	expect(turn).toContain("{fade} {shown}");
 });
 
 test("the homepage owns the complete gallery", () => {
@@ -84,14 +87,15 @@ test("the homepage owns the complete gallery", () => {
 });
 
 test("the language proof renders a real component composition", () => {
-	expect(turn).toContain("bare system={voice}");
-	expect(realm).toContain("{#if bare}<Sample");
-	expect(specimen).toContain('<Board title={said("title")}');
+	expect(turn).toContain('look="open" system={voice}');
+	expect(realm).toContain("<Stage {look}");
+	expect(specimen).toContain('look="bare"');
 	expect(specimen).toContain("<Grid cols={2}");
 	expect(shell).toMatch(
 		/\.shell \.shell \{[^}]*background-color: transparent;/s,
 	);
 	expect(shell).toMatch(/\.shell \.shell \{[^}]*background-image: none;/s);
+	expect(shell).toMatch(/\.shell\[data-fade\][^{]*\{[^}]*transition: opacity/s);
 });
 
 test("the former homepage material has focused destinations", () => {

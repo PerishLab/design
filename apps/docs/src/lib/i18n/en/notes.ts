@@ -15,7 +15,7 @@ export const notes = {
 	},
 	Board: {
 		title: "the board heading",
-		look: "held keeps the body padded, flush gives the whole body to what fills it",
+		look: "held keeps the body padded, flush gives the whole body to what fills it, bare keeps only its composition",
 		line: "optional supporting text under the heading",
 		seat: "an optional anchor a link can reach",
 		children: "the rows and controls inside the board",
@@ -38,6 +38,7 @@ export const notes = {
 	Cell: {
 		span: "how many columns of the grid this cell takes",
 		start: "the column it starts at, when the place is chosen",
+		look: "start keeps its content intrinsic, fill gives the remaining row to it",
 		children: "what stands in the cell",
 	},
 	Check: {
@@ -176,12 +177,15 @@ export const notes = {
 		system: "the design system whose tokens dress this surface",
 		slide:
 			"how long the atoms take to reach their next values, instead of cutting to them",
+		fade: "how long the whole surface takes to disappear or return",
+		shown: "whether the surface is presently visible",
+		settled: "called when the surface finishes fading out or in",
 	},
 	Split: {
 		children: "the contents placed at opposite sides",
 	},
 	Stage: {
-		look: "view and strip frame a specimen, pane is the surface itself, show gives one specimen an exhibition field",
+		look: "view and strip frame a specimen, pane is the surface itself, show exhibits it, open holds one stable field without a frame",
 		label: "the optional identity set large behind a show",
 		meta: "the optional sequence or measure beside a show's identity",
 		children:

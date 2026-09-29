@@ -17,7 +17,7 @@
 {:else if name === "Board"}<Board title={said("title")} line={said("line")}>{said("children")}</Board>
 {:else if name === "Button"}<Button label={said("label")} look={button()} wide={Boolean(values.wide)} busy={Boolean(values.busy)} halt={Boolean(values.halt)} submit={Boolean(values.submit)}>{said("children")}</Button>
 {:else if name === "Card"}<Card title={said("title")}>{said("children")}</Card>
-{:else if name === "Cell"}<Grid cols={4}><Cell span={Number(values.span) || 1}>{said("children")}</Cell></Grid>
+{:else if name === "Cell"}<Grid cols={4}><Cell span={Number(values.span) || 1} look={said("look") === "fill" ? "fill" : "start"}>{said("children")}</Cell></Grid>
 {:else if name === "Check"}<Check label={said("label")} held={Boolean(values.held)} look={said("look") === "switch" ? "switch" : "box"} />
 {:else if name === "Head"}<Head text={said("text")} seat={said("seat")} />
 {:else if name === "Item"}<List><Item>{said("children")}</Item></List>
@@ -25,7 +25,7 @@
 {:else if name === "Text"}<Text>{said("children")}</Text>
 {:else if name === "Code"}<Code name={said("name")} copy={Boolean(values.copy)} text={said("text")} />
 {:else if name === "Copy"}<Copy text={said("text")} />
-{:else if name === "Voice"}<Board title={said("title")} line={said("line")}><Grid cols={2} look="loose" flow="hold"><Card title={said("meaning")}><Text>{said("constant")}</Text><Tag text={said("state")} /></Card><Card title={said("language")}><Text>{said("variable")}</Text><Button href={said("href")} label={said("action")} /></Card></Grid></Board>
+{:else if name === "Voice"}<Board title={said("title")} line={said("line")} look="bare"><Grid cols={2} look="loose" flow="hold"><Card title={said("meaning")}><Text>{said("constant")}</Text><Tag text={said("state")} /></Card><Card title={said("language")}><Text>{said("variable")}</Text><Button href={said("href")} label={said("action")} /></Card></Grid></Board>
 {:else if name === "Course"}<Course look={said("look") === "raise" ? "raise" : "plain"}>{said("children")}</Course>
 {:else if name === "Field"}<Field label={said("label")} value={said("value")} change={() => {}} kind={said("kind") === "password" ? "password" : "text"} hint={said("hint")} />
 {:else if name === "Face"}<Face name={said("name")} />
@@ -51,8 +51,8 @@
 {:else if name === "Rail"}<Rail {stops} />
 {:else if name === "Search"}<Search value={said("value")} change={() => {}} hint={said("hint")} />
 {:else if name === "Sheet"}<Sheet>{said("children")}</Sheet>
-{:else if name === "Shell"}<Shell>{said("children")}</Shell>
+{:else if name === "Shell"}<Shell fade={Number(values.fade) || undefined} shown={values.shown !== false}>{said("children")}</Shell>
 {:else if name === "Split"}<Split>{said("children")}</Split>
-{:else if name === "Stage"}<Stage look={said("look") === "show" ? "show" : said("look") === "strip" ? "strip" : said("look") === "pane" ? "pane" : "view"} label={said("label") || undefined} meta={said("meta") || undefined}>{said("children")}</Stage>
+{:else if name === "Stage"}<Stage look={said("look") === "show" ? "show" : said("look") === "strip" ? "strip" : said("look") === "pane" ? "pane" : said("look") === "open" ? "open" : "view"} label={said("label") || undefined} meta={said("meta") || undefined}>{said("children")}</Stage>
 {:else if name === "Tag"}<Tag text={said("text")} look={said("look") === "quiet" ? "quiet" : "solid"} mood={said("mood") === "warn" ? "warn" : "calm"} />
 {/if}

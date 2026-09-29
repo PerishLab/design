@@ -8,7 +8,7 @@
 		meta,
 		children,
 	}: {
-		look?: "view" | "strip" | "pane" | "show";
+		look?: "view" | "strip" | "pane" | "show" | "open";
 		label?: string;
 		meta?: string;
 		children: Snippet;

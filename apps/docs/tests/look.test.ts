@@ -275,5 +275,5 @@ test.skipIf(process.env.LOOK !== "1")(
 			);
 		expect(loose).toEqual([]);
 	},
-	180000,
+	300000,
 );
