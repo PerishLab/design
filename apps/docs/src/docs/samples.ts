@@ -72,7 +72,7 @@ export const seeds: Record<string, Record<string, unknown>> = {
 	Footer: { text: "a workshop colophon", children: "beta" },
 	Forge: { host: "https://github.com", repo: "PerishLab/design" },
 	Frame: { children: "a frame wraps the whole page" },
-	Grid: { cols: 4, look: "even", children: "cells" },
+	Grid: { cols: 4, look: "even", flow: "fold", children: "cells" },
 	Hero: {
 		title: "perish design",
 		line: "one system, many flavours",
@@ -142,7 +142,7 @@ export const seeds: Record<string, Record<string, unknown>> = {
 	Sheet: { children: "a bounded surface" },
 	Shell: { children: "a full product shell" },
 	Split: { children: "two sides" },
-	Stage: { children: "one thing, framed" },
+	Stage: { look: "view", label: "", meta: "", children: "one thing, framed" },
 	Toast: { notes: ["the guard is green"], mood: "calm" },
 	Tag: { text: "stable", look: "solid", mood: "calm" },
 	Text: { children: "one paragraph of prose, measured to the reading width" },

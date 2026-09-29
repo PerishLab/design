@@ -21,7 +21,7 @@
 {:else if name === "Text"}<Text>{said("children")}</Text>
 {:else if name === "Code"}<Code name={said("name")} copy={Boolean(values.copy)} text={said("text")} />
 {:else if name === "Copy"}<Copy text={said("text")} />
-{:else if name === "Voice"}<Card title={said("title")}><Text>{said("children")}</Text><Button label={said("label")} /></Card>
+{:else if name === "Voice"}<Board title={said("title")} line={said("line")}><Grid cols={2} look="loose" flow="hold"><Card title={said("meaning")}><Text>{said("constant")}</Text><Tag text={said("state")} /></Card><Card title={said("language")}><Text>{said("variable")}</Text><Button href={said("href")} label={said("action")} /></Card></Grid></Board>
 {:else if name === "Course"}<Course look={said("look") === "raise" ? "raise" : "plain"}>{said("children")}</Course>
 {:else if name === "Field"}<Field label={said("label")} value={said("value")} change={() => {}} kind={said("kind") === "password" ? "password" : "text"} hint={said("hint")} />
 {:else if name === "Face"}<Face name={said("name")} />
@@ -34,7 +34,7 @@
 {:else if name === "Footer"}<Footer text={said("text")}>{said("children")}</Footer>
 {:else if name === "Forge"}<Forge host={said("host")} repo={said("repo")} />
 {:else if name === "Frame"}<Frame>{said("children")}</Frame>
-{:else if name === "Grid"}<Grid cols={Number(values.cols) || undefined} look={said("look") === "loose" ? "loose" : "even"}>{said("children")}</Grid>
+{:else if name === "Grid"}<Grid cols={Number(values.cols) || undefined} look={said("look") === "loose" ? "loose" : "even"} flow={said("flow") === "hold" ? "hold" : "fold"}>{said("children")}</Grid>
 {:else if name === "Hero"}<Hero title={said("title")} line={said("line")} mark={said("mark")} />
 {:else if name === "Ledger"}<Ledger {atoms} />
 {:else if name === "Line"}<Line name={said("name")} meta={said("meta")}>{said("children")}</Line>
@@ -49,6 +49,6 @@
 {:else if name === "Sheet"}<Sheet>{said("children")}</Sheet>
 {:else if name === "Shell"}<Shell>{said("children")}</Shell>
 {:else if name === "Split"}<Split>{said("children")}</Split>
-{:else if name === "Stage"}<Stage>{said("children")}</Stage>
+{:else if name === "Stage"}<Stage look={said("look") === "show" ? "show" : said("look") === "strip" ? "strip" : said("look") === "pane" ? "pane" : "view"} label={said("label") || undefined} meta={said("meta") || undefined}>{said("children")}</Stage>
 {:else if name === "Tag"}<Tag text={said("text")} look={said("look") === "quiet" ? "quiet" : "solid"} mood={said("mood") === "warn" ? "warn" : "calm"} />
 {/if}
