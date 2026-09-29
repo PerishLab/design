@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { Grid, Tabs } from "@perishlab/design";
 	import Realm from "../gallery/Realm.svelte";
 
 	let {
@@ -18,13 +17,17 @@
 		values: Record<string, unknown>;
 	} = $props();
 
-	let voice = $derived(voices[0]);
-	let stops = $derived(voices.map((one) => ({ value: one, label: one })));
-	let at = $derived(voices.indexOf(voice));
-	let mark = $derived(`${String(at + 1).padStart(2, "0")} / ${voices.length}`);
+	let at = $state(0);
+	let voice = $derived(voices[at] ?? "base");
+
+	$effect(() => {
+		if (globalThis.matchMedia?.("(prefers-reduced-motion: reduce)").matches === true)
+			return () => {};
+		const clock = setInterval(() => {
+			at = (at + 1) % voices.length;
+		}, beat);
+		return () => clearInterval(clock);
+	});
 </script>
 
-<Grid cols={1}>
-	<Realm {name} {values} {tone} {slide} label={voice} meta={mark} look="show" system={voice} />
-	<Tabs tabs={stops} bind:value={voice} {beat} />
-</Grid>
+<Realm {name} {values} {tone} {slide} look="show" system={voice} />

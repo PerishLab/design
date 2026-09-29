@@ -29,7 +29,8 @@
 	.stage-show {
 		position: relative;
 		isolation: isolate;
-		aspect-ratio: 16 / 7;
+		aspect-ratio: 16 / 9;
+		min-height: 26rem;
 		align-items: stretch;
 		padding: clamp(var(--space-4), 4cqi, var(--space-6));
 		border-width: var(--rim);
