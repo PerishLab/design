@@ -11,7 +11,7 @@
 		"preview": "vite preview"
 	},
 	"dependencies": {
-		"@perishlab/crest": "^0.1.0",
+		"@perishlab/crest": "^0.2.0",
 		"@perishlab/design": "workspace:*",
 		"@perishlab/sign": "workspace:*",
 		"svelte": "catalog:"

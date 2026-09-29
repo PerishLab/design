@@ -14,6 +14,7 @@ vi.mock(
 vi.mock("@perishlab/bone", () => import("../../../packages/bone/src/lib.ts"));
 
 const template = readFileSync("index.html", "utf8");
+const vite = readFileSync("vite.config.ts", "utf8");
 
 const fronts = [
 	{
@@ -69,8 +70,44 @@ test.each(fronts)("$lang front states one proposition", (front) => {
 	expect(document.match(/<title>/g)).toHaveLength(1);
 	expect(document).toContain(`<title>${front.title}</title>`);
 	expect(document.match(/<meta name="description"/g)).toHaveLength(1);
+	expect(document).toContain(
+		'<link rel="icon" href="/favicon.svg" type="image/svg+xml" />',
+	);
+	expect(document).toContain(
+		'<link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />',
+	);
+	expect(document).toContain(
+		`<link rel="canonical" href="https://design.perish.uk${front.path}" />`,
+	);
+	expect(document).toContain(
+		`<meta property="og:title" content="${front.title}" />`,
+	);
+	expect(document).toContain(
+		`<meta property="og:url" content="https://design.perish.uk${front.path}" />`,
+	);
+	expect(document).toContain(
+		'<meta property="og:image" content="https://design.perish.uk/og-design.png" />',
+	);
+	expect(document).toContain(
+		'<meta name="twitter:card" content="summary_large_image" />',
+	);
+	expect(document).not.toContain('href="data:,"');
 	expect(document.match(/<h1>/g)).toHaveLength(1);
 	expect(document).toContain(`<h1>${front.claim}</h1>`);
+});
+
+test("the build emits every Crest-owned bearing at a stable root URL", () => {
+	for (const name of [
+		"favicon.svg",
+		"favicon-48.png",
+		"apple-touch-icon.png",
+		"og-design.png",
+	]) {
+		expect(vite).toContain(`"${name}"`);
+		expect(template).toContain(`/${name}`);
+	}
+	expect(vite).toContain("@perishlab/crest/media/");
+	expect(vite).toContain("readFileSync(resolve(");
 });
 
 test.each(fronts)("$lang proposition occupies the hero title", (front) => {

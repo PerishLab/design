@@ -6,6 +6,7 @@ minimumReleaseAgeExclude:
   - "@perishlab/design"
   - svelte-check@4.7.6
   - svelte@5.56.9
+  - '@perishlab/crest@0.2.0'
 
 allowBuilds:
   "@parcel/watcher": false

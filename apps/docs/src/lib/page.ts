@@ -4,6 +4,7 @@ import { front as chinese } from "./i18n/zh/front.ts";
 import { pages as chinesePages } from "./i18n/zh/pages.ts";
 
 type Meta = { title: string; description: string };
+const site = "https://design.perish.uk";
 
 const pages: Record<string, Meta> = {
 	"/": english,
@@ -49,13 +50,39 @@ export function page(
 	lang: string,
 ): string {
 	const front = pages[path];
+	const url = `${site}${path}`;
 	const document =
 		front === undefined
 			? shell
-			: shell.replace(
-					/<title>[^<]*<\/title>/,
-					`<title>${front.title}</title>\n\t\t<meta name="description" content="${front.description}" />`,
-				);
+			: shell
+					.replace(
+						/<title>[^<]*<\/title>/,
+						`<title>${front.title}</title>\n\t\t<meta name="description" content="${front.description}" />`,
+					)
+					.replace(
+						`<link rel="canonical" href="${site}/" />`,
+						`<link rel="canonical" href="${url}" />`,
+					)
+					.replace(
+						'<meta property="og:title" content="Perish Design — Svelte design system" />',
+						`<meta property="og:title" content="${front.title}" />`,
+					)
+					.replace(
+						/<meta property="og:description" content="[^"]*" \/>/,
+						`<meta property="og:description" content="${front.description}" />`,
+					)
+					.replace(
+						`<meta property="og:url" content="${site}/" />`,
+						`<meta property="og:url" content="${url}" />`,
+					)
+					.replace(
+						'<meta name="twitter:title" content="Perish Design — Svelte design system" />',
+						`<meta name="twitter:title" content="${front.title}" />`,
+					)
+					.replace(
+						/<meta name="twitter:description" content="[^"]*" \/>/,
+						`<meta name="twitter:description" content="${front.description}" />`,
+					);
 	return document
 		.replace('<html lang="en">', `<html lang="${lang}">`)
 		.replace('<div id="root"></div>', `<div id="root">${body}</div>`);
