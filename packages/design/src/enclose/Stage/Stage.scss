@@ -26,7 +26,61 @@
 		border: none;
 	}
 
-	.stage > * {
+	.stage-show {
+		position: relative;
+		isolation: isolate;
+		aspect-ratio: 16 / 7;
+		align-items: stretch;
+		padding: clamp(var(--space-4), 4cqi, var(--space-6));
+		border-width: var(--rim);
+		border-radius: var(--radius);
+		background: var(--ground);
+		box-shadow: var(--lift);
+	}
+
+	.stage-sign {
+		position: absolute;
+		z-index: -1;
+		inset: 0;
+		pointer-events: none;
+	}
+
+	.stage-meta {
+		position: absolute;
+		top: var(--space-4);
+		left: var(--space-4);
+		color: var(--muted);
+		font-family: var(--brisk);
+		font-size: var(--fine);
+		font-weight: var(--firm);
+		letter-spacing: var(--track);
+	}
+
+	.stage-name {
+		position: absolute;
+		right: 2cqi;
+		bottom: -0.12em;
+		color: var(--accent);
+		font-family: var(--crown);
+		font-size: clamp(4rem, 16cqi, 14rem);
+		font-weight: var(--heft);
+		letter-spacing: var(--track);
+		line-height: 0.8;
+		opacity: 0.14;
+		text-transform: uppercase;
+		white-space: nowrap;
+	}
+
+	.stage-show .stage-body {
+		position: relative;
+		z-index: 1;
+		align-self: center;
+		justify-self: center;
+		min-width: 0;
+		mask-image: none;
+	}
+
+	.stage > :not(.stage-sign) {
 		width: 100%;
 		min-width: 0;
 		max-width: 100%;
@@ -36,6 +90,15 @@
 	@include media.narrow {
 		.stage-strip {
 			aspect-ratio: 4 / 3;
+		}
+
+		.stage-show {
+			aspect-ratio: 1;
+			min-height: 30rem;
+		}
+
+		.stage-name {
+			font-size: clamp(3rem, 22cqi, 7rem);
 		}
 	}
 }

@@ -24,11 +24,11 @@
 	}
 
 	@include media.slim {
-		.grid {
+		.grid:not(.grid-hold) {
 			grid-template-columns: minmax(0, 1fr);
 		}
 
-		.cell {
+		.grid:not(.grid-hold) .cell {
 			grid-column: auto;
 		}
 	}

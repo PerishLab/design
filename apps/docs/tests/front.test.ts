@@ -9,6 +9,8 @@ import { page } from "../src/lib/page.ts";
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const shell = readFileSync(join(root, "index.html"), "utf8");
 const composition = readFileSync(join(root, "src/front/Front.svelte"), "utf8");
+const specimen = readFileSync(join(root, "src/gallery/Sample.svelte"), "utf8");
+const turn = readFileSync(join(root, "src/front/Turn.svelte"), "utf8");
 
 const fronts = [
 	{
@@ -45,4 +47,13 @@ test("the proposition occupies the hero title", () => {
 test("the proposition opens in a full typographic course", () => {
 	expect(composition).toContain("<Course full>");
 	expect(composition).toContain('<Hero look="claim"');
+});
+
+test("the language proof is an exhibit before its markup", () => {
+	expect(composition.indexOf("<Turn")).toBeLessThan(
+		composition.indexOf("text={borne}"),
+	);
+	expect(turn).toContain('look="show"');
+	expect(specimen).toContain('<Board title={said("title")}');
+	expect(specimen).toContain("<Grid cols={2}");
 });

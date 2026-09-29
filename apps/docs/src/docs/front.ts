@@ -12,9 +12,15 @@ export const shown = `<script>
   <Hero title="hello" />
 </Shell>`;
 
-export const borne = `<Card title="one structure">
-  <Text>
-    The same generators, dressed by one language.
-  </Text>
-  <Button label="press" />
-</Card>`;
+export const borne = `<Board title={copy.title} line={copy.line}>
+  <Grid cols={2} flow="hold">
+    <Card title={copy.meaning}>
+      <Text>{copy.constant}</Text>
+      <Tag text={copy.state} />
+    </Card>
+    <Card title={copy.language}>
+      <Text>{copy.variable}</Text>
+      <Button href={copy.href} label={copy.action} />
+    </Card>
+  </Grid>
+</Board>`;

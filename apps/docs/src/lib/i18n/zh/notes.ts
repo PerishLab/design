@@ -89,6 +89,7 @@ export const notes = {
 	Grid: {
 		look: "格子等高,或各自然高",
 		cols: "固定列数,留空则按单元宽度自动填充",
+		flow: "窄处折成一列,或维持声明的结构",
 		children: "要排布的单元格",
 	},
 	Head: {
@@ -179,7 +180,9 @@ export const notes = {
 		children: "分置两侧的内容",
 	},
 	Stage: {
-		look: "view 与 strip 是取景窗,把取景之物拉满;pane 本身就是表面,把站在上面的东西居中",
+		look: "view 与 strip 为样例取景,pane 自身就是表面,show 为一个样例展开陈列场",
+		label: "show 背后放大的可选身份",
+		meta: "show 身份旁的可选序号或度量",
 		children: "展台取景的那一件东西,居中,超出即裁",
 	},
 	Table: {

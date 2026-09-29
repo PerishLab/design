@@ -91,6 +91,7 @@ export const kinds: Record<string, Record<string, Kind>> = {
 	Grid: {
 		look: "text",
 		cols: "text",
+		flow: "text",
 		children: "node",
 	},
 	Head: {
@@ -181,6 +182,8 @@ export const kinds: Record<string, Record<string, Kind>> = {
 	},
 	Stage: {
 		look: "text",
+		label: "text",
+		meta: "text",
 		children: "node",
 	},
 	Table: {
