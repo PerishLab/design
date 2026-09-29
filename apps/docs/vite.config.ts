@@ -1,5 +1,6 @@
 import { execFileSync } from "node:child_process";
 import { readFileSync } from "node:fs";
+import { createRequire } from "node:module";
 import { fileURLToPath } from "node:url";
 import { svelte } from "@sveltejs/vite-plugin-svelte";
 import { defineConfig, type Plugin } from "vite";
@@ -13,6 +14,14 @@ const made = JSON.parse(
 		"utf8",
 	),
 ) as { version: string; license: string };
+const resolve = createRequire(import.meta.url).resolve;
+
+const bearings = [
+	"favicon.svg",
+	"favicon-48.png",
+	"apple-touch-icon.png",
+	"og-design.png",
+];
 
 function cut(): string {
 	try {
@@ -49,8 +58,22 @@ function stamped(): Plugin {
 	};
 }
 
+function branded(): Plugin {
+	return {
+		name: "crest",
+		generateBundle() {
+			for (const name of bearings)
+				this.emitFile({
+					fileName: name,
+					source: readFileSync(resolve(`@perishlab/crest/media/${name}`)),
+					type: "asset",
+				});
+		},
+	};
+}
+
 export default defineConfig({
-	plugins: [stamped(), design({ serve: false }), svelte()],
+	plugins: [branded(), stamped(), design({ serve: false }), svelte()],
 	resolve: {
 		alias: [
 			{

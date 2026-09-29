@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Bay, Skin } from "@perishlab/bone";
-	import { crest, frame } from "@perishlab/crest/crest";
+	import { crest, frame, palette } from "@perishlab/crest/crest";
 	import type { Snippet } from "svelte";
 	import "./Navigator.scss";
 
@@ -26,7 +26,7 @@
 	let drawn = $derived(mark === undefined ? [] : crest(mark));
 </script>
 
-{#snippet lock()}{#if drawn.length > 0}<svg class="mark" viewBox="0 0 {frame} {frame}" aria-hidden="true">{#each drawn as one (one)}<path d={one} />{/each}</svg>{/if}<span class="navigator-type">{#if owner}<span class="navigator-own">{owner}</span>{/if}<span class="navigator-said">{title}</span></span>{/snippet}
+{#snippet lock()}{#if drawn.length > 0}<svg class="mark" viewBox="0 0 {frame} {frame}" aria-hidden="true" style:--crest-ink={palette.ink} style:--crest-dark={palette.dark}>{#each drawn as one (one)}<path d={one} />{/each}</svg>{/if}<span class="navigator-type">{#if owner}<span class="navigator-own">{owner}</span>{/if}<span class="navigator-said">{title}</span></span>{/snippet}
 
 <Bay part={stick ? "navigator-bay navigator-band" : "navigator-bay"} {stick} drive={stick}>
 	<Skin part="navigator-skin" drive={stick}>
