@@ -5,6 +5,9 @@ export const front = {
 	claim: "审美会变，骨架不变",
 	line: "一套 Svelte 设计系统——视觉语言在这里是一个值，不是一次分叉",
 	lede: "每种语言都会改变同一批组件的外观与感受，但它们的含义、职责与组合保持不变",
+	carousel: "视觉语言",
+	pause: "暂停轮播",
+	play: "继续轮播",
 	exhibit: {
 		title: "同一个骨架",
 		line: "十一种视觉语言，不产生语义分叉",

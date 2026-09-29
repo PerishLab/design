@@ -5,6 +5,9 @@ export const front = {
 	claim: "Language changes. Structure remains.",
 	line: "A Svelte design system where visual language is a value, not a fork.",
 	lede: "Each language changes how the same components look and feel. Their meaning, responsibility, and composition stay intact.",
+	carousel: "Visual languages",
+	pause: "Pause rotation",
+	play: "Resume rotation",
 	exhibit: {
 		title: "One structure",
 		line: "Eleven visual languages, no semantic fork",

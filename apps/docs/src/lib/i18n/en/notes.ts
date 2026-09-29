@@ -31,6 +31,18 @@ export const notes = {
 		halt: "refuse presses without claiming to be working",
 		submit: "submit the nearest form",
 	},
+	Carousel: {
+		items: "the ordered values and accessible labels available to show",
+		value: "the value shown now",
+		label: "the accessible name of the bounded sequence",
+		pause: "the action label that stops automatic rotation",
+		play: "the action label that resumes automatic rotation",
+		beat: "milliseconds an automatic value remains on screen",
+		lease: "milliseconds a pointer choice remains under manual control",
+		fade: "milliseconds shared by the incoming and outgoing layers",
+		change: "called when the shown value changes",
+		children: "the specimen rendered for the shown value",
+	},
 	Card: {
 		title: "the heading of the card",
 		children: "the body of the card",
