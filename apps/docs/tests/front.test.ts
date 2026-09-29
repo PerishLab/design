@@ -12,7 +12,10 @@ const composition = readFileSync(join(root, "src/front/Front.svelte"), "utf8");
 const application = readFileSync(join(root, "src/App.svelte"), "utf8");
 const gallery = readFileSync(join(root, "src/gallery/Gallery.svelte"), "utf8");
 const specimen = readFileSync(join(root, "src/gallery/Sample.svelte"), "utf8");
-const turn = readFileSync(join(root, "src/front/Turn.svelte"), "utf8");
+const carousel = readFileSync(
+	join(root, "../../packages/design/src/focus/Tabs/Carousel/Carousel.svelte"),
+	"utf8",
+);
 const realm = readFileSync(join(root, "src/gallery/Realm.svelte"), "utf8");
 const server = readFileSync(join(root, "src/serve.ts"), "utf8");
 const shell = readFileSync(
@@ -62,15 +65,13 @@ test("the first course pairs the proposition with its visual proof", () => {
 	expect(first).toContain("<Grid cols={12}>");
 	expect(first).toContain("<Cell span={5}>");
 	expect(first).toContain('<Cell span={7} look="fill">');
-	expect(first).toContain("<Turn");
+	expect(first).toContain("<Carousel");
 	expect(first).not.toContain("front.voice");
 	expect(first).not.toContain("front.voiced");
-	expect(turn).not.toContain("<Tabs");
-	expect(turn).not.toContain("label={voice}");
-	expect(turn).not.toContain("meta={mark}");
-	expect(turn).toContain("shown = false");
-	expect(turn).toContain("shown = true");
-	expect(turn).toContain("{fade} {shown}");
+	expect(carousel).toContain('role="tablist"');
+	expect(carousel).toContain("aria-selected={item.value === current}");
+	expect(carousel).toContain("carousel-out");
+	expect(carousel).toContain("inert");
 });
 
 test("the homepage owns the complete gallery", () => {
@@ -87,7 +88,7 @@ test("the homepage owns the complete gallery", () => {
 });
 
 test("the language proof renders a real component composition", () => {
-	expect(turn).toContain('look="open" system={voice}');
+	expect(composition).toContain('look="open" system={language}');
 	expect(realm).toContain("<Stage {look}");
 	expect(specimen).toContain('look="bare"');
 	expect(specimen).toContain("<Grid cols={2}");

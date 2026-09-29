@@ -1,0 +1,152 @@
+@use "pkg:@perishlab/token/media.scss";
+
+@layer component {
+	.carousel {
+		display: grid;
+		grid-template-rows: minmax(28rem, 1fr) auto;
+		width: 100%;
+		height: 100%;
+		min-width: 0;
+		gap: var(--space-3);
+	}
+
+	.carousel-scene {
+		position: relative;
+		isolation: isolate;
+		min-width: 0;
+		overflow: hidden;
+		border-radius: var(--radius);
+	}
+
+	.carousel-layer {
+		position: absolute;
+		inset: 0;
+		z-index: 1;
+		min-width: 0;
+	}
+
+	.carousel-layer > * {
+		height: 100%;
+	}
+
+	.carousel-in {
+		animation: carousel-in var(--carousel-fade) ease both;
+	}
+
+	.carousel-out {
+		z-index: 0;
+		animation: carousel-out var(--carousel-fade) ease both;
+		pointer-events: none;
+	}
+
+	.carousel-controls {
+		display: grid;
+		grid-template-columns: var(--space-6) minmax(0, 1fr) var(--space-6);
+		align-items: center;
+		min-width: 0;
+	}
+
+	.carousel-toggle,
+	.carousel-dot {
+		display: grid;
+		place-items: center;
+		padding: 0;
+		border: 0;
+		background: transparent;
+		color: var(--muted);
+		cursor: pointer;
+	}
+
+	.carousel-toggle {
+		width: var(--space-6);
+		height: var(--space-6);
+		border-radius: var(--knob);
+	}
+
+	.carousel-toggle:hover,
+	.carousel-toggle:focus-visible {
+		color: var(--accent);
+	}
+
+	.carousel-toggle:disabled {
+		opacity: var(--mist);
+		cursor: default;
+	}
+
+	.carousel-pause {
+		width: 0.65rem;
+		height: 0.75rem;
+		border-inline: 0.16rem solid currentColor;
+	}
+
+	.carousel-play {
+		width: 0;
+		height: 0;
+		margin-inline-start: 0.1rem;
+		border-block: 0.4rem solid transparent;
+		border-inline-start: 0.65rem solid currentColor;
+	}
+
+	.carousel-dots {
+		grid-column: 2;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: var(--space-2);
+		min-width: 0;
+	}
+
+	.carousel-dot {
+		width: var(--space-5);
+		height: var(--space-6);
+		border-radius: var(--knob);
+	}
+
+	.carousel-dot span {
+		width: 0.38rem;
+		height: 0.38rem;
+		border-radius: 50%;
+		background: currentColor;
+		transition: scale var(--beat), color var(--beat);
+	}
+
+	.carousel-dot:hover,
+	.carousel-dot[aria-selected="true"] {
+		color: var(--accent);
+	}
+
+	.carousel-dot[aria-selected="true"] span {
+		scale: 1.7;
+	}
+
+	@keyframes carousel-in {
+		from { opacity: 0; }
+		to { opacity: 1; }
+	}
+
+	@keyframes carousel-out {
+		from { opacity: 1; }
+		to { opacity: 0; }
+	}
+
+	@include media.calm {
+		.carousel-in,
+		.carousel-out {
+			animation: none;
+		}
+
+		.carousel-dot span {
+			transition: none;
+		}
+	}
+
+	@include media.narrow {
+		.carousel {
+			grid-template-rows: 28rem auto;
+		}
+
+		.carousel-dots {
+			gap: var(--space-1);
+		}
+	}
+}
