@@ -124,8 +124,19 @@ test("renders component identity", () => {
 		render(design.Shell, {
 			props: {
 				tone: "dark",
+				fade: 180,
+				shown: false,
 				children: snippet(() => ({ render: () => "inside" })),
 			},
 		}).body,
 	).toContain('data-tone="dark"');
+	expect(
+		render(design.Shell, {
+			props: {
+				fade: 180,
+				shown: false,
+				children: snippet(() => ({ render: () => "inside" })),
+			},
+		}).body,
+	).toMatch(/data-fade="" data-hidden=""[^>]*--faded: 180ms/);
 });

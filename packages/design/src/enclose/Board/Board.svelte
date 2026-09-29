@@ -12,7 +12,7 @@
 		title: string;
 		line?: string;
 		seat?: string;
-		look?: "held" | "flush";
+		look?: "held" | "flush" | "bare";
 		children: Snippet;
 	} = $props();
 </script>

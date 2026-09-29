@@ -7,7 +7,7 @@
 	type Tone = "system" | "light" | "dark";
 	const voices = ["base", "folio", "glass", "carbon", "relief", "ant", "brutal", "material", "swiss", "cupertino", "terminal"];
 	const beat = 2600;
-	const slide = 900;
+	const fade = 180;
 	const t = speak();
 	let { tone, system = $bindable("base") }: { tone: Tone; system?: string } = $props();
 </script>
@@ -18,8 +18,8 @@
 			<Hero look="claim" title={t("front.claim")} line={t("front.line")} />
 			<Text>{t("front.lede")}</Text>
 		</Cell>
-		<Cell span={7}>
-			<Turn name="Voice" values={t<Record<string, unknown>>("front.exhibit")} tone={tone === "system" ? undefined : tone} {voices} {beat} {slide} />
+		<Cell span={7} look="fill">
+			<Turn name="Voice" values={t<Record<string, unknown>>("front.exhibit")} tone={tone === "system" ? undefined : tone} {voices} {beat} {fade} />
 		</Cell>
 	</Grid>
 </Course>

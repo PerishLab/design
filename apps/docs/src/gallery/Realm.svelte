@@ -8,8 +8,10 @@
 		tone,
 		system,
 		look,
-		bare = false,
 		slide,
+		fade,
+		shown,
+		settled,
 		label,
 		meta,
 	}: {
@@ -17,14 +19,16 @@
 		values: Record<string, unknown>;
 		tone?: "light" | "dark";
 		system: string;
-		look?: "view" | "strip" | "pane" | "show";
-		bare?: boolean;
+		look?: "view" | "strip" | "pane" | "show" | "open";
 		slide?: number;
+		fade?: number;
+		shown?: boolean;
+		settled?: () => void;
 		label?: string;
 		meta?: string;
 	} = $props();
 </script>
 
-<Shell {tone} {slide} system={system === "base" ? undefined : system}>
-	{#if bare}<Sample {name} {values} />{:else}<Stage {look} {label} {meta}><Sample {name} {values} /></Stage>{/if}
+<Shell {tone} {slide} {fade} {shown} {settled} system={system === "base" ? undefined : system}>
+	<Stage {look} {label} {meta}><Sample {name} {values} /></Stage>
 </Shell>
