@@ -121,12 +121,9 @@ there. The packages declare version `0.0.0` and share the product's version.
 `apps/docs` is the Cloudflare worker behind `design.perish.uk`; its
 `wrangler.jsonc` names the account and the domain.
 
-A release follows Plumb's lifecycle: `plumb release open` cuts
-`release/<version>` from a guarded `main`, `plumb release stamp` marks it, and
-`plumb ship dispatch` hands the marker to wharf, which stamps the version into
-the packages, publishes them, and deploys the worker. A stable's changelog is
-consigned to the Depot with `plumb depot consign --kind changelog`;
-`plumb release owed` lists what is still owed.
+A release follows Plumb's lifecycle (`plumb release --help`); wharf stamps the
+version into the packages, publishes them, and deploys the worker. A stable's
+changelog goes to the Depot.
 
 ## Look
 
