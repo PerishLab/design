@@ -41,13 +41,10 @@
 			<Cell span={5}>
 				<Text>{t("front.lede")}</Text>
 			</Cell>
-			<Cell span={5} start={8}>
-				<Split look="close">
-					<Button look="portal" href={`${here}gallery/`} label={t("front.start")} sign="next" wide />
-					<Link href="https://github.com/PerishLab/design" label={t("front.source")} />
-				</Split>
-			</Cell>
 		</Grid>
+		<Split look="close">
+			<Button look="portal" href={`${here}gallery/`} label={t("front.start")} sign="next" wide />
+		</Split>
 	</Course>
 	<Course look="well">
 		<Grid cols={12}>
@@ -112,7 +109,7 @@
 		</Grid>
 		<Footer text={stamp}>
 			<Link look="nav" href={`${here}gallery/`} label={t("front.gallery")} />
-			<Link look="nav" href="https://github.com/PerishLab/design" label="source" />
+			<Link look="nav" href="https://github.com/PerishLab/design" label={t("front.source")} />
 		</Footer>
 	</Course>
 </Shell>
