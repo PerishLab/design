@@ -1,3 +1,5 @@
+@use "pkg:@perishlab/token/media.scss";
+
 @layer component {
 	.button {
 		position: relative;
@@ -15,7 +17,7 @@
 		white-space: nowrap;
 		text-decoration: none;
 		cursor: pointer;
-		transition: border-color var(--beat);
+		transition: border-color var(--beat), scale var(--beat);
 	}
 
 	.button::after {
@@ -60,5 +62,55 @@
 
 	.button-quiet:hover:not(:disabled) {
 		border-color: var(--accent);
+	}
+
+	.button-portal {
+		min-height: calc(var(--band) * 2.25);
+		justify-content: space-between;
+		gap: var(--space-5);
+		padding: var(--space-5);
+		overflow: hidden;
+		border-color: var(--accent);
+		background: var(--accent);
+		color: var(--onaccent);
+		font-family: var(--crown);
+		font-size: clamp(var(--title), 6vw, var(--hero));
+		font-weight: var(--heft);
+		line-height: var(--tight);
+		letter-spacing: var(--track);
+		text-align: start;
+	}
+
+	.button-portal .sign {
+		width: calc(var(--sign) * 2);
+		height: calc(var(--sign) * 2);
+		transition: translate var(--beat), scale var(--beat);
+	}
+
+	.button-portal:hover .sign {
+		translate: var(--space-2) 0;
+		scale: 1.08;
+	}
+
+	.button-portal:active {
+		scale: 0.985;
+	}
+
+	.button-portal:active .sign {
+		translate: var(--space-3) 0;
+	}
+
+	@include media.calm {
+		.button-portal,
+		.button-portal .sign {
+			transition: none;
+		}
+
+		.button-portal:active,
+		.button-portal:hover .sign,
+		.button-portal:active .sign {
+			translate: none;
+			scale: 1;
+		}
 	}
 }
