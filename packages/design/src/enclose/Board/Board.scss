@@ -47,4 +47,23 @@
 		gap: 0;
 		padding: 0;
 	}
+
+	.board-bare {
+		display: grid;
+		grid-template-rows: auto 1fr;
+		height: 100%;
+		border: none;
+		background: transparent;
+		box-shadow: none;
+		backdrop-filter: none;
+	}
+
+	.board-bare .board-head {
+		padding-inline: 0;
+	}
+
+	.board-bare .board-body {
+		justify-content: flex-end;
+		padding-inline: 0;
+	}
 }

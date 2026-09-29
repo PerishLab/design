@@ -39,6 +39,20 @@
 		box-shadow: var(--lift);
 	}
 
+	.stage-open {
+		position: relative;
+		isolation: isolate;
+		height: 100%;
+		min-height: 28rem;
+		align-items: stretch;
+		padding: clamp(var(--space-3), 3cqi, var(--space-5));
+		border: none;
+		border-radius: var(--radius);
+		background-color: var(--ground);
+		background-image: var(--wash);
+		overflow: hidden;
+	}
+
 	.stage-sign {
 		position: absolute;
 		z-index: -1;
@@ -86,6 +100,10 @@
 		min-width: 0;
 		max-width: 100%;
 		mask-image: linear-gradient(to bottom, black 88%, transparent);
+	}
+
+	.stage-open > :not(.stage-sign) {
+		mask-image: none;
 	}
 
 	@include media.narrow {

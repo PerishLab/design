@@ -26,4 +26,18 @@
 	.shell[data-slide] {
 		@include tokens.morph(var(--slid, var(--beat)));
 	}
+
+	.shell[data-fade] {
+		transition: opacity var(--faded, var(--beat)) ease;
+	}
+
+	.shell[data-hidden] {
+		opacity: 0;
+	}
+
+	@include media.calm {
+		.shell[data-fade] {
+			transition: none;
+		}
+	}
 }

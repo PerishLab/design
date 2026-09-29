@@ -40,6 +40,7 @@ export const kinds: Record<string, Record<string, Kind>> = {
 	Cell: {
 		span: "text",
 		start: "text",
+		look: "text",
 		children: "node",
 	},
 	Check: {
@@ -176,6 +177,10 @@ export const kinds: Record<string, Record<string, Kind>> = {
 		children: "node",
 		tone: "text",
 		system: "text",
+		slide: "text",
+		fade: "text",
+		shown: "flag",
+		settled: "call",
 	},
 	Split: {
 		children: "node",

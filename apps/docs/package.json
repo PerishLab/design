@@ -7,7 +7,7 @@
 		"build": "vite build && vite build --ssr src/serve.ts --outDir .local/server && node .local/server/serve.js",
 		"typecheck": "svelte-check --tsconfig ./tsconfig.json",
 		"test": "vitest run",
-		"look": "LOOK=1 vitest run tests/look.test.ts tests/shape.test.ts",
+		"look": "LOOK=1 vitest run --no-file-parallelism tests/look.test.ts tests/shape.test.ts",
 		"preview": "vite preview"
 	},
 	"dependencies": {

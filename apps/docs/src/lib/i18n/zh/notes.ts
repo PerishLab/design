@@ -15,7 +15,7 @@ export const notes = {
 	},
 	Board: {
 		title: "面板标题",
-		look: "held 让主体保持内边距,flush 把整个主体交给填充它的东西",
+		look: "held 保留主体内边距，flush 把整个主体交给填充物，bare 只保留构图",
 		line: "标题下方的可选辅助文字",
 		seat: "可选的锚点,供链接抵达",
 		children: "面板内的行与控件",
@@ -37,7 +37,8 @@ export const notes = {
 	},
 	Cell: {
 		span: "这一格占据栅格的几列",
-		start: "起始列,用于指定位置时",
+		start: "指定位置时使用的起始列",
+		look: "start 保持内容自身尺寸，fill 把剩余行高交给内容",
 		children: "格子里放置的内容",
 	},
 	Check: {
@@ -175,12 +176,15 @@ export const notes = {
 		tone: "这块界面的浅色或深色偏好",
 		system: "为这块界面赋予令牌的设计系统",
 		slide: "原子滑到下一组值要花多久,而不是直接切过去",
+		fade: "整个界面淡出或返回所需的时间",
+		shown: "界面当前是否可见",
+		settled: "界面完成淡出或淡入时调用",
 	},
 	Split: {
 		children: "分置两侧的内容",
 	},
 	Stage: {
-		look: "view 与 strip 为样例取景,pane 自身就是表面,show 为一个样例展开陈列场",
+		look: "view 与 strip 为样例取景，pane 自身就是表面，show 展开陈列场，open 提供无外框的固定场地",
 		label: "show 背后放大的可选身份",
 		meta: "show 身份旁的可选序号或度量",
 		children: "展台取景的那一件东西,居中,超出即裁",
