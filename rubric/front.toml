@@ -13,8 +13,8 @@
 # that reads this file should not exist until the shape stops moving.
 #
 # LEDGER.md records what went wrong. This records what must hold. The evidence
-# for both lives in LEDGER; the direction lives in the Concord task
-# `perish.code/design-aesthetic-coldstart`.
+# for both lives in LEDGER; the direction lives in PerishLab/design#4 and its
+# sub-issues.
 
 [surface]
 path = "/"
