@@ -1107,3 +1107,18 @@ screens.
 |---|---|
 | P201 | **The specimen widened the document to 700 pixels on a 390-pixel viewport and to 1,121 pixels at 1,024.** The tabs contributed their full minimum-content width to the surrounding grid, so the page scrolled instead of the control. The tabs now own their overflow, every item keeps its intrinsic label width, and autoplay brings only the active item into the control's visible interval. The page stays still while its evidence advances. |
 | P202 | **A 3:1 strip becomes roughly 119 pixels tall once it honestly fits a phone, which is too short to show the same component it claims to compare.** The strip keeps that panoramic ratio on wide screens and takes 4:3 below the seam. This is not extra mobile content or ornament: it is the space needed for the existing proof to remain legible after removing the accidental width. |
+
+## Fit was not fill
+
+The v0.3.6 result went live and passed its responsive measurements. Human
+review found no visible improvement in ordinary viewing and scored it at zero.
+The issue reopened around the visual promise it had not delivered.
+
+| # | Entry |
+|---|---|
+| P203 | **A correct responsive repair was mistaken for a visual delivery.** The document stopped overflowing and the mobile specimen became legible, but the desktop composition, hierarchy, and first impression were effectively unchanged. The correction is now part of the record rather than hidden by the release: fit is an engineering result; fill must survive a static before-and-after comparison. |
+| P204 | The specimen left the 5/7 documentation grid and became the course's dominant field. At 1,440 pixels its stage moved from **784 × 261 in the right column to 1,352 × 592 across the course**, almost four times the area, while the markup moved below it as supporting evidence. A still image now states the order without motion: proposition, proof, then source. |
+| P205 | The miniature Card could expose too little of a language to prove one. The fixed specimen now composes **Board, Grid, Card, Text, Tag, and Button**: the same six generator types and the same copy slots under every system, exposing display and reading faces, spacing, colour, borders, radius, shadow, and controls in one view. `base`, `glass`, `brutal`, and `terminal` were sampled as deliberately distant cases; their ground, face, radius, shadow, and control treatment all diverge without a structural branch. |
+| P206 | **The active system was a thin underline before it was an identity.** A show stage now carries its name at display scale and its position as `01 / 11`; the tabs remain the control rather than carrying the whole expression. The name is information, not decoration: it binds each visual change to the language that caused it. |
+| P207 | The first mobile composition failed three systems even after it fit base: folio reached 684 pixels inside a 400-pixel stage, while glass and relief also escaped. The answer was not to suppress their spacing. The specimen copy became `fixed / variable`, and `Grid flow="hold"` now preserves a declared comparison where the default flow still folds. The stage keeps one stable mobile measure, so autoplay changes language without changing page geometry. |
+| — | The Chinese route no longer presents an English specimen inside translated framing. Its Board, labels, state, and action come from the same locale book as the course. At 390 pixels the Chinese base Board measures 314 × 236 inside a 354 × 480 stage, with no document overflow. |

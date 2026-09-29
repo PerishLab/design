@@ -89,6 +89,7 @@ export const notes = {
 	Grid: {
 		look: "cells of one height, or each at its own",
 		cols: "a fixed column count, or nothing to fill by cell width",
+		flow: "fold into one narrow column, or hold the declared structure",
 		children: "the cells to lay out",
 	},
 	Head: {
@@ -180,7 +181,9 @@ export const notes = {
 		children: "the contents placed at opposite sides",
 	},
 	Stage: {
-		look: "view and strip are windows that stretch what they frame, pane is the surface itself and centres what stands on it",
+		look: "view and strip frame a specimen, pane is the surface itself, show gives one specimen an exhibition field",
+		label: "the optional identity set large behind a show",
+		meta: "the optional sequence or measure beside a show's identity",
 		children:
 			"the one thing the stage frames, centred and cropped to its measure",
 	},

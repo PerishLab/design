@@ -1,6 +1,5 @@
 <script lang="ts">
-	import { Tabs } from "@perishlab/design";
-	import { seeds } from "../docs/samples.ts";
+	import { Grid, Tabs } from "@perishlab/design";
 	import Realm from "../gallery/Realm.svelte";
 
 	let {
@@ -9,18 +8,23 @@
 		voices,
 		beat,
 		slide,
+		values,
 	}: {
 		name: string;
 		tone?: "light" | "dark";
 		voices: string[];
 		beat: number;
 		slide: number;
+		values: Record<string, unknown>;
 	} = $props();
 
-	let voice = $state(voices[0]);
+	let voice = $derived(voices[0]);
 	let stops = $derived(voices.map((one) => ({ value: one, label: one })));
-	let values = $derived({ ...(seeds[name] ?? {}) });
+	let at = $derived(voices.indexOf(voice));
+	let mark = $derived(`${String(at + 1).padStart(2, "0")} / ${voices.length}`);
 </script>
 
-<Tabs tabs={stops} bind:value={voice} {beat} />
-<Realm {name} {values} {tone} {slide} look="strip" system={voice} />
+<Grid cols={1}>
+	<Realm {name} {values} {tone} {slide} label={voice} meta={mark} look="show" system={voice} />
+	<Tabs tabs={stops} bind:value={voice} {beat} />
+</Grid>

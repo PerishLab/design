@@ -5,10 +5,12 @@
 	let {
 		cols,
 		look = "even",
+		flow = "fold",
 		children,
 	}: {
 		cols?: number;
 		look?: "even" | "loose";
+		flow?: "fold" | "hold";
 		children: Snippet;
 	} = $props();
 	let ruled = $derived(
@@ -16,4 +18,4 @@
 	);
 </script>
 
-<div class="grid grid-{look}" class:grid-auto={cols === undefined} style:--ruled={ruled}>{@render children()}</div>
+<div class="grid grid-{look}" class:grid-auto={cols === undefined} class:grid-hold={flow === "hold"} style:--ruled={ruled}>{@render children()}</div>

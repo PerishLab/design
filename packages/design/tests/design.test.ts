@@ -78,6 +78,26 @@ test("renders component identity", () => {
 			},
 		}).body,
 	).toContain("course-full");
+	const stage = render(design.Stage, {
+		props: {
+			look: "show",
+			label: "folio",
+			meta: "02 / 11",
+			children: snippet(() => ({ render: () => "inside" })),
+		},
+	}).body;
+	expect(stage).toContain("stage-show");
+	expect(stage).toContain("folio");
+	expect(stage).toContain("02 / 11");
+	expect(
+		render(design.Grid, {
+			props: {
+				cols: 2,
+				flow: "hold",
+				children: snippet(() => ({ render: () => "inside" })),
+			},
+		}).body,
+	).toContain("grid-hold");
 	expect(
 		render(design.Rail, {
 			props: { stops: [{ mark: "01", name: "declare", text: "shape" }] },

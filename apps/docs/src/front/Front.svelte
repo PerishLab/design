@@ -51,16 +51,20 @@
 	</Course>
 	<Course look="well">
 		<Grid cols={12}>
-			<Cell span={5}>
+			<Cell span={7}>
 				<Head text={t("front.voice")} seat="voice" />
 				<Text>{t("front.voiced")}</Text>
+			</Cell>
+		</Grid>
+		<Turn name="Voice" values={t<Record<string, unknown>>("front.exhibit")} tone={tone === "system" ? undefined : tone} {voices} {beat} {slide} />
+		<Grid cols={12}>
+			<Cell span={8}>
 				<Code name={t("front.borne")} text={borne} />
+			</Cell>
+			<Cell span={3} start={10}>
 				<Split look="close">
 					<Button look="quiet" href={`${here}gallery/`} label={t("front.visit")} sign="next" />
 				</Split>
-			</Cell>
-			<Cell span={7}>
-				<Turn name="Voice" tone={tone === "system" ? undefined : tone} {voices} {beat} {slide} />
 			</Cell>
 		</Grid>
 	</Course>
