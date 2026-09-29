@@ -1,16 +1,12 @@
 import { existsSync, readdirSync } from "node:fs";
-import { dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
+import { join } from "node:path";
 import { expect, test } from "vitest";
 import { catalog, groups } from "../src/docs/catalog.ts";
 import { kinds } from "../src/docs/kinds.ts";
 import * as english from "../src/lib/i18n/en/index.ts";
 import * as chinese from "../src/lib/i18n/zh/index.ts";
 
-const root = join(
-	dirname(fileURLToPath(import.meta.url)),
-	"../../../packages/design/src",
-);
+const root = "../../packages/design/src";
 
 function walk(path: string): string[] {
 	const found: string[] = [];

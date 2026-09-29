@@ -102,7 +102,7 @@ test("optional", () => {
 
 test("builds in memory", async () => {
 	const seat = root("build");
-	const require = createRequire(import.meta.url);
+	const require = createRequire(join(process.cwd(), "package.json"));
 	const runtime = dirname(require.resolve("svelte/package.json"));
 	mkdirSync(join(seat, "node_modules"));
 	symlinkSync(runtime, join(seat, "node_modules", "svelte"), "dir");
