@@ -1,8 +1,9 @@
 <script lang="ts">
-	import { Navigator, Button, Cell, Code, Course, Footer, Grid, Head, Hero, Ledger, Link, Menu, Rail, Shell, Split, Text } from "@perishlab/design";
+	import { Navigator, Cell, Code, Course, Footer, Grid, Head, Hero, Ledger, Link, Menu, Rail, Shell, Split, Text } from "@perishlab/design";
 	import { named } from "@perishlab/crest/crest";
 	import { stamp } from "virtual:stamp";
-	import { borne, shown, spell, wired } from "../docs/front.ts";
+	import { shown, spell, wired } from "../docs/front.ts";
+	import Gallery from "../gallery/Gallery.svelte";
 	import Turn from "./Turn.svelte";
 	import { speak, tongue } from "../lib/i18n/index.ts";
 
@@ -13,6 +14,7 @@
 	const t = speak();
 	const heard = tongue();
 	let tone: Tone = $state("system");
+	let system = $state("base");
 	let here = $derived(heard() === "en" ? "/" : "/zh-CN/");
 	let shades = $derived([
 		{ value: "system", label: t("front.system") },
@@ -28,42 +30,25 @@
 	}
 </script>
 
-<Shell tone={tone === "system" ? undefined : tone}>
+<Shell tone={tone === "system" ? undefined : tone} system={system === "base" || system === "all" ? undefined : system}>
 	<Navigator stick look="exact" mark="design" owner={named.design.owner} title={named.design.name} home={here}>
-		<Link look="nav" href={`${here}gallery/`} label={t("front.gallery")} />
 		<Menu look="bare" sign="tongue" label={t("front.tongue")} value={heard()} items={tongues} choose={travel} />
 		<Menu look="bare" sign="shade" label={t("front.shade")} value={tone} items={shades} choose={(next) => (tone = next as Tone)} />
 	</Navigator>
 
 	<Course full>
-		<Hero look="claim" title={t("front.claim")} line={t("front.line")} />
 		<Grid cols={12}>
 			<Cell span={5}>
+				<Hero look="claim" title={t("front.claim")} line={t("front.line")} />
 				<Text>{t("front.lede")}</Text>
 			</Cell>
+			<Cell span={7}>
+				<Turn name="Voice" values={t<Record<string, unknown>>("front.exhibit")} tone={tone === "system" ? undefined : tone} {voices} {beat} {slide} />
+			</Cell>
 		</Grid>
-		<Split look="close">
-			<Button look="portal" href={`${here}gallery/`} label={t("front.start")} sign="next" wide />
-		</Split>
 	</Course>
 	<Course look="well">
-		<Grid cols={12}>
-			<Cell span={7}>
-				<Head text={t("front.voice")} seat="voice" />
-				<Text>{t("front.voiced")}</Text>
-			</Cell>
-		</Grid>
-		<Turn name="Voice" values={t<Record<string, unknown>>("front.exhibit")} tone={tone === "system" ? undefined : tone} {voices} {beat} {slide} />
-		<Grid cols={12}>
-			<Cell span={8}>
-				<Code name={t("front.borne")} text={borne} />
-			</Cell>
-			<Cell span={3} start={10}>
-				<Split look="close">
-					<Button look="quiet" href={`${here}gallery/`} label={t("front.visit")} sign="next" />
-				</Split>
-			</Cell>
-		</Grid>
+		<Gallery bind:system tone={tone === "system" ? undefined : tone} />
 	</Course>
 	<Course>
 		<Grid cols={12}>
@@ -94,7 +79,6 @@
 		</Grid>
 		<Split look="close">
 			<Text>{t("front.after")}</Text>
-			<Button look="quiet" href={`${here}gallery/`} label={t("front.values")} sign="next" />
 		</Split>
 	</Course>
 	<Course>
@@ -108,7 +92,6 @@
 			</Cell>
 		</Grid>
 		<Footer text={stamp}>
-			<Link look="nav" href={`${here}gallery/`} label={t("front.gallery")} />
 			<Link look="nav" href="https://github.com/PerishLab/design" label={t("front.source")} />
 		</Footer>
 	</Course>

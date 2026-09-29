@@ -56,7 +56,12 @@ test("says every noun it counts, before the run that counts it", () => {
 });
 
 function onward(part: string, keys: string[]): boolean {
-	if (part.includes("href=")) return true;
+	if (
+		part.includes("href=") ||
+		part.includes("<Gallery") ||
+		part.includes(" copy")
+	)
+		return true;
 	return keys.some((key) =>
 		Object.values(books).some((book) =>
 			JSON.stringify(book[key] ?? "").includes("href"),

@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { Frame, Hero, Link, Shell } from "@perishlab/design";
 	import Front from "./front/Front.svelte";
-	import Gallery from "./gallery/Gallery.svelte";
 	import { stage } from "./lib/i18n/index.ts";
 	import Proof from "./proof/Proof.svelte";
 
@@ -12,7 +11,6 @@
 </script>
 
 {#if seat === ""}<Front />
-{:else if seat === "/gallery"}<Gallery />
 {:else if seat === "/proof"}<Proof />
 {:else}<Shell><Frame><Hero mark="404" title="Not found" line="That path carries no component." /><Link href="/" label="Return to the front" /></Frame></Shell>
 {/if}
