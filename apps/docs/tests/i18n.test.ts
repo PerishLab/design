@@ -1,7 +1,7 @@
+import * as english from "design-docs/i18n/en";
+import { lint, roles } from "design-docs/i18n/policy";
+import * as chinese from "design-docs/i18n/zh";
 import { expect, test } from "vitest";
-import * as english from "../src/lib/i18n/en/index.ts";
-import { lint, roles } from "../src/lib/i18n/policy.ts";
-import * as chinese from "../src/lib/i18n/zh/index.ts";
 
 test("assigns explicit roles to governed copy", () => {
 	expect(roles).toEqual({ "front.claim": "claim" });

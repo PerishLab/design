@@ -2,17 +2,36 @@ import { spawn } from "node:child_process";
 import { once } from "node:events";
 import { mkdirSync, mkdtempSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
-import { join } from "node:path";
+import { dirname, join } from "node:path";
 import { execPath } from "node:process";
+import { design } from "@perishlab/design/vite";
 import { expect, test } from "vitest";
-import { runtime } from "../../src/vite/server.ts";
+
+function runtime(): string {
+	const seat = mkdtempSync(join(tmpdir(), "server-views-"));
+	for (const name of ["index.svelte", "actor/{actor}.svelte"]) {
+		const path = join(seat, "src", "views", name);
+		mkdirSync(dirname(path), { recursive: true });
+		writeFileSync(path, "<p>view</p>\n");
+	}
+	const plugin = design();
+	plugin.configResolved({ root: seat });
+	let source = "";
+	plugin.generateBundle.call({
+		addWatchFile() {},
+		emitFile(file) {
+			if (file.fileName === ".perish/server.mjs") source = file.source;
+		},
+	});
+	return source;
+}
 
 async function launch(root: string): Promise<{
 	close(): Promise<void>;
 	endpoint: string;
 }> {
 	const script = join(root, "server.mjs");
-	writeFileSync(script, runtime(["/", "/actor/{actor}", "/login"]));
+	writeFileSync(script, runtime());
 	const child = spawn(execPath, [script, root], {
 		env: { HOST: "127.0.0.1", PORT: "0" },
 		stdio: ["ignore", "pipe", "pipe"],

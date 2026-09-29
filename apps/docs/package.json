@@ -2,12 +2,23 @@
 	"name": "design-docs",
 	"private": true,
 	"type": "module",
+	"exports": {
+		"./app": "./src/App.svelte",
+		"./front": "./src/front/Front.svelte",
+		"./catalog": "./src/docs/catalog.ts",
+		"./kinds": "./src/docs/kinds.ts",
+		"./onramp": "./src/docs/front.ts",
+		"./page": "./src/lib/page.ts",
+		"./i18n/en": "./src/lib/i18n/en/index.ts",
+		"./i18n/zh": "./src/lib/i18n/zh/index.ts",
+		"./i18n/policy": "./src/lib/i18n/policy.ts"
+	},
 	"scripts": {
-		"dev": "vite",
-		"build": "vite build && vite build --ssr src/serve.ts --outDir .local/server && node .local/server/serve.js",
-		"typecheck": "svelte-check --tsconfig ./tsconfig.json",
+		"dev": "pnpm --filter \"design-docs^...\" build && vite",
+		"build": "pnpm --filter \"design-docs^...\" build && vite build && vite build --ssr src/serve.ts --outDir .local/server && node .local/server/serve.js",
+		"typecheck": "svelte-check --tsconfig ./tsconfig.json --config ./vitest.config.ts",
 		"test": "vitest run",
-		"look": "LOOK=1 vitest run --no-file-parallelism tests/look.test.ts tests/shape.test.ts",
+		"look": "pnpm --filter \"design-docs^...\" build && LOOK=1 vitest run --no-file-parallelism tests/look.test.ts tests/shape.test.ts",
 		"preview": "vite preview"
 	},
 	"dependencies": {

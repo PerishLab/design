@@ -1,7 +1,7 @@
+import * as design from "@perishlab/design";
 import { createRawSnippet as snippet } from "svelte";
 import { render } from "svelte/server";
 import { expect, test } from "vitest";
-import * as design from "../src/lib.ts";
 
 test("exports one-word components", () => {
 	expect(Object.keys(design).sort()).toEqual([

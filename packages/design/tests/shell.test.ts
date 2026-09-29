@@ -1,9 +1,10 @@
-import * as sass from "sass";
 import { expect, test } from "vitest";
+import { shipped } from "./shipped.ts";
 
-const sheet = sass.compile("src/document/Shell/Shell.scss", {
-	importers: [new sass.NodePackageImporter()],
-}).css;
+const sheet =
+	(await shipped()).find(
+		(one) => one.pack === "@perishlab/design" && one.name === "Shell",
+	)?.sheet ?? "";
 
 test("a shell inside a shell lets the outer ground show through", () => {
 	expect(sheet).toMatch(

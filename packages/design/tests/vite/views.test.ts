@@ -9,11 +9,10 @@ import {
 import { createRequire } from "node:module";
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
+import { design } from "@perishlab/design/vite";
 import { svelte } from "@sveltejs/vite-plugin-svelte";
 import { build } from "vite";
 import { expect, test } from "vitest";
-import { design } from "../../src/vite/lib.ts";
-import { scan } from "../../src/vite/views.ts";
 
 function root(name: string): string {
 	return mkdtempSync(join(tmpdir(), `views-${name}-`));
@@ -26,20 +25,27 @@ function file(root: string, name: string): string {
 	return path;
 }
 
+function routes(seat: string, login = true): string[] {
+	const plugin = design({ login });
+	plugin.configResolved({ root: seat });
+	const code = plugin.load(plugin.resolveId("virtual:perish/views") ?? "");
+	return [...(code ?? "").matchAll(/path:\x22([^\x22]*)\x22/g)].map(
+		(hit) => hit[1],
+	);
+}
+
 test("maps", () => {
 	const seat = root("maps");
 	file(seat, "index.svelte");
 	file(seat, "admin/index.svelte");
 	file(seat, "actor/{actor}.svelte");
-	expect(
-		scan(join(seat, "src", "views"), false).map((route) => route.path),
-	).toEqual(["/actor/{actor}", "/admin", "/"]);
+	expect(routes(seat, false)).toEqual(["/actor/{actor}", "/admin", "/"]);
 });
 
 test("lowercase", () => {
 	const seat = root("lowercase");
 	file(seat, "Admin.svelte");
-	expect(() => scan(join(seat, "src", "views"), false)).toThrow(
+	expect(() => routes(seat, false)).toThrow(
 		"path components must be lowercase",
 	);
 });
@@ -49,7 +55,7 @@ test("routes only", () => {
 	file(seat, "home.svelte");
 	const path = join(seat, "src", "views", "helper.ts");
 	writeFileSync(path, "export const helper = 1;\n");
-	expect(() => scan(join(seat, "src", "views"), false)).toThrow(
+	expect(() => routes(seat, false)).toThrow(
 		"only route .svelte files are allowed",
 	);
 });
@@ -58,17 +64,14 @@ test("collision", () => {
 	const seat = root("collision");
 	file(seat, "actor/{actor}.svelte");
 	file(seat, "actor/{id}.svelte");
-	expect(() => scan(join(seat, "src", "views"), false)).toThrow(
-		"conflicts with",
-	);
+	expect(() => routes(seat, false)).toThrow("conflicts with");
 });
 
 test("login", () => {
 	const seat = root("login");
 	file(seat, "login.svelte");
-	const folder = join(seat, "src", "views");
-	expect(() => scan(folder)).toThrow("/login is provided by default");
-	expect(scan(folder, false).map((route) => route.path)).toEqual(["/login"]);
+	expect(() => routes(seat)).toThrow("/login is provided by default");
+	expect(routes(seat, false)).toEqual(["/login"]);
 });
 
 test("virtual", () => {
