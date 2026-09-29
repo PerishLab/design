@@ -16,5 +16,30 @@
 		"rules": {
 			"preset": "recommended"
 		}
-	}
+	},
+	"overrides": [
+		{
+			"includes": ["packages/bone/**"],
+			"linter": {
+				"rules": {
+					"style": {
+						"noRestrictedImports": {
+							"level": "error",
+							"options": {
+								"paths": {
+									"@perishlab/token": "The bone names no atom; it never reaches the token substrate."
+								},
+								"patterns": [
+									{
+										"group": ["@perishlab/token/**"],
+										"message": "The bone names no atom; it never reaches the token substrate."
+									}
+								]
+							}
+						}
+					}
+				}
+			}
+		}
+	]
 }

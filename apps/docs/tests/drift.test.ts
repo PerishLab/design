@@ -1,25 +1,17 @@
-import { existsSync, readdirSync } from "node:fs";
-import { join } from "node:path";
+import { catalog, groups } from "design-docs/catalog";
+import * as english from "design-docs/i18n/en";
+import * as chinese from "design-docs/i18n/zh";
+import { kinds } from "design-docs/kinds";
 import { expect, test } from "vitest";
-import { catalog, groups } from "../src/docs/catalog.ts";
-import { kinds } from "../src/docs/kinds.ts";
-import * as english from "../src/lib/i18n/en/index.ts";
-import * as chinese from "../src/lib/i18n/zh/index.ts";
+import { shipped } from "./shipped.ts";
 
-const root = "../../packages/design/src";
+const styled = (await shipped()).filter((one) => one.styled);
 
-function walk(path: string): string[] {
-	const found: string[] = [];
-	for (const entry of readdirSync(path, { withFileTypes: true })) {
-		const seat = join(path, entry.name);
-		if (entry.isDirectory()) found.push(...walk(seat));
-		else if (
-			entry.name.endsWith(".svelte") &&
-			existsSync(seat.replace(/\.svelte$/, ".scss"))
-		)
-			found.push(entry.name.slice(0, -7));
-	}
-	return found;
+function names(room?: string): string[] {
+	return styled
+		.filter((one) => room === undefined || one.room === room)
+		.map((one) => one.name)
+		.sort();
 }
 
 function paths(held: unknown, stem: string): string[] {
@@ -34,12 +26,12 @@ function paths(held: unknown, stem: string): string[] {
 }
 
 test("covers every styled component", () => {
-	expect(walk(root).sort()).toEqual(Object.keys(kinds).sort());
+	expect(names()).toEqual(Object.keys(kinds).sort());
 });
 
 test("files every component in the room its source stands in", () => {
 	for (const group of groups)
-		expect(walk(join(root, group)).sort()).toEqual([...catalog[group]].sort());
+		expect(names(group)).toEqual([...catalog[group]].sort());
 });
 
 test("says the same keys in every tongue", () => {

@@ -19,10 +19,7 @@ paths = [
 syntax = "style"
 
 [[grant]]
-paths = [
-    "apps/docs/vite.config.ts",
-    "packages/design/vitest.config.ts",
-]
+paths = ["apps/docs/vite.config.ts"]
 syntax = "embed"
 
 [[grant]]

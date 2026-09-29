@@ -10,7 +10,8 @@ and its self-built documentation site.
 - `packages/bone` publishes `@perishlab/bone`: the seam CSS does not have. `Bay`
   reserves space and may move it, `Skin` fills its bay and paints it, and one
   border box could hold neither without the other. The package may not name a
-  single atom, and its own test refuses `var(--` and any reach for the
+  single atom: `packages/design/tests/bone.test.ts` refuses `var(--` in its
+  compiled output, and Biome's `noRestrictedImports` refuses any reach for the
   substrate. It is a dependency of the design package and of nothing else; the
   app layer must never receive a generic box.
 - `packages/design` publishes `@perishlab/design` and depends on the substrate.
@@ -28,7 +29,9 @@ and its self-built documentation site.
   Plumb release before consumers move.
 - `apps/docs` builds `design.perish.uk`. It consumes the same source package
   contract that is published, through explicit workspace resolution only, and
-  takes `@perishlab/crest` from the registry like any other consumer.
+  takes `@perishlab/crest` from the registry like any other consumer. Its Vite
+  config loads the design plugin from the built package, so its `dev`, `build`
+  and `look` scripts build their workspace dependencies first.
 
 React, TSX, JSR, `useXxx` declarations, the old package names, and the old
 `react.design.perish.uk` domain are retired surfaces. Do not restore a

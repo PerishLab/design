@@ -9,6 +9,7 @@
 	"svelte": "./dist/lib.js",
 	"exports": {
 		".": {
+			"source": "./src/lib.ts",
 			"types": "./dist/lib.d.ts",
 			"svelte": "./dist/lib.js",
 			"default": "./dist/lib.js"
@@ -20,8 +21,7 @@
 	"scripts": {
 		"build": "svelte-package -i src -o dist",
 		"prepack": "pnpm build",
-		"typecheck": "svelte-check --tsconfig ./tsconfig.json",
-		"test": "vitest run"
+		"typecheck": "svelte-check --tsconfig ./tsconfig.json"
 	},
 	"peerDependencies": {
 		"svelte": ">=5.56"

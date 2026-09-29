@@ -1,6 +1,7 @@
 import { execFileSync } from "node:child_process";
-import { readFileSync, writeFileSync } from "node:fs";
+import { writeFileSync } from "node:fs";
 import { expect, test } from "vitest";
+import { still, voices } from "./steps.ts";
 
 const seat = "tests/look.json";
 const plant = "../..";
@@ -52,6 +53,7 @@ const parts = [
 	".copy",
 	".footer",
 	".toast-note",
+	".shell",
 ];
 
 const banded = [
@@ -225,6 +227,7 @@ test.skipIf(process.env.LOOK !== "1")(
 				cwd: plant,
 				stdio: "ignore",
 			});
+		let baseline = "";
 		try {
 			answers(20);
 			execFileSync("playwright-cli", ["resize", "1280", "900"], {
@@ -240,7 +243,8 @@ test.skipIf(process.env.LOOK !== "1")(
 					...band(900, "float"),
 				};
 			}
-			writeFileSync(seat, `${JSON.stringify(shot, null, "\t")}\n`);
+			baseline = `${JSON.stringify(shot, null, "\t")}\n`;
+			writeFileSync(seat, baseline);
 		} finally {
 			if (!held)
 				execFileSync("sidecar", ["stop", target], {
@@ -248,7 +252,7 @@ test.skipIf(process.env.LOOK !== "1")(
 					stdio: "ignore",
 				});
 		}
-		const written = JSON.parse(readFileSync(seat, "utf8"));
+		const written = JSON.parse(baseline);
 		expect(Object.keys(written).sort()).toEqual([...systems].sort());
 		const drift: string[] = [];
 		for (const system of systems) {
@@ -270,6 +274,9 @@ test.skipIf(process.env.LOOK !== "1")(
 					`${row.pair[0]} ${row.tight} is not denser than ${row.pair[1]} ${row.airy}`,
 			);
 		expect(loose).toEqual([]);
+		const shown = voices();
+		expect(shown.length).toBeGreaterThan(1);
+		expect(still(written, shown)).toEqual([]);
 	},
 	300000,
 );

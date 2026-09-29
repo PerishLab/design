@@ -9,11 +9,7 @@
 		"noEmit": true,
 		"isolatedModules": true,
 		"skipLibCheck": true,
-		"paths": {
-			"@perishlab/bone": ["../../packages/bone/src/lib.ts"],
-			"@perishlab/design": ["../../packages/design/src/lib.ts"],
-			"@perishlab/design/vite": ["../../packages/design/src/vite/lib.ts"]
-		},
+		"customConditions": ["source"],
 		"types": ["vite/client", "node"]
 	},
 	"include": ["src", "tests", "vite.config.ts", "vitest.config.ts"]

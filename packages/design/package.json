@@ -9,13 +9,20 @@
 	"svelte": "./dist/lib.js",
 	"exports": {
 		".": {
+			"source": "./src/lib.ts",
 			"types": "./dist/lib.d.ts",
 			"svelte": "./dist/lib.js",
 			"default": "./dist/lib.js"
 		},
 		"./vite": {
+			"source": "./src/vite/lib.ts",
 			"types": "./dist/vite/lib.d.ts",
 			"default": "./dist/vite/lib.js"
+		},
+		"./carousel": {
+			"source": "./src/focus/Tabs/Carousel/model.ts",
+			"types": "./dist/focus/Tabs/Carousel/model.d.ts",
+			"default": "./dist/focus/Tabs/Carousel/model.js"
 		}
 	},
 	"publishConfig": {
