@@ -11,16 +11,3 @@ export const shown = `<script>
 <Shell system="swiss">
   <Hero title="hello" />
 </Shell>`;
-
-export const borne = `<Board title={copy.title} line={copy.line}>
-  <Grid cols={2} flow="hold">
-    <Card title={copy.meaning}>
-      <Text>{copy.constant}</Text>
-      <Tag text={copy.state} />
-    </Card>
-    <Card title={copy.language}>
-      <Text>{copy.variable}</Text>
-      <Button href={copy.href} label={copy.action} />
-    </Card>
-  </Grid>
-</Board>`;

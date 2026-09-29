@@ -46,7 +46,7 @@
 <Shell {tone} {system}>
 	<Navigator stick mark="perish.code" title="perish workshop" home="/">
 		<Forge host="https://github.com" repo="PerishLab/design" />
-		<Link href="/gallery/" label="gallery" />
+		<Link href="/" label="front" />
 		<Button look="quiet" label={tone === "light" ? "dark" : "light"} press={flip} />
 	</Navigator>
 	<Frame>
@@ -105,7 +105,7 @@
 			<Button label="sign in" wide submit />
 		</Sheet>
 		<Footer text="a PerishLab workshop — this site is MIT and guarded by its own constitution.">
-			<Link href="/gallery/" label="gallery" />
+			<Link href="/" label="front" />
 			<Forge host="https://github.com" repo="PerishLab/design" />
 		</Footer>
 	</Frame>

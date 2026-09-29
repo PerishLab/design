@@ -9,8 +9,11 @@ import { page } from "../src/lib/page.ts";
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const shell = readFileSync(join(root, "index.html"), "utf8");
 const composition = readFileSync(join(root, "src/front/Front.svelte"), "utf8");
+const application = readFileSync(join(root, "src/App.svelte"), "utf8");
+const gallery = readFileSync(join(root, "src/gallery/Gallery.svelte"), "utf8");
 const specimen = readFileSync(join(root, "src/gallery/Sample.svelte"), "utf8");
 const turn = readFileSync(join(root, "src/front/Turn.svelte"), "utf8");
+const server = readFileSync(join(root, "src/serve.ts"), "utf8");
 
 const fronts = [
 	{
@@ -49,25 +52,31 @@ test("the proposition opens in a full typographic course", () => {
 	expect(composition).toContain('<Hero look="claim"');
 });
 
-test("the first course ends in one concise gallery portal", () => {
-	expect(english.start).toBe("Gallery");
-	expect(chinese.start).toBe("画廊");
-	expect(composition).toContain('<Button look="portal"');
-	expect(composition).toContain('label={t("front.start")} sign="next" wide');
-	expect(composition.indexOf('<Button look="portal"')).toBeLessThan(
-		composition.indexOf("</Course>"),
-	);
-	expect(composition.indexOf("<Footer text={stamp}>")).toBeLessThan(
-		composition.indexOf(
-			'<Link look="nav" href="https://github.com/PerishLab/design" label={t("front.source")} />',
-		),
-	);
+test("the first course pairs the proposition with its visual proof", () => {
+	const first = composition.slice(0, composition.indexOf("</Course>"));
+	expect(first).toContain("<Grid cols={12}>");
+	expect(first).toContain("<Cell span={5}>");
+	expect(first).toContain("<Cell span={7}>");
+	expect(first).toContain("<Turn");
+	expect(first).not.toContain("front.voice");
+	expect(first).not.toContain("front.voiced");
+	expect(turn).not.toContain("<Tabs");
+	expect(turn).not.toContain("label={voice}");
+	expect(turn).not.toContain("meta={mark}");
 });
 
-test("the language proof is an exhibit before its markup", () => {
-	expect(composition.indexOf("<Turn")).toBeLessThan(
-		composition.indexOf("text={borne}"),
-	);
+test("the homepage owns the complete gallery", () => {
+	expect(composition).toContain("<Gallery bind:system");
+	expect(gallery).toContain("<Search bind:value={query}");
+	expect(gallery).toContain("<Pick");
+	expect(gallery).toContain("<Bench");
+	expect(application).not.toContain('seat === "/gallery"');
+	expect(server).not.toContain('path: "/gallery/"');
+	expect(server).not.toContain('path: "/zh-CN/gallery/"');
+	expect(composition).not.toContain('look="portal"');
+});
+
+test("the language proof renders a real component composition", () => {
 	expect(turn).toContain('look="show"');
 	expect(specimen).toContain('<Board title={said("title")}');
 	expect(specimen).toContain("<Grid cols={2}");
