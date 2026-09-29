@@ -5,6 +5,8 @@
 @layer component {
 	.shell .shell {
 		min-height: 0;
+		background-color: transparent;
+		background-image: none;
 		background-attachment: scroll;
 		contain: layout;
 		@include media.room;

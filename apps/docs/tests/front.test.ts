@@ -7,13 +7,18 @@ import { front as chinese } from "../src/lib/i18n/zh/front.ts";
 import { page } from "../src/lib/page.ts";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
-const shell = readFileSync(join(root, "index.html"), "utf8");
+const template = readFileSync(join(root, "index.html"), "utf8");
 const composition = readFileSync(join(root, "src/front/Front.svelte"), "utf8");
 const application = readFileSync(join(root, "src/App.svelte"), "utf8");
 const gallery = readFileSync(join(root, "src/gallery/Gallery.svelte"), "utf8");
 const specimen = readFileSync(join(root, "src/gallery/Sample.svelte"), "utf8");
 const turn = readFileSync(join(root, "src/front/Turn.svelte"), "utf8");
+const realm = readFileSync(join(root, "src/gallery/Realm.svelte"), "utf8");
 const server = readFileSync(join(root, "src/serve.ts"), "utf8");
+const shell = readFileSync(
+	join(root, "../../packages/design/src/document/Shell/Shell.scss"),
+	"utf8",
+);
 
 const fronts = [
 	{
@@ -34,7 +39,7 @@ const fronts = [
 
 test.each(fronts)("$lang front states one proposition", (front) => {
 	const body = `<h1>${front.book.claim}</h1>`;
-	const document = page(shell, body, front.path, front.lang);
+	const document = page(template, body, front.path, front.lang);
 	expect(document).toContain(`<html lang="${front.lang}">`);
 	expect(document.match(/<title>/g)).toHaveLength(1);
 	expect(document).toContain(`<title>${front.title}</title>`);
@@ -74,10 +79,25 @@ test("the homepage owns the complete gallery", () => {
 	expect(server).not.toContain('path: "/gallery/"');
 	expect(server).not.toContain('path: "/zh-CN/gallery/"');
 	expect(composition).not.toContain('look="portal"');
+	expect(composition.match(/<Course/g)).toHaveLength(2);
+	expect(composition.trim().endsWith("</Course>")).toBe(true);
 });
 
 test("the language proof renders a real component composition", () => {
-	expect(turn).toContain('look="show"');
+	expect(turn).toContain("bare system={voice}");
+	expect(realm).toContain("{#if bare}<Sample");
 	expect(specimen).toContain('<Board title={said("title")}');
 	expect(specimen).toContain("<Grid cols={2}");
+	expect(shell).toMatch(
+		/\.shell \.shell \{[^}]*background-color: transparent;/s,
+	);
+	expect(shell).toMatch(/\.shell \.shell \{[^}]*background-image: none;/s);
+});
+
+test("the former homepage material has focused destinations", () => {
+	for (const route of ["why", "what", "how", "blog"]) {
+		expect(application).toContain(`seat === "/${route}"`);
+		expect(server).toContain(`path: "/${route}/"`);
+		expect(server).toContain(`path: "/zh-CN/${route}/"`);
+	}
 });

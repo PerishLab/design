@@ -8,6 +8,7 @@
 		tone,
 		system,
 		look,
+		bare = false,
 		slide,
 		label,
 		meta,
@@ -17,6 +18,7 @@
 		tone?: "light" | "dark";
 		system: string;
 		look?: "view" | "strip" | "pane" | "show";
+		bare?: boolean;
 		slide?: number;
 		label?: string;
 		meta?: string;
@@ -24,5 +26,5 @@
 </script>
 
 <Shell {tone} {slide} system={system === "base" ? undefined : system}>
-	<Stage {look} {label} {meta}><Sample {name} {values} /></Stage>
+	{#if bare}<Sample {name} {values} />{:else}<Stage {look} {label} {meta}><Sample {name} {values} /></Stage>{/if}
 </Shell>

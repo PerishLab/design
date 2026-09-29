@@ -30,4 +30,4 @@
 	});
 </script>
 
-<Realm {name} {values} {tone} {slide} look="show" system={voice} />
+<Realm {name} {values} {tone} {slide} bare system={voice} />

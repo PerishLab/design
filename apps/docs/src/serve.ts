@@ -7,6 +7,14 @@ const shell = readFileSync("dist/index.html", "utf8");
 const pages = [
 	{ path: "/", lang: "en" },
 	{ path: "/zh-CN/", lang: "zh-CN" },
+	{ path: "/why/", lang: "en" },
+	{ path: "/what/", lang: "en" },
+	{ path: "/how/", lang: "en" },
+	{ path: "/blog/", lang: "en" },
+	{ path: "/zh-CN/why/", lang: "zh-CN" },
+	{ path: "/zh-CN/what/", lang: "zh-CN" },
+	{ path: "/zh-CN/how/", lang: "zh-CN" },
+	{ path: "/zh-CN/blog/", lang: "zh-CN" },
 	{ path: "/proof/", lang: "en" },
 ];
 
