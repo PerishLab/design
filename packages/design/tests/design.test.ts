@@ -57,6 +57,12 @@ test("renders component identity", () => {
 	expect(render(design.Button, { props: { label: "press" } }).body).toContain(
 		'type="button"',
 	);
+	const portal = render(design.Button, {
+		props: { href: "/gallery/", label: "Gallery", look: "portal", wide: true },
+	}).body;
+	expect(portal).toContain('href="/gallery/"');
+	expect(portal).toContain("button-portal");
+	expect(portal).toContain("button-wide");
 	expect(
 		render(design.Note, { props: { text: "held", mood: "warn" } }).body,
 	).toContain("note-warn");
