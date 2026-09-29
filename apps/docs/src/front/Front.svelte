@@ -43,8 +43,8 @@
 			</Cell>
 			<Cell span={5} start={8}>
 				<Split look="close">
-					<Button href={`${here}gallery/`} label={t("front.start")} sign="next" />
-					<Button look="quiet" href="https://github.com/PerishLab/design" label={t("front.source")} sign="away" />
+					<Button look="portal" href={`${here}gallery/`} label={t("front.start")} sign="next" wide />
+					<Link href="https://github.com/PerishLab/design" label={t("front.source")} />
 				</Split>
 			</Cell>
 		</Grid>

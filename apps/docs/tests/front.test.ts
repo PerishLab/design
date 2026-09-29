@@ -49,6 +49,16 @@ test("the proposition opens in a full typographic course", () => {
 	expect(composition).toContain('<Hero look="claim"');
 });
 
+test("the first course ends in one concise gallery portal", () => {
+	expect(english.start).toBe("Gallery");
+	expect(chinese.start).toBe("画廊");
+	expect(composition).toContain('<Button look="portal"');
+	expect(composition).toContain('label={t("front.start")} sign="next" wide');
+	expect(composition).toContain(
+		'<Link href="https://github.com/PerishLab/design" label={t("front.source")} />',
+	);
+});
+
 test("the language proof is an exhibit before its markup", () => {
 	expect(composition.indexOf("<Turn")).toBeLessThan(
 		composition.indexOf("text={borne}"),

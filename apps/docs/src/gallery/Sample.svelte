@@ -6,12 +6,16 @@
 	function said(prop: string): string {
 		return String(values[prop] ?? "");
 	}
+	function button(): "solid" | "quiet" | "portal" {
+		const look = said("look");
+		return look === "quiet" || look === "portal" ? look : "solid";
+	}
 </script>
 
 {#if name === "Aside"}<Aside>{#snippet side()}{said("side")}{/snippet}{said("children")}</Aside>
 {:else if name === "Navigator"}<Navigator mark={said("mark")} title={said("title")} line={said("line")}>{said("children")}</Navigator>
 {:else if name === "Board"}<Board title={said("title")} line={said("line")}>{said("children")}</Board>
-{:else if name === "Button"}<Button label={said("label")} look={said("look") === "quiet" ? "quiet" : "solid"} wide={Boolean(values.wide)} busy={Boolean(values.busy)} halt={Boolean(values.halt)} submit={Boolean(values.submit)}>{said("children")}</Button>
+{:else if name === "Button"}<Button label={said("label")} look={button()} wide={Boolean(values.wide)} busy={Boolean(values.busy)} halt={Boolean(values.halt)} submit={Boolean(values.submit)}>{said("children")}</Button>
 {:else if name === "Card"}<Card title={said("title")}>{said("children")}</Card>
 {:else if name === "Cell"}<Grid cols={4}><Cell span={Number(values.span) || 1}>{said("children")}</Cell></Grid>
 {:else if name === "Check"}<Check label={said("label")} held={Boolean(values.held)} look={said("look") === "switch" ? "switch" : "box"} />
