@@ -22,6 +22,10 @@ and its self-built documentation site.
 - The framework-neutral Vite integration is exported from
   `@perishlab/design/vite`; it owns route discovery, health, local proxy wiring,
   the optional static server artifact, and the sass resolution above.
+- The package name `@perishlab/design`, the `design(` plugin call and the
+  virtual module `virtual:perish/views` are a contract Plumb also judges: its
+  web shape matches them by name, so renaming any of them needs a matching
+  Plumb release before consumers move.
 - `apps/docs` builds `design.perish.uk`. It consumes the same source package
   contract that is published, through explicit workspace resolution only, and
   takes `@perishlab/crest` from the registry like any other consumer.
