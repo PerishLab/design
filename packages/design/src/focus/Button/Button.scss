@@ -65,44 +65,57 @@
 	}
 
 	.button-portal {
-		min-height: calc(var(--band) * 2.25);
 		justify-content: space-between;
 		gap: var(--space-5);
-		padding: var(--space-5);
+		padding: var(--space-4) 0;
 		overflow: hidden;
-		border-color: var(--accent);
-		background: var(--accent);
-		color: var(--onaccent);
+		border-inline: 0;
+		border-block-color: var(--edge);
+		border-radius: 0;
+		background: transparent;
+		color: var(--bright);
 		font-family: var(--crown);
-		font-size: clamp(var(--title), 6vw, var(--hero));
+		font-size: var(--title);
 		font-weight: var(--heft);
 		line-height: var(--tight);
 		letter-spacing: var(--track);
 		text-align: start;
 	}
 
+	.button.button-portal::after {
+		inset: auto 0 calc(var(--line) * -1);
+		height: var(--rim);
+		border-radius: 0;
+		background: var(--accent);
+		opacity: 1;
+		scale: 0 1;
+		transform-origin: left;
+		transition: scale var(--beat);
+	}
+
 	.button-portal .sign {
-		width: calc(var(--sign) * 2);
-		height: calc(var(--sign) * 2);
-		transition: translate var(--beat), scale var(--beat);
+		width: calc(var(--sign) * 1.5);
+		height: calc(var(--sign) * 1.5);
+		transition: translate var(--beat);
+	}
+
+	.button.button-portal:hover:not(:disabled)::after {
+		opacity: 1;
+		scale: 1 1;
 	}
 
 	.button-portal:hover .sign {
-		translate: var(--space-2) 0;
-		scale: 1.08;
-	}
-
-	.button-portal:active {
-		scale: 0.985;
+		translate: var(--space-1) 0;
 	}
 
 	.button-portal:active .sign {
-		translate: var(--space-3) 0;
+		translate: var(--space-2) 0;
 	}
 
 	@include media.calm {
 		.button-portal,
-		.button-portal .sign {
+		.button-portal .sign,
+		.button.button-portal::after {
 			transition: none;
 		}
 
@@ -110,7 +123,6 @@
 		.button-portal:hover .sign,
 		.button-portal:active .sign {
 			translate: none;
-			scale: 1;
 		}
 	}
 }

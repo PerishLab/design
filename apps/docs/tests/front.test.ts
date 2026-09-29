@@ -54,8 +54,13 @@ test("the first course ends in one concise gallery portal", () => {
 	expect(chinese.start).toBe("画廊");
 	expect(composition).toContain('<Button look="portal"');
 	expect(composition).toContain('label={t("front.start")} sign="next" wide');
-	expect(composition).toContain(
-		'<Link href="https://github.com/PerishLab/design" label={t("front.source")} />',
+	expect(composition.indexOf('<Button look="portal"')).toBeLessThan(
+		composition.indexOf("</Course>"),
+	);
+	expect(composition.indexOf("<Footer text={stamp}>")).toBeLessThan(
+		composition.indexOf(
+			'<Link look="nav" href="https://github.com/PerishLab/design" label={t("front.source")} />',
+		),
 	);
 });
 
