@@ -1,6 +1,6 @@
 {
 	"base": {
-		"density": 465,
+		"density": 457,
 		".navigator-name": {
 			"color": "rgb(30, 36, 45)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
@@ -396,7 +396,7 @@
 		}
 	},
 	"ant": {
-		"density": 503,
+		"density": 494,
 		".navigator-name": {
 			"color": "rgb(38, 38, 38)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
@@ -792,7 +792,7 @@
 		}
 	},
 	"brutal": {
-		"density": 340,
+		"density": 334,
 		".navigator-name": {
 			"color": "rgb(0, 0, 0)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
@@ -1188,7 +1188,7 @@
 		}
 	},
 	"carbon": {
-		"density": 580,
+		"density": 570,
 		".navigator-name": {
 			"color": "rgb(22, 22, 22)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
@@ -1584,7 +1584,7 @@
 		}
 	},
 	"console": {
-		"density": 518,
+		"density": 509,
 		".navigator-name": {
 			"color": "rgb(201, 209, 217)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
@@ -1980,7 +1980,7 @@
 		}
 	},
 	"cupertino": {
-		"density": 436,
+		"density": 428,
 		".navigator-name": {
 			"color": "rgb(28, 28, 30)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
@@ -2376,7 +2376,7 @@
 		}
 	},
 	"folio": {
-		"density": 235,
+		"density": 231,
 		".navigator-name": {
 			"color": "rgb(35, 32, 27)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
@@ -2772,7 +2772,7 @@
 		}
 	},
 	"glass": {
-		"density": 339,
+		"density": 337,
 		".navigator-name": {
 			"color": "rgb(236, 234, 255)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
@@ -3057,7 +3057,7 @@
 			"fontSize": "14px",
 			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "896x136"
+			"box": "896x93"
 		},
 		".toast-note": {
 			"color": "rgb(236, 234, 255)",
@@ -3168,7 +3168,7 @@
 		}
 	},
 	"material": {
-		"density": 494,
+		"density": 486,
 		".navigator-name": {
 			"color": "rgb(29, 27, 32)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
@@ -3564,7 +3564,7 @@
 		}
 	},
 	"paper": {
-		"density": 347,
+		"density": 341,
 		".navigator-name": {
 			"color": "rgb(42, 38, 33)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
@@ -3960,7 +3960,7 @@
 		}
 	},
 	"relief": {
-		"density": 312,
+		"density": 307,
 		".navigator-name": {
 			"color": "rgb(45, 55, 72)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
@@ -4356,7 +4356,7 @@
 		}
 	},
 	"signal": {
-		"density": 371,
+		"density": 365,
 		".navigator-name": {
 			"color": "rgb(27, 34, 48)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
@@ -4752,7 +4752,7 @@
 		}
 	},
 	"swiss": {
-		"density": 388,
+		"density": 382,
 		".navigator-name": {
 			"color": "rgb(0, 0, 0)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
@@ -5148,7 +5148,7 @@
 		}
 	},
 	"terminal": {
-		"density": 382,
+		"density": 376,
 		".navigator-name": {
 			"color": "rgb(200, 200, 200)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
