@@ -4,9 +4,15 @@ import { expect, test } from "vitest";
 import { still, voices } from "./steps.ts";
 
 const seat = "tests/look.json";
+const root = ".";
 const plant = "../..";
-const port = 4287;
 const target = "preview";
+
+type Target = {
+	healthUrl: string | null;
+	name: string;
+	running: boolean;
+};
 
 const systems = [
 	"base",
@@ -169,10 +175,10 @@ function paced(): number {
 	return Number(JSON.parse(raw.trim()));
 }
 
-function look(system: string): unknown {
+function look(system: string, health: string): unknown {
 	execFileSync(
 		"playwright-cli",
-		["goto", `http://127.0.0.1:${port}/proof/?system=${system}`],
+		["goto", new URL(`/proof/?system=${system}`, health).href],
 		{ stdio: "ignore" },
 	);
 	const raw = execFileSync("playwright-cli", ["--raw", "eval", reads()], {
@@ -181,30 +187,25 @@ function look(system: string): unknown {
 	return JSON.parse(JSON.parse(raw.trim()));
 }
 
-function alive(): boolean {
+function state(): Target {
 	const raw = execFileSync("sidecar", ["status", "--format", "json"], {
 		cwd: plant,
 		encoding: "utf8",
 		stdio: ["ignore", "pipe", "ignore"],
 	});
-	const held = JSON.parse(raw) as {
-		targets: { name: string; running: boolean }[];
-	};
-	return held.targets.some((one) => one.name === target && one.running);
+	const held = JSON.parse(raw) as { targets: Target[] };
+	const found = held.targets.find((one) => one.name === target);
+	if (found === undefined)
+		throw new Error(`sidecar does not declare ${target}`);
+	return found;
 }
 
-function answers(tries: number): void {
+function answers(health: string, tries: number): void {
 	for (let tick = 0; tick < tries; tick += 1) {
 		try {
 			execFileSync(
 				"curl",
-				[
-					"--silent",
-					"--fail",
-					"--output",
-					"/dev/null",
-					`http://127.0.0.1:${port}/health`,
-				],
+				["--silent", "--fail", "--output", "/dev/null", health],
 				{ stdio: "ignore" },
 			);
 			return;
@@ -212,16 +213,17 @@ function answers(tries: number): void {
 			execFileSync("sleep", ["1"]);
 		}
 	}
-	throw new Error(`the ${target} sidecar never answered on ${port}`);
+	throw new Error(`the ${target} sidecar never answered at ${health}`);
 }
 
 test.skipIf(process.env.LOOK !== "1")(
 	"captures how every system looks",
 	() => {
 		execFileSync("pnpm", ["exec", "vite", "build"], {
+			cwd: root,
 			stdio: "ignore",
 		});
-		const held = alive();
+		const held = state().running;
 		if (!held)
 			execFileSync("sidecar", ["start", target], {
 				cwd: plant,
@@ -229,13 +231,15 @@ test.skipIf(process.env.LOOK !== "1")(
 			});
 		let baseline = "";
 		try {
-			answers(20);
+			const health = state().healthUrl;
+			if (health === null) throw new Error(`${target} has no health URL`);
+			answers(health, 20);
 			execFileSync("playwright-cli", ["resize", "1280", "900"], {
 				stdio: "ignore",
 			});
 			const shot: Record<string, unknown> = {};
 			for (const system of systems) {
-				const rest = look(system) as Record<string, unknown>;
+				const rest = look(system, health) as Record<string, unknown>;
 				shot[system] = {
 					density: paced(),
 					...rest,
@@ -276,6 +280,7 @@ test.skipIf(process.env.LOOK !== "1")(
 		expect(loose).toEqual([]);
 		const shown = voices();
 		expect(shown.length).toBeGreaterThan(1);
+		expect(shown.filter((one) => !systems.includes(one))).toEqual([]);
 		expect(still(written, shown)).toEqual([]);
 	},
 	300000,
