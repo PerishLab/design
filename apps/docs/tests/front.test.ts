@@ -1,20 +1,14 @@
-import { readFileSync } from "node:fs";
+import App from "design-docs/app";
+import Front from "design-docs/front";
+import { front as english } from "design-docs/i18n/en";
+import { front as chinese } from "design-docs/i18n/zh";
+import { page } from "design-docs/page";
 import { render } from "svelte/server";
-import { expect, test, vi } from "vitest";
-import App from "../src/App.svelte";
-import Front from "../src/front/Front.svelte";
-import { front as english } from "../src/lib/i18n/en/front.ts";
-import { front as chinese } from "../src/lib/i18n/zh/front.ts";
-import { page } from "../src/lib/page.ts";
+import { expect, test } from "vitest";
+import { site } from "./shipped.ts";
 
-vi.mock(
-	"@perishlab/design",
-	() => import("../../../packages/design/src/lib.ts"),
-);
-vi.mock("@perishlab/bone", () => import("../../../packages/bone/src/lib.ts"));
-
-const template = readFileSync("index.html", "utf8");
-const vite = readFileSync("vite.config.ts", "utf8");
+const built = await site();
+const template = String(built.get("index.html") ?? "");
 
 const fronts = [
 	{
@@ -97,17 +91,16 @@ test.each(fronts)("$lang front states one proposition", (front) => {
 });
 
 test("the build emits every Crest-owned bearing at a stable root URL", () => {
-	for (const name of [
-		"favicon.svg",
-		"favicon-48.png",
+	const bearings = [
 		"apple-touch-icon.png",
+		"favicon-48.png",
+		"favicon.svg",
 		"og-design.png",
-	]) {
-		expect(vite).toContain(`"${name}"`);
+	];
+	for (const name of bearings) {
+		expect(built.get(name)?.length ?? 0).toBeGreaterThan(0);
 		expect(template).toContain(`/${name}`);
 	}
-	expect(vite).toContain("@perishlab/crest/media/");
-	expect(vite).toContain("readFileSync(resolve(");
 });
 
 test.each(fronts)("$lang proposition occupies the hero title", (front) => {

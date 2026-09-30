@@ -1,39 +1,36 @@
-import { readdirSync, readFileSync } from "node:fs";
-import { join } from "node:path";
 import { expect, test } from "vitest";
+import { shipped } from "./shipped.ts";
 
-const root = "src";
+const pieces = await shipped();
 
-function lodgers(room: string): { name: string; body: string }[] {
-	return readdirSync(join(root, room), { withFileTypes: true })
-		.filter((entry) => entry.isDirectory())
-		.map((entry) => ({
-			name: entry.name,
-			body: readFileSync(
-				join(root, room, entry.name, `${entry.name}.svelte`),
-				"utf8",
-			),
-		}));
+function lodgers(room: string) {
+	return pieces.filter(
+		(one) => one.pack === "@perishlab/design" && one.room === room,
+	);
 }
 
-const takers = /<(button|a|input|select|textarea|summary)[\s>]|tabindex=/;
+const takers = /<(button|a|input|select|textarea|summary)[\s>/]|tabindex/;
 
 test("every focus generator owns a focusable element", () => {
 	const idle = lodgers("focus")
-		.filter((one) => !takers.test(one.body))
+		.filter((one) => !takers.test(one.code))
 		.map((one) => one.name);
+	expect(lodgers("focus").length).toBeGreaterThan(0);
 	expect(idle).toEqual([]);
 });
 
-const opens = /\bopen\b\s*[=:?]/;
+function opens(code: string): boolean {
+	return code.includes('prop($$props, "open"') || code.includes("$$props.open");
+}
 
-function shuts(body: string): boolean {
-	return body.includes("showModal") || body.includes("Escape");
+function shuts(code: string): boolean {
+	return code.includes("showModal") || code.includes('"Escape"');
 }
 
 test("every layer that opens closes without a pointer", () => {
 	const stuck = lodgers("layer")
-		.filter((one) => opens.test(one.body) && !shuts(one.body))
+		.filter((one) => opens(one.code) && !shuts(one.code))
 		.map((one) => one.name);
+	expect(lodgers("layer").filter((one) => opens(one.code))).not.toEqual([]);
 	expect(stuck).toEqual([]);
 });

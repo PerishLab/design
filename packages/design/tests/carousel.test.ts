@@ -1,5 +1,5 @@
+import { cycle, move, type State } from "@perishlab/design/carousel";
 import { expect, test } from "vitest";
-import { cycle, move, type State } from "../src/focus/Tabs/Carousel/model.ts";
 
 const values = ["base", "folio", "glass"];
 const dwell = 5000;

@@ -7,7 +7,9 @@
 		"src"
 	],
 	"exports": {
-		"./*": "./src/*"
+		"./base.scss": "./src/base.scss",
+		"./media.scss": "./src/media.scss",
+		"./tokens.scss": "./src/tokens.scss"
 	},
 	"publishConfig": {
 		"access": "public"

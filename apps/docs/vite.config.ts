@@ -2,9 +2,9 @@ import { execFileSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 import { createRequire } from "node:module";
 import { fileURLToPath } from "node:url";
+import { design } from "@perishlab/design/vite";
 import { svelte } from "@sveltejs/vite-plugin-svelte";
 import { defineConfig, type Plugin } from "vite";
-import { design } from "../../packages/design/src/vite/lib.ts";
 
 const made = JSON.parse(
 	readFileSync(

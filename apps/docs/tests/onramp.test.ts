@@ -1,5 +1,5 @@
+import { shown, spell, wired } from "design-docs/onramp";
 import { expect, test } from "vitest";
-import { shown, spell, wired } from "../src/docs/front.ts";
 
 const steps = [
 	{ name: "terminal", body: spell, kind: "shell" },
