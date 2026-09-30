@@ -5,7 +5,7 @@ packages:
 minimumReleaseAgeExclude:
   - "@perishlab/design"
   - svelte-check@4.7.6
-  - svelte@5.56.9
+  - svelte@5.57.1
   - '@perishlab/crest@0.2.0'
 
 allowBuilds:
@@ -15,15 +15,15 @@ allowBuilds:
   workerd: false
 
 catalog:
-  "@biomejs/biome": 2.5.3
+  "@biomejs/biome": 2.5.14
   "@fontsource/spectral": 5.2.8
   "@sveltejs/package": 2.5.8
-  "@sveltejs/vite-plugin-svelte": 7.3.0
+  "@sveltejs/vite-plugin-svelte": 7.3.1
   "@types/node": 24.13.3
-  sass: 1.101.0
-  svelte: 5.56.9
+  sass: 1.105.0
+  svelte: 5.57.1
   svelte-check: 4.7.6
   typescript: 6.0.3
-  vite: 8.1.4
-  vitest: 4.1.10
-  wrangler: 4.110.0
+  vite: 8.3.1
+  vitest: 5.0.2
+  wrangler: 4.141.0

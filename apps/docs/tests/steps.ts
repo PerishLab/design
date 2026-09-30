@@ -74,7 +74,9 @@ function gap(here: unknown, there: unknown): number {
 }
 
 export function voices(): string[] {
-	const body = render(Front, { props: { tone: "system" } }).body;
+	const body = render(Front, { props: { tone: "system" } }).body.split(
+		'<div class="course course-well">',
+	)[0];
 	return [
 		...body.matchAll(
 			/<button class=\x22carousel-dot\x22[^>]*?aria-label=\x22([^\x22]*)\x22/g,

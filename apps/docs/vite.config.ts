@@ -73,7 +73,12 @@ function branded(): Plugin {
 }
 
 export default defineConfig({
-	plugins: [branded(), stamped(), design({ serve: false }), svelte()],
+	plugins: [
+		branded(),
+		stamped(),
+		design({ serve: false }),
+		svelte({ configFile: false }),
+	],
 	resolve: {
 		alias: [
 			{
