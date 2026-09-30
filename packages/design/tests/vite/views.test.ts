@@ -121,7 +121,7 @@ test("builds in memory", async () => {
 	await build({
 		root: seat,
 		logLevel: "silent",
-		plugins: [design({ login: false }), svelte()],
+		plugins: [design({ login: false }), svelte({ configFile: false })],
 	});
 	expect(existsSync(join(seat, "dist", "health"))).toBe(true);
 	expect(existsSync(join(seat, "dist", ".perish", "server.mjs"))).toBe(true);

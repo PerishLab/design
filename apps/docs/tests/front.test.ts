@@ -6,8 +6,25 @@ import { page } from "design-docs/page";
 import { render } from "svelte/server";
 import { expect, test } from "vitest";
 import { site } from "./shipped.ts";
+import { voices } from "./steps.ts";
 
 const built = await site();
+
+test("carousel labels name the sampled systems", () => {
+	expect(voices()).toEqual([
+		"base",
+		"folio",
+		"glass",
+		"carbon",
+		"relief",
+		"ant",
+		"brutal",
+		"material",
+		"swiss",
+		"cupertino",
+		"terminal",
+	]);
+});
 const template = String(built.get("index.html") ?? "");
 
 const fronts = [
