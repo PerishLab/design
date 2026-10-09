@@ -51,7 +51,7 @@ importers:
   apps/docs:
     dependencies:
       '@perishlab/crest':
-        specifier: ^0.2.0
+        specifier: '0'
         version: 0.2.0
       '@perishlab/design':
         specifier: workspace:*
@@ -118,10 +118,10 @@ importers:
         specifier: workspace:*
         version: link:../bone
       '@perishlab/crest':
-        specifier: ^0.2.0
+        specifier: '0'
         version: 0.2.0
       '@perishlab/sidecar':
-        specifier: 0.9.0
+        specifier: '0'
         version: 0.9.0
       '@perishlab/sign':
         specifier: workspace:*
