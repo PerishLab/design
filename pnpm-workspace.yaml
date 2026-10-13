@@ -7,7 +7,7 @@ minimumReleaseAgeExclude:
   - svelte-check@4.7.6
   - svelte@5.57.1
   - '@perishlab/crest@0.2.0'
-  - '@perishlab/sidecar@0.10.0'
+  - '@perishlab/sidecar@0.10.1'
 
 allowBuilds:
   "@parcel/watcher": false

@@ -8,6 +8,6 @@ export default defineConfig({
 	test: {
 		fsModuleCache: true,
 		include: ["tests/**/*.test.ts"],
-		server: { deps: { inline: ["@perishlab/crest", "@perishlab/sidecar"] } },
+		server: { deps: { inline: ["@perishlab/crest"] } },
 	},
 });
