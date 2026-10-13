@@ -122,7 +122,7 @@ importers:
         version: 0.2.0
       '@perishlab/sidecar':
         specifier: '0'
-        version: 0.9.0
+        version: 0.10.0
       '@perishlab/sign':
         specifier: workspace:*
         version: link:../sign
@@ -709,8 +709,8 @@ packages:
   '@perishlab/crest@0.2.0':
     resolution: {integrity: sha512-+k287X0W9PLeEkTzt3zMXmftD2HJ7wAydqlyjszAg3oA1AjBF/CarIdNWzpgZ3r2HbaRK80QiLb30bmTkPb7OQ==, tarball: https://npm.pkg.github.com/download/@perishlab/crest/0.2.0/9904c853a64107dfc54aae25274a3f24e1cac04b}
 
-  '@perishlab/sidecar@0.9.0':
-    resolution: {integrity: sha512-4SXCPOx59a3XWJDC+EkXQn9oez6B1O0LiDRE0ApjzI8c5V1uO2Va08+z+XYWeAQbO7v5/98T2NB6zkJYgvnJWQ==, tarball: https://npm.pkg.github.com/download/@perishlab/sidecar/0.9.0/6d017f46f7a864633415c3112ae1faba074fafba}
+  '@perishlab/sidecar@0.10.0':
+    resolution: {integrity: sha512-q6Xk/k02IAFC9FK1SLdNR0SVlS6/mW1jQfFmcT/qwqwNbrxB98fAf7IsHH3w3cu9aGKGjRS2TcdVSUsxdZ2p3g==, tarball: https://npm.pkg.github.com/download/@perishlab/sidecar/0.10.0/34bbe356cbc2d3b5f3e0b901cf0ba9fceec40538}
 
   '@poppinss/colors@4.1.6':
     resolution: {integrity: sha512-H9xkIdFswbS8n1d6vmRd8+c10t2Qe+rZITbbDHHkQixH5+2x1FDGmi/0K+WgWiqQFKPSlIYB7jlH6Kpfn6Fleg==}
@@ -1698,7 +1698,7 @@ snapshots:
 
   '@perishlab/crest@0.2.0': {}
 
-  '@perishlab/sidecar@0.9.0': {}
+  '@perishlab/sidecar@0.10.0': {}
 
   '@poppinss/colors@4.1.6':
     dependencies:
