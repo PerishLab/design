@@ -4,7 +4,8 @@
 	"license": "MIT",
 	"type": "module",
 	"files": [
-		"dist"
+		"dist",
+		"src"
 	],
 	"svelte": "./dist/lib.js",
 	"exports": {
