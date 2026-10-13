@@ -30,8 +30,10 @@ note = "The defect ledger the proof screen and probe themes feed."
 name = ["package.json", "pnpm-lock.yaml", "pnpm-workspace.yaml", "biome.json", ".npmrc"]
 note = "The pnpm workspace anchors."
 
+[identity]
+ns = "design"
+
 [release]
-product = "design"
 authority = "https://releases.design.perish.uk"
 skill = false
 
