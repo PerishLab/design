@@ -1,4 +1,5 @@
 <script lang="ts">
+	import type { Component } from "svelte";
 	import { Frame, Hero, Link, Menu, Navigator, Shell } from "@perishlab/design";
 	import { named } from "@perishlab/crest/crest";
 	import Front from "./front/Front.svelte";
@@ -35,6 +36,13 @@
 		{ value: "en", label: "English" },
 		{ value: "zh", label: "简体中文" },
 	];
+	const pages = new Map<string, Component>([
+		["/why", Why],
+		["/what", What],
+		["/how", How],
+		["/blog", Blog],
+	]);
+	let Page = $derived(pages.get(seat));
 	function travel(next: string): void {
 		const tail = seat === "" ? "/" : `${seat}/`;
 		globalThis.location.href = next === "en" ? tail : `/zh-CN${tail}`;
@@ -49,10 +57,7 @@
 		<Menu look="bare" sign="shade" label={t("front.shade")} value={tone} items={shades} choose={(next) => (tone = next as Tone)} />
 	</Navigator>
 	{#if seat === ""}<Front bind:system {tone} />
-	{:else if seat === "/why"}<Why />
-	{:else if seat === "/what"}<What />
-	{:else if seat === "/how"}<How />
-	{:else if seat === "/blog"}<Blog />
+	{:else if Page}<Page />
 	{:else}<Frame><Hero mark="404" title={t("pages.missing.title")} line={t("pages.missing.line")} /><Link href={home} label={t("pages.missing.return")} /></Frame>
 	{/if}
 </Shell>
