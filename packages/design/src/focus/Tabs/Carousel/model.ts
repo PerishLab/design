@@ -19,13 +19,20 @@ export type Timing = {
 	lease: number;
 };
 
+type Step = (at: number, length: number) => number;
+
+const steps = new Map<string, Step>([
+	["ArrowRight", (at, length) => (at + 1) % length],
+	["ArrowDown", (at, length) => (at + 1) % length],
+	["ArrowLeft", (at, length) => (at - 1 + length) % length],
+	["ArrowUp", (at, length) => (at - 1 + length) % length],
+	["Home", () => 0],
+	["End", (_at, length) => length - 1],
+]);
+
 export function move(at: number, length: number, key: string): number {
-	if (key === "ArrowRight" || key === "ArrowDown") return (at + 1) % length;
-	if (key === "ArrowLeft" || key === "ArrowUp")
-		return (at - 1 + length) % length;
-	if (key === "Home") return 0;
-	if (key === "End") return length - 1;
-	return at;
+	const step = steps.get(key);
+	return step ? step(at, length) : at;
 }
 
 export function cycle(state: State, event: Event, timing: Timing): State {

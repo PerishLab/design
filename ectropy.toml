@@ -73,6 +73,41 @@ include = [
 ]
 
 [vocabulary]
+[[vocabulary.term]]
+description = "Rollup's plugin-context method that registers a file the build watches; the name is fixed by Rollup."
+name = "addWatchFile"
+
+[[vocabulary.term]]
+description = "Rollup's build hook that runs when a build starts; the name is fixed by Rollup."
+name = "buildStart"
+
+[[vocabulary.term]]
+description = "Vite's plugin hook that receives the resolved configuration; the name is fixed by Vite."
+name = "configResolved"
+
+[[vocabulary.term]]
+description = "Vite's plugin hook that configures the preview server; the name is fixed by Vite."
+name = "configurePreviewServer"
+
+[[vocabulary.term]]
+description = "Vite's plugin hook that configures the development server; the name is fixed by Vite."
+name = "configureServer"
+
+[[vocabulary.term]]
+description = "Rollup's plugin-context method that emits an asset into the bundle; the name is fixed by Rollup."
+name = "emitFile"
+
+[[vocabulary.term]]
+description = "Rollup's output hook that runs before a bundle is written; the name is fixed by Rollup."
+name = "generateBundle"
+
+[[vocabulary.term]]
+description = "Vite's plugin hook that handles a hot module update; the name is fixed by Vite."
+name = "handleHotUpdate"
+
+[[vocabulary.term]]
+description = "Rollup's build hook that resolves a module id; the name is fixed by Rollup."
+name = "resolveId"
 
 [word]
 single = true
