@@ -37,16 +37,20 @@ export function move(at: number, length: number, key: string): number {
 
 export function cycle(state: State, event: Event, timing: Timing): State {
 	const { values, dwell, lease } = timing;
-	if (event.type === "pointer")
-		return { value: event.value, mode: "held", left: lease };
-	if (event.type === "keyboard")
-		return {
-			value: event.value ?? state.value,
-			mode: "paused",
-			left: dwell,
-		};
-	if (event.type === "pause") return { ...state, mode: "paused", left: dwell };
-	if (event.type === "resume") return { ...state, mode: "auto", left: dwell };
+	switch (event.type) {
+		case "pointer":
+			return { value: event.value, mode: "held", left: lease };
+		case "keyboard":
+			return {
+				value: event.value ?? state.value,
+				mode: "paused",
+				left: dwell,
+			};
+		case "pause":
+			return { ...state, mode: "paused", left: dwell };
+		case "resume":
+			return { ...state, mode: "auto", left: dwell };
+	}
 	if (state.mode === "paused" || !event.active || event.by <= 0) return state;
 
 	const left = state.left - event.by;
