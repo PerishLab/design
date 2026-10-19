@@ -98,16 +98,44 @@ description = "Rollup's plugin-context method that emits an asset into the bundl
 name = "emitFile"
 
 [[vocabulary.term]]
+description = "Rollup's emitted-asset field that names the output file; the name is fixed by Rollup."
+name = "fileName"
+
+[[vocabulary.term]]
 description = "Rollup's output hook that runs before a bundle is written; the name is fixed by Rollup."
 name = "generateBundle"
+
+[[vocabulary.term]]
+description = "Vite's module-graph method that looks up a module by its id; the name is fixed by Vite."
+name = "getModuleById"
 
 [[vocabulary.term]]
 description = "Vite's plugin hook that handles a hot module update; the name is fixed by Vite."
 name = "handleHotUpdate"
 
 [[vocabulary.term]]
+description = "Sidecar's status JSON field that carries a target's health URL; the name is fixed by Sidecar."
+name = "healthUrl"
+
+[[vocabulary.term]]
+description = "Vite's module-graph method that invalidates a module; the name is fixed by Vite."
+name = "invalidateModule"
+
+[[vocabulary.term]]
+description = "Vite's development-server property that holds the module graph; the name is fixed by Vite."
+name = "moduleGraph"
+
+[[vocabulary.term]]
 description = "Rollup's build hook that resolves a module id; the name is fixed by Rollup."
 name = "resolveId"
+
+[[vocabulary.term]]
+description = "Node's server-response method that sets a response header; the name is fixed by Node."
+name = "setHeader"
+
+[[vocabulary.term]]
+description = "Node's server-response property that holds the response status; the name is fixed by Node."
+name = "statusCode"
 
 [word]
 single = true
