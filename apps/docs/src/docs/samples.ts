@@ -30,7 +30,7 @@ export const grid = [
 export const seeds: Record<string, Record<string, unknown>> = {
 	Aside: { side: "beside", children: "the main region" },
 	Navigator: {
-		mark: "◆",
+		mark: "design",
 		title: "perish workshop",
 		line: "and the ways out of it",
 		children: "",
@@ -84,7 +84,7 @@ export const seeds: Record<string, Record<string, unknown>> = {
 	Hero: {
 		title: "perish design",
 		line: "one system, many flavours",
-		mark: "◆",
+		mark: "perish.code",
 	},
 	Head: { text: "Laws", seat: "laws" },
 	Item: { children: "declare" },

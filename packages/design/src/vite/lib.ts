@@ -1,5 +1,6 @@
 import { isAbsolute, join, relative } from "node:path";
 import { NodePackageImporter } from "sass";
+import { type Brand, head, material, paths } from "./brand.js";
 import { config, type Env } from "./config.js";
 import { health } from "./health.js";
 import { runtime } from "./server.js";
@@ -8,7 +9,7 @@ import { type Route, scan } from "./views.js";
 type Next = () => void;
 type Request = { url?: string };
 type Reply = {
-	end(body: string): void;
+	end(body: string | Buffer): void;
 	setHeader(name: string, value: string): void;
 	statusCode: number;
 };
@@ -27,14 +28,20 @@ type Server = {
 };
 type Context = {
 	addWatchFile(path: string): void;
-	emitFile(file: { type: "asset"; fileName: string; source: string }): void;
+	emitFile(file: {
+		type: "asset";
+		fileName: string;
+		source: string | Buffer;
+	}): void;
 };
 type Config = {
 	root: string;
+	base?: string;
 };
 type Options = {
 	login?: boolean;
 	serve?: boolean;
+	brand?: Brand;
 };
 type Plugin = {
 	name: string;
@@ -47,6 +54,7 @@ type Plugin = {
 	configureServer(server: Server): void;
 	configurePreviewServer(server: Server): void;
 	generateBundle(this: Context): void;
+	transformIndexHtml(): ReturnType<typeof head>;
 };
 
 const PUBLIC = "virtual:perish/views";
@@ -105,6 +113,9 @@ export function design(options: Options = {}): Plugin {
 	const login = options.login ?? true;
 	const server = options.serve ?? true;
 	const pending = config();
+	const branded = material();
+	let carrying = options.brand !== undefined;
+	let base = "/";
 	let env: Env = { build: "" };
 	let root = "";
 	let folder = "";
@@ -147,6 +158,20 @@ export function design(options: Options = {}): Plugin {
 		server.ws.send({ type: "full-reload", path: "*" });
 	}
 
+	const images: Middle = (req, res, next) => {
+		const path = new URL(req.url ?? "/", "http://local").pathname;
+		const image = branded.images.find(
+			(image) => `${base}${image.file}` === path,
+		);
+		if (!image) return next();
+		res.statusCode = 200;
+		res.setHeader(
+			"content-type",
+			image.file.endsWith(".svg") ? "image/svg+xml" : "image/png",
+		);
+		res.end(image.bytes);
+	};
+
 	return {
 		name: "perish-design",
 		enforce: "pre",
@@ -156,22 +181,31 @@ export function design(options: Options = {}): Plugin {
 		},
 		configResolved(config): void {
 			root = config.root;
+			base = config.base ?? "/";
+			if (!base.startsWith("/") || !base.endsWith("/") || base.startsWith("//"))
+				throw new Error("Brand images need an absolute local Vite base");
 			folder = join(root, "src", "views");
 			fresh();
 		},
 		buildStart(): void {
 			fresh();
+			this.addWatchFile(branded.source);
 			for (const route of routes) {
 				this.addWatchFile(route.seat);
 			}
 		},
 		resolveId(id): string | null {
+			if (id === "virtual:perish/brand") return "\0virtual:perish/brand";
 			if (id === PUBLIC) {
 				return PRIVATE;
 			}
 			return id.startsWith(face) ? `\0${id}` : null;
 		},
 		load(id): string | null {
+			if (id === "\0virtual:perish/brand") {
+				carrying = true;
+				return `export const manifest=${JSON.stringify(branded.manifest)};export const urls=${JSON.stringify(paths(branded.images, base))};`;
+			}
 			if (id === PRIVATE) {
 				fresh();
 				return source(routes, login);
@@ -182,14 +216,44 @@ export function design(options: Options = {}): Plugin {
 				: `export { default } from ${JSON.stringify(seat)};`;
 		},
 		configureServer(server): void {
+			server.middlewares.use(images);
 			server.middlewares.use(serve(() => health(root, env)));
 			server.watcher.on("add", (file) => reload(server, file));
 			server.watcher.on("unlink", (file) => reload(server, file));
 		},
 		configurePreviewServer(server): void {
+			server.middlewares.use(images);
 			server.middlewares.use(serve(() => health(root, env)));
 		},
+		transformIndexHtml() {
+			return options.brand ? head(branded, options.brand, base) : [];
+		},
 		generateBundle(): void {
+			if (carrying) {
+				for (const image of new Map(
+					branded.images.map((image) => [image.file, image]),
+				).values())
+					this.emitFile({
+						type: "asset",
+						fileName: image.file,
+						source: image.bytes,
+					});
+				this.emitFile({
+					type: "asset",
+					fileName: ".perish/brand.json",
+					source: JSON.stringify({
+						schema: "design.brand/v1",
+						package: branded.package,
+						model: branded.manifest.model,
+						manifest: { file: "media/manifest.json", digest: branded.digest },
+						assets: branded.manifest.assets.map((item) => ({
+							...item,
+							output: paths(branded.images, base)[item.id],
+						})),
+						head: options.brand ?? null,
+					}),
+				});
+			}
 			this.emitFile({
 				type: "asset",
 				fileName: "health",

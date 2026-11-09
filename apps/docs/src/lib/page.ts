@@ -1,7 +1,7 @@
 import { front as english } from "./i18n/en/front.ts";
-import { pages as englishPages } from "./i18n/en/pages.ts";
+import { pages as en } from "./i18n/en/pages.ts";
 import { front as chinese } from "./i18n/zh/front.ts";
-import { pages as chinesePages } from "./i18n/zh/pages.ts";
+import { pages as zh } from "./i18n/zh/pages.ts";
 
 type Meta = { title: string; description: string };
 const site = "https://design.perish.uk";
@@ -11,35 +11,35 @@ const pages: Record<string, Meta> = {
 	"/zh-CN/": chinese,
 	"/why/": {
 		title: "Why — Perish Design",
-		description: englishPages.why.description,
+		description: en.why.description,
 	},
 	"/what/": {
 		title: "What — Perish Design",
-		description: englishPages.what.description,
+		description: en.what.description,
 	},
 	"/how/": {
 		title: "How — Perish Design",
-		description: englishPages.how.description,
+		description: en.how.description,
 	},
 	"/blog/": {
 		title: "Blog — Perish Design",
-		description: englishPages.blog.description,
+		description: en.blog.description,
 	},
 	"/zh-CN/why/": {
 		title: "为什么 — Perish Design",
-		description: chinesePages.why.description,
+		description: zh.why.description,
 	},
 	"/zh-CN/what/": {
 		title: "是什么 — Perish Design",
-		description: chinesePages.what.description,
+		description: zh.what.description,
 	},
 	"/zh-CN/how/": {
 		title: "如何使用 — Perish Design",
-		description: chinesePages.how.description,
+		description: zh.how.description,
 	},
 	"/zh-CN/blog/": {
 		title: "博客 — Perish Design",
-		description: chinesePages.blog.description,
+		description: zh.blog.description,
 	},
 };
 

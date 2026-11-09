@@ -1,11 +1,12 @@
 <script lang="ts">
 	import { Bay, Skin } from "@perishlab/bone";
-	import { crest, frame, palette } from "@perishlab/crest/crest";
+	import { bearing, brand, type Surface } from "../../brand/lib.js";
 	import type { Snippet } from "svelte";
 	import "./Navigator.scss";
 
 	let {
 		mark,
+		surface,
 		owner,
 		title,
 		line,
@@ -15,6 +16,7 @@
 		children,
 	}: {
 		mark?: string;
+		surface?: Surface;
 		owner?: string;
 		title: string;
 		line?: string;
@@ -23,10 +25,10 @@
 		stick?: boolean;
 		children?: Snippet;
 	} = $props();
-	let drawn = $derived(mark === undefined ? [] : crest(mark));
+	let drawn = $derived(mark === undefined ? undefined : brand(mark, surface));
 </script>
 
-{#snippet lock()}{#if drawn.length > 0}<svg class="mark" viewBox="0 0 {frame} {frame}" aria-hidden="true" style:--crest-ink={palette.ink} style:--crest-dark={palette.dark}>{#each drawn as one (one)}<path d={one} />{/each}</svg>{/if}<span class="navigator-type">{#if owner}<span class="navigator-own">{owner}</span>{/if}<span class="navigator-said">{title}</span></span>{/snippet}
+{#snippet lock()}{#if drawn && mark}<img class="mark" src={drawn.url} width="100" height="100" alt="" data-crest={drawn.id} data-kind={drawn.kind} use:bearing={{ product: mark, surface }} />{/if}<span class="navigator-type">{#if owner}<span class="navigator-own">{owner}</span>{/if}<span class="navigator-said">{title}</span></span>{/snippet}
 
 <Bay part={stick ? "navigator-bay navigator-band" : "navigator-bay"} {stick} drive={stick}>
 	<Skin part="navigator-skin" drive={stick}>

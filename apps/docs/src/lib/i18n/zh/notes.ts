@@ -4,7 +4,8 @@ export const notes = {
 		children: "主区内容",
 	},
 	Navigator: {
-		mark: "这块界面所属产品的徽记",
+		mark: "这块界面所属的 Crest 已注册产品 key",
+		surface: "light、dark 或 reverse；留空跟随实际颜色模式",
 		owner: "名字所在的域,排得比名字安静",
 		home: "读者接住这枚锁型时去往何处",
 		look: "plain 用展示字排名字,exact 把整条排成标识符",
@@ -112,7 +113,9 @@ export const notes = {
 	Hero: {
 		title: "页面上最大的一行",
 		line: "标题下的一行文字",
-		mark: "标题旁的可选字形",
+		mark: "Crest 已注册产品 key，使用官方 full 图片",
+		decor: "可选普通文字装饰，与产品身份分开",
+		surface: "light、dark 或 reverse；留空跟随实际颜色模式",
 		look: "plain 用于普通页面标题,claim 用于界面的唯一命题",
 	},
 	Item: {

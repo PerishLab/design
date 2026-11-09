@@ -25,6 +25,14 @@
 			text-wrap: balance;
 		}
 
+		.crest {
+			display: block;
+			inline-size: calc(var(--lead) * 3);
+			block-size: auto;
+			margin-block-end: var(--space-3);
+			object-fit: contain;
+		}
+
 		.ghost {
 			position: absolute;
 			top: calc(var(--space-5) * -1);
