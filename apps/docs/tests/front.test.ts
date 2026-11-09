@@ -1,3 +1,4 @@
+import { createHash } from "node:crypto";
 import App from "design-docs/app";
 import Front from "design-docs/front";
 import { front as english } from "design-docs/i18n/en";
@@ -26,6 +27,29 @@ test("carousel labels name the sampled systems", () => {
 	]);
 });
 const template = String(built.get("index.html") ?? "");
+const receipt = JSON.parse(String(built.get(".perish/brand.json")));
+
+function bearing(medium: string, size: number): string {
+	const selected = receipt.assets.find(
+		(item: { id: string }) =>
+			item.id === `design/sign/full/light/${medium}/${size}`,
+	);
+	if (!selected) throw new Error("Missing official page bearing");
+	return selected.output;
+}
+
+function tag(
+	document: string,
+	name: string,
+	attrs: Record<string, string>,
+): string[] {
+	return (document.match(new RegExp(`<${name}\\b[^>]*>`, "g")) ?? []).filter(
+		(line) =>
+			Object.entries(attrs).every(([key, value]) =>
+				line.includes(`${key}="${value}"`),
+			),
+	);
+}
 
 const fronts = [
 	{
@@ -81,12 +105,20 @@ test.each(fronts)("$lang front states one proposition", (front) => {
 	expect(document.match(/<title>/g)).toHaveLength(1);
 	expect(document).toContain(`<title>${front.title}</title>`);
 	expect(document.match(/<meta name="description"/g)).toHaveLength(1);
-	expect(document).toContain(
-		'<link rel="icon" href="/favicon.svg" type="image/svg+xml" />',
-	);
-	expect(document).toContain(
-		'<link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />',
-	);
+	expect(
+		tag(document, "link", {
+			rel: "icon",
+			type: "image/svg+xml",
+			href: bearing("svg", 100),
+		}),
+	).toHaveLength(1);
+	expect(
+		tag(document, "link", {
+			rel: "apple-touch-icon",
+			sizes: "180x180",
+			href: bearing("png", 180),
+		}),
+	).toHaveLength(1);
 	expect(document).toContain(
 		`<link rel="canonical" href="https://design.perish.uk${front.path}" />`,
 	);
@@ -96,28 +128,42 @@ test.each(fronts)("$lang front states one proposition", (front) => {
 	expect(document).toContain(
 		`<meta property="og:url" content="https://design.perish.uk${front.path}" />`,
 	);
-	expect(document).toContain(
-		'<meta property="og:image" content="https://design.perish.uk/og-design.png" />',
-	);
-	expect(document).toContain(
-		'<meta name="twitter:card" content="summary_large_image" />',
-	);
+	expect(
+		tag(document, "meta", {
+			property: "og:image",
+			content: `https://design.perish.uk${bearing("png", 180)}`,
+		}),
+	).toHaveLength(1);
+	expect(
+		tag(document, "meta", { name: "twitter:card", content: "summary" }),
+	).toHaveLength(1);
 	expect(document).not.toContain('href="data:,"');
 	expect(document.match(/<h1>/g)).toHaveLength(1);
 	expect(document).toContain(`<h1>${front.claim}</h1>`);
 });
 
-test("the build emits every Crest-owned bearing at a stable root URL", () => {
-	const bearings = [
-		"apple-touch-icon.png",
-		"favicon-48.png",
-		"favicon.svg",
-		"og-design.png",
-	];
-	for (const name of bearings) {
-		expect(built.get(name)?.length ?? 0).toBeGreaterThan(0);
-		expect(template).toContain(`/${name}`);
+test("the build emits unchanged official images with a complete source receipt", () => {
+	expect(receipt.package.name).toBe("@perishlab/crest");
+	expect(receipt.assets.length).toBeGreaterThan(0);
+	for (const item of receipt.assets) {
+		const bytes = built.get(item.output.slice(1));
+		expect(bytes).toBeDefined();
+		expect(
+			`sha256:${createHash("sha256")
+				.update(bytes ?? "")
+				.digest("hex")}`,
+		).toBe(item.digest);
 	}
+	for (const [medium, size] of [
+		["svg", 100],
+		["png", 48],
+		["png", 180],
+	] as const)
+		expect(template).toContain(bearing(medium, size));
+	expect(receipt.head).toEqual({
+		product: "design",
+		origin: "https://design.perish.uk",
+	});
 });
 
 test.each(fronts)("$lang proposition occupies the hero title", (front) => {

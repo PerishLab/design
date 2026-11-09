@@ -79,6 +79,34 @@ own role — which is the proposal this repository has already refused twice. A
 generator with no stylesheet is outside every one of these, because the laws
 that read the tree read the ones that carry a dress.
 
+## Brand
+
+Crest owns brand geometry, palette and supported image variants. Navigator and
+Hero select registered products from its formal asset manifest; Hero's decor
+property is ordinary text decoration, never a product identity. Unsupported
+product keys refuse. Components render official full SVG images and never
+construct paths, recolour them or rotate the brand on hover.
+
+The design Vite plugin verifies the installed formal Crest manifest and every
+image digest, emits unchanged images at content-addressed paths, serves the
+same bytes in development, and records package version, model, selections and
+outputs in .perish/brand.json. This content receipt does not authenticate its
+own package; the dependency world and formal distribution remain authoritative.
+The `@perishlab/design/types` export owns the ambient virtual brand module
+contract for source-aware workspace consumers. Component tests build their
+package entry first; docs type checking stays independent of generated output.
+The optional brand product/origin config generates favicon, touch and square
+share references from the same U22 full assets. These are explicitly full,
+not a claim that U22 tight or a landscape sharing card has been designed.
+
+An explicit component surface wins. Otherwise, after mounting, brand selection
+reads the actual inherited color-scheme and observes ancestor tone/system
+changes and the OS preference. This keeps system overrides authoritative
+without copying theme palettes. SSR starts with light unless an explicit
+surface is supplied; static dark surfaces must pass surface="dark".
+The private media reader alone earns its narrow embed grant for official package
+resources. Source delivery and the actual distributed consumer stay distinct.
+
 ## App layer
 
 `apps/*` may write no CSS and no native HTML tag. The first is enforced by the

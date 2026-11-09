@@ -6,6 +6,7 @@ export const kinds: Record<string, Record<string, Kind>> = {
 		children: "node",
 	},
 	Navigator: {
+		surface: "text",
 		mark: "text",
 		owner: "text",
 		title: "text",
@@ -112,6 +113,8 @@ export const kinds: Record<string, Record<string, Kind>> = {
 		seat: "text",
 	},
 	Hero: {
+		decor: "text",
+		surface: "text",
 		title: "text",
 		line: "text",
 		mark: "text",

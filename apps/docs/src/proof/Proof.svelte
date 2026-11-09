@@ -52,7 +52,7 @@
 	<Frame>
 		<Nav links={ways} />
 		<Tabs tabs={views} bind:value={view} />
-		<Hero mark="◆" title="Six planes are live." line="Every plane carries its own constitution, and no release is a publish until it is first a proof." />
+		<Hero mark="perish.code" title="Six planes are live." line="Every plane carries its own constitution, and no release is a publish until it is first a proof." />
 		<Split>
 			<Search bind:value={query} hint="filter planes" />
 			<Button look="quiet" label="new plane" />

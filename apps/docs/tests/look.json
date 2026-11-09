@@ -1,6 +1,6 @@
 {
 	"base": {
-		"density": 457,
+		"density": 446,
 		".navigator-name": {
 			"color": "rgb(30, 36, 45)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
@@ -307,7 +307,7 @@
 			"fontSize": "15px",
 			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "1280x2966"
+			"box": "1280x3038"
 		},
 		".navigator-bay dock": {
 			"color": "rgb(30, 36, 45)",
@@ -407,7 +407,7 @@
 		}
 	},
 	"ant": {
-		"density": 494,
+		"density": 484,
 		".navigator-name": {
 			"color": "rgb(38, 38, 38)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
@@ -714,7 +714,7 @@
 			"fontSize": "14px",
 			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "1280x2740"
+			"box": "1280x2800"
 		},
 		".navigator-bay dock": {
 			"color": "rgb(38, 38, 38)",
@@ -814,7 +814,7 @@
 		}
 	},
 	"brutal": {
-		"density": 334,
+		"density": 328,
 		".navigator-name": {
 			"color": "rgb(0, 0, 0)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
@@ -1121,7 +1121,7 @@
 			"fontSize": "16px",
 			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "1280x4059"
+			"box": "1280x4129"
 		},
 		".navigator-bay dock": {
 			"color": "rgb(0, 0, 0)",
@@ -1221,7 +1221,7 @@
 		}
 	},
 	"carbon": {
-		"density": 570,
+		"density": 557,
 		".navigator-name": {
 			"color": "rgb(22, 22, 22)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
@@ -1528,7 +1528,7 @@
 			"fontSize": "14px",
 			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "1280x2376"
+			"box": "1280x2432"
 		},
 		".navigator-bay dock": {
 			"color": "rgb(22, 22, 22)",
@@ -1628,7 +1628,7 @@
 		}
 	},
 	"console": {
-		"density": 509,
+		"density": 498,
 		".navigator-name": {
 			"color": "rgb(201, 209, 217)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
@@ -1935,7 +1935,7 @@
 			"fontSize": "15px",
 			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "1280x2659"
+			"box": "1280x2719"
 		},
 		".navigator-bay dock": {
 			"color": "rgb(201, 209, 217)",
@@ -2035,7 +2035,7 @@
 		}
 	},
 	"cupertino": {
-		"density": 428,
+		"density": 419,
 		".navigator-name": {
 			"color": "rgb(28, 28, 30)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
@@ -2342,7 +2342,7 @@
 			"fontSize": "17px",
 			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "1280x3163"
+			"box": "1280x3230"
 		},
 		".navigator-bay dock": {
 			"color": "rgb(28, 28, 30)",
@@ -2442,7 +2442,7 @@
 		}
 	},
 	"folio": {
-		"density": 231,
+		"density": 228,
 		".navigator-name": {
 			"color": "rgb(35, 32, 27)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
@@ -2749,7 +2749,7 @@
 			"fontSize": "18px",
 			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "1280x5850"
+			"box": "1280x5934"
 		},
 		".navigator-bay dock": {
 			"color": "rgb(35, 32, 27)",
@@ -2849,7 +2849,7 @@
 		}
 	},
 	"glass": {
-		"density": 337,
+		"density": 331,
 		".navigator-name": {
 			"color": "rgb(236, 234, 255)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
@@ -3156,7 +3156,7 @@
 			"fontSize": "16px",
 			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "1280x4019"
+			"box": "1280x4093"
 		},
 		".navigator-bay dock": {
 			"color": "rgb(236, 234, 255)",
@@ -3256,7 +3256,7 @@
 		}
 	},
 	"material": {
-		"density": 486,
+		"density": 475,
 		".navigator-name": {
 			"color": "rgb(29, 27, 32)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
@@ -3563,7 +3563,7 @@
 			"fontSize": "14px",
 			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "1280x2790"
+			"box": "1280x2850"
 		},
 		".navigator-bay dock": {
 			"color": "rgb(29, 27, 32)",
@@ -3663,7 +3663,7 @@
 		}
 	},
 	"paper": {
-		"density": 341,
+		"density": 334,
 		".navigator-name": {
 			"color": "rgb(42, 38, 33)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
@@ -3970,7 +3970,7 @@
 			"fontSize": "17px",
 			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "1280x3973"
+			"box": "1280x4051"
 		},
 		".navigator-bay dock": {
 			"color": "rgb(42, 38, 33)",
@@ -4070,7 +4070,7 @@
 		}
 	},
 	"relief": {
-		"density": 307,
+		"density": 302,
 		".navigator-name": {
 			"color": "rgb(45, 55, 72)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
@@ -4377,7 +4377,7 @@
 			"fontSize": "16px",
 			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "1280x4411"
+			"box": "1280x4489"
 		},
 		".navigator-bay dock": {
 			"color": "rgb(45, 55, 72)",
@@ -4477,7 +4477,7 @@
 		}
 	},
 	"signal": {
-		"density": 365,
+		"density": 358,
 		".navigator-name": {
 			"color": "rgb(27, 34, 48)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
@@ -4784,7 +4784,7 @@
 			"fontSize": "16px",
 			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "1280x3713"
+			"box": "1280x3783"
 		},
 		".navigator-bay dock": {
 			"color": "rgb(27, 34, 48)",
@@ -4884,7 +4884,7 @@
 		}
 	},
 	"swiss": {
-		"density": 382,
+		"density": 374,
 		".navigator-name": {
 			"color": "rgb(0, 0, 0)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
@@ -5191,7 +5191,7 @@
 			"fontSize": "16px",
 			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "1280x3549"
+			"box": "1280x3619"
 		},
 		".navigator-bay dock": {
 			"color": "rgb(0, 0, 0)",
@@ -5291,7 +5291,7 @@
 		}
 	},
 	"terminal": {
-		"density": 376,
+		"density": 370,
 		".navigator-name": {
 			"color": "rgb(200, 200, 200)",
 			"backgroundColor": "rgba(0, 0, 0, 0)",
@@ -5598,7 +5598,7 @@
 			"fontSize": "14px",
 			"fontWeight": "400",
 			"boxShadow": "none",
-			"box": "1280x3610"
+			"box": "1280x3664"
 		},
 		".navigator-bay dock": {
 			"color": "rgb(200, 200, 200)",

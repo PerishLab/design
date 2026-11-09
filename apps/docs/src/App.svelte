@@ -58,7 +58,7 @@
 	</Navigator>
 	{#if seat === ""}<Front bind:system {tone} />
 	{:else if Page}<Page />
-	{:else}<Frame><Hero mark="404" title={t("pages.missing.title")} line={t("pages.missing.line")} /><Link href={home} label={t("pages.missing.return")} /></Frame>
+	{:else}<Frame><Hero decor="404" title={t("pages.missing.title")} line={t("pages.missing.line")} /><Link href={home} label={t("pages.missing.return")} /></Frame>
 	{/if}
 </Shell>
 {/if}

@@ -20,7 +20,7 @@ function runtime(): string {
 	plugin.generateBundle.call({
 		addWatchFile() {},
 		emitFile(file) {
-			if (file.fileName === ".perish/server.mjs") source = file.source;
+			if (file.fileName === ".perish/server.mjs") source = String(file.source);
 		},
 	});
 	return source;

@@ -10,7 +10,7 @@
 		"isolatedModules": true,
 		"skipLibCheck": true,
 		"customConditions": ["source"],
-		"types": ["vite/client", "node"]
+		"types": ["vite/client", "node", "@perishlab/design/types"]
 	},
 	"include": ["src", "tests", "vite.config.ts", "vitest.config.ts"]
 }

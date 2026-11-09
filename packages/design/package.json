@@ -23,6 +23,10 @@
 			"source": "./src/focus/Tabs/Carousel/model.ts",
 			"types": "./dist/focus/Tabs/Carousel/model.d.ts",
 			"default": "./dist/focus/Tabs/Carousel/model.js"
+		},
+		"./types": {
+			"source": "./src/brand/types.d.ts",
+			"types": "./dist/brand/types.d.ts"
 		}
 	},
 	"publishConfig": {
@@ -32,7 +36,7 @@
 		"build": "svelte-package -i src -o dist",
 		"prepack": "pnpm build",
 		"typecheck": "svelte-check --tsconfig ./tsconfig.json",
-		"test": "vitest run"
+		"test": "pnpm build && vitest run"
 	},
 	"peerDependencies": {
 		"sass": ">=1.101",

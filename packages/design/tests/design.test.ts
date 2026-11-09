@@ -70,13 +70,14 @@ test("renders component identity", () => {
 	const navigator = render(design.Navigator, {
 		props: { mark: "design", title: "design" },
 	}).body;
-	expect(navigator).toContain("--crest-ink: #2f679c");
-	expect(navigator).toContain("--crest-dark: #8fc7f2");
+	expect(navigator).toContain("<img");
+	expect(navigator).toContain('data-kind="shared"');
+	expect(navigator).not.toContain("<path");
 	const hero = render(design.Hero, {
 		props: {
 			title: "design",
 			line: "singleword",
-			mark: "◆",
+			decor: "◆",
 			look: "claim",
 		},
 	}).body;
@@ -145,4 +146,21 @@ test("renders component identity", () => {
 			},
 		}).body,
 	).toMatch(/data-fade="" data-hidden=""[^>]*--faded: 180ms/);
+});
+
+test("brand slots refuse unregistered identities and expose exact versus shared without drawing", () => {
+	for (const product of ["unknown", "__proto__", "◆"])
+		expect(
+			() =>
+				render(design.Navigator, {
+					props: { mark: product, title: "Identity" },
+				}).body,
+		).toThrow("Unknown Crest product");
+	const hero = render(design.Hero, {
+		props: { mark: "perish.code", surface: "dark", title: "Lab", line: "Work" },
+	}).body;
+	expect(hero).toContain('data-kind="exact"');
+	expect(hero).toContain("perish.code/sign/full/dark/svg/100");
+	expect(hero).toContain('alt=""');
+	expect(hero).not.toContain("<path");
 });

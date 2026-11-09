@@ -34,8 +34,7 @@
 			flex: 0 0 auto;
 			inline-size: calc(var(--lead) * 1.4);
 			block-size: calc(var(--lead) * 1.4);
-			fill: light-dark(var(--crest-ink), var(--crest-dark));
-			fill-rule: evenodd;
+			object-fit: contain;
 		}
 
 		.navigator-word {
@@ -67,15 +66,6 @@
 		.navigator-said {
 			color: var(--bright);
 			font-weight: var(--heft);
-		}
-
-		.navigator-home .mark {
-			transition: rotate var(--beat);
-		}
-
-		.navigator-home:hover .mark,
-		.navigator-home:focus-visible .mark {
-			rotate: 90deg;
 		}
 
 		.navigator-line {

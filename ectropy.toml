@@ -23,6 +23,10 @@ paths = ["apps/docs/vite.config.ts"]
 syntax = "embed"
 
 [[grant]]
+paths = ["packages/design/src/vite/brand.ts"]
+syntax = "embed"
+
+[[grant]]
 paths = [
     "apps/*/tests/**/*.test.ts",
     "packages/*/tests/**/*.test.ts",
@@ -34,6 +38,7 @@ paths = [
     "apps/*/tests/**/*.test.ts",
     "packages/*/tests/**/*.test.ts",
     "packages/design/src/vite/config.ts",
+    "apps/docs/vitest.config.ts",
 ]
 syntax = "environment"
 
@@ -139,3 +144,7 @@ name = "statusCode"
 
 [word]
 single = true
+
+[[vocabulary.term]]
+description = "Vite hook for controlled document head transformation; its spelling is owned by Vite."
+name = "transformIndexHtml"

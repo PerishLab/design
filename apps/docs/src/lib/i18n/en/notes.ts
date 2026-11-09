@@ -4,7 +4,9 @@ export const notes = {
 		children: "the main region",
 	},
 	Navigator: {
-		mark: "the crest of the product this surface belongs to",
+		mark: "a registered Crest product key for this surface",
+		surface:
+			"light, dark or reverse; leave empty to follow the actual colour scheme",
 		owner: "the scope the name sits under, set quieter than the name",
 		home: "where the lockup goes when a reader takes it",
 		look: "plain sets the name in the display face, exact sets the whole strip as an identifier",
@@ -112,7 +114,10 @@ export const notes = {
 	Hero: {
 		title: "the largest line on the page",
 		line: "one line under the title",
-		mark: "an optional glyph beside the title",
+		mark: "a registered Crest product key for the official full image",
+		decor: "optional ordinary text decoration, separate from product identity",
+		surface:
+			"light, dark or reverse; leave empty to follow the actual colour scheme",
 		look: "plain for an ordinary page title, claim for the surface's one proposition",
 	},
 	Item: {

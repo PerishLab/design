@@ -1,4 +1,5 @@
 <script lang="ts">
+	import type { Request } from "@perishlab/crest/assets";
 	import type { Snippet } from "svelte";
 	import { Aside, Navigator, Cell, Course, Face, Fold, Menu, Meter, Stage, Table, Tabs, Tip, Modal, Toast, Check, Head, Item, Pick, Text, Board, Button, Carousel, Card, Code, Copy, Field, Footer, Forge, Frame, Grid, Hero, Ledger, Line, Link, List, Nav, Note, Rail, Search, Sheet, Shell, Split, Tag } from "@perishlab/design";
 	import { atoms, choices, grid, heads, picks, stops } from "../docs/samples.ts";
@@ -60,7 +61,7 @@
 </script>
 
 {#snippet aside()}<Aside>{#snippet side()}{said("side")}{/snippet}{said("children")}</Aside>{/snippet}
-{#snippet navigator()}<Navigator mark={said("mark")} title={said("title")} line={said("line")}>{said("children")}</Navigator>{/snippet}
+{#snippet navigator()}<Navigator mark={said("mark") || undefined} surface={(said("surface") || undefined) as Request["surface"] | undefined} title={said("title")} line={said("line")}>{said("children")}</Navigator>{/snippet}
 {#snippet board()}<Board title={said("title")} line={said("line")}>{said("children")}</Board>{/snippet}
 {#snippet button()}<Button label={said("label")} look={weight()} wide={Boolean(values.wide)} busy={Boolean(values.busy)} halt={Boolean(values.halt)} submit={Boolean(values.submit)}>{said("children")}</Button>{/snippet}
 {#snippet carousel()}<Carousel items={picks} value={said("value")} label={said("label")} pause={said("pause")} play={said("play")} beat={300000}>{#snippet children(choice)}<Stage look="pane">{choice}</Stage>{/snippet}</Carousel>{/snippet}
@@ -87,7 +88,7 @@
 {#snippet forge()}<Forge host={said("host")} repo={said("repo")} />{/snippet}
 {#snippet frame()}<Frame>{said("children")}</Frame>{/snippet}
 {#snippet mesh()}<Grid cols={Number(values.cols) || undefined} look={said("look") === "loose" ? "loose" : "even"} flow={said("flow") === "hold" ? "hold" : "fold"}>{said("children")}</Grid>{/snippet}
-{#snippet hero()}<Hero title={said("title")} line={said("line")} mark={said("mark")} />{/snippet}
+{#snippet hero()}<Hero title={said("title")} line={said("line")} mark={said("mark") || undefined} surface={(said("surface") || undefined) as Request["surface"] | undefined} decor={said("decor")} />{/snippet}
 {#snippet ledger()}<Ledger {atoms} />{/snippet}
 {#snippet line()}<Line name={said("name")} meta={said("meta")}>{said("children")}</Line>{/snippet}
 {#snippet link()}<Link label={said("label")} href={said("href")} />{/snippet}
