@@ -2,7 +2,7 @@ import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { createRequire } from "node:module";
 import { dirname, join } from "node:path";
-import { asset, type Request, read } from "@perishlab/crest/assets";
+import type { Request } from "@perishlab/crest/assets";
 
 export type Brand = { product: string; origin: string };
 type Image = { file: string; bytes: Buffer; digest: string; id: string };
@@ -11,9 +11,43 @@ function digest(bytes: Buffer): string {
 	return `sha256:${createHash("sha256").update(bytes).digest("hex")}`;
 }
 
+function refuse(cause: unknown): never {
+	throw Object.assign(
+		new Error(
+			"Unsupported Crest brand contract: Design requires the formal @perishlab/crest/assets API and media/manifest.json; install the current stable @perishlab/crest.",
+			{ cause },
+		),
+		{ code: "DESIGN_CREST_CONTRACT" },
+	);
+}
+
+function contract() {
+	const require = createRequire(import.meta.url);
+	let file: string;
+	let source: string;
+	try {
+		file = require.resolve("@perishlab/crest/assets");
+		source = require.resolve("@perishlab/crest/media/manifest.json");
+	} catch (error) {
+		if (
+			!(error instanceof Error) ||
+			!("code" in error) ||
+			!["ERR_PACKAGE_PATH_NOT_EXPORTED", "MODULE_NOT_FOUND"].includes(
+				String(error.code),
+			)
+		)
+			throw error;
+		refuse(error);
+	}
+	const api: typeof import("@perishlab/crest/assets") = require(file);
+	if (typeof api?.asset !== "function" || typeof api?.read !== "function")
+		refuse(new TypeError("Crest assets must export asset and read functions"));
+	return { source, api };
+}
+
 export function material() {
-	const resolve = createRequire(import.meta.url).resolve;
-	const source = resolve("@perishlab/crest/media/manifest.json");
+	const { source, api } = contract();
+	const { asset, read } = api;
 	const root = dirname(dirname(source));
 	const bytes = readFileSync(source);
 	const manifest = read(JSON.parse(bytes.toString("utf8")));
@@ -39,6 +73,7 @@ export function material() {
 	});
 	return {
 		manifest,
+		asset,
 		images,
 		package: { name: published.name, version: published.version },
 		digest: digest(bytes),
@@ -73,7 +108,7 @@ export function head(
 		surface: Request["surface"] = "light",
 	): string {
 		return urls[
-			asset(held.manifest, {
+			held.asset(held.manifest, {
 				product: brand.product,
 				surface,
 				form: "sign",

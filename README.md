@@ -96,3 +96,16 @@ These additions need no application CSS or native HTML and no new Vite setup.
 The source-aware docs workspace verifies candidate composition; it does not
 prove consumption of a new formal npm distribution. That independent package
 and online verification remains a release-stage obligation.
+
+
+The public Vite entry can be imported before Crest's brand contract is
+qualified. Requesting `design()` synchronously checks the installed formal
+Crest assets entry, its `asset`/`read` functions and media manifest. A missing
+entry or manifest, or incomplete API, refuses with `DESIGN_CREST_CONTRACT` and
+keeps the native cause; execution errors in a resolved module are preserved.
+First-party requirements remain `0` and ordinary consumers resolve the current
+stable. That requirement does not promise the brand API exists in every
+historical 0.x package. Crest 0.2.0 is an unsupported control, while 0.4.0
+provides the currently qualified contract. No historical drawing or fallback
+image is substituted. The existing formal-version, schema and per-image digest
+checks still apply after qualification.

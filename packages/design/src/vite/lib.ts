@@ -112,8 +112,8 @@ function source(routes: Route[], login: boolean): string {
 export function design(options: Options = {}): Plugin {
 	const login = options.login ?? true;
 	const server = options.serve ?? true;
-	const pending = config();
 	const branded = material();
+	const pending = config();
 	let carrying = options.brand !== undefined;
 	let base = "/";
 	let env: Env = { build: "" };
