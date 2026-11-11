@@ -103,4 +103,6 @@
 		outline: var(--rim) solid var(--accent);
 		outline-offset: var(--rim);
 	}
+
+ .check:has(.check-input:disabled) { opacity: var(--mist); cursor: default; }
 }

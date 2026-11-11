@@ -40,7 +40,16 @@ export const catalog: Record<Group, string[]> = {
 		"Split",
 		"Table",
 	],
-	enclose: ["Board", "Card", "Course", "Footer", "Navigator", "Sheet", "Stage"],
+	enclose: [
+		"Board",
+		"Card",
+		"Course",
+		"Footer",
+		"Form",
+		"Navigator",
+		"Sheet",
+		"Stage",
+	],
 	focus: [
 		"Button",
 		"Carousel",

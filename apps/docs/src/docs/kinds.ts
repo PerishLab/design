@@ -61,6 +61,7 @@ export const kinds: Record<string, Record<string, Kind>> = {
 		held: "flag",
 		change: "call",
 		look: "text",
+		disabled: "flag",
 	},
 	Code: {
 		text: "text",
@@ -85,6 +86,17 @@ export const kinds: Record<string, Record<string, Kind>> = {
 		change: "call",
 		kind: "text",
 		hint: "text",
+		error: "text",
+		disabled: "flag",
+		readonly: "flag",
+		required: "flag",
+	},
+	Form: {
+		label: "text",
+		submit: "call",
+		validate: "flag",
+		busy: "flag",
+		children: "node",
 	},
 	Fold: {
 		label: "text",
@@ -130,6 +142,7 @@ export const kinds: Record<string, Record<string, Kind>> = {
 		name: "text",
 		meta: "text",
 		children: "node",
+		flow: "text",
 	},
 	Link: {
 		label: "text",
@@ -148,6 +161,7 @@ export const kinds: Record<string, Record<string, Kind>> = {
 		look: "text",
 		open: "flag",
 		choose: "call",
+		disabled: "flag",
 	},
 	Meter: {
 		label: "text",
@@ -157,6 +171,7 @@ export const kinds: Record<string, Record<string, Kind>> = {
 		title: "text",
 		open: "flag",
 		children: "node",
+		dismiss: "flag",
 	},
 	Nav: {
 		look: "text",
@@ -176,6 +191,7 @@ export const kinds: Record<string, Record<string, Kind>> = {
 		value: "text",
 		choices: "list",
 		change: "call",
+		disabled: "flag",
 	},
 	Rail: {
 		stops: "list",
@@ -184,6 +200,7 @@ export const kinds: Record<string, Record<string, Kind>> = {
 		value: "text",
 		change: "call",
 		hint: "text",
+		label: "text",
 	},
 	Sheet: {
 		children: "node",
@@ -214,6 +231,8 @@ export const kinds: Record<string, Record<string, Kind>> = {
 		tabs: "list",
 		value: "text",
 		change: "call",
+		label: "text",
+		children: "node",
 	},
 	Tag: {
 		text: "text",

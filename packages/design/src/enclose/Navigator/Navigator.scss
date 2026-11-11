@@ -79,6 +79,9 @@
 
 		nav {
 			display: flex;
+			flex-wrap: wrap;
+			min-inline-size: 0;
+			max-inline-size: 100%;
 			align-items: center;
 			gap: var(--space-3);
 			margin-left: auto;
@@ -138,4 +141,6 @@
 			backdrop-filter: var(--fog);
 		}
 	}
+
+ .navigator-type { display: inline-flex; align-items: baseline; gap: var(--space-1); }
 }

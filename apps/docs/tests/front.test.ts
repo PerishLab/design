@@ -218,7 +218,7 @@ test("the language proof renders a real component composition", () => {
 	expect(
 		inner.startsWith('<div class="shell"><div class="stage stage-open">'),
 	).toBe(true);
-	expect(layer).toContain('<section class="board board-bare">');
+	expect(layer).toMatch(/<section\s+[^>]*class="board board-bare"[^>]*>/);
 	expect(layer).toContain("--ruled: repeat(2, minmax(0, 1fr));");
 });
 

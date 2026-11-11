@@ -92,3 +92,5 @@
 		color: var(--accent);
 	}
 }
+
+@layer component { .menu-cue:disabled { opacity: var(--mist); cursor: default; } }

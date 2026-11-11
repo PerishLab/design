@@ -4,12 +4,14 @@
 
 	let {
 		label,
+		disabled = false,
 		value = $bindable(""),
 		choices,
 		look = "field",
 		change,
 	}: {
 		label: string;
+		disabled?: boolean;
 		value?: string;
 		choices: { value: string; label: string }[];
 		look?: "field" | "bare";
@@ -25,7 +27,7 @@
 <label class="pick pick-{look}">
 	{#if look === "field"}<span class="pick-label">{label}</span>{/if}
 	<span class="pick-slot">
-		<select class="pick-input" aria-label={label} {value} onchange={(event) => take(event.currentTarget.value)}>
+		<select {disabled} class="pick-input" aria-label={label} {value} onchange={(event) => take(event.currentTarget.value)}>
 			{#each choices as choice (choice.value)}<option value={choice.value}>{choice.label}</option>{/each}
 		</select>
 		<Sign name="pick" />
