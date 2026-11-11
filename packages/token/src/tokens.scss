@@ -92,34 +92,34 @@ $fluid: list.join($hues, list.join($spans, $rates));
 
 @layer tokens {
 	:root {
-		--fine: 0.875rem;
-		--body: 0.9375rem;
-		--read: 1.1875rem;
-		--lead: 1.25rem;
-		--title: 1.5625rem;
-		--hero: 2.75rem;
+		--fine: 0.75rem;
+		--body: 0.875rem;
+		--read: 0.9375rem;
+		--lead: 1rem;
+		--title: 1.375rem;
+		--hero: 2.5rem;
 		--space-1: 0.25rem;
 		--space-2: 0.5rem;
 		--space-3: 0.75rem;
-		--space-4: 1.125rem;
-		--space-5: 1.5rem;
-		--space-6: 2.75rem;
-		--radius: 0.5rem;
-		--knob: 0.5rem;
-		--slot: 0.5rem;
+		--space-4: 1rem;
+		--space-5: 1.25rem;
+		--space-6: 2rem;
+		--radius: 0.25rem;
+		--knob: 0.25rem;
+		--slot: 0.25rem;
 		--bead: 1rem;
 		--line: 1px;
 		--rim: 2px;
 		--sign: 1.125rem;
 		--reach: 90rem;
-		--page: 60rem;
+		--page: 78rem;
 		--prose: 38rem;
 		--cell: 15rem;
-		--sheet: 24rem;
+		--sheet: 27rem;
 		--band: 4.5rem;
 		--verge: 0.75rem;
 		--track: -0.01em;
-		--tight: 1.16;
+		--tight: 1.2;
 		--heft: 600;
 		--firm: 600;
 		--dent: 2;
@@ -128,23 +128,16 @@ $fluid: list.join($hues, list.join($spans, $rates));
 		--hover: 0.08;
 		--press: 0.16;
 		--leading: 1.5;
-		--apart: 0.6;
+		--apart: 0.5;
 		--nib: 1.75;
 		--stoop: 1;
 		--beat: 150ms;
-		--plain: "Spectral", Georgia, serif;
+		--plain: system-ui, sans-serif;
 		--brisk: system-ui, sans-serif;
-		--crown: "Spectral", Georgia, serif;
-		--exact: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+		--crown: system-ui, sans-serif;
+		--exact: ui-monospace, Menlo, monospace;
 		--frost: none;
 		--wash: none;
-		--fog: blur(12px) saturate(1.2);
-	}
-
-	@include media.narrow {
-		:root {
-			--hero: 2.25rem;
-			--space-6: 3rem;
-		}
+		--fog: none;
 	}
 }
