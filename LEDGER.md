@@ -1122,3 +1122,23 @@ The issue reopened around the visual promise it had not delivered.
 | P206 | **The active system was a thin underline before it was an identity.** A show stage now carries its name at display scale and its position as `01 / 11`; the tabs remain the control rather than carrying the whole expression. The name is information, not decoration: it binds each visual change to the language that caused it. |
 | P207 | The first mobile composition failed three systems even after it fit base: folio reached 684 pixels inside a 400-pixel stage, while glass and relief also escaped. The answer was not to suppress their spacing. The specimen copy became `fixed / variable`, and `Grid flow="hold"` now preserves a declared comparison where the default flow still folds. The stage keeps one stable mobile measure, so autoplay changes language without changing page geometry. |
 | — | The Chinese route no longer presents an English specimen inside translated framing. Its Board, labels, state, and action come from the same locale book as the course. At 390 pixels the Chinese base Board measures 314 × 236 inside a 354 × 480 stage, with no document overflow. |
+
+
+## Base became the first workbench reference
+
+Design #67 selected the Precision study after comparing three compositions of
+the same local fixture. The user observed that the directions looked too
+similar; that observation stays distinct from choosing A as the implementation
+basis, and neither decision is a final product-quality acceptance.
+
+| # | Entry |
+|---|---|
+| P208 | Base now carries the selected A scale through ordinary defaults: 12px fine, 14px body, 15px reading, 16px lead, 22px title, 40px hero; 4/8/12/16/20/32px spacing, 4px corners, a 78rem page, sans faces, opaque surfaces and no elevation. Both tones retain their own palette. No new atom, component prop or application CSS is needed; fixed systems still supply their complete vocabulary. |
+| P209 | The light study's edge on well measured 2.87:1 against the batch's 3:1 boundary target. The default uses a darker edge while retaining the A palette relationship. This is a sampled opaque boundary correction, not a claim that every interactive state or composite surface is qualified. |
+| P210 | A 390px long-identifier probe exposed a 402px document in the Reading study: Line's metadata could retain an unbroken minimum width. Line now lets name and metadata wrap within their shared region and lets metadata break long identifiers, while its action region remains intact. The component owns the fit; the application does not hide overflow or rewrite its structure. |
+
+| P211 | The historical Folio baseline measured its native select at 53px; the current capture measures 46px. Rechecking the unchanged 0.4.0 source and this candidate in the same browser after fonts were ready measured 46px for both with matching computed font, padding and borders. The 7px Sheet/Shell difference is retained as a refreshed observation, not attributed to a Folio theme redesign; the historical cause remains unknown. |
+
+This source step belongs to Design #68. The complete fixture, field semantics,
+keyboard/state coverage and local user review remain #69; formal distribution,
+independent package consumption and online product-quality acceptance remain #70.

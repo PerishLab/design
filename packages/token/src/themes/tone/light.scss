@@ -2,22 +2,22 @@
 @use "../../tokens";
 
 $held: (
-	ground: #f2f5f9,
-	panel: #fcfdfd,
-	well: #dde4ee,
-	rule: #c9d0da,
-	edge: #6b7480,
-	ink: #1e242d,
-	bright: #10151c,
-	muted: #57606b,
-	accent: #33608f,
+	ground: #f5f7fa,
+	panel: #ffffff,
+	well: #eef1f5,
+	rule: #d5dbe3,
+	edge: #78879a,
+	ink: #283240,
+	bright: #17202d,
+	muted: #596779,
+	accent: #285bb5,
 	onaccent: #ffffff,
-	warn: #a1261d,
-	flush: #f8dedb,
-	deck: rgb(255 255 255 / 0.72),
-	ondeck: #10151c,
-	wash: radial-gradient(140% 70% at 50% 0%, rgb(255 255 255 / 0.45) 0%, rgb(255 255 255 / 0) 60%),
-	lift: (0 1px 2px rgb(16 21 28 / 0.10), 0 6px 16px rgb(16 21 28 / 0.10)),
+	warn: #a12a25,
+	flush: #fbe7e5,
+	deck: #ffffff,
+	ondeck: #17202d,
+	lift: none,
+	wash: none,
 );
 
 @layer tone.given {
