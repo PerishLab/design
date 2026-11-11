@@ -59,6 +59,7 @@ export const notes = {
 		held: "方框当前是否被勾选",
 		change: "勾选状态变化时以新值调用",
 		look: "可勾选的方框或可拨动的开关",
+		disabled: "通过原生复选框拒绝修改",
 	},
 	Code: {
 		text: "要展示的源码文本",
@@ -83,6 +84,17 @@ export const notes = {
 		change: "字段变化时以新值调用",
 		kind: "普通文本或密码输入",
 		hint: "可选的占位提示文字",
+		error: "与输入关联的错误说明；有效时不传",
+		disabled: "让原生输入不可用",
+		readonly: "保留可聚焦、可读取的值，但不允许修改",
+		required: "将原生字段标为必填",
+	},
+	Form: {
+		label: "原生表单的可访问名称",
+		submit: "客户端提交回调；阻止原生页面导航",
+		validate: "默认使用原生约束校验；false时由回调提供错误状态",
+		busy: "拒绝重复提交并暴露忙碌状态",
+		children: "表单内的字段与提交控件",
 	},
 	Fold: {
 		label: "折叠状态下显示的文字",
@@ -128,6 +140,7 @@ export const notes = {
 		name: "行的主要文字",
 		meta: "可选的次要文字",
 		children: "另一侧的可选控件或标签",
+		flow: "hold保留同行区域；fold按既有cell尺度自然折行",
 	},
 	Link: {
 		look: "text 站在散文里,nav 站在带子里",
@@ -146,6 +159,7 @@ export const notes = {
 		items: "每个条目的值与文字",
 		open: "列表当前是否展开",
 		choose: "被选中时以该值调用",
+		disabled: "关闭菜单并让触发按钮不可用",
 	},
 	Meter: {
 		label: "这条进度条在度量什么",
@@ -155,6 +169,7 @@ export const notes = {
 		title: "对话框所询问之事的名称",
 		open: "对话框当前是否占据屏幕",
 		children: "对话框的内容",
+		dismiss: "允许Escape和背景关闭；默认true",
 	},
 	Nav: {
 		look: "横贯顶部的条或沿边竖排的列表",
@@ -174,6 +189,7 @@ export const notes = {
 		value: "当前选中的值",
 		choices: "可供选择的值与标签对",
 		change: "选择变化时以新值调用",
+		disabled: "让原生选择控件不可用",
 	},
 	Rail: {
 		stops: "轨道上有序的站点",
@@ -182,6 +198,7 @@ export const notes = {
 		value: "当前的查询文本",
 		change: "查询文本变化时被调用",
 		hint: "可选的占位提示文字",
+		label: "稳定的可访问名称；旧消费者未提供时沿用hint",
 	},
 	Sheet: {
 		children: "有限界面中的控件与文字",
@@ -213,6 +230,8 @@ export const notes = {
 		value: "当前展开的标签页",
 		change: "切换时以新的标签页调用",
 		beat: "每个标签页自己站多久,直到读者接手为止",
+		label: "页签列表的可访问名称",
+		children: "可选的当前内容面板，接收当前值并拥有页签与面板的关联",
 	},
 	Tag: {
 		text: "简短的标签文字",

@@ -1142,3 +1142,21 @@ basis, and neither decision is a final product-quality acceptance.
 This source step belongs to Design #68. The complete fixture, field semantics,
 keyboard/state coverage and local user review remain #69; formal distribution,
 independent package consumption and online product-quality acceptance remain #70.
+
+
+## A workbench has to keep its promises
+
+Design #69 composes the selected Base into a local information workbench. The
+records, simulated delay and failures are explicit samples; source evidence
+and a browser result do not stand in for the user's local quality judgment or
+for #70's formal package and online acceptance.
+
+| # | Entry |
+|---|---|
+| P212 | The specimen could submit no meaningful edit and fields had no error relationship. Form now bounds a native, named form with client submit and busy semantics. Field pairs unique labels and error descriptions with native required, readonly and disabled states. The workbench validates a title, focuses its error, confirms local writes, retains failed input and retries the same record. Ordinary Form defaults retain native validation; the specimen explicitly chooses its own validation copy. |
+| P213 | Keyboard behavior belongs to the generators. Tabs now links an optional selected panel and supports roving arrows/Home/End; Menu moves focus on opening, traverses radio choices, restores its cue on Escape/selection and closes on Tab. The first real ArrowDown run skipped the first menu item because its opening event reached the newly installed global listener; stopping that opening event repaired the reproduced failure. Modal traps focus, distinguishes padding from its backdrop and can refuse dismissal while a write is pending. |
+| P214 | A native select can visibly change before a discard confirmation is answered. Separate pending choices now restore language and scene after cancellation; loading/error preserve records and draft input, while empty/reset explicitly restore sample data. Filtering retains the selected detail with an outside-filter notice. Record selection and successful saves focus the public Board seat; no application HTML, CSS or generic box was added. |
+| P215 | A narrow record title shared too little space with its status and action. Line's opt-in fold flow places the name on its own row when its available measure demands it; hold remains the default. Four English theme headers also overflowed at 390px because Navigator's child navigation could not wrap. Its navigation now wraps within the available measure, retaining each theme's vocabulary. |
+| P216 | The actual workbench was exercised in 48 combinations: eleven formal systems, English/Chinese, 1440/390px, plus both Base tones. All retained eight rows, one form, loaded brand images and no visible/document horizontal overflow. Thirty-two English interaction assertions passed, with additional Chinese dark narrow validation, confirmation, loading/error/empty, missing-owner and long-identifier samples. Real Chrome 200% default zoom produced a 720px CSS viewport in a 1440px window for both locales without overflow; the isolated profile was restored to 100%. These are recorded samples, not a full Cartesian state audit or a universal accessibility claim. |
+
+| P217 | The 14-system gallery capture and icon live-area check passed with fonts ready. The new Form owns one space-3 gap instead of Sheet's spacing between each former direct child, so Sheet and total document heights deliberately decrease; the new Form is captured explicitly. Gallery return links now say workbench and reach the real fixture, which also wraps Glass's footer onto an extra line. The recorded differences are these composition/density/box changes; existing sampled colour, face, radius and shadow values did not change. The 11 formal systems and three draft systems remain distinct coverage. |

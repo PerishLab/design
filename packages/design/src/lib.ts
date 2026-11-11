@@ -17,6 +17,7 @@ export { default as Board } from "./enclose/Board/Board.svelte";
 export { default as Card } from "./enclose/Card/Card.svelte";
 export { default as Course } from "./enclose/Course/Course.svelte";
 export { default as Footer } from "./enclose/Footer/Footer.svelte";
+export { default as Form } from "./enclose/Form/Form.svelte";
 export { default as Navigator } from "./enclose/Navigator/Navigator.svelte";
 export { default as Sheet } from "./enclose/Sheet/Sheet.svelte";
 export { default as Stage } from "./enclose/Stage/Stage.svelte";

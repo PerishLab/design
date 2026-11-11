@@ -32,3 +32,5 @@
 		color: var(--bright);
 	}
 }
+
+@layer component { .tabs-panel { min-width: 0; } }

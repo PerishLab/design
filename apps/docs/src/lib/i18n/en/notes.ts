@@ -60,6 +60,7 @@ export const notes = {
 		held: "whether the box is currently ticked",
 		change: "called with the next ticked state",
 		look: "a box to tick or a switch to throw",
+		disabled: "refuse changes through the native checkbox",
 	},
 	Code: {
 		text: "the source text to display",
@@ -84,6 +85,18 @@ export const notes = {
 		change: "called with the next field value",
 		kind: "plain text or password input",
 		hint: "optional placeholder text",
+		error: "an error message linked to this input; omitted when valid",
+		disabled: "make the native input unavailable",
+		readonly: "keep the value focusable and readable without allowing edits",
+		required: "mark the native field as required",
+	},
+	Form: {
+		label: "the accessible name of the native form",
+		submit: "client submit callback; native navigation is prevented",
+		validate:
+			"use native constraint validation by default; false delegates errors to the callback",
+		busy: "refuse duplicate submission and expose the busy state",
+		children: "the fields and submit controls inside the form",
 	},
 	Fold: {
 		label: "the words on the closed fold",
@@ -130,6 +143,7 @@ export const notes = {
 		name: "the primary row text",
 		meta: "optional secondary text",
 		children: "optional controls or tags on the far side",
+		flow: "hold keeps the side inline; fold fits regions by the existing cell measure",
 	},
 	Link: {
 		look: "text stands in prose, nav stands in a strip",
@@ -148,6 +162,7 @@ export const notes = {
 		items: "the value and label of each entry",
 		open: "whether the list stands open",
 		choose: "called with the value that was picked",
+		disabled: "close the menu and make its cue unavailable",
 	},
 	Meter: {
 		label: "what the bar is measuring",
@@ -157,6 +172,7 @@ export const notes = {
 		title: "the name of what the dialog is asking",
 		open: "whether the dialog holds the screen",
 		children: "the contents of the dialog",
+		dismiss: "allow Escape and backdrop dismissal; defaults to true",
 	},
 	Nav: {
 		look: "a bar across the top or a list down the side",
@@ -176,6 +192,7 @@ export const notes = {
 		value: "the value chosen now",
 		choices: "the value and label pairs on offer",
 		change: "called with the next chosen value",
+		disabled: "make the native selection unavailable",
 	},
 	Rail: {
 		stops: "the ordered stops along the rail",
@@ -184,6 +201,8 @@ export const notes = {
 		value: "the current query text",
 		change: "called with the next query text",
 		hint: "optional placeholder text",
+		label:
+			"a stable accessible name; falls back to hint for existing consumers",
 	},
 	Sheet: {
 		children: "the controls and copy on the bounded surface",
@@ -217,6 +236,9 @@ export const notes = {
 		value: "the tab standing open",
 		change: "called with the next open tab",
 		beat: "how long each tab stands open on its own, until a reader takes one",
+		label: "the accessible name of the tab list",
+		children:
+			"optional selected panel, receiving its current value; owns the tab/panel relationship",
 	},
 	Tag: {
 		text: "the short tag text",

@@ -20,6 +20,7 @@ test("exports one-word components", () => {
 		"Fold",
 		"Footer",
 		"Forge",
+		"Form",
 		"Frame",
 		"Grid",
 		"Head",

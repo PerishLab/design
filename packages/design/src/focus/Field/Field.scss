@@ -30,4 +30,13 @@
 		border-color: var(--accent);
 		outline: none;
 	}
+
+ .field-input:focus-visible {
+  outline: var(--rim) solid var(--accent);
+  outline-offset: var(--rim);
+ }
+ .field-input[aria-invalid="true"] { border-color: var(--warn); }
+ .field-input:read-only { background: var(--ground); color: var(--muted); }
+ .field-input:disabled { opacity: var(--mist); cursor: default; }
+ .field-error { text-wrap: pretty; overflow-wrap: anywhere; margin: 0; color: var(--warn); font-size: var(--fine); }
 }

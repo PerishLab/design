@@ -51,6 +51,7 @@ const parts = [
 	".ledger",
 	".fold-cue",
 	".sheet",
+	".form",
 	".field-input",
 	".pick-input",
 	".check-mark",
@@ -179,6 +180,15 @@ function look(system: string, health: string): unknown {
 	execFileSync(
 		"playwright-cli",
 		["goto", new URL(`/proof/?system=${system}`, health).href],
+		{ stdio: "ignore" },
+	);
+	execFileSync(
+		"playwright-cli",
+		[
+			"--raw",
+			"eval",
+			"document.fonts.ready.then(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))))",
+		],
 		{ stdio: "ignore" },
 	);
 	const raw = execFileSync("playwright-cli", ["--raw", "eval", reads()], {

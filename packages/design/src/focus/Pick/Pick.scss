@@ -67,4 +67,7 @@
 		border-color: var(--edge);
 		color: var(--bright);
 	}
+
+ .pick-input:focus-visible { outline: var(--rim) solid var(--accent); outline-offset: var(--rim); }
+ .pick-input:disabled { opacity: var(--mist); cursor: default; }
 }
