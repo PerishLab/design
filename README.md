@@ -109,3 +109,26 @@ historical 0.x package. Crest 0.2.0 is an unsupported control, while 0.4.0
 provides the currently qualified contract. No historical drawing or fallback
 image is substituted. The existing formal-version, schema and per-image digest
 checks still apply after qualification.
+
+## Google family candidate
+
+`Shell system="google-accounts"` and `Shell system="google-workspace"` share
+Google colour and state roles while retaining different spatial and type scales.
+Both accept `tone="dark"`. Accounts changes to an unframed page on narrow screens;
+the theme owns that surface choice, while the same component structure remains.
+
+`/proof/?google=1` compares the same identity form across this family. The existing
+workbench also accepts `?workbench=1&system=google-workspace&tone=dark`.
+These are candidate references under Design#75, not a claim of Google endorsement
+or completed visual acceptance.
+
+Frame's `center`, Sheet's `spread` with `lead`/`foot` snippets, Hero's `brief`,
+Field's `float` plus native `name`/`autocomplete`, Button's `text` and Split's `end`
+provide the composition without application HTML or CSS. Note's `live` announces
+changing feedback. The public types entry also declares `virtual:perish/views`.
+
+The Google proof keeps its preview controls in `Split look="bar" label="…"`,
+with a content-width `Pick look="bare"` and a quiet tone action. The named group
+wraps on narrow frames; the app supplies no markup or CSS for its layout.
+The candidate control geometry is recorded in `apps/docs/tests/google.json` for
+both family members and tones at 1440, 390 and 320 CSS pixels.

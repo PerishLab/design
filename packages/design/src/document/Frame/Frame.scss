@@ -32,4 +32,25 @@
 	.frame-full {
 		padding: var(--space-4) var(--space-6) var(--space-6);
 	}
+
+	.frame-center {
+		min-height: 100svh;
+		display: flex;
+		flex-direction: column;
+		justify-content: safe center;
+		align-items: center;
+		padding: var(--space-5) var(--space-4);
+	}
+
+	.frame-center > * {
+		width: 100%;
+		max-width: var(--sheet);
+	}
+
+	@include media.narrow {
+		.frame-center {
+			justify-content: flex-start;
+			padding: 0;
+		}
+	}
 }

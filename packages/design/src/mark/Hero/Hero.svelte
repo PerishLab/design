@@ -15,7 +15,7 @@
 		mark?: string;
 		decor?: string;
 		surface?: Surface;
-		look?: "plain" | "claim";
+		look?: "plain" | "claim" | "brief";
 	} = $props();
 	let drawn = $derived(mark === undefined ? undefined : brand(mark, surface));
 </script>

@@ -1,0 +1,110 @@
+[
+	{
+		"system": "google-accounts",
+		"tone": "light",
+		"width": 1440,
+		"document": 1440,
+		"bar": [200, 626.5, 1040, 55],
+		"select": [986, 641, 116, 26],
+		"action": [1110, 634.5, 114, 39]
+	},
+	{
+		"system": "google-accounts",
+		"tone": "light",
+		"width": 390,
+		"document": 390,
+		"bar": [0, 518, 390, 84],
+		"select": [136, 561.5, 116, 26],
+		"action": [260, 555, 114, 39]
+	},
+	{
+		"system": "google-accounts",
+		"tone": "light",
+		"width": 320,
+		"document": 320,
+		"bar": [0, 518, 320, 84],
+		"select": [66, 561.5, 116, 26],
+		"action": [190, 555, 114, 39]
+	},
+	{
+		"system": "google-accounts",
+		"tone": "dark",
+		"width": 1440,
+		"document": 1440,
+		"bar": [200, 626.5, 1040, 55],
+		"select": [986, 641, 116, 26],
+		"action": [1110, 634.5, 114, 39]
+	},
+	{
+		"system": "google-accounts",
+		"tone": "dark",
+		"width": 390,
+		"document": 390,
+		"bar": [0, 518, 390, 84],
+		"select": [136, 561.5, 116, 26],
+		"action": [260, 555, 114, 39]
+	},
+	{
+		"system": "google-accounts",
+		"tone": "dark",
+		"width": 320,
+		"document": 320,
+		"bar": [0, 518, 320, 84],
+		"select": [66, 561.5, 116, 26],
+		"action": [190, 555, 114, 39]
+	},
+	{
+		"system": "google-workspace",
+		"tone": "light",
+		"width": 1440,
+		"document": 1440,
+		"bar": [200, 628, 1040, 52],
+		"select": [1010, 641, 112, 26],
+		"action": [1130, 636, 98, 36]
+	},
+	{
+		"system": "google-workspace",
+		"tone": "light",
+		"width": 390,
+		"document": 390,
+		"bar": [0, 462, 390, 81],
+		"select": [160, 504, 112, 26],
+		"action": [280, 499, 98, 36]
+	},
+	{
+		"system": "google-workspace",
+		"tone": "light",
+		"width": 320,
+		"document": 320,
+		"bar": [0, 462, 320, 81],
+		"select": [90, 504, 112, 26],
+		"action": [210, 499, 98, 36]
+	},
+	{
+		"system": "google-workspace",
+		"tone": "dark",
+		"width": 1440,
+		"document": 1440,
+		"bar": [200, 628, 1040, 52],
+		"select": [1010, 641, 112, 26],
+		"action": [1130, 636, 98, 36]
+	},
+	{
+		"system": "google-workspace",
+		"tone": "dark",
+		"width": 390,
+		"document": 390,
+		"bar": [0, 462, 390, 81],
+		"select": [160, 504, 112, 26],
+		"action": [280, 499, 98, 36]
+	},
+	{
+		"system": "google-workspace",
+		"tone": "dark",
+		"width": 320,
+		"document": 320,
+		"bar": [0, 462, 320, 81],
+		"select": [90, 504, 112, 26],
+		"action": [210, 499, 98, 36]
+	}
+]

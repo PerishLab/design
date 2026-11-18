@@ -1,3 +1,5 @@
+@use "pkg:@perishlab/token/media.scss";
+
 @layer component {
 	.split {
 		display: flex;
@@ -11,6 +13,32 @@
 		align-items: center;
 		justify-content: flex-start;
 		margin-block: var(--space-5) 0;
+	}
+
+	.split-end {
+		justify-content: flex-end;
+	}
+
+	.split-bar {
+		align-items: center;
+		justify-content: flex-end;
+		gap: var(--space-2);
+		margin-block-start: var(--space-2);
+		padding: var(--space-2) var(--space-3);
+		box-sizing: border-box;
+	}
+
+	.split-label {
+		margin-inline-end: auto;
+		color: var(--muted);
+		font-family: var(--brisk);
+		font-size: var(--fine);
+	}
+
+	@include media.slim {
+		.split-bar .split-label {
+			flex-basis: 100%;
+		}
 	}
 
 	.split-close:first-child {

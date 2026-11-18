@@ -4,7 +4,7 @@
  import Records from "./Records.svelte";
  import Detail from "./Detail.svelte";
  import Options from "./Options.svelte";
- import { records, empty, stored, belongs, statuses, title, scene, systems, type Data, type Intent, type Actions } from "./model.ts";
+ import { records, empty, stored, belongs, statuses, title, scene, systems, tonal, type Data, type Intent, type Actions } from "./model.ts";
  import { words } from "./words.ts";
  const params = new URLSearchParams(globalThis.location?.search ?? "");
  const asked = params.get("system") ?? "base";
@@ -86,7 +86,7 @@
 <Shell tone={data.tone} system={data.system}>
  <Navigator mark="design" owner="PerishLab" title="Design" home="/proof/" stick>
   <Link href="/proof/?catalog=1&system=base" label={book.docs} />
-  <Button label={data.system === "base" ? (data.tone === "light" ? book.dark : book.light) : book.fixedMode} look="quiet" halt={data.system !== "base" || data.busy} press={() => data.tone = data.tone === "light" ? "dark" : "light"} />
+  <Button label={tonal(data.system) ? (data.tone === "light" ? book.dark : book.light) : book.fixedMode} look="quiet" halt={!tonal(data.system) || data.busy} press={() => data.tone = data.tone === "light" ? "dark" : "light"} />
   <Pick label={book.locale} bind:value={data.choice.locale} change={actions.language} look="bare" disabled={data.busy} choices={[{ value: "zh", label: "中文" }, { value: "en", label: "English" }]} />
  </Navigator>
  <Frame>

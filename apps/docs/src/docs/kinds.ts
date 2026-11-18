@@ -81,6 +81,9 @@ export const kinds: Record<string, Record<string, Kind>> = {
 		src: "text",
 	},
 	Field: {
+		look: "text",
+		name: "text",
+		autocomplete: "text",
 		label: "text",
 		value: "text",
 		change: "call",
@@ -112,6 +115,7 @@ export const kinds: Record<string, Record<string, Kind>> = {
 		repo: "text",
 	},
 	Frame: {
+		look: "text",
 		children: "node",
 	},
 	Grid: {
@@ -178,6 +182,7 @@ export const kinds: Record<string, Record<string, Kind>> = {
 		links: "list",
 	},
 	Note: {
+		live: "flag",
 		text: "text",
 		mood: "text",
 	},
@@ -203,6 +208,9 @@ export const kinds: Record<string, Record<string, Kind>> = {
 		label: "text",
 	},
 	Sheet: {
+		lead: "node",
+		foot: "node",
+		look: "text",
 		children: "node",
 	},
 	Shell: {
@@ -215,6 +223,8 @@ export const kinds: Record<string, Record<string, Kind>> = {
 		settled: "call",
 	},
 	Split: {
+		look: "text",
+		label: "text",
 		children: "node",
 	},
 	Stage: {

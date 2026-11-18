@@ -52,6 +52,14 @@
 		padding-block-start: 0;
 	}
 
+	.hero-brief h1 {
+		margin-block-end: var(--space-3);
+	}
+
+	.hero-brief .crest {
+		inline-size: calc(var(--lead) * 2.5);
+	}
+
 	.hero:last-child {
 		padding-block-end: 0;
 	}
