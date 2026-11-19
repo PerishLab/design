@@ -26,7 +26,7 @@ export const notes = {
 		sign: "画在文字之后的符号",
 		label: "没有子节点时使用的文字标签",
 		press: "按钮被按下时调用",
-		look: "实心或安静的视觉强调",
+		look: "solid 实心、quiet 轮廓、text 文字动作",
 		wide: "是否占满可用宽度",
 		busy: "标记按钮正在工作并拒绝按压",
 		halt: "拒绝按压但并不声称正在工作",
@@ -79,6 +79,9 @@ export const notes = {
 		src: "可选的图片,用以替代缩写",
 	},
 	Field: {
+		look: "plain 使用外置标签；float 将标签放入轮廓并随聚焦和值浮起",
+		name: "原生表单字段名",
+		autocomplete: "原生浏览器自动填充用途，例如 username、current-password",
 		label: "字段标签",
 		value: "当前字段值",
 		change: "字段变化时以新值调用",
@@ -110,6 +113,7 @@ export const notes = {
 		repo: "仓库的所有者与名称",
 	},
 	Frame: {
+		look: "page、read、sheet、full 或 center；center 在视口内居中承载有界主区",
 		children: "外壳内的整个页面",
 	},
 	Grid: {
@@ -128,7 +132,7 @@ export const notes = {
 		mark: "Crest 已注册产品 key，使用官方 full 图片",
 		decor: "可选普通文字装饰，与产品身份分开",
 		surface: "light、dark 或 reverse；留空跟随实际颜色模式",
-		look: "plain 用于普通页面标题,claim 用于界面的唯一命题",
+		look: "plain 用于普通页面标题，claim 用于界面的唯一命题，brief 用于紧凑引导",
 	},
 	Item: {
 		children: "单个条目的内容",
@@ -176,6 +180,7 @@ export const notes = {
 		links: "每个条目的文字、目标与当前态",
 	},
 	Note: {
+		live: "将变化反馈作为状态播报；警告使用 alert",
 		text: "要显示的消息",
 		mood: "平静或警告强调",
 	},
@@ -201,6 +206,9 @@ export const notes = {
 		label: "稳定的可访问名称；旧消费者未提供时沿用hint",
 	},
 	Sheet: {
+		lead: "可选的前导区",
+		foot: "可选的通栏末尾区",
+		look: "plain 堆叠内容；spread 将前导区与内容并列，窄屏折为一列",
 		children: "有限界面中的控件与文字",
 	},
 	Shell: {
@@ -213,6 +221,8 @@ export const notes = {
 		settled: "界面完成淡出或淡入时调用",
 	},
 	Split: {
+		look: "apart 分散排列，close 聚合，end 将动作组放在末端，bar 紧凑排列控件并让标签在窄屏换行",
+		label: "动作组可选的可见名称，同时提供无障碍分组名称",
 		children: "分置两侧的内容",
 	},
 	Stage: {

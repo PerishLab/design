@@ -1,0 +1,60 @@
+@use "sass:map";
+@use "../tokens";
+@use "../media";
+
+$shared: (
+	ground: #f0f4f9, panel: #ffffff, well: #ffffff,
+	rule: #c4c7c5, edge: #747775, ink: #1f1f1f, bright: #1f1f1f,
+	muted: #444746, accent: #0b57d0, onaccent: #ffffff,
+	warn: #b3261e, flush: #f9dedc, deck: #e9eef6, ondeck: #1f1f1f,
+	lift: none, fine: 0.875rem, body: 1rem, read: 1rem, lead: 1rem,
+	title: 1.75rem, hero: 2.25rem,
+	space-1: 0.25rem, space-2: 0.5rem, space-3: 1rem,
+	space-4: 1.5rem, space-5: 2rem, space-6: 3rem,
+	radius: 1.75rem, knob: 100px, slot: 0.25rem, bead: 100px,
+	line: 1px, rim: 2px, sign: 1.25rem,
+	reach: 90rem, page: 65rem, prose: 40rem, cell: 20rem,
+	sheet: 65rem, band: 4rem, verge: 0rem, track: 0em,
+	tight: 1.25, heft: 400, firm: 500, dent: 2,
+	mist: 0.38, haze: 0.12, hover: 0.08, press: 0.12,
+	leading: 1.5, apart: 0.5, nib: 2, stoop: 1, beat: 180ms,
+	plain: (Arial, "Noto Sans", "Noto Sans CJK SC", "PingFang SC", "Microsoft YaHei", "WenQuanYi Zen Hei", system-ui, sans-serif),
+	brisk: (Arial, "Noto Sans", "Noto Sans CJK SC", "PingFang SC", "Microsoft YaHei", "WenQuanYi Zen Hei", system-ui, sans-serif),
+	crown: (Arial, "Noto Sans", "Noto Sans CJK SC", "PingFang SC", "Microsoft YaHei", "WenQuanYi Zen Hei", system-ui, sans-serif),
+	exact: ("Roboto Mono", ui-monospace, monospace),
+	wash: none, frost: none, fog: none,
+);
+
+@layer system {
+	[data-system="google-accounts"] {
+		color-scheme: light;
+		@include tokens.dress($shared, "Google Accounts");
+	}
+
+	[data-system="google-workspace"] {
+		color-scheme: light;
+		@include tokens.dress(map.merge($shared, (
+			ground: #f8fafd, panel: #ffffff, well: #f0f4f9,
+			body: 0.875rem, read: 0.9375rem, title: 1.375rem, hero: 2rem,
+			space-3: 0.75rem, space-4: 1.25rem, space-5: 1.5rem, space-6: 2rem,
+			radius: 1rem, slot: 0.5rem, page: 80rem, sheet: 65rem,
+		)), "Google Workspace");
+	}
+
+	[data-system^="google-"][data-tone="dark"] {
+		color-scheme: dark;
+		@include tokens.palette((
+			ground: #131314, panel: #1e1f20, well: #1e1f20,
+			rule: #444746, edge: #8e918f, ink: #e3e3e3, bright: #e3e3e3,
+			muted: #c4c7c5, accent: #a8c7fa, onaccent: #062e6f,
+			warn: #f2b8b5, flush: #601410, deck: #282a2c, ondeck: #e3e3e3,
+			lift: none,
+		), "Google dark surfaces");
+	}
+
+	@include media.narrow {
+		[data-system="google-accounts"] {
+			--ground: var(--panel);
+		}
+	}
+}

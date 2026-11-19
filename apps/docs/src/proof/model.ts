@@ -136,6 +136,8 @@ export type Actions = {
 	confirm: () => Promise<void>;
 };
 export const systems = [
+	"google-accounts",
+	"google-workspace",
 	"base",
 	"folio",
 	"glass",
@@ -181,4 +183,8 @@ export function statuses(book: Book): { value: string; label: string }[] {
 export function scene(value: string | null): Scene {
 	const allowed: Scene[] = ["ready", "loading", "error", "empty"];
 	return allowed.includes(value as Scene) ? (value as Scene) : "ready";
+}
+
+export function tonal(system: string): boolean {
+	return system === "base" || system.startsWith("google-");
 }

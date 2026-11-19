@@ -10,7 +10,7 @@
   if (busy) return;
   await submit();
   await tick();
-  node.querySelector<HTMLElement>('[aria-invalid="true"]:not(:disabled)')?.focus();
+  node?.querySelector<HTMLElement>('[aria-invalid="true"]:not(:disabled)')?.focus();
  }
 </script>
 

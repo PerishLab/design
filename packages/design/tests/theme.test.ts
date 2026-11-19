@@ -15,6 +15,8 @@ const dressed = [
 	"cupertino",
 	"folio",
 	"glass",
+	"google-accounts",
+	"google-workspace",
 	"material",
 	"paper",
 	"relief",

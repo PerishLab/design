@@ -1,4 +1,4 @@
-import { Check, Nav, Pick, Search, Tabs } from "@perishlab/design";
+import { Check, Field, Nav, Pick, Search, Tabs } from "@perishlab/design";
 import { render } from "svelte/server";
 import { expect, test } from "vitest";
 import Fields from "./Fields.svelte";
@@ -6,6 +6,26 @@ import Fields from "./Fields.svelte";
 function attribute(tag: string, name: string): string | undefined {
 	return tag.match(new RegExp(`${name}="([^"]+)"`))?.[1];
 }
+
+test("floating credential fields retain native autofill and accessible labels", () => {
+	const html = render(Field, {
+		props: {
+			label: "Password",
+			kind: "password",
+			look: "float",
+			name: "pass",
+			autocomplete: "current-password",
+			required: true,
+		},
+	}).body;
+	const input = html.match(/<input\b[^>]*>/)?.[0] ?? "";
+	expect(input).toContain('type="password"');
+	expect(input).toContain('name="pass"');
+	expect(input).toContain('autocomplete="current-password"');
+	expect(input).toMatch(/\brequired\b/);
+	expect(html).toContain(`for="${attribute(input, "id")}"`);
+	expect(html.replace(/<!--.*?-->/gs, "")).toContain("Password</label>");
+});
 
 test("field errors refer to distinct native input identities", () => {
 	const html = render(Fields).body;

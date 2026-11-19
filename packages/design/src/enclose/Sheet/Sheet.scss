@@ -17,4 +17,45 @@
 		box-shadow: var(--lift);
 		backdrop-filter: var(--frost);
 	}
+
+	.sheet-spread {
+		min-block-size: 25rem;
+		align-items: start;
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+		column-gap: var(--space-6);
+		row-gap: var(--space-5);
+		padding: var(--space-5);
+		border: none;
+	}
+
+	.sheet-lead,
+	.sheet-content {
+		min-width: 0;
+	}
+
+	.sheet-content {
+		padding-block-start: var(--space-6);
+	}
+
+	.sheet-foot {
+		grid-column: 1 / -1;
+	}
+
+	.sheet-foot:empty {
+		display: none;
+	}
+
+	@include media.slim {
+		.sheet-spread {
+			grid-template-columns: minmax(0, 1fr);
+			min-block-size: 0;
+			border-radius: 0;
+			padding: var(--space-4);
+		}
+
+		.sheet-content {
+			padding-block-start: 0;
+		}
+	}
 }

@@ -19,7 +19,7 @@
 		label?: string;
 		href?: string;
 		press?: () => void;
-		look?: "solid" | "quiet" | "portal";
+		look?: "solid" | "quiet" | "portal" | "text";
 		wide?: boolean;
 		busy?: boolean;
 		halt?: boolean;

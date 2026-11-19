@@ -1167,3 +1167,13 @@ for #70's formal package and online acceptance.
 | # | Entry |
 |---|---|
 | P218 | Design 0.5.0 with the controlled Crest 0.2.0 dependency failed while importing the public Vite entry: its eager assets import reached an absent exported path before Design could explain its requirement. Crest 0.4.0 loaded the same entry and factory successfully. The requirement stays at the mandated first-party `0`; the factory now qualifies the assets entry, callable selection/reader API and manifest before starting its environment connection, with `DESIGN_CREST_CONTRACT` and the native cause for a missing contract. The synchronous factory stays synchronous. A resolved module's execution errors remain original, and formal manifest/schema/image checks remain intact. Historical unsupported controls and current stable consumption are separate evidence, never a claim that every earlier 0.x package supplies the same API. |
+
+
+## Google surfaces test the same structure
+
+| # | Entry |
+|---|---|
+| P219 | Accounts and Workspace are a Google family candidate under Design#75: shared colour roles, separate scales, explicit dark palettes and an unframed Accounts narrow surface. Frame/Sheet/Hero express page placement and leading/content regions; Field owns a floating label while retaining native autofill identity. Ensign consumes these responsibilities rather than styling a local form. The live Google sign-in reference was inspected at 1440 and 390px; these observations do not claim final fidelity or user acceptance. |
+| P220 | A real independent Ensign candidate exposed Form focusing a removed node after a successful asynchronous logout unmounted its form. Form now checks that its native node still exists after the submit callback and tick. The original error and fresh browser regression belong to Design#75's private Artifact; simulated browser API responses are not real identity-server validation. |
+
+| P221 | The Google proof initially stretched its selector to the sheet width and attached the controls directly to the sheet. Split now expresses a named compact bar with wrapping and inset, while Pick's existing bare variant retains content width. The sample composes these responsibilities with a quiet tone action; its secondary sample notice belongs to Sheet's foot. Existing Split looks retain their layout. |

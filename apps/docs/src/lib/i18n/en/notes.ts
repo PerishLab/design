@@ -27,7 +27,7 @@ export const notes = {
 		sign: "a symbol drawn after the label",
 		label: "a text label when children are absent",
 		press: "called when the button is pressed",
-		look: "solid or quiet visual emphasis",
+		look: "solid, quiet or text visual emphasis",
 		wide: "fill the available width",
 		busy: "mark the button as working and refuse presses",
 		halt: "refuse presses without claiming to be working",
@@ -80,6 +80,10 @@ export const notes = {
 		src: "an optional picture to show instead of initials",
 	},
 	Field: {
+		look: "plain keeps an external label; float carries the label within the outline",
+		name: "native form field name",
+		autocomplete:
+			"native browser autofill purpose, including username and current-password",
 		label: "the field label",
 		value: "the current field value",
 		change: "called with the next field value",
@@ -112,6 +116,7 @@ export const notes = {
 		repo: "the owner and name of a repository",
 	},
 	Frame: {
+		look: "page, read, sheet, full or center; center places one bounded main region in the viewport",
 		children: "the whole page inside the shell",
 	},
 	Grid: {
@@ -131,7 +136,7 @@ export const notes = {
 		decor: "optional ordinary text decoration, separate from product identity",
 		surface:
 			"light, dark or reverse; leave empty to follow the actual colour scheme",
-		look: "plain for an ordinary page title, claim for the surface's one proposition",
+		look: "plain for an ordinary page title, claim for a proposition, brief for a compact introduction",
 	},
 	Item: {
 		children: "the contents of one item",
@@ -179,6 +184,7 @@ export const notes = {
 		links: "the label, target, and live state of each entry",
 	},
 	Note: {
+		live: "announce changing feedback as status, or alert when warning",
 		text: "the message to show",
 		mood: "calm or warning emphasis",
 	},
@@ -205,6 +211,9 @@ export const notes = {
 			"a stable accessible name; falls back to hint for existing consumers",
 	},
 	Sheet: {
+		lead: "optional leading region",
+		foot: "optional full-width trailing region",
+		look: "plain stacks content; spread places lead and content beside each other and folds on narrow screens",
 		children: "the controls and copy on the bounded surface",
 	},
 	Shell: {
@@ -218,6 +227,8 @@ export const notes = {
 		settled: "called when the surface finishes fading out or in",
 	},
 	Split: {
+		look: "apart separates actions, close groups them, end aligns the group at the trailing edge, bar places compact controls with a wrapping label",
+		label: "optional visible name and accessible identity of the control group",
 		children: "the contents placed at opposite sides",
 	},
 	Stage: {
