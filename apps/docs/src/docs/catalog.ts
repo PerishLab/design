@@ -47,6 +47,7 @@ export const catalog: Record<Group, string[]> = {
 		"Footer",
 		"Form",
 		"Navigator",
+		"Preference",
 		"Sheet",
 		"Stage",
 	],
