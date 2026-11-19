@@ -1,0 +1,180 @@
+@layer component {
+	.preference {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-2);
+		min-width: 0;
+		margin: 0;
+		padding: 0;
+		border: 0;
+	}
+
+	.preference-labels {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-1);
+		min-width: 0;
+	}
+
+	.preference-label {
+		padding: 0;
+		color: var(--bright);
+		font-family: var(--brisk);
+		font-size: var(--fine);
+		font-weight: var(--firm);
+	}
+
+	.preference-origin {
+		color: var(--muted);
+		font-family: var(--brisk);
+		font-size: var(--fine);
+	}
+
+	.preference-choices {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-1);
+	}
+
+	.preference-choice {
+		display: flex;
+		align-items: center;
+		gap: var(--space-2);
+		padding: var(--space-2) var(--space-3);
+		border: var(--line) solid transparent;
+		border-radius: var(--slot);
+		cursor: pointer;
+		transition: border-color var(--beat), background var(--beat);
+	}
+
+	.preference-choice:hover {
+		border-color: var(--edge);
+	}
+
+	.preference-radio {
+		appearance: none;
+		position: absolute;
+		width: 0;
+		height: 0;
+		opacity: 0;
+		pointer-events: none;
+	}
+
+	.preference-mark {
+		position: relative;
+		display: inline-block;
+		flex: 0 0 auto;
+		width: calc(var(--body) * 1.15);
+		height: calc(var(--body) * 1.15);
+		border: var(--line) solid var(--edge);
+		border-radius: var(--bead);
+		background: var(--well);
+		transition: border-color var(--beat), background var(--beat);
+	}
+
+	.preference-mark::after {
+		content: "";
+		position: absolute;
+		inset: calc(var(--line) * 2.5);
+		border-radius: var(--bead);
+		background: var(--onaccent);
+		opacity: 0;
+		transition: opacity var(--beat);
+	}
+
+	.preference-radio:checked + .preference-mark {
+		border-color: var(--accent);
+		background: var(--accent);
+	}
+
+	.preference-radio:checked + .preference-mark::after {
+		opacity: 1;
+	}
+
+	.preference-choice:has(.preference-radio:checked) {
+		border-color: var(--accent);
+	}
+
+	.preference-radio:focus-visible + .preference-mark {
+		outline: var(--rim) solid var(--accent);
+		outline-offset: var(--rim);
+	}
+
+	.preference-text {
+		color: var(--ink);
+		font-size: var(--body);
+		text-wrap: pretty;
+	}
+
+	.preference-input {
+		appearance: none;
+		width: 100%;
+		padding: var(--space-2) var(--space-3);
+		border: var(--line) solid var(--edge);
+		border-radius: var(--slot);
+		background: var(--well);
+		color: var(--bright);
+		font-family: var(--brisk);
+		font-size: var(--body);
+		cursor: pointer;
+		transition: border-color var(--beat);
+	}
+
+	.preference-input:hover,
+	.preference-input:focus {
+		border-color: var(--accent);
+	}
+
+	.preference-input:focus-visible {
+		outline: var(--rim) solid var(--accent);
+		outline-offset: var(--rim);
+	}
+
+	.preference-error {
+		margin: 0;
+		color: var(--muted);
+		font-family: var(--brisk);
+		font-size: var(--fine);
+		text-wrap: pretty;
+	}
+
+	.preference-effect {
+		margin: 0;
+		color: var(--muted);
+		font-family: var(--brisk);
+		font-size: var(--fine);
+		text-wrap: pretty;
+	}
+
+	.preference-choice[data-inherit] .preference-text {
+		color: var(--muted);
+	}
+
+	.preference-line {
+		flex-direction: row;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--space-2) var(--space-3);
+	}
+
+	.preference-line .preference-input {
+		width: auto;
+		min-width: calc(var(--body) * 7);
+	}
+
+	.preference:has(.preference-radio:disabled),
+	.preference:has(.preference-input:disabled) {
+		opacity: var(--mist);
+	}
+
+	.preference:has(.preference-radio:disabled) .preference-choice,
+	.preference:has(.preference-input:disabled) .preference-input {
+		cursor: default;
+	}
+
+	.preference[data-busy] .preference-choice,
+	.preference[data-busy] .preference-input {
+		cursor: progress;
+	}
+}

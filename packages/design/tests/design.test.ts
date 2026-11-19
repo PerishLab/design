@@ -37,6 +37,7 @@ test("exports one-word components", () => {
 		"Navigator",
 		"Note",
 		"Pick",
+		"Preference",
 		"Rail",
 		"Search",
 		"Sheet",

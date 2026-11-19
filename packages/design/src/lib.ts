@@ -19,6 +19,7 @@ export { default as Course } from "./enclose/Course/Course.svelte";
 export { default as Footer } from "./enclose/Footer/Footer.svelte";
 export { default as Form } from "./enclose/Form/Form.svelte";
 export { default as Navigator } from "./enclose/Navigator/Navigator.svelte";
+export { default as Preference } from "./enclose/Preference/Preference.svelte";
 export { default as Sheet } from "./enclose/Sheet/Sheet.svelte";
 export { default as Stage } from "./enclose/Stage/Stage.svelte";
 export { default as Button } from "./focus/Button/Button.svelte";
