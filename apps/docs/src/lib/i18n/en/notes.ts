@@ -1,6 +1,12 @@
+import { extra } from "./extra.ts";
+
 export const notes = {
 	Aside: {
 		side: "what stands beside the main region and stays put",
+		under: "offset the sticky rail beneath a sticky navigator band",
+		open: "open the sidebar as a mobile overlay drawer on narrow screens",
+		rail: "collapse the desktop sidebar into a narrow icon rail",
+		label: "accessible name for the mobile navigation drawer",
 		children: "the main region",
 	},
 	Navigator: {
@@ -9,10 +15,11 @@ export const notes = {
 			"light, dark or reverse; leave empty to follow the actual colour scheme",
 		owner: "the scope the name sits under, set quieter than the name",
 		home: "where the lockup goes when a reader takes it",
-		look: "plain sets the name in the display face, exact sets the whole strip as an identifier",
+		look: "plain sets the name in the display face, exact sets the whole strip as an identifier, bar renders a compact workspace topbar",
 		stick: "keep the strip in place while the document scrolls",
 		title: "the name of the surface this navigator belongs to",
 		line: "one line of supporting text",
+		lead: "optional leading control such as a navigation toggle",
 		children: "the ways out of this surface",
 	},
 	Preference: {
@@ -37,14 +44,17 @@ export const notes = {
 		look: "held keeps the body padded, flush gives the whole body to what fills it, bare keeps only its composition",
 		line: "optional supporting text under the heading",
 		seat: "an optional anchor a link can reach",
+		side: "optional trailing actions in the board header",
 		children: "the rows and controls inside the board",
 	},
 	Button: {
 		children: "the label inside the button",
 		sign: "a symbol drawn after the label",
 		label: "a text label when children are absent",
+		name: "explicit accessible label for icon-only buttons",
 		press: "called when the button is pressed",
 		look: "solid, quiet or text visual emphasis",
+		mood: "calm or contrast-safe warning emphasis",
 		wide: "fill the available width",
 		busy: "mark the button as working and refuse presses",
 		halt: "refuse presses without claiming to be working",
@@ -86,6 +96,8 @@ export const notes = {
 	},
 	Copy: {
 		text: "the text placed on the clipboard",
+		label: "optional custom copy button label",
+		done: "optional confirmation label shown after copying",
 	},
 	Course: {
 		look: "bare for a run that states no space, plain for one that does, raise and well for the surface it carries",
@@ -104,8 +116,9 @@ export const notes = {
 		label: "the field label",
 		value: "the current field value",
 		change: "called with the next field value",
-		kind: "plain text or password input",
+		kind: "text, password, email, url, number, or multi-line area input",
 		hint: "optional placeholder text",
+		help: "optional supporting hint text linked to the input",
 		error: "an error message linked to this input; omitted when valid",
 		disabled: "make the native input unavailable",
 		readonly: "keep the value focusable and readable without allowing edits",
@@ -154,6 +167,7 @@ export const notes = {
 		surface:
 			"light, dark or reverse; leave empty to follow the actual colour scheme",
 		look: "plain for an ordinary page title, claim for a proposition, brief for a compact introduction",
+		side: "optional trailing actions aligned beside the hero copy",
 	},
 	Item: {
 		children: "the contents of one item",
@@ -180,8 +194,11 @@ export const notes = {
 		value: "the choice standing now, marked in the list",
 		sign: "the shape the trigger shows in place of its label",
 		look: "cue is a button, bare is a mark in a strip",
+		kind: "radio selects one value; action triggers commands",
+		cue: "optional custom trigger content such as an account avatar capsule",
+		head: "optional identity header rendered above the menu items",
 		label: "the words on the button that opens it",
-		items: "the value and label of each entry",
+		items: "the value, label, optional sign and mood of each entry",
 		open: "whether the list stands open",
 		choose: "called with the value that was picked",
 		disabled: "close the menu and make its cue unavailable",
@@ -193,17 +210,26 @@ export const notes = {
 	Modal: {
 		title: "the name of what the dialog is asking",
 		open: "whether the dialog holds the screen",
+		mood: "calm or destructive warning emphasis",
+		foot: "optional footer action bar",
 		children: "the contents of the dialog",
 		dismiss: "allow Escape and backdrop dismissal; defaults to true",
 	},
 	Nav: {
-		look: "a bar across the top or a list down the side",
-		links: "the label, target, and live state of each entry",
+		look: "bar strip, side list, workspace rail with rounded active pill, or breadcrumb trail",
+		rail: "collapse rail labels into icon-only pills on desktop",
+		label: "accessible name for the navigation region",
+		pick: "optional click handler intercepting anchor navigation",
+		links:
+			"the label, target, optional sign, group and live state of each entry",
 	},
 	Note: {
 		live: "announce changing feedback as status, or alert when warning",
 		text: "the message to show",
-		mood: "calm or warning emphasis",
+		mood: "calm, warning, or calm conflict/hold emphasis",
+		title: "optional heading for structured feedback notes",
+		code: "optional status code such as 409 or 503",
+		children: "optional recovery action slot",
 	},
 	Sign: {
 		name: "which symbol to draw",
@@ -255,34 +281,5 @@ export const notes = {
 		children:
 			"the one thing the stage frames, centred and cropped to its measure",
 	},
-	Table: {
-		heads: "the column headings",
-		rows: "the cells of each row in column order",
-	},
-	Tabs: {
-		tabs: "the value and label of each tab",
-		value: "the tab standing open",
-		change: "called with the next open tab",
-		beat: "how long each tab stands open on its own, until a reader takes one",
-		label: "the accessible name of the tab list",
-		children:
-			"optional selected panel, receiving its current value; owns the tab/panel relationship",
-	},
-	Tag: {
-		text: "the short tag text",
-		look: "a filled tag or an outlined one",
-		mood: "calm or warning emphasis",
-	},
-	Text: {
-		children: "one paragraph of prose",
-	},
-	Tip: {
-		look: "over opens above what it explains, under opens below it",
-		text: "the words the tip carries",
-		children: "what the tip explains",
-	},
-	Toast: {
-		notes: "the messages waiting to be read aloud",
-		mood: "calm or warning emphasis",
-	},
+	...extra,
 };

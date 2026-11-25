@@ -1,16 +1,21 @@
 <script lang="ts">
 	import type { Snippet } from "svelte";
+	import Sign from "../../mark/Sign/Sign.svelte";
 	import "./Modal.scss";
 
 	let {
 		title,
 		open = $bindable(false),
 		children,
+		foot,
+		mood = "calm",
 		dismiss = true,
 	}: {
 		title: string;
 		open?: boolean;
 		children: Snippet;
+		foot?: Snippet;
+		mood?: "calm" | "warn";
 		dismiss?: boolean;
 	} = $props();
 	let node = $state<HTMLDialogElement>();
@@ -44,7 +49,8 @@
 	});
 </script>
 
-<dialog bind:this={node} class="modal" aria-label={title} onclose={() => (open = false)} oncancel={(event) => { if (!dismiss) event.preventDefault(); }} onclick={backdrop}>
-	<header class="modal-head">{title}</header>
+<dialog bind:this={node} class="modal" class:modal-warn={mood === "warn"} aria-label={title} onclose={() => (open = false)} oncancel={(event) => { if (!dismiss) event.preventDefault(); }} onclick={backdrop}>
+	<header class="modal-head">{#if mood === "warn"}<Sign name="warn" />{/if}<span>{title}</span></header>
 	<div class="modal-body">{@render children()}</div>
+	{#if foot}<footer class="modal-foot">{@render foot()}</footer>{/if}
 </dialog>

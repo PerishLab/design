@@ -64,14 +64,146 @@
 		}
 	}
 
+	.nav.nav-rail {
+		flex-direction: column;
+		flex-wrap: nowrap;
+		align-items: stretch;
+		gap: var(--space-1);
+		padding: 0;
+		margin: 0;
+		border-bottom: none;
+		font-family: var(--brisk);
+		font-size: var(--body);
+
+		.nav-group {
+			margin-top: var(--space-3);
+			padding: var(--space-1) var(--space-3);
+			color: var(--muted);
+			font-family: var(--brisk);
+			font-size: var(--fine);
+			font-weight: var(--firm);
+			letter-spacing: 0.02em;
+		}
+
+		.nav-group:first-child {
+			margin-top: 0;
+		}
+
+		a {
+			padding: var(--space-2) var(--space-3);
+			min-block-size: 2.5rem;
+			border-radius: var(--knob);
+			box-sizing: border-box;
+			color: var(--ink);
+			font-weight: var(--firm);
+			transition: background-color var(--beat), color var(--beat);
+		}
+
+		a:hover {
+			background: var(--well);
+			color: var(--bright);
+		}
+
+		a.active {
+			background: var(--deck);
+			color: var(--ondeck);
+			text-decoration: none;
+		}
+
+		a.active .sign {
+			color: var(--accent);
+		}
+	}
+
+	.nav-rail.nav-shut,
+	.aside-rail .nav-rail {
+		align-items: center;
+
+		.nav-group {
+			display: none;
+		}
+
+		a {
+			justify-content: center;
+			inline-size: 2.75rem;
+			padding: var(--space-2);
+		}
+
+		.nav-word {
+			position: absolute;
+			width: 1px;
+			height: 1px;
+			overflow: hidden;
+			clip-path: inset(50%);
+		}
+	}
+
+	.nav.nav-crumb {
+		padding: 0;
+		margin: 0;
+		border-bottom: none;
+		font-family: var(--brisk);
+		font-size: var(--fine);
+	}
+
+	.nav-trail {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: var(--space-1);
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.nav-step {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--space-1);
+	}
+
+	.nav-step > .sign {
+		inline-size: calc(var(--sign) * 0.72);
+		block-size: calc(var(--sign) * 0.72);
+		color: var(--muted);
+	}
+
+	.nav-crumb a.active {
+		color: var(--bright);
+		font-weight: var(--firm);
+		text-decoration: none;
+	}
+
 	@include media.slim {
-		.nav {
+		.nav-bar {
 			flex-wrap: nowrap;
 			gap: var(--space-3);
 			overflow-x: auto;
 			scrollbar-width: none;
 			padding-right: var(--space-5);
 			mask-image: linear-gradient(to right, black calc(100% - var(--space-5)), transparent);
+		}
+
+		.aside-open .nav-rail {
+			align-items: stretch;
+
+			.nav-group {
+				display: block;
+			}
+
+			a {
+				justify-content: flex-start;
+				inline-size: auto;
+				padding: var(--space-2) var(--space-3);
+			}
+
+			.nav-word {
+				position: static;
+				width: auto;
+				height: auto;
+				overflow: visible;
+				clip-path: none;
+			}
 		}
 	}
 }

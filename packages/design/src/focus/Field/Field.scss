@@ -36,10 +36,15 @@
   outline: var(--rim) solid var(--accent);
   outline-offset: var(--rim);
  }
- .field-input[aria-invalid="true"] { border-color: var(--warn); }
+ .field-area { min-height: 5.5rem; resize: vertical; line-height: var(--leading); }
+ .field-input[aria-invalid="true"],
+ .field-input[aria-invalid="true"]:hover,
+ .field-input[aria-invalid="true"]:focus { border-color: var(--warn); }
+ .field-input[aria-invalid="true"]:focus-visible { outline-color: var(--warn); }
  .field-input:read-only { background: var(--ground); color: var(--muted); }
  .field-input:disabled { opacity: var(--mist); cursor: default; }
- .field-error { text-wrap: pretty; overflow-wrap: anywhere; margin: 0; color: var(--warn); font-size: var(--fine); }
+ .field-help { text-wrap: pretty; margin: 0; color: var(--muted); font-size: var(--fine); }
+ .field-error { display: flex; align-items: baseline; gap: var(--space-1); text-wrap: pretty; overflow-wrap: anywhere; margin: 0; color: var(--warn); font-size: var(--fine); }
 
 	.field-float {
 		position: relative;
@@ -52,6 +57,12 @@
 		padding: var(--space-3);
 		font-size: var(--lead);
 		background: var(--panel);
+	}
+
+	.field-float .field-area {
+		height: auto;
+		min-height: 6rem;
+		padding-top: var(--space-4);
 	}
 
 	.field-float .field-label {
@@ -68,18 +79,29 @@
 		transition: translate var(--beat), font-size var(--beat), color var(--beat);
 	}
 
+	.field-float .field-input:focus,
 	.field-float .field-input:focus-visible {
 		outline: none;
+		border-color: var(--accent);
 		box-shadow: inset 0 0 0 1px var(--accent);
 	}
 
+	.field-float .field-input[aria-invalid="true"]:focus,
+	.field-float .field-input[aria-invalid="true"]:focus-visible {
+		border-color: var(--warn);
+		box-shadow: inset 0 0 0 1px var(--warn);
+	}
+
 	.field-float .field-input:focus + .field-label,
-	.field-float .field-input:not(:placeholder-shown) + .field-label {
+	.field-float .field-input:not(:placeholder-shown) + .field-label,
+	.field-float .field-input:autofill + .field-label,
+	.field-float .field-input:-webkit-autofill + .field-label {
 		translate: 0 -1.5rem;
 		font-size: 0.75rem;
 		background: var(--panel);
 	}
 
 	.field-float .field-input:focus + .field-label { color: var(--accent); }
-	.field-float .field-input[aria-invalid="true"] + .field-label { color: var(--warn); }
+	.field-float .field-input[aria-invalid="true"] + .field-label,
+	.field-float .field-input[aria-invalid="true"]:focus + .field-label { color: var(--warn); }
 }

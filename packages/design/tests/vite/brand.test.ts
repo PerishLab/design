@@ -21,8 +21,9 @@ test("materialises official bytes with a complete selection receipt and matching
 	expect(receipt.schema).toBe("design.brand/v1");
 	expect(receipt.package.name).toBe("@perishlab/crest");
 	expect(receipt.manifest.digest).toMatch(/^sha256:[a-f0-9]{64}$/);
-	expect(receipt.model).toEqual(read(manifest).model);
-	expect(receipt.assets).toHaveLength(108);
+	const parsed = read(manifest);
+	expect(receipt.model).toEqual(parsed.model);
+	expect(receipt.assets).toHaveLength(parsed.assets.length);
 	for (const item of receipt.assets) {
 		const bytes = output.get(item.output.slice("/docs/".length));
 		expect(bytes).toBeDefined();

@@ -10,6 +10,12 @@ export const terminal: Cut = {
 		warn: ["!"],
 		next: ["→"],
 		pick: ["▾"],
+		menu: ["≡"],
+		shut: ["×"],
+		show: ["◉"],
+		save: ["↓"],
+		sort: ["⇅"],
+		sync: ["↻"],
 	},
 	spurns: [
 		"copy",

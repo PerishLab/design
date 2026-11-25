@@ -35,9 +35,9 @@ $shared: (
 		color-scheme: light;
 		@include tokens.dress(map.merge($shared, (
 			ground: #f8fafd, panel: #ffffff, well: #f0f4f9,
-			body: 0.875rem, read: 0.9375rem, title: 1.375rem, hero: 2rem,
+			fine: 0.8125rem, body: 0.875rem, read: 0.9375rem, title: 1.375rem, hero: 2rem,
 			space-3: 0.75rem, space-4: 1.25rem, space-5: 1.5rem, space-6: 2rem,
-			radius: 1rem, slot: 0.5rem, page: 80rem, sheet: 65rem,
+			radius: 1rem, slot: 0.5rem, cell: 16rem, page: 80rem, sheet: 65rem,
 		)), "Google Workspace");
 	}
 
@@ -52,8 +52,13 @@ $shared: (
 		), "Google dark surfaces");
 	}
 
+	[data-system="google-workspace"][data-tone="dark"] {
+		--well: #282a2c;
+	}
+
 	@include media.narrow {
-		[data-system="google-accounts"] {
+		[data-system="google-accounts"],
+		[data-system="google-accounts"][data-tone="dark"] {
 			--ground: var(--panel);
 		}
 	}

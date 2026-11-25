@@ -1,7 +1,7 @@
 <script lang="ts">
  import Gallery from "./Gallery.svelte";
  import Workbench from "./Workbench.svelte";
- import Google from "./Google.svelte";
+ import Google from "./google/Google.svelte";
  const params = new URLSearchParams(globalThis.location?.search ?? "");
  const gallery = params.has("catalog") || (params.has("system") && !params.has("workbench"));
 </script>
