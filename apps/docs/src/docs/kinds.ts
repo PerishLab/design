@@ -1,8 +1,14 @@
+import { extra } from "./extra.ts";
+
 export type Kind = "text" | "flag" | "node" | "call" | "list";
 
 export const kinds: Record<string, Record<string, Kind>> = {
 	Aside: {
 		side: "node",
+		under: "flag",
+		open: "flag",
+		rail: "flag",
+		label: "text",
 		children: "node",
 	},
 	Navigator: {
@@ -14,6 +20,7 @@ export const kinds: Record<string, Record<string, Kind>> = {
 		home: "text",
 		look: "text",
 		stick: "flag",
+		lead: "node",
 		children: "node",
 	},
 	Preference: {
@@ -38,14 +45,17 @@ export const kinds: Record<string, Record<string, Kind>> = {
 		look: "text",
 		line: "text",
 		seat: "text",
+		side: "node",
 		children: "node",
 	},
 	Button: {
 		children: "node",
 		sign: "text",
 		label: "text",
+		name: "text",
 		press: "call",
 		look: "text",
+		mood: "text",
 		wide: "flag",
 		busy: "flag",
 		halt: "flag",
@@ -87,6 +97,8 @@ export const kinds: Record<string, Record<string, Kind>> = {
 	},
 	Copy: {
 		text: "text",
+		label: "text",
+		done: "text",
 	},
 	Course: {
 		look: "text",
@@ -106,6 +118,7 @@ export const kinds: Record<string, Record<string, Kind>> = {
 		change: "call",
 		kind: "text",
 		hint: "text",
+		help: "text",
 		error: "text",
 		disabled: "flag",
 		readonly: "flag",
@@ -152,6 +165,7 @@ export const kinds: Record<string, Record<string, Kind>> = {
 		line: "text",
 		mark: "text",
 		look: "text",
+		side: "node",
 	},
 	Item: {
 		children: "node",
@@ -180,6 +194,9 @@ export const kinds: Record<string, Record<string, Kind>> = {
 		value: "text",
 		sign: "text",
 		look: "text",
+		kind: "text",
+		cue: "node",
+		head: "node",
 		open: "flag",
 		choose: "call",
 		disabled: "flag",
@@ -191,17 +208,25 @@ export const kinds: Record<string, Record<string, Kind>> = {
 	Modal: {
 		title: "text",
 		open: "flag",
+		mood: "text",
+		foot: "node",
 		children: "node",
 		dismiss: "flag",
 	},
 	Nav: {
 		look: "text",
+		rail: "flag",
+		label: "text",
+		pick: "call",
 		links: "list",
 	},
 	Note: {
 		live: "flag",
 		text: "text",
 		mood: "text",
+		title: "text",
+		code: "text",
+		children: "node",
 	},
 	Sign: {
 		name: "text",
@@ -250,32 +275,5 @@ export const kinds: Record<string, Record<string, Kind>> = {
 		meta: "text",
 		children: "node",
 	},
-	Table: {
-		heads: "list",
-		rows: "list",
-	},
-	Tabs: {
-		tabs: "list",
-		value: "text",
-		change: "call",
-		label: "text",
-		children: "node",
-	},
-	Tag: {
-		text: "text",
-		look: "text",
-		mood: "text",
-	},
-	Text: {
-		children: "node",
-	},
-	Tip: {
-		text: "text",
-		look: "text",
-		children: "node",
-	},
-	Toast: {
-		notes: "list",
-		mood: "text",
-	},
+	...extra,
 };

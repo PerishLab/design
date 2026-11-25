@@ -176,3 +176,33 @@ test("every tone states a legible foreground for every fill", () => {
 	}
 	expect(thin).toEqual([]);
 });
+
+test("google dark surfaces keep legible contrast, separated workspace well, and narrow accounts parity", () => {
+	const match =
+		/\[data-system\^="?google-"?\]\[data-tone="?dark"?\]\s*\{([^}]*)\}/.exec(
+			sheet,
+		);
+	if (match === null) throw new Error("no rule carries google dark palette");
+	const dark: Record<string, string> = {};
+	for (const line of match[1].split(";")) {
+		const at = line.indexOf(":");
+		const key = line.slice(0, at).trim();
+		if (key.startsWith("--")) dark[key.slice(2)] = line.slice(at + 1).trim();
+	}
+	for (const [role, ratio] of Object.entries(pairs(dark))) {
+		expect(ratio, `google-dark.${role}`).toBeGreaterThanOrEqual(4.5);
+	}
+	for (const [role, ratio] of Object.entries(bounds(dark))) {
+		expect(ratio, `google-dark.${role}`).toBeGreaterThanOrEqual(3);
+	}
+	const workspace =
+		/\[data-system="?google-workspace"?\]\[data-tone="?dark"?\]\s*\{([^}]*)\}/.exec(
+			sheet,
+		);
+	expect(workspace?.[1]).toContain("--well: #282a2c");
+	expect(contrast(dark.ink, "#282a2c")).toBeGreaterThanOrEqual(4.5);
+	expect(contrast(dark.muted, "#282a2c")).toBeGreaterThanOrEqual(4.5);
+	expect(sheet).toMatch(
+		/@media\s*\(max-width:\s*47\.9375rem\)\s*\{[\s\S]*\[data-system="?google-accounts"?\]\[data-tone="?dark"?\][\s\S]*--ground:\s*var\(--panel\)/,
+	);
+});

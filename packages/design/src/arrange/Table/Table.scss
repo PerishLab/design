@@ -1,4 +1,13 @@
+@use "pkg:@perishlab/token/media.scss";
+
 @layer component {
+	.table-wrap {
+		width: 100%;
+		max-inline-size: 100%;
+		overflow-x: auto;
+		scrollbar-width: thin;
+	}
+
 	.table {
 		width: 100%;
 		border-collapse: collapse;
@@ -12,11 +21,103 @@
 		color: var(--muted);
 		font-weight: var(--heft);
 		text-align: left;
+		white-space: nowrap;
 	}
 
 	.table td {
 		padding: var(--space-2) var(--space-3);
 		border-bottom: var(--line) solid var(--rule);
 		color: var(--ink);
+	}
+
+	.table-sort {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--space-1);
+		padding: 0;
+		border: none;
+		background: transparent;
+		color: inherit;
+		font: inherit;
+		cursor: pointer;
+	}
+
+	.table-sort:hover,
+	.table-sort:focus-visible,
+	.table-sorted {
+		color: var(--bright);
+	}
+
+	.table-sorted .sign {
+		color: var(--accent);
+	}
+
+	.table-pick tbody tr {
+		cursor: pointer;
+		transition: background-color var(--beat);
+	}
+
+	.table-pick tbody tr:hover {
+		background: var(--well);
+	}
+
+	.table-pick tbody tr:focus-visible {
+		outline: var(--rim) solid var(--accent);
+		outline-offset: calc(var(--rim) * -1);
+	}
+
+	.table-pick tbody tr.table-live {
+		background: var(--deck);
+	}
+
+	.table-pick tbody tr.table-live td {
+		color: var(--ondeck);
+	}
+
+	.table-bar {
+		display: block;
+		height: 0.75rem;
+		width: 72%;
+		border-radius: var(--slot);
+		background: var(--well);
+		animation: table-pulse 1.4s ease-in-out infinite;
+	}
+
+	.table-bone:nth-child(even) .table-bar {
+		width: 56%;
+	}
+
+	.table-state {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: var(--space-3);
+		padding: var(--space-5) var(--space-4);
+		text-align: center;
+	}
+
+	.table-note {
+		margin: 0;
+		color: var(--muted);
+		font-family: var(--brisk);
+		font-size: var(--fine);
+		text-wrap: pretty;
+	}
+
+	@keyframes table-pulse {
+		0%,
+		100% {
+			opacity: 0.45;
+		}
+		50% {
+			opacity: 1;
+		}
+	}
+
+	@include media.calm {
+		.table-bar {
+			animation: none;
+		}
 	}
 }

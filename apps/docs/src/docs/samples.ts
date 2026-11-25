@@ -27,6 +27,17 @@ export const grid = [
 	["ectropy", "clean"],
 ];
 
+export const schema = {
+	type: "object",
+	required: ["name"],
+	properties: {
+		name: { type: "string", description: "Surface name" },
+		mode: { type: "string", enum: ["light", "dark"], default: "light" },
+	},
+};
+
+export const codes = ["ABCD-1234", "EFGH-5678"];
+
 export const seeds: Record<string, Record<string, unknown>> = {
 	Aside: { side: "beside", children: "the main region" },
 	Navigator: {
@@ -85,6 +96,12 @@ export const seeds: Record<string, Record<string, unknown>> = {
 	Check: { label: "guarded", held: true, change: () => {}, look: "box" },
 	Copy: { text: "ectropy ." },
 	Course: { look: "raise", children: "a run across the page" },
+	Drawer: {
+		title: "inspect client",
+		line: "slide-over detail",
+		open: false,
+		children: "bounded detail fields",
+	},
 	Voice: {
 		title: "one structure",
 		children: "The same generators, dressed by one language.",
@@ -150,6 +167,12 @@ export const seeds: Record<string, Record<string, unknown>> = {
 		change: () => {},
 	},
 	Rail: { stops },
+	Schema: { title: "contract", schema, mode: "tree" },
+	Section: {
+		title: "identity",
+		line: "grouped form controls",
+		children: "fields",
+	},
 	Table: {
 		heads: ["plane", "state"],
 		rows: [
@@ -174,4 +197,10 @@ export const seeds: Record<string, Record<string, unknown>> = {
 	Toast: { notes: ["the guard is green"], mood: "calm" },
 	Tag: { text: "stable", look: "solid", mood: "calm" },
 	Text: { children: "one paragraph of prose, measured to the reading width" },
+	Vault: {
+		title: "recovery codes",
+		line: "save these codes once",
+		codes,
+		check: "I stored these safely",
+	},
 };

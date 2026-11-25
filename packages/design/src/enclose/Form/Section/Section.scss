@@ -1,0 +1,64 @@
+@layer component {
+	.section {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-3);
+		margin: 0;
+		padding: var(--space-4) 0 0;
+		border: none;
+		border-top: var(--line) solid var(--rule);
+		min-inline-size: 0;
+	}
+
+	.section:first-child {
+		padding-top: 0;
+		border-top: none;
+	}
+
+	.section-title {
+		float: left;
+		width: 100%;
+		padding: 0;
+		margin: 0;
+		color: var(--bright);
+		font-family: var(--crown);
+		font-size: var(--lead);
+		font-weight: var(--heft);
+		text-wrap: balance;
+	}
+
+	.section-meta {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--space-2);
+	}
+
+	.section-line {
+		margin: 0;
+		color: var(--muted);
+		font-family: var(--brisk);
+		font-size: var(--fine);
+		text-wrap: pretty;
+	}
+
+	.section-side {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: var(--space-2);
+		flex-shrink: 0;
+	}
+
+	.section-body {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-3);
+		min-inline-size: 0;
+	}
+
+	.section:disabled {
+		opacity: var(--mist);
+	}
+}

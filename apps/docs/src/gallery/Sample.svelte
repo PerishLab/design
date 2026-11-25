@@ -1,8 +1,8 @@
 <script lang="ts">
 	import type { Request } from "@perishlab/crest/assets";
 	import type { Snippet } from "svelte";
-	import { Aside, Navigator, Preference, Cell, Course, Face, Fold, Menu, Meter, Stage, Table, Tabs, Tip, Modal, Toast, Check, Head, Item, Pick, Text, Board, Button, Carousel, Card, Code, Copy, Field, Footer, Forge, Frame, Grid, Hero, Ledger, Line, Link, List, Nav, Note, Rail, Search, Sheet, Shell, Split, Tag } from "@perishlab/design";
-	import { atoms, choices, grid, heads, picks, stops } from "../docs/samples.ts";
+	import { Aside, Navigator, Preference, Cell, Course, Drawer, Face, Fold, Menu, Meter, Schema, Section, Stage, Table, Tabs, Tip, Modal, Toast, Check, Head, Item, Pick, Text, Board, Button, Carousel, Card, Code, Copy, Field, Footer, Forge, Frame, Grid, Hero, Ledger, Line, Link, List, Nav, Note, Rail, Search, Sheet, Shell, Split, Tag, Vault } from "@perishlab/design";
+	import { atoms, choices, codes, grid, heads, picks, schema, stops } from "../docs/samples.ts";
 
 	let { name, values }: { name: string; values: Record<string, unknown> } = $props();
 	function said(prop: string): string {
@@ -30,6 +30,7 @@
 		["Copy", copy],
 		["Voice", voice],
 		["Course", course],
+		["Drawer", drawer],
 		["Field", field],
 		["Face", face],
 		["Fold", fold],
@@ -52,12 +53,15 @@
 		["Toast", toast],
 		["Note", note],
 		["Rail", rail],
+		["Schema", spec],
 		["Search", search],
+		["Section", section],
 		["Sheet", sheet],
 		["Shell", shell],
 		["Split", split],
 		["Stage", stage],
 		["Tag", tag],
+		["Vault", vault],
 	]);
 </script>
 
@@ -92,6 +96,7 @@
 {#snippet copy()}<Copy text={said("text")} />{/snippet}
 {#snippet voice()}<Board title={said("title")} line={said("line")} look="bare"><Grid cols={2} look="loose" flow="hold"><Card title={said("meaning")}><Text>{said("constant")}</Text><Tag text={said("state")} /></Card><Card title={said("language")}><Text>{said("variable")}</Text><Button href={said("href")} label={said("action")} /></Card></Grid></Board>{/snippet}
 {#snippet course()}<Course look={said("look") === "raise" ? "raise" : "plain"}>{said("children")}</Course>{/snippet}
+{#snippet drawer()}<Drawer title={said("title")} line={said("line")} open={Boolean(values.open)}>{said("children")}</Drawer>{/snippet}
 {#snippet field()}<Field label={said("label")} value={said("value")} change={() => {}} kind={said("kind") === "password" ? "password" : "text"} hint={said("hint")} />{/snippet}
 {#snippet face()}<Face name={said("name")} />{/snippet}
 {#snippet fold()}<Fold label={said("label")} open={Boolean(values.open)}>{said("children")}</Fold>{/snippet}
@@ -114,11 +119,14 @@
 {#snippet toast()}<Toast notes={[said("notes")]} mood={said("mood") === "warn" ? "warn" : "calm"} />{/snippet}
 {#snippet note()}<Note text={said("text")} mood={said("mood") === "warn" ? "warn" : "calm"} />{/snippet}
 {#snippet rail()}<Rail {stops} />{/snippet}
+{#snippet spec()}<Schema title={said("title")} {schema} mode={said("mode") === "raw" ? "raw" : "tree"} />{/snippet}
 {#snippet search()}<Search value={said("value")} change={() => {}} hint={said("hint")} />{/snippet}
+{#snippet section()}<Section title={said("title")} line={said("line")}>{said("children")}</Section>{/snippet}
 {#snippet sheet()}<Sheet>{said("children")}</Sheet>{/snippet}
 {#snippet shell()}<Shell fade={Number(values.fade) || undefined} shown={values.shown !== false}>{said("children")}</Shell>{/snippet}
 {#snippet split()}<Split>{said("children")}</Split>{/snippet}
 {#snippet stage()}<Stage look={said("look") === "show" ? "show" : said("look") === "strip" ? "strip" : said("look") === "pane" ? "pane" : said("look") === "open" ? "open" : "view"} label={said("label") || undefined} meta={said("meta") || undefined}>{said("children")}</Stage>{/snippet}
 {#snippet tag()}<Tag text={said("text")} look={said("look") === "quiet" ? "quiet" : "solid"} mood={said("mood") === "warn" ? "warn" : "calm"} />{/snippet}
+{#snippet vault()}<Vault title={said("title")} line={said("line")} {codes} check={said("check") || undefined} />{/snippet}
 
 {@render samples.get(name)?.()}

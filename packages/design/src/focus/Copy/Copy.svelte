@@ -2,14 +2,18 @@
 	import Sign from "../../mark/Sign/Sign.svelte";
 	import "./Copy.scss";
 
-	let { text }: { text: string } = $props();
-	let done = $state(false);
+	let {
+		text,
+		label = "copy",
+		done = "copied",
+	}: { text: string; label?: string; done?: string } = $props();
+	let held = $state(false);
 
 	function grab(): void {
 		void navigator.clipboard.writeText(text);
-		done = true;
-		setTimeout(() => (done = false), 1600);
+		held = true;
+		setTimeout(() => (held = false), 1600);
 	}
 </script>
 
-<button class:done class="copy" type="button" onclick={grab}><Sign name={done ? "tick" : "copy"} />{done ? "copied" : "copy"}</button>
+<button class:done={held} class="copy" type="button" onclick={grab}><Sign name={held ? "tick" : "copy"} />{held ? done : label}</button>

@@ -48,8 +48,10 @@ export const catalog: Record<Group, string[]> = {
 		"Form",
 		"Navigator",
 		"Preference",
+		"Section",
 		"Sheet",
 		"Stage",
+		"Vault",
 	],
 	focus: [
 		"Button",
@@ -61,9 +63,10 @@ export const catalog: Record<Group, string[]> = {
 		"Forge",
 		"Link",
 		"Pick",
+		"Schema",
 		"Search",
 		"Tabs",
 	],
-	layer: ["Menu", "Modal", "Tip", "Toast"],
+	layer: ["Drawer", "Menu", "Modal", "Tip", "Toast"],
 	document: ["Frame", "Shell"],
 };

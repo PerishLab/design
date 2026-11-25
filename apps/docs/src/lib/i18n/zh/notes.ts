@@ -1,6 +1,12 @@
+import { extra } from "./extra.ts";
+
 export const notes = {
 	Aside: {
 		side: "立在主区旁边并保持不动的内容",
+		under: "将粘性侧边栏偏移到粘性导航带下方",
+		open: "在窄屏上以移动覆盖抽屉形式展开侧边栏",
+		rail: "在桌面端将侧边栏折叠为窄图标轨",
+		label: "移动端导航抽屉的无障碍名称",
 		children: "主区内容",
 	},
 	Navigator: {
@@ -8,10 +14,11 @@ export const notes = {
 		surface: "light、dark 或 reverse；留空跟随实际颜色模式",
 		owner: "名字所在的域,排得比名字安静",
 		home: "读者接住这枚锁型时去往何处",
-		look: "plain 用展示字排名字,exact 把整条排成标识符",
+		look: "plain 用展示字排名字,exact 把整条排成标识符,bar 渲染紧凑工作区顶栏",
 		stick: "文档滚动时让这条留在原处",
 		title: "这条导航所属界面的名字",
 		line: "一行辅助文字",
+		lead: "左侧可选的前导控件,如导航切换按钮",
 		children: "离开这块界面的所有出口",
 	},
 	Preference: {
@@ -36,14 +43,17 @@ export const notes = {
 		look: "held 保留主体内边距，flush 把整个主体交给填充物，bare 只保留构图",
 		line: "标题下方的可选辅助文字",
 		seat: "可选的锚点,供链接抵达",
+		side: "面板头部右侧的可选动作",
 		children: "面板内的行与控件",
 	},
 	Button: {
 		children: "按钮内的文字",
 		sign: "画在文字之后的符号",
 		label: "没有子节点时使用的文字标签",
+		name: "纯图标按钮显式声明的无障碍名称",
 		press: "按钮被按下时调用",
 		look: "solid 实心、quiet 轮廓、text 文字动作",
+		mood: "平静或高对比警告强调",
 		wide: "是否占满可用宽度",
 		busy: "标记按钮正在工作并拒绝按压",
 		halt: "拒绝按压但并不声称正在工作",
@@ -85,6 +95,8 @@ export const notes = {
 	},
 	Copy: {
 		text: "写入剪贴板的文本",
+		label: "可选的自定义复制按钮文字",
+		done: "复制完成后的短暂确认文字",
 	},
 	Course: {
 		look: "bare 不陈述空间,plain 陈述空间,raise 与 well 各自陈述它承载的表面",
@@ -102,8 +114,9 @@ export const notes = {
 		label: "字段标签",
 		value: "当前字段值",
 		change: "字段变化时以新值调用",
-		kind: "普通文本或密码输入",
+		kind: "文本、密码、邮箱、链接、数字或多行文本域输入",
 		hint: "可选的占位提示文字",
+		help: "与输入关联的可选辅助提示文字",
 		error: "与输入关联的错误说明；有效时不传",
 		disabled: "让原生输入不可用",
 		readonly: "保留可聚焦、可读取的值，但不允许修改",
@@ -150,6 +163,7 @@ export const notes = {
 		decor: "可选普通文字装饰，与产品身份分开",
 		surface: "light、dark 或 reverse；留空跟随实际颜色模式",
 		look: "plain 用于普通页面标题，claim 用于界面的唯一命题，brief 用于紧凑引导",
+		side: "与标题文案并列的可选右侧动作区",
 	},
 	Item: {
 		children: "单个条目的内容",
@@ -176,8 +190,11 @@ export const notes = {
 		value: "当前站着的那个选择,在列表里被标出",
 		sign: "触发处以形状代替文字时画的那一个",
 		look: "cue 是一颗按钮,bare 是一条带子里的一个记号",
+		kind: "radio 单选列表，action 命令菜单",
+		cue: "自定义触发区内容，如账号头像胶囊",
+		head: "菜单项上方的可选身份头部",
 		label: "打开菜单的按钮上的文字",
-		items: "每个条目的值与文字",
+		items: "每个条目的值、文字与可选图标和情绪",
 		open: "列表当前是否展开",
 		choose: "被选中时以该值调用",
 		disabled: "关闭菜单并让触发按钮不可用",
@@ -189,17 +206,25 @@ export const notes = {
 	Modal: {
 		title: "对话框所询问之事的名称",
 		open: "对话框当前是否占据屏幕",
+		mood: "平静或破坏性确认警告强调",
+		foot: "底部的可选操作栏",
 		children: "对话框的内容",
 		dismiss: "允许Escape和背景关闭；默认true",
 	},
 	Nav: {
-		look: "横贯顶部的条或沿边竖排的列表",
-		links: "每个条目的文字、目标与当前态",
+		look: "顶部条、侧边列表、工作区圆角胶囊导航轨或面包屑路径",
+		rail: "在桌面端收起导航轨文字仅保留图标胶囊",
+		label: "导航区域的无障碍名称",
+		pick: "拦截锚点跳转的可选点击处理回调",
+		links: "每个条目的文字、目标、可选图标、分组与当前态",
 	},
 	Note: {
 		live: "将变化反馈作为状态播报；警告使用 alert",
 		text: "要显示的消息",
-		mood: "平静或警告强调",
+		mood: "平静、警告或冷静冲突保持态强调",
+		title: "结构化反馈提示的可选标题",
+		code: "可选的状态码标签，如 409 或 503",
+		children: "可选的恢复动作插槽",
 	},
 	Sign: {
 		name: "画哪一个符号",
@@ -248,33 +273,5 @@ export const notes = {
 		meta: "show 身份旁的可选序号或度量",
 		children: "展台取景的那一件东西,居中,超出即裁",
 	},
-	Table: {
-		heads: "各列的表头",
-		rows: "按列序排列的每行单元格",
-	},
-	Tabs: {
-		tabs: "每个标签页的值与文字",
-		value: "当前展开的标签页",
-		change: "切换时以新的标签页调用",
-		beat: "每个标签页自己站多久,直到读者接手为止",
-		label: "页签列表的可访问名称",
-		children: "可选的当前内容面板，接收当前值并拥有页签与面板的关联",
-	},
-	Tag: {
-		text: "简短的标签文字",
-		look: "填充标签或描边标签",
-		mood: "平静或警告强调",
-	},
-	Text: {
-		children: "一段正文",
-	},
-	Tip: {
-		look: "over 开在被解释之物的上方,under 开在下方",
-		text: "提示所承载的文字",
-		children: "提示所解释的对象",
-	},
-	Toast: {
-		notes: "等待被朗读的消息",
-		mood: "平静或警告强调",
-	},
+	...extra,
 };

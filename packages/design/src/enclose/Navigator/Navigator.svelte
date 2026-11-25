@@ -13,6 +13,7 @@
 		home,
 		look = "plain",
 		stick = false,
+		lead,
 		children,
 	}: {
 		mark?: string;
@@ -21,8 +22,9 @@
 		title: string;
 		line?: string;
 		home?: string;
-		look?: "plain" | "exact";
+		look?: "plain" | "exact" | "bar";
 		stick?: boolean;
+		lead?: Snippet;
 		children?: Snippet;
 	} = $props();
 	let drawn = $derived(mark === undefined ? undefined : brand(mark, surface));
@@ -32,6 +34,6 @@
 
 <Bay part={stick ? "navigator-bay navigator-band" : "navigator-bay"} {stick} drive={stick}>
 	<Skin part="navigator-skin" drive={stick}>
-		<header class="navigator navigator-{look}"><div class="navigator-word">{#if home}<a class="navigator-name navigator-home" href={home}>{@render lock()}</a>{:else}<span class="navigator-name">{@render lock()}</span>{/if}{#if line}<p class="navigator-line">{line}</p>{/if}</div>{#if children}<nav>{@render children()}</nav>{/if}</header>
+		<header class="navigator navigator-{look}">{#if lead}<div class="navigator-lead">{@render lead()}</div>{/if}<div class="navigator-word">{#if home}<a class="navigator-name navigator-home" href={home}>{@render lock()}</a>{:else}<span class="navigator-name">{@render lock()}</span>{/if}{#if line}<p class="navigator-line">{line}</p>{/if}</div>{#if children}<nav>{@render children()}</nav>{/if}</header>
 	</Skin>
 </Bay>

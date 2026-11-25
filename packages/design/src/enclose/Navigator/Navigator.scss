@@ -142,5 +142,48 @@
 		}
 	}
 
+	.navigator-lead {
+		display: inline-flex;
+		align-items: center;
+		flex: 0 0 auto;
+	}
+
+	.navigator-bar {
+		flex-wrap: nowrap;
+		gap: var(--space-3);
+		min-block-size: var(--band);
+		max-inline-size: none;
+		padding: var(--space-2) var(--space-4);
+		border-bottom: var(--line) solid var(--rule);
+		background: var(--ground);
+	}
+
+	.navigator-band .navigator-bar {
+		padding: var(--space-2) var(--space-4);
+	}
+
+	.navigator-bar nav {
+		flex-wrap: nowrap;
+		gap: var(--space-2);
+	}
+
+	@include media.narrow {
+		.navigator-bar,
+		.navigator-band .navigator-bar {
+			flex-wrap: wrap;
+			padding: var(--space-2) var(--space-3);
+			gap: var(--space-2);
+		}
+
+		.navigator-bar .navigator-word {
+			flex: 1 1 auto;
+		}
+
+		.navigator-bar nav {
+			flex-wrap: wrap;
+			gap: var(--space-1);
+		}
+	}
+
  .navigator-type { display: inline-flex; align-items: baseline; gap: var(--space-1); }
 }

@@ -19,4 +19,76 @@
 		background: var(--flush);
 		color: var(--warn);
 	}
+
+	.note-hold {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--space-3);
+		padding: var(--space-3) var(--space-4);
+		border: var(--line) solid var(--edge);
+		border-inline-start: calc(var(--rim) * 1.5) solid var(--accent);
+		border-radius: var(--radius);
+		background: var(--well);
+		color: var(--ink);
+	}
+
+	.note-rich {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--space-3);
+		padding: var(--space-3) var(--space-4);
+		border-radius: var(--radius);
+	}
+
+	.note-rich.note-calm {
+		border: var(--line) solid var(--rule);
+		background: var(--well);
+		color: var(--ink);
+	}
+
+	.note-body {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-1);
+		flex: 1 1 16rem;
+		min-inline-size: 0;
+	}
+
+	.note-head {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: var(--space-2);
+	}
+
+	.note-code {
+		padding: 0 var(--space-2);
+		border: var(--line) solid currentColor;
+		border-radius: var(--bead);
+		font-family: var(--exact);
+		font-size: var(--fine);
+		font-weight: var(--firm);
+	}
+
+	.note-title {
+		color: inherit;
+		font-weight: var(--heft);
+	}
+
+	.note-text {
+		margin: 0;
+		text-wrap: pretty;
+	}
+
+	.note-side {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: var(--space-2);
+		flex-shrink: 0;
+	}
 }

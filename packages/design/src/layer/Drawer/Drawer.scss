@@ -1,0 +1,141 @@
+@use "pkg:@perishlab/token/media.scss";
+
+@layer component {
+	.drawer {
+		margin-inline-start: auto;
+		margin-inline-end: 0;
+		margin-block: 0;
+		inline-size: min(32rem, 100%);
+		max-inline-size: 100%;
+		block-size: 100dvh;
+		max-block-size: 100dvh;
+		padding: 0;
+		border: none;
+		border-inline-start: var(--line) solid var(--edge);
+		border-radius: var(--radius) 0 0 var(--radius);
+		background: var(--panel);
+		color: var(--ink);
+		box-shadow: var(--lift);
+		backdrop-filter: var(--frost);
+	}
+
+	.drawer[open] {
+		animation: drawer-slide var(--beat) ease-out;
+	}
+
+	.drawer::backdrop {
+		background: var(--ground);
+		opacity: 0.72;
+	}
+
+	.drawer-shell {
+		display: flex;
+		flex-direction: column;
+		block-size: 100%;
+		min-block-size: 0;
+	}
+
+	.drawer-head {
+		display: flex;
+		align-items: flex-start;
+		justify-content: space-between;
+		gap: var(--space-3);
+		padding: var(--space-4);
+		border-bottom: var(--line) solid var(--rule);
+	}
+
+	.drawer-copy {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-1);
+		min-inline-size: 0;
+	}
+
+	.drawer-title {
+		margin: 0;
+		color: var(--bright);
+		font-family: var(--crown);
+		font-size: var(--lead);
+		font-weight: var(--heft);
+		text-wrap: balance;
+	}
+
+	.drawer-line {
+		margin: 0;
+		color: var(--muted);
+		font-family: var(--brisk);
+		font-size: var(--fine);
+		text-wrap: pretty;
+	}
+
+	.drawer-side {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--space-2);
+		flex-shrink: 0;
+	}
+
+	.drawer-shut {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding: var(--space-2);
+		border: var(--line) solid transparent;
+		border-radius: var(--knob);
+		background: transparent;
+		color: var(--muted);
+		cursor: pointer;
+		transition: background-color var(--beat), color var(--beat);
+	}
+
+	.drawer-shut:hover,
+	.drawer-shut:focus-visible {
+		background: var(--well);
+		color: var(--bright);
+	}
+
+	.drawer-body {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-4);
+		flex: 1 1 auto;
+		min-block-size: 0;
+		overflow-y: auto;
+		padding: var(--space-4);
+	}
+
+	.drawer-foot {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: flex-end;
+		gap: var(--space-2);
+		padding: var(--space-3) var(--space-4);
+		border-top: var(--line) solid var(--rule);
+	}
+
+	@keyframes drawer-slide {
+		from {
+			translate: 2rem 0;
+			opacity: 0;
+		}
+		to {
+			translate: 0 0;
+			opacity: 1;
+		}
+	}
+
+	@include media.narrow {
+		.drawer {
+			inline-size: 100%;
+			border-inline-start: none;
+			border-radius: 0;
+		}
+	}
+
+	@include media.calm {
+		.drawer[open] {
+			animation: none;
+		}
+	}
+}

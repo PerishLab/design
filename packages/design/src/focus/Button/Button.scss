@@ -69,6 +69,31 @@
 		border-color: var(--accent);
 	}
 
+	.button-icon {
+		padding: var(--space-2);
+	}
+
+	.button-solid.button-warn {
+		border-color: var(--warn);
+		background: var(--flush);
+		color: var(--warn);
+	}
+
+	.button-quiet.button-warn {
+		border-color: var(--warn);
+		background: transparent;
+		color: var(--warn);
+	}
+
+	.button-quiet.button-warn:hover:not(:disabled) {
+		border-color: var(--warn);
+		background: var(--flush);
+	}
+
+	.button-text.button-warn {
+		color: var(--warn);
+	}
+
 	.button-portal {
 		justify-content: space-between;
 		gap: var(--space-5);

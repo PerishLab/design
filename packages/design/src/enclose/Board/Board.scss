@@ -19,6 +19,29 @@
 		border-bottom: var(--line) solid var(--rule);
 	}
 
+	.board-split {
+		flex-direction: row;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--space-3);
+	}
+
+	.board-copy {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-1);
+		min-inline-size: 0;
+	}
+
+	.board-side {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: var(--space-2);
+		flex-shrink: 0;
+	}
+
 	.board-title {
 		margin: 0;
 		color: var(--bright);
@@ -46,6 +69,10 @@
 	.board-flush .board-body {
 		gap: 0;
 		padding: 0;
+	}
+
+	.board-flush .line {
+		padding: var(--space-3) var(--space-4);
 	}
 
 	.board-bare {
