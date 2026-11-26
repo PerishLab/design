@@ -44,3 +44,57 @@ packages = ["@perishlab/bone", "@perishlab/sign", "@perishlab/token", "@perishla
 [release.cfworker]
 account = "a6776d8a453d1b84d01576245a9c4f8d"
 domain = "design.perish.uk"
+
+[[ectropy.boundary]]
+allow = ["path"]
+note = "vite and vitest require root-level config files; path law anchors to src and tests"
+paths = [
+    "packages/design/vitest.config.ts",
+    "apps/docs/vite.config.ts",
+    "apps/docs/vitest.config.ts",
+]
+
+[[ectropy.grant]]
+paths = [
+    "packages/bone/**",
+    "packages/design/**",
+    "packages/token/**",
+]
+syntax = "style"
+
+[[ectropy.grant]]
+paths = [
+    "apps/docs/vite.config.ts",
+    "packages/design/src/vite/brand.ts",
+]
+syntax = "embed"
+
+[[ectropy.grant]]
+paths = [
+    "apps/docs/vitest.config.ts",
+    "packages/design/src/vite/config.ts",
+]
+syntax = "environment"
+
+[sidecar.project]
+name = "design"
+namespace = "design"
+root = "."
+
+[sidecar.app]
+name = "docs"
+command = "pnpm"
+args = ["--filter", "design-docs", "dev", "--host", "0.0.0.0"]
+cwd = "."
+mode = "dev"
+port = 0
+health_url = "http://127.0.0.1:{port}/health"
+
+[[sidecar.sidecars]]
+name = "preview"
+command = "pnpm"
+args = ["--filter", "design-docs", "preview", "--host", "127.0.0.1"]
+cwd = "."
+mode = "built"
+port = 0
+health_url = "http://127.0.0.1:{port}/health"

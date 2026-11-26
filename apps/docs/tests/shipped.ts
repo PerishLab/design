@@ -9,12 +9,13 @@ export type Piece = { room: string; name: string; styled: boolean };
 const pack = "@perishlab/design";
 
 function door(roots: string[]) {
+	async function start(this: Rollup.PluginContext) {
+		const found = await this.resolve(pack);
+		if (found !== null) roots.push(dirname(found.id));
+	}
 	return {
 		name: "shipped",
-		async buildStart(this: Rollup.PluginContext) {
-			const found = await this.resolve(pack);
-			if (found !== null) roots.push(dirname(found.id));
-		},
+		buildStart: start,
 	};
 }
 

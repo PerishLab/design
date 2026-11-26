@@ -8,8 +8,7 @@ const root = ".";
 const plant = "../..";
 const target = "preview";
 
-type Target = {
-	healthUrl: string | null;
+type Target = Record<"healthUrl", string | null> & {
 	name: string;
 	running: boolean;
 };

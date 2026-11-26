@@ -9,8 +9,7 @@ const plant = "../..";
 const target = "preview";
 const shots = resolve(plant, ".local/tmp/google");
 
-type Target = {
-	healthUrl: string | null;
+type Target = Record<"healthUrl", string | null> & {
 	name: string;
 	running: boolean;
 };

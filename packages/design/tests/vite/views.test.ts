@@ -94,11 +94,13 @@ test("optional", () => {
 	const plugin = design({ serve: false });
 	plugin.configResolved({ root: seat });
 	const files: string[] = [];
+	const watch = () => {};
+	const emit = (file: Record<"fileName", string>) => {
+		files.push(file.fileName);
+	};
 	plugin.generateBundle.call({
-		addWatchFile() {},
-		emitFile(file) {
-			files.push(file.fileName);
-		},
+		addWatchFile: watch,
+		emitFile: emit,
 	});
 	expect(files).toEqual(["health"]);
 });
