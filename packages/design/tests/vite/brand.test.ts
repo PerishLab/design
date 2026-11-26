@@ -11,11 +11,15 @@ test("materialises official bytes with a complete selection receipt and matching
 	});
 	plugin.configResolved({ root: process.cwd(), base: "/docs/" });
 	const output = new Map<string, string | Buffer>();
+	const watch = () => {};
+	const emit = (
+		file: Record<"fileName", string> & { source: string | Buffer },
+	) => {
+		output.set(file.fileName, file.source);
+	};
 	plugin.generateBundle.call({
-		addWatchFile() {},
-		emitFile(file) {
-			output.set(file.fileName, file.source);
-		},
+		addWatchFile: watch,
+		emitFile: emit,
 	});
 	const receipt = JSON.parse(String(output.get(".perish/brand.json")));
 	expect(receipt.schema).toBe("design.brand/v1");

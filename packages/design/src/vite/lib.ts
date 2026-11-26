@@ -10,30 +10,25 @@ type Next = () => void;
 type Request = { url?: string };
 type Reply = {
 	end(body: string | Buffer): void;
-	setHeader(name: string, value: string): void;
-	statusCode: number;
-};
+} & Record<"setHeader", (name: string, value: string) => void> &
+	Record<"statusCode", number>;
 type Middle = (req: Request, res: Reply, next: Next) => void;
 type Module = object;
+type Graph = Record<"getModuleById", (id: string) => Module | undefined> &
+	Record<"invalidateModule", (node: Module) => void>;
 type Server = {
 	middlewares: { use(middle: Middle): void };
-	moduleGraph: {
-		getModuleById(id: string): Module | undefined;
-		invalidateModule(node: Module): void;
-	};
 	watcher: {
 		on(event: "add" | "unlink", run: (file: string) => void): void;
 	};
 	ws: { send(event: object): void };
-};
-type Context = {
-	addWatchFile(path: string): void;
-	emitFile(file: {
-		type: "asset";
-		fileName: string;
-		source: string | Buffer;
-	}): void;
-};
+} & Record<"moduleGraph", Graph>;
+type Asset = {
+	type: "asset";
+	source: string | Buffer;
+} & Record<"fileName", string>;
+type Context = Record<"addWatchFile", (path: string) => void> &
+	Record<"emitFile", (file: Asset) => void>;
 type Config = {
 	root: string;
 	base?: string;
@@ -47,15 +42,14 @@ type Plugin = {
 	name: string;
 	enforce: "pre";
 	config(): Promise<object>;
-	configResolved(config: Config): void;
-	buildStart(this: Context): void;
-	resolveId(id: string): string | null;
 	load(id: string): string | null;
-	configureServer(server: Server): void;
-	configurePreviewServer(server: Server): void;
-	generateBundle(this: Context): void;
-	transformIndexHtml(): ReturnType<typeof head>;
-};
+} & Record<"configResolved", (config: Config) => void> &
+	Record<"buildStart", (this: Context) => void> &
+	Record<"resolveId", (id: string) => string | null> &
+	Record<"configureServer", (server: Server) => void> &
+	Record<"configurePreviewServer", (server: Server) => void> &
+	Record<"generateBundle", (this: Context) => void> &
+	Record<"transformIndexHtml", () => ReturnType<typeof head>>;
 
 const PUBLIC = "virtual:perish/views";
 const PRIVATE = `\0${PUBLIC}`;
@@ -172,6 +166,89 @@ export function design(options: Options = {}): Plugin {
 		res.end(image.bytes);
 	};
 
+	function resolved(config: Config): void {
+		root = config.root;
+		base = config.base ?? "/";
+		if (!base.startsWith("/") || !base.endsWith("/") || base.startsWith("//"))
+			throw new Error("Brand images need an absolute local Vite base");
+		folder = join(root, "src", "views");
+		fresh();
+	}
+
+	function start(this: Context): void {
+		fresh();
+		this.addWatchFile(branded.source);
+		for (const route of routes) {
+			this.addWatchFile(route.seat);
+		}
+	}
+
+	function resolve(id: string): string | null {
+		if (id === "virtual:perish/brand") return "\0virtual:perish/brand";
+		if (id === PUBLIC) {
+			return PRIVATE;
+		}
+		return id.startsWith(face) ? `\0${id}` : null;
+	}
+
+	function dev(server: Server): void {
+		server.middlewares.use(images);
+		server.middlewares.use(serve(() => health(root, env)));
+		server.watcher.on("add", (file) => reload(server, file));
+		server.watcher.on("unlink", (file) => reload(server, file));
+	}
+
+	function preview(server: Server): void {
+		server.middlewares.use(images);
+		server.middlewares.use(serve(() => health(root, env)));
+	}
+
+	function html() {
+		return options.brand ? head(branded, options.brand, base) : [];
+	}
+
+	function bundle(this: Context): void {
+		if (carrying) {
+			for (const image of new Map(
+				branded.images.map((image) => [image.file, image]),
+			).values())
+				this.emitFile({
+					type: "asset",
+					fileName: image.file,
+					source: image.bytes,
+				});
+			this.emitFile({
+				type: "asset",
+				fileName: ".perish/brand.json",
+				source: JSON.stringify({
+					schema: "design.brand/v1",
+					package: branded.package,
+					model: branded.manifest.model,
+					manifest: { file: "media/manifest.json", digest: branded.digest },
+					assets: branded.manifest.assets.map((item) => ({
+						...item,
+						output: paths(branded.images, base)[item.id],
+					})),
+					head: options.brand ?? null,
+				}),
+			});
+		}
+		this.emitFile({
+			type: "asset",
+			fileName: "health",
+			source: health(root, env),
+		});
+		server &&
+			this.emitFile({
+				type: "asset",
+				fileName: ".perish/server.mjs",
+				source: runtime([
+					...routes.map((route) => route.path),
+					...(login ? ["/login"] : []),
+				]),
+			});
+	}
+
 	return {
 		name: "perish-design",
 		enforce: "pre",
@@ -179,28 +256,9 @@ export function design(options: Options = {}): Plugin {
 			env = await pending;
 			return wiring(env);
 		},
-		configResolved(config): void {
-			root = config.root;
-			base = config.base ?? "/";
-			if (!base.startsWith("/") || !base.endsWith("/") || base.startsWith("//"))
-				throw new Error("Brand images need an absolute local Vite base");
-			folder = join(root, "src", "views");
-			fresh();
-		},
-		buildStart(): void {
-			fresh();
-			this.addWatchFile(branded.source);
-			for (const route of routes) {
-				this.addWatchFile(route.seat);
-			}
-		},
-		resolveId(id): string | null {
-			if (id === "virtual:perish/brand") return "\0virtual:perish/brand";
-			if (id === PUBLIC) {
-				return PRIVATE;
-			}
-			return id.startsWith(face) ? `\0${id}` : null;
-		},
+		configResolved: resolved,
+		buildStart: start,
+		resolveId: resolve,
 		load(id): string | null {
 			if (id === "\0virtual:perish/brand") {
 				carrying = true;
@@ -215,59 +273,9 @@ export function design(options: Options = {}): Plugin {
 				? null
 				: `export { default } from ${JSON.stringify(seat)};`;
 		},
-		configureServer(server): void {
-			server.middlewares.use(images);
-			server.middlewares.use(serve(() => health(root, env)));
-			server.watcher.on("add", (file) => reload(server, file));
-			server.watcher.on("unlink", (file) => reload(server, file));
-		},
-		configurePreviewServer(server): void {
-			server.middlewares.use(images);
-			server.middlewares.use(serve(() => health(root, env)));
-		},
-		transformIndexHtml() {
-			return options.brand ? head(branded, options.brand, base) : [];
-		},
-		generateBundle(): void {
-			if (carrying) {
-				for (const image of new Map(
-					branded.images.map((image) => [image.file, image]),
-				).values())
-					this.emitFile({
-						type: "asset",
-						fileName: image.file,
-						source: image.bytes,
-					});
-				this.emitFile({
-					type: "asset",
-					fileName: ".perish/brand.json",
-					source: JSON.stringify({
-						schema: "design.brand/v1",
-						package: branded.package,
-						model: branded.manifest.model,
-						manifest: { file: "media/manifest.json", digest: branded.digest },
-						assets: branded.manifest.assets.map((item) => ({
-							...item,
-							output: paths(branded.images, base)[item.id],
-						})),
-						head: options.brand ?? null,
-					}),
-				});
-			}
-			this.emitFile({
-				type: "asset",
-				fileName: "health",
-				source: health(root, env),
-			});
-			server &&
-				this.emitFile({
-					type: "asset",
-					fileName: ".perish/server.mjs",
-					source: runtime([
-						...routes.map((route) => route.path),
-						...(login ? ["/login"] : []),
-					]),
-				});
-		},
+		configureServer: dev,
+		configurePreviewServer: preview,
+		transformIndexHtml: html,
+		generateBundle: bundle,
 	};
 }

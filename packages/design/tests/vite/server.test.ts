@@ -17,11 +17,15 @@ function runtime(): string {
 	const plugin = design();
 	plugin.configResolved({ root: seat });
 	let source = "";
+	const watch = () => {};
+	const emit = (
+		file: Record<"fileName", string> & { source: string | Buffer },
+	) => {
+		if (file.fileName === ".perish/server.mjs") source = String(file.source);
+	};
 	plugin.generateBundle.call({
-		addWatchFile() {},
-		emitFile(file) {
-			if (file.fileName === ".perish/server.mjs") source = String(file.source);
-		},
+		addWatchFile: watch,
+		emitFile: emit,
 	});
 	return source;
 }

@@ -30,21 +30,27 @@ function cut(): string {
 function stamped(): Plugin {
 	const name = "virtual:stamp";
 	const seat = `\0${name}`;
+	const resolve = (seen: string) => (seen === name ? seat : undefined);
+	const load = (seen: string) =>
+		seen === seat
+			? `export const stamp = ${JSON.stringify(
+					`@perishlab/design ${made.version} · ${made.license} · ${cut()}`,
+				)};`
+			: undefined;
+	const update: NonNullable<Plugin["handleHotUpdate"]> = ({
+		server,
+		modules,
+	}) => {
+		const held = server.moduleGraph.getModuleById(seat);
+		if (held === undefined) return modules;
+		server.moduleGraph.invalidateModule(held);
+		return [...modules, held];
+	};
 	return {
 		name: "stamp",
-		resolveId: (seen) => (seen === name ? seat : undefined),
-		load: (seen) =>
-			seen === seat
-				? `export const stamp = ${JSON.stringify(
-						`@perishlab/design ${made.version} · ${made.license} · ${cut()}`,
-					)};`
-				: undefined,
-		handleHotUpdate({ server, modules }) {
-			const held = server.moduleGraph.getModuleById(seat);
-			if (held === undefined) return modules;
-			server.moduleGraph.invalidateModule(held);
-			return [...modules, held];
-		},
+		resolveId: resolve,
+		load,
+		handleHotUpdate: update,
 	};
 }
 

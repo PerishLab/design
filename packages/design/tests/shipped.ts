@@ -15,15 +15,17 @@ const packs = ["@perishlab/design", "@perishlab/bone"];
 const entry = "virtual:shipped";
 
 function door(roots: Map<string, string>) {
+	async function start(this: Rollup.PluginContext) {
+		for (const pack of packs) {
+			const found = await this.resolve(pack);
+			if (found !== null) roots.set(pack, dirname(found.id));
+		}
+	}
+	const resolve = (id: string) => (id === entry ? `\0${entry}` : null);
 	return {
 		name: "shipped",
-		async buildStart(this: Rollup.PluginContext) {
-			for (const pack of packs) {
-				const found = await this.resolve(pack);
-				if (found !== null) roots.set(pack, dirname(found.id));
-			}
-		},
-		resolveId: (id: string) => (id === entry ? `\0${entry}` : null),
+		buildStart: start,
+		resolveId: resolve,
 		load: (id: string) =>
 			id === `\0${entry}`
 				? packs.map((pack) => `export * from "${pack}";`).join("\n")
