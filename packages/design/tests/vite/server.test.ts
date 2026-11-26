@@ -117,3 +117,42 @@ test("serves", async () => {
 		await server.close();
 	}
 });
+
+test("client", async () => {
+	const root = mkdtempSync(join(tmpdir(), "server-client-"));
+	mkdirSync(join(root, "assets"));
+	writeFileSync(join(root, "index.html"), "<main>shell</main>\n");
+	writeFileSync(join(root, "client.json"), '{"observe":"/api/observe"}\n');
+	writeFileSync(join(root, "assets", "app.js"), "export {};\n");
+	const server = await launch(root);
+	try {
+		const client = await fetch(`${server.endpoint}/client.json`);
+		expect(client.status).toBe(200);
+		expect(client.headers.get("content-type")).toBe(
+			"application/json; charset=utf-8",
+		);
+		expect(client.headers.get("cache-control")).toBe("no-store");
+		expect(client.headers.get("x-content-type-options")).toBe("nosniff");
+		expect(await client.json()).toEqual({ observe: "/api/observe" });
+
+		const head = await fetch(`${server.endpoint}/client.json`, {
+			method: "HEAD",
+		});
+		expect(head.status).toBe(200);
+		expect(head.headers.get("content-type")).toBe(
+			"application/json; charset=utf-8",
+		);
+		expect(head.headers.get("cache-control")).toBe("no-store");
+		expect(head.headers.get("x-content-type-options")).toBe("nosniff");
+
+		const index = await fetch(`${server.endpoint}/index.html`);
+		expect(index.status).toBe(200);
+		expect(index.headers.get("cache-control")).toBe("no-cache");
+
+		const asset = await fetch(`${server.endpoint}/assets/app.js`);
+		expect(asset.status).toBe(200);
+		expect(asset.headers.get("cache-control")).toContain("immutable");
+	} finally {
+		await server.close();
+	}
+});

@@ -57,7 +57,7 @@ function headers(path, size) {
 	const type = basename(path) === "health"
 		? "application/json; charset=utf-8"
 		: kinds.get(extname(path)) ?? "application/octet-stream";
-	const cache = name === "health"
+	const cache = name === "health" || name === "client.json"
 		? "no-store"
 		: name.startsWith("assets" + sep)
 			? "public, max-age=31536000, immutable"
