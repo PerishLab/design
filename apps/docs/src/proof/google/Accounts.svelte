@@ -166,7 +166,7 @@
 					line="每个代码仅可使用一次，请妥善保存后继续。"
 					{codes}
 					file="ensign-recovery-codes.txt"
-					check="我已将这 8 组恢复代码安全保存"
+					check={`我已将这 ${codes.length} 组恢复代码安全保存`}
 					reveal="显示代码"
 					hide="隐藏代码"
 					save="下载 .txt"

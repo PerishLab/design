@@ -3,6 +3,8 @@
 @layer component {
 	.board {
 		@include media.room;
+		min-width: 0;
+		max-width: 100%;
 		text-wrap: balance;
 		background: var(--panel);
 		border: var(--line) solid var(--edge);
@@ -15,6 +17,7 @@
 		display: flex;
 		flex-direction: column;
 		gap: var(--space-1);
+		min-width: 0;
 		padding: var(--space-3) var(--space-4);
 		border-bottom: var(--line) solid var(--rule);
 	}
@@ -59,6 +62,8 @@
 		display: flex;
 		flex-direction: column;
 		gap: var(--space-3);
+		min-width: 0;
+		max-width: 100%;
 		padding: var(--space-3) var(--space-4) var(--space-4);
 	}
 

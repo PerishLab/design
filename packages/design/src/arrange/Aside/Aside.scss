@@ -6,6 +6,16 @@
 		gap: var(--space-5);
 		grid-template-columns: var(--cell) minmax(0, 1fr);
 		align-items: start;
+		min-width: 0;
+	}
+
+	[data-system^="google-"] .aside {
+		padding-block-start: var(--space-4);
+	}
+
+	[data-system^="google-"] .frame-page > .aside,
+	[data-system^="google-"] .frame-full > .aside {
+		padding-block-start: 0;
 	}
 
 	.aside-under .aside-side {
