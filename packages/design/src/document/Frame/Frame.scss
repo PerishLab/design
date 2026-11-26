@@ -14,6 +14,14 @@
 		margin: 0 auto;
 	}
 
+	[data-system^="google-"] .frame-page {
+		padding-block-start: var(--space-4);
+	}
+
+	[data-system^="google-"] .frame-page:has(.aside) {
+		max-width: var(--reach);
+	}
+
 	.frame-read {
 		max-width: calc(var(--prose) * 1.5);
 		margin: 0 auto;

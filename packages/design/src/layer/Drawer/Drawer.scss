@@ -23,6 +23,10 @@
 		animation: drawer-slide var(--beat) ease-out;
 	}
 
+	.drawer:focus-visible {
+		outline-offset: calc(var(--rim) * -1);
+	}
+
 	.drawer::backdrop {
 		background: var(--ground);
 		opacity: 0.72;
@@ -99,8 +103,10 @@
 		flex-direction: column;
 		gap: var(--space-4);
 		flex: 1 1 auto;
+		min-inline-size: 0;
 		min-block-size: 0;
 		overflow-y: auto;
+		overscroll-behavior: contain;
 		padding: var(--space-4);
 	}
 

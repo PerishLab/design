@@ -30,4 +30,21 @@
 	.head-quiet:first-child {
 		margin-block-start: 0;
 	}
+
+	[data-system^="google-"] .head-loud {
+		margin-block: var(--space-4) var(--space-3);
+	}
+
+	[data-system^="google-"] .head-loud:first-child {
+		margin-block-start: 0;
+	}
+
+	[data-system^="google-"] .head-loud::before {
+		display: none;
+		content: none;
+	}
+
+	[data-system^="google-"] .nav-crumb + .head-loud {
+		margin-block-start: var(--space-2);
+	}
 }

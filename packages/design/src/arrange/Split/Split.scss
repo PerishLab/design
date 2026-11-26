@@ -7,6 +7,7 @@
 		align-items: flex-end;
 		justify-content: space-between;
 		gap: var(--space-3);
+		min-width: 0;
 	}
 
 	.split-close {
@@ -35,9 +36,35 @@
 		font-size: var(--fine);
 	}
 
+	[data-system^="google-"] .split > .search {
+		width: auto;
+		flex: 1 1 16rem;
+		min-width: 0;
+	}
+
+	[data-system^="google-"] .split-bar > .search {
+		max-inline-size: 24rem;
+	}
+
+	[data-system^="google-"] .split > .pick:not(.pick-bare) {
+		flex: 0 1 14rem;
+		min-width: 10rem;
+	}
+
+	[data-system^="google-"] .split-bar:has(> .pick-field) {
+		align-items: flex-end;
+	}
+
 	@include media.slim {
 		.split-bar .split-label {
 			flex-basis: 100%;
+		}
+
+		[data-system^="google-"] .split > .search,
+		[data-system^="google-"] .split > .pick:not(.pick-bare) {
+			flex: 1 1 100%;
+			min-width: 0;
+			max-inline-size: 100%;
 		}
 	}
 

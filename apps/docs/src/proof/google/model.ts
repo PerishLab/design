@@ -3,13 +3,21 @@ export type Client = {
 	name: string;
 	kind: string;
 	state: "Active" | "Pending" | "Suspended";
+	scope: string;
 	region: string;
 	updated: string;
 	redirect: string;
 	notes: string;
 };
 
-export const heads = ["客户端", "类型", "状态", "区域", "更新时间"];
+export const heads = ["客户端", "类型", "状态", "作用域", "区域", "更新时间"];
+
+export const states = [
+	{ value: "all", label: "全部状态" },
+	{ value: "Active", label: "Active" },
+	{ value: "Pending", label: "Pending" },
+	{ value: "Suspended", label: "Suspended" },
+];
 
 export const seed: Client[] = [
 	{
@@ -17,6 +25,7 @@ export const seed: Client[] = [
 		name: "Ensign Web Portal",
 		kind: "OIDC SPA",
 		state: "Active",
+		scope: "org / accounts",
 		region: "eu-west",
 		updated: "2026-11-24",
 		redirect: "https://accounts.perish.uk/callback",
@@ -27,6 +36,7 @@ export const seed: Client[] = [
 		name: "Folio Workspace",
 		kind: "Confidential",
 		state: "Active",
+		scope: "org / workspace",
 		region: "eu-west",
 		updated: "2026-11-23",
 		redirect: "https://folio.perish.uk/auth/callback",
@@ -37,6 +47,7 @@ export const seed: Client[] = [
 		name: "Plumb Release CLI",
 		kind: "Device Flow",
 		state: "Pending",
+		scope: "team / release",
 		region: "global",
 		updated: "2026-11-21",
 		redirect: "https://cli.perish.uk/device",
@@ -47,6 +58,7 @@ export const seed: Client[] = [
 		name: "Legacy Webhook Bridge",
 		kind: "Service",
 		state: "Suspended",
+		scope: "service / hooks",
 		region: "us-east",
 		updated: "2026-10-19",
 		redirect: "https://hooks.perish.uk/oidc",
@@ -55,14 +67,12 @@ export const seed: Client[] = [
 ];
 
 export const codes = [
-	"K7M2-9P4Q",
-	"R3V8-2W6N",
-	"H5X9-4B1T",
-	"D8C4-7J2L",
-	"M2F6-8Y3S",
-	"P9N1-6Z5K",
-	"T4W7-3Q8V",
-	"B6L3-5H9R",
+	"9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08",
+	"4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640b7e4729b49fce",
+	"6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b",
+	"d4735e3a265e16eee03f59718b9b5d03019c07d8b6c51f90da3a666eec13ab35",
+	"ef2d127de37b942baad06145e54b0c619a1f22327b2ebbcfbec78f5564afe39d",
+	"e7f6c011776e8db7cd330b54174fd76f7d0216b612387a5ffcfb81e6f0919683",
 ];
 
 export const secret = "ens_live_7f4b9c2e18d640a3b9e21f7c4a0d85e1";
@@ -154,7 +164,14 @@ export function arrange(
 	const index = heads.indexOf(sort);
 	if (index < 0) return list;
 	const factor = order === "desc" ? -1 : 1;
-	const keys: (keyof Client)[] = ["name", "kind", "state", "region", "updated"];
+	const keys: (keyof Client)[] = [
+		"name",
+		"kind",
+		"state",
+		"scope",
+		"region",
+		"updated",
+	];
 	const key = keys[index] ?? "name";
 	return [...list].sort(
 		(left, right) => left[key].localeCompare(right[key]) * factor,

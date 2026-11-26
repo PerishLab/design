@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { Aside, Board, Button, Cell, Check, Face, Frame, Grid, Hero, Line, Menu, Nav, Navigator, Note, Schema, Search, Split, Table, Tabs, Tag, Toast, Vault } from "@perishlab/design";
+	import { Aside, Board, Button, Cell, Check, Face, Frame, Grid, Head, Hero, Line, Menu, Nav, Navigator, Note, Pick, Schema, Search, Split, Table, Tabs, Tag, Toast, Vault } from "@perishlab/design";
 	import type { Snapshot } from "../../docs/themes.ts";
 	import Panel from "./Panel.svelte";
-	import { actions, arrange, contract, heads, links, modes, secret, seed, type Client } from "./model.ts";
+	import { actions, arrange, contract, heads, links, modes, secret, seed, states, type Client } from "./model.ts";
 
 	let { shown, asked, swap }: { shown: Snapshot; asked: (seat: string) => void; swap: () => void } = $props();
 
@@ -11,6 +11,7 @@
 	let compact = $state(false);
 	let drawer = $state(false);
 	let query = $state("");
+	let status = $state("all");
 	let sort = $state("客户端");
 	let order = $state<"asc" | "desc">("asc");
 	let view = $state<"ready" | "loading" | "empty" | "error">("ready");
@@ -28,10 +29,12 @@
 	const dark = $derived(shown.presentation.tone === "dark");
 	const visible = $derived(
 		arrange(
-			clients.filter((item) =>
-				`${item.name} ${item.id} ${item.region}`
-					.toLowerCase()
-					.includes(query.toLowerCase()),
+			clients.filter(
+				(item) =>
+					(status === "all" || item.state === status) &&
+					`${item.name} ${item.id} ${item.scope} ${item.region}`
+						.toLowerCase()
+						.includes(query.toLowerCase()),
 			),
 			sort,
 			order,
@@ -42,6 +45,7 @@
 			item.name,
 			item.kind,
 			item.state,
+			item.scope,
 			item.region,
 			item.updated,
 		]),
@@ -151,7 +155,7 @@
 	</Menu>
 </Navigator>
 
-<Frame look="full">
+<Frame look="page">
 	<Aside under bind:open={drawer} rail={compact} label="Workspace 导航">
 		{#snippet side()}
 			<Nav look="rail" rail={compact} links={nav} pick={jump} label="工作区主导航" />
@@ -184,8 +188,7 @@
 
 		<Board
 			title="受管客户端"
-			line="点击任意行展开侧滑抽屉；点击列标题切换排序方向。"
-			look="flush"
+			line={`共 ${visible.length} 项 · 点击任意行展开侧滑抽屉，点击列标题切换排序方向。`}
 			seat="clients"
 		>
 			{#snippet side()}
@@ -196,8 +199,9 @@
 					change={(next) => (view = next as "ready" | "loading" | "empty" | "error")}
 				/>
 			{/snippet}
-			<Split look="bar" label={`共 ${visible.length} 项`}>
-				<Search bind:value={query} label="筛选客户端" hint="按名称、ID 或区域筛选" />
+			<Split look="apart">
+				<Search bind:value={query} label="筛选客户端" hint="按名称、ID、作用域或区域筛选" />
+				<Pick label="状态" choices={states} bind:value={status} />
 			</Split>
 			<Table
 				{heads}
@@ -214,6 +218,8 @@
 				label="受管客户端列表"
 			/>
 		</Board>
+
+		<Head text="策略与安全治理" seat="governance" />
 
 		<Grid cols={2}>
 			<Cell>
